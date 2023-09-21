@@ -126,9 +126,9 @@ const Carousel = () => {
           <p className="font-fun text-lg">
             Attention all young astronomers! Are you curious to unwind the
             mysteries of the Solar System? This quiz is not just about testing
-            your knowledge - it's also about having fun and learning something
-            new. So, grab a seat! It's going to be an adventurous ride! Click
-            'kahoot.it' to join the quiz.
+            your knowledge - it&apos;s also about having fun and learning
+            something new. So, grab a seat! It&apos;s going to be an adventurous
+            ride! Click &apos;kahoot.it&apos; to join the quiz.
           </p>
           <button className="bg-white py-3 inline-flex items-center justify-center gap-2 w-[200px] text-black rounded-full font-medium ">
             <BsFillPlayCircleFill size={25} /> Watch Now

@@ -1,16 +1,31 @@
 "use client";
-
 interface Props {
   value: string;
   question: string;
 }
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Container } from "@mantine/core";
 import { IoClose } from "react-icons/io5";
 import { FaRegStar } from "react-icons/fa6";
 import ProgressBar from "@/blocks/layouts/onboarding/Progressbar";
 
 const Header = ({ question, value }: Props) => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+    },
+  };
+
+  const listItem = {
+    hidden: { opacity: 0, y: -20 },
+    show: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   return (
     <header>
       <Container size={"lg"}>
@@ -27,13 +42,32 @@ const Header = ({ question, value }: Props) => {
           <div>
             <Image alt="astro" src={"/astro.png"} width={150} height={150} />
           </div>
-          <div className="relative">
-            <div className="bg-gray-100 inline-block px-5 py-2.5 rounded-full font-fun font-medium text-md ml-2">
+          <motion.div
+            key={question}
+            variants={container}
+            transition={{
+              staggerDirection: 3,
+              staggerChildren: 0.3,
+            }}
+            initial="hidden"
+            animate="show"
+            className="relative"
+          >
+            <motion.div
+              variants={listItem}
+              className="bg-gray-100 inline-block px-5 py-2.5 rounded-full font-fun font-medium text-md ml-2 border"
+            >
               {question}
-            </div>
-            <div className="bg-gray-100 w-[20px] h-[20px] rounded-full"></div>
-            <div className="bg-gray-100 w-[10px] h-[10px] rounded-full -ml-1"></div>
-          </div>
+            </motion.div>
+            <motion.div
+              variants={listItem}
+              className="bg-gray-100 w-[20px] h-[20px] rounded-full border"
+            />
+            <motion.div
+              variants={listItem}
+              className="bg-gray-100 w-[10px] h-[10px] rounded-full -ml-1 border"
+            />
+          </motion.div>
         </div>
       </Container>
     </header>

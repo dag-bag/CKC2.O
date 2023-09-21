@@ -3,8 +3,23 @@
 import Link from "next/link";
 import getInfo from "./data";
 import { Container } from "@mantine/core";
+import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Header from "@/blocks/layouts/onboarding/Header";
+
+const varient = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 
 const Layout = (props: any) => {
   const pathname = usePathname();
@@ -12,7 +27,13 @@ const Layout = (props: any) => {
   return (
     <div className="grid grid-rows-[200px_calc(100vh-400px)_200px]">
       <Header question={stage.question} value={stage.score} />
-      <main className="flex items-center justify-center">{props.children}</main>
+      <motion.main
+        key={pathname}
+        variants={varient}
+        className="flex items-center justify-center"
+      >
+        {props.children}
+      </motion.main>
       <footer>
         <Container
           size={"lg"}
