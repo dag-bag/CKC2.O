@@ -2,18 +2,38 @@ const Stage = {
     "/onboarding/name": {
       question: "Hey 👋 Cosmic Kids! What should I call you?",
       next: "/onboarding/standard",
-      score: 25,
+      score: 16,
     },
     "/onboarding/standard": {
-      question: "Hey Your standard",
-      next: "/onboarding/profile",
-      score: 50,
+      question: "Let me know your Grade!",
+      next: "/onboarding/birthday",
+      score: 32,
     },
+    "/onboarding/birthday": {
+      question: "Your birthday date?",
+      next: "/onboarding/guardian",
+        score: 48,
+      },
+     "/onboarding/guardian": {
+      question: "Your Parent Name?",
+      next: "/onboarding/phone",
+        score: 64,
+      },
+     "/onboarding/phone": {
+      question: "Your Phone Number",
+      next: "/onboarding/plan",
+        score: 80,
+        },
+     "/onboarding/plan": {
+       question: "Choose Plan...",
+       next: "/onboarding/profile",
+         score: 80,
+         },
     "/onboarding/profile": {
       question: "Create your avatar",
-      next: "_",
-      score: 75,
-    },
+      next: "/",
+        score: 96,
+      },
   };
 
 

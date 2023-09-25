@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Select } from "@mantine/core";
-
 const T = [
   "1 st",
   "2 nd",

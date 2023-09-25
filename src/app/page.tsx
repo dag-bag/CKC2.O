@@ -1,6 +1,4 @@
-import { removeRequestMeta } from "next/dist/server/request-meta";
 import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="">
@@ -15,6 +13,28 @@ export default function Home() {
           <Profile />
         </div>
       </header>
+
+      <div className="w-full h-full fixed inset-0 backdrop-blur-sm bg-black/40 z-50 flex items-center justify-center">
+        <div className="bg-white rounded-xl p-5  shadow-md flex flex-col  justify-center items-center gap-2 min-w-[300px]">
+          <img
+            alt="coin"
+            src="/coin.png"
+            className="rounded-full w-[150px] h-[150px] object-cover animate-bounce duration-100"
+          />
+          <h3 className="text-xl font-medium font-fun text-center">
+            Congratulation! <br /> You Win 1000 Coins
+          </h3>
+          {/* <p className="text-center">Lorem ipsum dolor sit amet.</p> */}
+          <button
+            style={{
+              boxShadow: "4px 7px 12px 0 rgba(97,93,250,.2)",
+            }}
+            className="px-20 bg-[#615dfa] text-white py-2.5 rounded-md font-fun"
+          >
+            Claim
+          </button>
+        </div>
+      </div>
 
       <main className="grid">
         <Carousel />
