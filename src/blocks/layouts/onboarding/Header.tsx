@@ -55,7 +55,7 @@ const Header = ({ question, value }: Props) => {
           >
             <motion.div
               variants={listItem}
-              className="bg-gray-100 inline-block px-5 py-2.5 rounded-full font-fun font-medium text-md ml-2 border"
+              className="bg-gray-100 inline-block px-5 py-2.5 rounded-full font-fun font-medium text-lg ml-2 border"
             >
               {question}
             </motion.div>

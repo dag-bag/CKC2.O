@@ -76,7 +76,7 @@ const Page = () => {
               </a>
             </div>
             {/* Pricing Card */}
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-indigo-500 rounded-lg border border-gray-100 shadow xl:p-8">
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gradient-to-tl  from-indigo-500 to-purple-500  rounded-lg  shadow xl:p-8 ">
               <h3 className="mb-4 text-2xl font-semibold">Plus Benefits</h3>
               <p className="font-light text-gray-100 sm:text-lg ">
                 Relevant for multiple users, extended &amp; premium support.
