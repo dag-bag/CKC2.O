@@ -1,4 +1,4 @@
-import Register from "@/blocks/forms/Register";
+import Register from "@/blocks/molecules/forms/Register";
 
 const Page = () => {
   return <Register />;

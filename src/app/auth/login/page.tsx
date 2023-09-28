@@ -1,4 +1,4 @@
-import Login from "@/blocks/forms/Login";
+import Login from "@/blocks/molecules/forms/Login";
 
 const Page = () => {
   return <Login />;
