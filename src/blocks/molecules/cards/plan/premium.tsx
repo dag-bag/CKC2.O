@@ -9,8 +9,8 @@ const Premium = () => {
   return (
     <div className=" relative flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gradient-to-tl  from-indigo-500 to-purple-500  rounded-lg  shadow xl:p-8 border-2   ">
       <h3 className="mb-4 text-2xl font-semibold">Premium Plan</h3>
-      <p className="font-light text-gray-100 sm:text-lg ">
-        Relevant for multiple users, extended &amp; premium support.
+      <p className="font-light  text-gray-100 sm:text-lg ">
+        Premium Plan: 300 credits, priority support for kids.
       </p>
       <div className="flex justify-center items-baseline my-8">
         <span className="mr-2 text-5xl font-extrabold">₹1999</span>

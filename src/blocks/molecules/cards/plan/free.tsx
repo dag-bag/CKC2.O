@@ -10,8 +10,8 @@ const Free = () => {
   return (
     <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-gray-50 rounded-lg border border-gray-100 shadow xl:p-8 ">
       <h3 className="mb-4 text-2xl font-semibold">Free Plan</h3>
-      <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-        Best option for personal use &amp; for your next project.
+      <p className="font-light text-gray-600 sm:text-lg">
+        Free Plan 15 credits for a year, add more for ₹10.
       </p>
       <div className="flex justify-center items-baseline my-8">
         <span className="mr-2 text-5xl font-extrabold">₹0</span>
