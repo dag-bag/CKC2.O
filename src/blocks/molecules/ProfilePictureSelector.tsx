@@ -126,15 +126,15 @@ const ProfilePictureSelector = ({ defaultImage }: Props) => {
 
       <input
         type="file"
+        ref={fileInput}
         className="hidden"
         accept=".png, .svg, .jpg"
         onChange={handleChangeFileInput}
-        ref={fileInput}
       />
 
       {/* profile picture view and toggler  */}
 
-      <div className="w-[200px] h-[200px] bg-gray-500 border-2 rounded-full relative overflow-hidden">
+      <div className="w-[200px] h-[200px] bg-gray-500 rounded-full relative overflow-hidden">
         <Image
           fill
           alt="profile picture"
