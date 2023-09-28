@@ -14,7 +14,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="w-full h-full fixed inset-0 backdrop-blur-sm bg-black/40 z-50 flex items-center justify-center">
+      {/* <div className="w-full h-full fixed inset-0 backdrop-blur-sm bg-black/40 z-50 flex items-center justify-center ">
         <div className="bg-white rounded-xl p-5  shadow-md flex flex-col  justify-center items-center gap-2 min-w-[300px]">
           <img
             alt="coin"
@@ -24,7 +24,6 @@ export default function Home() {
           <h3 className="text-xl font-medium font-fun text-center">
             Congratulation! <br /> You Win 1000 Coins
           </h3>
-          {/* <p className="text-center">Lorem ipsum dolor sit amet.</p> */}
           <button
             style={{
               boxShadow: "4px 7px 12px 0 rgba(97,93,250,.2)",
@@ -34,7 +33,7 @@ export default function Home() {
             Claim
           </button>
         </div>
-      </div>
+      </div> */}
 
       <main className="grid">
         <Carousel />

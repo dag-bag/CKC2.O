@@ -1,35 +1,35 @@
 const Stage = {
-  "/onboarding/name": {
+  "/onboarding/setup/name": {
     question: "Hello there, Cosmic Kid! 😊 What's your super cool name?",
-    next: "/onboarding/standard",
+    next: "/onboarding/setup/standard",
     score: 16,
   },
-  "/onboarding/standard": {
+  "/onboarding/setup/standard": {
     question: "Awesome! 🚀 Which grade are you in, young explorer?",
-    next: "/onboarding/birthday",
+    next: "/onboarding/setup/birthday",
     score: 32,
   },
-  "/onboarding/birthday": {
+  "/onboarding/setup/birthday": {
     question: "Wow, that's exciting! 🎉 When's your special birthday?",
-    next: "/onboarding/guardian",
+    next: "/onboarding/setup/guardian",
     score: 48,
   },
-  "/onboarding/guardian": {
+  "/onboarding/setup/guardian": {
     question: "Nice to meet you, Cosmic Kid! 🚀 What's your superhero parent's name?",
-    next: "/onboarding/phone",
+    next: "/onboarding/setup/phone",
     score: 64,
   },
-  "/onboarding/phone": {
+  "/onboarding/setup/phone": {
     question: "Just in case we need to reach you in the Cosmic galaxy 📞, what's your phone number?",
-    next: "/onboarding/plan",
+    next: "/onboarding/setup/plan",
     score: 80,
   },
-  "/onboarding/plan": {
+  "/onboarding/setup/plan": {
     question: "Time to choose your Cosmic adventure! 🌌 Which plan do you think will make you a superhero?",
-    next: "/onboarding/profile",
+    next: "/onboarding/setup/profile",
     score: 80,
   },
-  "/onboarding/profile": {
+  "/onboarding/setup/profile": {
     question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
     next: "/",
     score: 96,
@@ -37,10 +37,9 @@ const Stage = {
 };
 
 
-
 const getInfo = (key: string) => {
-    return (Stage as any)[key];
-  };
-  
+  return (Stage as any)[key];
+};
 
-  export default getInfo
+
+export default getInfo
