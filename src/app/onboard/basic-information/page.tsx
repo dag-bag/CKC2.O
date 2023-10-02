@@ -86,9 +86,12 @@ const BasicInformationPage = () => {
               </div>
 
               <div className="grid grid-cols-2 items-center gap-5">
-                <button className="bg-blue-500 py-2.5 font-medium rounded-lg text-lg text-white  center gap-2">
+                <Link
+                  href={"profile-setup"}
+                  className="bg-blue-500 py-2.5 font-medium rounded-lg text-lg text-white  center gap-2"
+                >
                   Lets Go <HiArrowSmallRight size={22} />
-                </button>
+                </Link>
               </div>
             </form>
           </div>
