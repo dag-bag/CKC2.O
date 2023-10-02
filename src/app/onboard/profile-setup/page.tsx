@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineLike } from "react-icons/ai";
 import { HiArrowSmallRight } from "react-icons/hi2";
 import ProfilePictureSelector from "@/blocks/molecules/ProfilePictureSelector";
@@ -59,9 +60,12 @@ const ProfileSetup = () => {
               ))}
             </div>
           </div>
-          <button className="bg-blue-500 px-10 mt-5 py-2.5 font-medium rounded-lg text-lg text-white  center gap-2">
+          <Link
+            href="setup-completed"
+            className="bg-blue-500 inline-flex px-10 mt-5 py-2.5 font-medium rounded-lg text-lg text-white  center gap-2"
+          >
             Lets Go <HiArrowSmallRight size={22} />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
