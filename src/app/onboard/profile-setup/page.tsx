@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { AiOutlineLike } from "react-icons/ai";
 import { HiArrowSmallRight } from "react-icons/hi2";
+import ProfilePictureSelector from "@/blocks/molecules/ProfilePictureSelector";
 
 const spaceInterests = [
   "Astronaut",
@@ -13,8 +14,6 @@ const spaceInterests = [
   "Rocket Scientist",
   "Telescope Operator",
 ];
-
-import ProfilePictureSelector from "@/blocks/molecules/ProfilePictureSelector";
 
 const ProfileSetup = () => {
   return (
