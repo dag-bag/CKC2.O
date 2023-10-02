@@ -6,7 +6,7 @@ import { HiArrowSmallRight } from "react-icons/hi2";
 
 const gradeOption = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-const Page = () => {
+const BasicInformationPage = () => {
   return (
     <div className="md:h-screen center font-fun bg-gray-50 ">
       <div className="wrapper rounded-lg grid md:grid-cols-2 bg-white">
@@ -20,7 +20,7 @@ const Page = () => {
           />
         </div>
         <div className="md:p-20 p-10 ">
-          <h1 className="text-3xl font-semibold mb-5">We are almost there</h1>
+          <h1 className="text-3xl font-semibold mb-5">We are almost there.</h1>
 
           <div>
             <form className="space-y-4">
@@ -73,7 +73,7 @@ const Page = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between py-3">
                 <div className="flex">
                   <label className="flex gap-2" htmlFor="cheakbox">
                     <input type="checkbox" id="cheakbox" />
@@ -98,4 +98,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default BasicInformationPage;

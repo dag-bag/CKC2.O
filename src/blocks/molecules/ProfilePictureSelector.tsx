@@ -134,7 +134,7 @@ const ProfilePictureSelector = ({ defaultImage }: Props) => {
 
       {/* profile picture view and toggler  */}
 
-      <div className="w-[200px] h-[200px] bg-gray-500 rounded-full relative overflow-hidden">
+      <div className="w-[130px] h-[130px] bg-gray-500 rounded-full relative overflow-hidden">
         <Image
           fill
           alt="profile picture"
