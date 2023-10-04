@@ -28,6 +28,10 @@ export default ContentGrid;
 
 const Content = () => {
   return (
-    <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
+    <div className="bg-blue-50 rounded-xl p-2">
+      <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
+      <h3 className="text-lg font-medium">Lorem ipsum dolor sit amet.</h3>
+      <p className="text-sm">Lorem ipsum dolor, sit amet consectetur.</p>
+    </div>
   );
 };
