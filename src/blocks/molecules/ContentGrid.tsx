@@ -28,6 +28,6 @@ export default ContentGrid;
 
 const Content = () => {
   return (
-    <div className="bg-blue-100 h-[200px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
+    <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
   );
 };

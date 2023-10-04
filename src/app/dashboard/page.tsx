@@ -6,6 +6,7 @@ const DashboardPage = () => {
       <BannerCarousel />
       <ContentGrid title="Continue Watching" />
       <ContentGrid title="Start Learning" />
+      <ContentGrid title="How it works" />
     </div>
   );
 };
