@@ -14,7 +14,8 @@ const ContentGrid = ({ title }: any) => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-4 gap-5">
+        <Content />
         <Content />
         <Content />
         <Content />
@@ -27,6 +28,6 @@ export default ContentGrid;
 
 const Content = () => {
   return (
-    <div className="bg-blue-100 h-[230px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
+    <div className="bg-blue-100 h-[200px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
   );
 };
