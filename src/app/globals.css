@@ -11,6 +11,10 @@
 
 @layer components {
 
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
     .center { 
         @apply flex items-center justify-center
     }
