@@ -2,32 +2,52 @@ import LeftButton from "./LinkButton";
 
 const Left = () => {
   return (
-    <aside className="bg-white  p-5 flex flex-col gap-2 ">
+    <aside className="bg-white  px-5- flex flex-col gap-2 ">
       <div>
-        <h5 className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           General
         </h5>
-        <LeftButton title="Live" Icon={"/Chromecast.svg"} />
-        <LeftButton title="Video" Icon={"/Monitor_Play.svg"} />
-        {/* <LeftButton title="Comics" Icon={"/settings.svg"} /> */}
-        <LeftButton title="Learn" Icon={"/Book.svg"} />
+        <LeftButton href="/dashboard" title="Live" Icon={"/Chromecast.svg"} />
+        <LeftButton
+          href="/dashboard"
+          title="Library"
+          Icon={"/Chromecast.svg"}
+        />
+
+        <LeftButton href="/learn" title="Learn" Icon={"/Book.svg"} />
       </div>
       <div>
-        <h5 className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           Gamified
         </h5>
-        <LeftButton title="Bedges" Icon={"/settings.svg"} />
-        <LeftButton title="Gallary" Icon={"/settings.svg"} />
-        <LeftButton title="Challenges" Icon={"/settings.svg"} />
-        <LeftButton title="Leadarboard" Icon={"/settings.svg"} />
+        <LeftButton href="/dashboard" title="Bedges" Icon={"/settings.svg"} />
+        <LeftButton href="/dashboard" title="Gallary" Icon={"/settings.svg"} />
+        <LeftButton
+          href="/dashboard"
+          title="Challenges"
+          Icon={"/settings.svg"}
+        />
+        <LeftButton
+          href="/dashboard"
+          title="Leadarboard"
+          Icon={"/settings.svg"}
+        />
       </div>
       <div>
-        <h5 className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           Settings
         </h5>
-        <LeftButton title="Settings" Icon={"/settings.svg"} />
-        <LeftButton title="Challenges" Icon={"/settings.svg"} />
-        <LeftButton title="Help & Supports" Icon={"/settings.svg"} />
+        <LeftButton href="/dashboard" title="Settings" Icon={"/settings.svg"} />
+        <LeftButton
+          href="/dashboard"
+          title="Challenges"
+          Icon={"/settings.svg"}
+        />
+        <LeftButton
+          href="/dashboard"
+          title="Help & Supports"
+          Icon={"/settings.svg"}
+        />
       </div>
 
       <div className="bg-slate-900 mt-auto p-4 relative text-center rounded-2xl text-white">

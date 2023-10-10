@@ -11,6 +11,10 @@
 
 @layer components {
 
+    .btn{
+        @apply px-10 py-2.5 bg-gray-50 rounded-xl font-medium
+    }
+
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
       }

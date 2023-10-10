@@ -1,4 +1,5 @@
 // this component used to hold content (carousel)
+import Link from "next/link";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
 const ContentGrid = ({ title }: any) => {
   return (
@@ -14,7 +15,8 @@ const ContentGrid = ({ title }: any) => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-5 gap-3">
+        <Content />
         <Content />
         <Content />
         <Content />
@@ -27,11 +29,21 @@ const ContentGrid = ({ title }: any) => {
 export default ContentGrid;
 
 const Content = () => {
+  const tags = ["Video", "Galaxy", "Astronaut"];
   return (
-    <div className="bg-blue-50 rounded-xl p-2">
-      <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
-      <h3 className="text-lg font-medium">Lorem ipsum dolor sit amet.</h3>
-      <p className="text-sm">Lorem ipsum dolor, sit amet consectetur.</p>
-    </div>
+    <Link href="/dashboard/slug">
+      <div className="bg-blue-50 rounded-xl p-2">
+        <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover"></div>
+        <h3 className="text-lg font-medium">Lorem ipsum dolor sit amet.</h3>
+        {tags.map((tag, index) => (
+          <span
+            key={index}
+            className="text-xs font-medium text-gray-800 mr-2 bg-white px-2 py-1 rounded-full"
+          >
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </Link>
   );
 };
