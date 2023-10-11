@@ -7,7 +7,7 @@ const Left = () => {
         <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           General
         </h5>
-        <LeftButton href="/dashboard" title="Live" Icon={"/Chromecast.svg"} />
+        <LeftButton href="/live" title="Live" Icon={"/Chromecast.svg"} />
         <LeftButton
           href="/dashboard"
           title="Library"
@@ -38,11 +38,6 @@ const Left = () => {
           Settings
         </h5>
         <LeftButton href="/dashboard" title="Settings" Icon={"/settings.svg"} />
-        <LeftButton
-          href="/dashboard"
-          title="Challenges"
-          Icon={"/settings.svg"}
-        />
         <LeftButton
           href="/dashboard"
           title="Help & Supports"

@@ -1,6 +1,6 @@
 "use client";
 
-import ContentGrid from "@/blocks/molecules/ContentGrid";
+import ContentGrid from "@/blocks/molecules/content-grid";
 import Image from "next/image";
 import { motion } from "framer-motion";
 const Page = () => {
