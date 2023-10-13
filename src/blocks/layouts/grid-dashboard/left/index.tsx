@@ -45,7 +45,7 @@ const Left = () => {
         />
       </div>
 
-      <div className="bg-slate-900 mt-auto p-4 relative text-center rounded-2xl text-white">
+      <div className="bg-slate-900 mt-auto p-4 ml-2 mb-2 relative text-center rounded-2xl text-white">
         <img
           src="/rabit-0cfb0342.svg"
           alt=""
