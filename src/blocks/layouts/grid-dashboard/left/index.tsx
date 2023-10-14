@@ -2,9 +2,9 @@ import LeftButton from "./LinkButton";
 
 const Left = () => {
   return (
-    <aside className="bg-white  px-5- flex flex-col gap-2 ">
+    <aside className="bg-white  pl-2 flex flex-col gap-2 ">
       <div>
-        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400  py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           General
         </h5>
         <LeftButton href="/live" title="Live" Icon={"/Chromecast.svg"} />
@@ -17,7 +17,7 @@ const Left = () => {
         <LeftButton href="/learn" title="Learn" Icon={"/Book.svg"} />
       </div>
       <div>
-        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400  py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           Gamified
         </h5>
         <LeftButton href="/dashboard" title="Bedges" Icon={"/settings.svg"} />
@@ -34,7 +34,7 @@ const Left = () => {
         />
       </div>
       <div>
-        <h5 className="px-5 text-xs text-gray-400 border-y py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
+        <h5 className="px-5 text-xs text-gray-400  py-2 border-gray-100 font-medium uppercase tracking-wider mb-2">
           Settings
         </h5>
         <LeftButton href="/dashboard" title="Settings" Icon={"/settings.svg"} />
