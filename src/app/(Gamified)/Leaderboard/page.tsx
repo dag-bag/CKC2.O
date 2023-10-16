@@ -328,7 +328,7 @@ const LeaderboardPage = () => {
         </div>
       </section>
 
-      <section className="space-y-5 pr-5--">
+      <section className="space-y-5 pr-5">
         <Shop />
         <Shop />
       </section>
