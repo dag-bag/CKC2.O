@@ -6,7 +6,7 @@ const DiscoveryJarPage = () => {
   return (
     <div className="px-5 gap-5 grid grid-cols-[auto_350px] ">
       <section>
-        <div className="flex flex-col justify-center rounded-xl px-20 h-[330px] items-center">
+        <div className="flex flex-col justify-center rounded-xl px-20 h-[330px] items-center mb-10">
           <div className="max-w-2xl mx-auto center flex-col">
             <p className="text-2xl font-medium mb-5">Discovery Jar Curiosity</p>
             <h1 className="text-5xl font-bold  font-heading text-center mb-4">
@@ -28,8 +28,8 @@ const DiscoveryJarPage = () => {
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-medium py-4">Questions & Answers</h3>
+          <div className="flex items-center justify-between mb-5">
+            <h3 className="text-2xl font-medium py-4">Questions & Answers</h3>
             <div className="flex gap-5">
               <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
                 <BiSearchAlt color="gray" size={25} />
