@@ -117,7 +117,7 @@ const solutions = [
     icon: RiGlobalLine,
   },
   {
-    name: "monthly warrior",
+    name: "October warrior",
     description: "Create your own targeted content",
     href: "##",
     icon: MdOutlineCalendarMonth,
@@ -130,9 +130,9 @@ const LeaderboardPage = () => {
   >("Leader Legends");
 
   return (
-    <div className="px-5 gap-5 grid grid-cols-[auto_350px] ">
-      <section className="">
-        <div className="max-w-sm-- ">
+    <div className="px-5 gap-5 grid grid-cols-[auto_300px] ">
+      <section className="max-h-[calc(100vh-100px)] overflow-y-scroll hide-scrollbar">
+        <div>
           <Popover className="relative">
             {({ open }) => (
               <>
@@ -142,6 +142,7 @@ const LeaderboardPage = () => {
                 group inline-flex items-center bg-gray-100 rounded-md w-[200px] justify-between px-5 py-2 text-base font-medium  hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                   <span className="capitalize">{leaderboardType}</span>
+
                   <BsChevronDown
                     className={`${open ? "" : "text-opacity-70"}
                   ml-2 h-5 w-5 text-orange-300 transition duration-150 ease-in-out group-hover:text-opacity-80`}
@@ -228,6 +229,49 @@ const LeaderboardPage = () => {
         </div>
 
         <div className="space-y-3 mt-3">
+          <h3 className="pl-20 text-xl font-medium py-1">My Rank</h3>
+          <div className="bg-indigo-50 pt-3 pr-5 rounded-xl">
+            <DataHeader />
+            <div className="grid grid-cols-[200px_auto] items-center pb-10">
+              <div className="center">
+                <div className="text-xl font-medium h-10 w-10 center rounded-full border border-gray-100">
+                  172
+                </div>
+              </div>
+              <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr] p-3 pr-5">
+                <div className="flex gap-3 items-center">
+                  <div className="w-[50px] h-[50px] rounded-full bg-black-- bg-[url('/ed.png')] bg-cover"></div>
+                  <div>
+                    <h5 className="font-medium">Oye Rahul</h5>
+                    <p className="text-sm -mt-1">Space Crafter</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FaStar color="#EAB308" size={25} />
+                  <p className="text-md font-medium text-gray-800">{"1000"}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <SlBadge color="gray" size={25} />
+                  <p className="text-md font-medium text-gray-800">{"50"}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <BiSolidVideos color="gray" size={25} />
+                  <p className="text-md font-medium text-gray-800">{"5"}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <VscBook color="gray" size={25} />
+                  <p className="text-md font-medium text-gray-800">{"5"}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <GiProgression color="gray" size={25} />
+                  <p className="text-md font-medium text-gray-800">{"5"}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <DataHeader />
+
           {LeaderboardData.map((data) => {
             return (
               <div
@@ -236,7 +280,7 @@ const LeaderboardPage = () => {
               >
                 <div className="center">
                   <div className="text-xl font-medium h-10 w-10 center rounded-full border border-gray-100">
-                    {data.rank + 3}
+                    {data.rank}
                   </div>
                 </div>
                 <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr] p-3 pr-5">
@@ -282,17 +326,35 @@ const LeaderboardPage = () => {
             );
           })}
         </div>
-
-        <div>
-          <div></div>
-        </div>
       </section>
 
-      <section></section>
+      <section className="space-y-5 pr-5--">
+        <Shop />
+        <Shop />
+      </section>
     </div>
   );
 };
 export default LeaderboardPage;
+
+const Shop = () => {
+  return (
+    <div className="p-3  rounded-xl border border-gray-100">
+      <div className="h-[150px] bg-[url('/shop.png')] bg-cover rounded-xl overflow-hidden"></div>
+      <div className="mt-2">
+        <p className="text-lg text-gray-800 font-medium mt-1">
+          Lorem ipsum dolor sit amet.
+        </p>
+        <p className="text-sm text-gray-600 mt-1">
+          Lorem ipsum dolor sit amet.
+        </p>
+        <button className="btn w-full ml-auto block bg-[#ECDADA] text-sm mt-2">
+          Visit Shop
+        </button>
+      </div>
+    </div>
+  );
+};
 
 import { SlBadge } from "react-icons/sl";
 import { FaStar } from "react-icons/fa";
@@ -300,3 +362,36 @@ import { RiStarSLine } from "react-icons/ri";
 import { BiSolidVideos } from "react-icons/bi";
 import { VscBook } from "react-icons/vsc";
 import { GiProgression } from "react-icons/gi";
+import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
+
+const DataHeader = () => {
+  return (
+    <div className="grid grid-cols-[200px_auto] items-center py-3">
+      <div className="center">
+        <span className="font-medium text-sm text-gray-500 uppercase tracking-wider font-heading pl-3">
+          Rank
+        </span>
+      </div>
+      <div className="grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr]  pr-5">
+        <span className="font-medium text-sm text-gray-500 uppercase tracking-wider font-heading pl-3">
+          Profile
+        </span>
+        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
+          Stars
+        </span>
+        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
+          Badges
+        </span>
+        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
+          Videos
+        </span>
+        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
+          Comics
+        </span>
+        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
+          Challanges
+        </span>
+      </div>
+    </div>
+  );
+};
