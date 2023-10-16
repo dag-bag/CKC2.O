@@ -13,13 +13,13 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      fontFamily : {
+      fontFamily: {
         // "sans" : ['Quicksand', 'monospace'],
-        "sans" : ['Quicksand', 'monospace'],
+        "sans": ['Quicksand', 'monospace'],
 
-        "game" : ['Orbitron', 'monospace'],
-        "heading" : ['Montserrat', 'monospace'],
-        "fun" : ["Fredoka", "monospace"]
+        "game": ['Orbitron', 'monospace'],
+        "heading": ['Gabarito', 'monospace'],
+        "fun": ["Fredoka", "monospace"]
       }
     },
   },
