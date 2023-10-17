@@ -7,7 +7,7 @@ const BedgesPage = () => {
       <section className="max-h-[calc(100vh-100px)] overflow-y-scroll hide-scrollbar">
         {/* hero */}
         <div className="h-[330px] bg-cyan-50 rounded-xl center flex-col">
-          <h1 className="text-3xl font-heading font-bold">Badges</h1>
+          <h1 className="text-3xl font-heading font-bold">Challanges</h1>
           <p className="text-lg">Lorem ipsum dolor sit amet.</p>
         </div>
         {/* filter */}
@@ -52,9 +52,6 @@ const Content = () => {
       <div className="center flex-col mt-5">
         <h3 className="text-xl font-heading font-medium">Space Champion</h3>
         <p className="text-sm">Go!, Conquor The Space.</p>
-      </div>
-      <div className="w-full rounded-full bg-gray-200 mt-5">
-        <div className="w-[30%] bg-blue-500 h-[5px] rounded-full"></div>
       </div>
     </div>
   );

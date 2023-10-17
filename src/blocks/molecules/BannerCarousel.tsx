@@ -9,7 +9,9 @@ const BannerCarousel = () => {
     >
       <div className="bg-gradient-to-b from-transparent to-black w-full h-full text-white flex items-start justify-end flex-col p-5">
         <div className="border-l-2 pl-3">
-          <h3 className="text-4xl font-semibold">The Marvel Characters</h3>
+          <h3 className="text-4xl font-semibold font-heading">
+            The Marvel Characters
+          </h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Perspiciatis, inventore.
