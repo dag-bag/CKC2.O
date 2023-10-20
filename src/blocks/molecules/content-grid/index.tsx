@@ -11,8 +11,10 @@ interface Props {
 const ContentGrid: React.FC<Props> = ({ title, type }) => {
   return (
     <div className={`my-5`}>
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-2xl font-medium">{title}</h3>
+      <div className="flex items-center justify-between mb-2 pl-2">
+        <h3 className="text-2xl font-semibold tracking-medium font-heading">
+          {title}
+        </h3>
         <Controller />
       </div>
       <Grid>

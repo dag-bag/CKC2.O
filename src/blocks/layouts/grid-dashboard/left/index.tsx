@@ -2,32 +2,33 @@ import LeftButton from "./LinkButton";
 
 const Left = () => {
   return (
-    <aside className="border-r p-2 flex flex-col gap-2 ">
+    <aside className=" px-2 flex flex-col gap-2 ">
       <LeftButton href="/live" title="Live" Icon={"/Chromecast.svg"} />
-      <LeftButton href="/dashboard" title="Library" Icon={"/Chromecast.svg"} />
-
       <LeftButton href="/learn" title="Learn" Icon={"/Book.svg"} />
+      <LeftButton href="/library" title="Library" Icon={"/Chromecast.svg"} />
+      <hr className="opacity-50" />
 
       <LeftButton href="/bedges" title="Bedges" Icon={"/settings.svg"} />
-      <LeftButton href="/dashboard" title="Gallary" Icon={"/settings.svg"} />
+      <LeftButton
+        href="/profile/gallary"
+        title="Gallary"
+        Icon={"/settings.svg"}
+      />
       <LeftButton
         href="/challanges"
         title="Challenges"
         Icon={"/settings.svg"}
       />
       <LeftButton
-        href="/dashboard"
+        href="/Leaderboard"
         title="Leadarboard"
         Icon={"/settings.svg"}
       />
-      <LeftButton href="/settings" title="Settings" Icon={"/settings.svg"} />
-      <LeftButton
-        href="/dashboard"
-        title="Help & Supports"
-        Icon={"/settings.svg"}
-      />
+      <hr className="opacity-50" />
 
-      <div className="bg-slate-900 mt-auto p-4 ml-2 mb-2 relative text-center rounded-2xl text-white">
+      <LeftButton href="/settings" title="Settings" Icon={"/settings.svg"} />
+
+      {/* <div className="bg-slate-900 mt-auto p-4 ml-2 mb-2 relative text-center rounded-2xl text-white">
         <img
           src="/rabit-0cfb0342.svg"
           alt=""
@@ -46,7 +47,7 @@ const Left = () => {
             Upgrade{" "}
           </button>
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 };

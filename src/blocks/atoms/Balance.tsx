@@ -6,8 +6,8 @@ const Balance = () => {
       <div className="flex gap-2 items-center pl-3 ">
         <RiMoneyDollarCircleFill color="gray" size={25} />{" "}
         <span className="font-medium">100.00</span>
-      </div>{" "}
-      <button className="bg-indigo-500 text-white rounded-full">Buy</button>
+      </div>
+      <button className="bg-gray-500 text-white rounded-full">Buy</button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { type ContentType } from ".";
-
+import Image from "next/image";
 const tags = ["Video", "Galaxy", "Astronaut"];
 
 interface Props {
@@ -15,18 +15,16 @@ const Content: React.FC<Props> = ({ type }) => {
     return <LiveContent />;
   }
   return (
-    <Link href="/dashboard/slug">
+    <Link href="/dashboard/slug" className="rounded-xl">
       <div className="rounded-xl p-2">
-        <div className="bg-blue-100 h-[180px] rounded-lg bg-[url('/thumbnail.jpg')] bg-cover relative"></div>
-        <h3 className="text-lg font-medium">Lorem ipsum dolor sit amet.</h3>
-        {tags.map((tag, index) => (
-          <span
-            key={index}
-            className="text-xs font-medium text-gray-800 mr-2 bg-white px-2 py-1 rounded-full"
-          >
-            #{tag}
-          </span>
-        ))}
+        <div className="relative h-[170px] rounded-lg overflow-hidden">
+          <Image src="/1.webp" alt="image" fill />
+        </div>
+
+        <h3 className="text-lg font-medium font-heading mt-2">
+          Quizmania - The untold story
+        </h3>
+        <p className="text-sm -mt-1">Lorem ipsum dolor sit amet.</p>
       </div>
     </Link>
   );

@@ -1,17 +1,23 @@
 import ContentGrid from "@/blocks/molecules/content-grid";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
 const DashboardPage = () => {
   return (
     <div className="px-5 overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar ">
-      <div className="grid grid-cols-[auto_350px]">
+      <div className="grid grid-cols-1] gap-5">
         <BannerCarousel />
-        <div className="center">
-          <RightSideProfileSection />
-        </div>
+        {/* <div className="">
+          <div className="bg-gray-200 border  rounded-xl overflow-hidden">
+            <div className="h-[120px] bg-red-50 bg-[url('/tile.png')] bg-cover bg-center "></div>
+            <div className="flex items-center justify-center">
+              <div className="w-[100px]  -mt-[50px] h-[100px] bg-[url('/ed.png')] bg-cover rounded-full border-[5px] border-white ">
+                &nbsp;
+              </div>
+            </div>
+          </div>
+        </div> */}
       </div>
       <ContentGrid title="Continue Watching" />
-      <InContentAdvertisement />
+      {/* <InContentAdvertisement /> */}
       <ContentGrid title="Start Learning" />
       <ContentGrid title="How it works" />
     </div>

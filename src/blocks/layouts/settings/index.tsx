@@ -12,7 +12,7 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
     <div className="px-5- gap-5 grid grid-cols-[auto] bg-[#00000004]-- h-[80vh] rounded-xl">
       <section>
         {/* <h2 className="font-heading text-2xl font-medium mb-3">Settings</h2> */}
-        <div className="grid grid-cols-[300px_auto] gap-5 h-full">
+        <div className="grid grid-cols-[320px_auto] gap-5 h-full">
           <SettingsNavigation />
           <div>{children}</div>
         </div>
@@ -64,6 +64,5 @@ const settings_link = [
   { label: "General", path: "/settings" },
   { label: "Notifications", path: "/settings/notifications" },
   { label: "Transections", path: "/settings/transections" },
-  { label: "Membership", path: "/settings/memebership" },
   { label: "Help and Support", path: "/settings/help-and-support" },
 ];
