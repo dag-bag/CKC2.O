@@ -7,13 +7,13 @@ const Left = () => {
       <LeftButton href="/learn" title="Learn" Icon={"/Book.svg"} />
       <LeftButton href="/library" title="Library" Icon={"/Chromecast.svg"} />
       <hr className="opacity-50" />
-
-      <LeftButton href="/bedges" title="Bedges" Icon={"/settings.svg"} />
+      <LeftButton href="/shop" title="Shop" Icon={"/settings.svg"} />
       <LeftButton
         href="/profile/gallary"
         title="Gallary"
         Icon={"/settings.svg"}
       />
+      <LeftButton href="/bedges" title="Bedges" Icon={"/settings.svg"} />
       <LeftButton
         href="/challanges"
         title="Challenges"
