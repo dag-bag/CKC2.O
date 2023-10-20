@@ -1,6 +1,5 @@
 import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
 import { BiSearchAlt } from "react-icons/bi";
-import { RiFilter3Line } from "react-icons/ri";
 const BedgesPage = () => {
   return (
     <div className="px-5 gap-5 grid grid-cols-[auto_300px]">
@@ -11,29 +10,22 @@ const BedgesPage = () => {
           <p className="text-lg">Lorem ipsum dolor sit amet.</p>
         </div>
         {/* filter */}
-        <div className="flex items-center justify-between my-2">
-          <h3 className="text-2xl font-medium py-4">Gold Royale</h3>
-          <div className="flex gap-5">
-            <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
-              <BiSearchAlt color="gray" size={25} />
-              <input
-                placeholder="Search Question"
-                className="bg-transparent w-full border-none outline-none text-md"
-                type="text"
-              />
-            </div>
-            <button className="px-4 bg-gray-100 rounded-xl">
-              <RiFilter3Line size={25} />
-            </button>
+        <div className="flex items-center justify-between my-4">
+          <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
+            <BiSearchAlt color="gray" size={25} />
+            <input
+              placeholder="Search Question"
+              className="bg-transparent w-full border-none outline-none text-md"
+              type="text"
+            />
           </div>
         </div>
-        {/* content */}
-        <div className="grid grid-cols-5 gap-5">
-          <Content />
-          <Content />
-          <Content />
-          <Content />
-          <Content />
+
+        <div className="space-y-5">
+          <BadgesGrid title="6 to 8" />
+          <BadgesGrid title="8 to 10" />
+          <BadgesGrid title="Above 10" />
+          <BadgesGrid title="Premium" />
         </div>
       </section>
       <aside>
@@ -44,6 +36,22 @@ const BedgesPage = () => {
 };
 
 export default BedgesPage;
+
+import Card from "@/blocks/UI/Card";
+
+const BadgesGrid = ({ title }: any) => {
+  return (
+    <Card title={title} description="Lorem ipsum dolor sit amet">
+      <div className="grid grid-cols-5 gap-5">
+        <Content />
+        <Content />
+        <Content />
+        <Content />
+        <Content />
+      </div>
+    </Card>
+  );
+};
 
 const Content = () => {
   return (
