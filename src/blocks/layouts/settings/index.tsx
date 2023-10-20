@@ -64,5 +64,6 @@ const settings_link = [
   { label: "General", path: "/settings" },
   { label: "Notifications", path: "/settings/notifications" },
   { label: "Transections", path: "/settings/transections" },
+  { label: "Referrals", path: "/settings/referral" },
   { label: "Help and Support", path: "/settings/help-and-support" },
 ];
