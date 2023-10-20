@@ -3,12 +3,28 @@ import Card from "@/blocks/UI/Card";
 const SettingsReferralPage = () => {
   return (
     <div className="pr-5">
-      <Card title="Referrals">
+      <Card title="Referrals Program">
         <div>
           <HeroSection />
         </div>
       </Card>
-      <Card title="Track Your Referrals" className="mt-5">
+      <Card title="Referral Credits Earned" className="mt-5">
+        <div className="flex gap-5">
+          <h1 className="text-gray-500 font-heading uppercase text-sm">
+            <span className="text-2xl font-semibold font-game text-black pr-2">
+              500
+            </span>
+            Credits Earned
+          </h1>
+          <h2 className="text-gray-500 border-l pl-5 font-heading uppercase text-sm">
+            <span className="text-2xl font-semibold font-game text-black">
+              10
+            </span>{" "}
+            Successfull Referrals
+          </h2>
+        </div>
+      </Card>
+      <Card title="Referrals Status" className="mt-5">
         <div>
           <TrackRow />
           <TrackRow />
@@ -25,11 +41,12 @@ export default SettingsReferralPage;
 
 const TrackRow = () => {
   return (
-    <div className="grid grid-cols-4 font-heading py-3 text-sm even:bg-blue-50  px-5">
+    <div className="grid grid-cols-5 font-heading py-3 text-sm even:bg-blue-50  px-5">
       <p>04/09/18</p>
       <p>deepak@gmail.com</p>
-      <p>Enrolled</p>
+      <p className="text-green-500">Sucessfull</p>
       <p>Free Trial Sent</p>
+      <p>+100 Credits</p>
     </div>
   );
 };
