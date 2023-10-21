@@ -2,14 +2,22 @@
 import { useState } from "react";
 import Card from "@/blocks/UI/Card";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+import SettingIntroduction from "@/blocks/molecules/settings/introduction";
 const HelpAndSupport = () => {
   return (
     <div className="pr-5">
       <Card title="Frequently Asked Questions (Videos)">
-        <div className="space-y-3">
-          {faqData.map((faq, i) => (
-            <Question key={i} question={faq.question} solution={faq.answer} />
-          ))}
+        <div>
+          <SettingIntroduction
+            imageSrc="/astro.png"
+            title="FAQ's Solutions"
+            description="Followings are the solutions of frequently asked question in text and video formet."
+          />
+          <div className="space-y-3">
+            {faqData.map((faq, i) => (
+              <Question key={i} question={faq.question} solution={faq.answer} />
+            ))}
+          </div>
         </div>
       </Card>
     </div>

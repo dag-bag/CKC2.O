@@ -1,10 +1,17 @@
 import Card from "@/blocks/UI/Card";
-
+import SettingIntroduction from "@/blocks/molecules/settings/introduction";
 const SettingsPage = () => {
   return (
     <div className="pr-5">
       <Card title="General Information">
-        <PersonalInformation />
+        <div>
+          <SettingIntroduction
+            imageSrc="/astro.png"
+            title="Choose how you appear and what you see on CKC"
+            description="Signed in as deepakvish7354@gmail.com"
+          />
+          <PersonalInformation />
+        </div>
       </Card>
       <Card title="Change Password" className="mt-5">
         <PersonalInformation />
