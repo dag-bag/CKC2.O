@@ -1,11 +1,11 @@
 import { type Layout } from "@/global_types/general";
 import NestedProfileLayout from "@/blocks/layouts/profile";
-import GridDashboardLayout from "@/blocks/layouts/primary";
+import PrimaryLayout from "@/blocks/layouts/primary";
 const Layout: Layout = ({ children }) => {
   return (
-    <GridDashboardLayout>
+    <PrimaryLayout>
       <NestedProfileLayout>{children}</NestedProfileLayout>
-    </GridDashboardLayout>
+    </PrimaryLayout>
   );
 };
 export default Layout;

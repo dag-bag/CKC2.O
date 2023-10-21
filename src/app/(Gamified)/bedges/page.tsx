@@ -1,37 +1,33 @@
-import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 import { BiSearchAlt } from "react-icons/bi";
+import Container from "@/blocks/UI/PageContainer";
+
 const BedgesPage = () => {
   return (
-    <div className="px-5 gap-5 grid grid-cols-[auto_300px]">
-      <section className="max-h-[calc(100vh-100px)] overflow-y-scroll hide-scrollbar">
-        {/* hero */}
-        <div className="h-[330px] bg-cyan-50 rounded-xl center flex-col">
-          <h1 className="text-3xl font-heading font-bold">Badges</h1>
-          <p className="text-lg">Lorem ipsum dolor sit amet.</p>
+    <Container gridType="double">
+      {/* hero */}
+      <div className="h-[330px] bg-cyan-50 rounded-xl center flex-col">
+        <h1 className="text-3xl font-heading font-bold">Badges</h1>
+        <p className="text-lg">Lorem ipsum dolor sit amet.</p>
+      </div>
+      {/* filter */}
+      <div className="flex items-center justify-between my-4">
+        <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
+          <BiSearchAlt color="gray" size={25} />
+          <input
+            placeholder="Search Question"
+            className="bg-transparent w-full border-none outline-none text-md"
+            type="text"
+          />
         </div>
-        {/* filter */}
-        <div className="flex items-center justify-between my-4">
-          <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
-            <BiSearchAlt color="gray" size={25} />
-            <input
-              placeholder="Search Question"
-              className="bg-transparent w-full border-none outline-none text-md"
-              type="text"
-            />
-          </div>
-        </div>
+      </div>
 
-        <div className="space-y-5">
-          <BadgesGrid title="6 to 8" />
-          <BadgesGrid title="8 to 10" />
-          <BadgesGrid title="Above 10" />
-          <BadgesGrid title="Premium" />
-        </div>
-      </section>
-      <aside>
-        <RightSideProfileSection />
-      </aside>
-    </div>
+      <div className="space-y-5">
+        <BadgesGrid title="6 to 8" />
+        <BadgesGrid title="8 to 10" />
+        <BadgesGrid title="Above 10" />
+        <BadgesGrid title="Premium" />
+      </div>
+    </Container>
   );
 };
 
@@ -42,8 +38,7 @@ import Card from "@/blocks/UI/Card";
 const BadgesGrid = ({ title }: any) => {
   return (
     <Card title={title} description="Lorem ipsum dolor sit amet">
-      <div className="grid grid-cols-5 gap-5">
-        <Content />
+      <div className="grid grid-cols-4 gap-5">
         <Content />
         <Content />
         <Content />

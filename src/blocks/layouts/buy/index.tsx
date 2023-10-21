@@ -1,23 +1,18 @@
 "use client";
 
-interface Props {
-  children: any;
-}
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const NestedBuyLayout: React.FC<Props> = ({ children }) => {
+import { type Layout } from "@/global_types/general";
+import Container from "@/blocks/UI/PageContainer";
+const NestedBuyLayout: Layout = ({ children }) => {
   return (
-    <div className="px-5- gap-5 grid grid-cols-[auto] bg-[#00000004]-- h-[80vh] rounded-xl">
-      <section>
-        <div className="grid grid-cols-[320px_auto] gap-5 h-full">
-          <BuyNavigation />
-          <div>{children}</div>
-        </div>
-      </section>
-      <aside></aside>
-    </div>
+    <Container
+      gridType="opposite_double"
+      AsideComponentForOppositeDouble={<BuyNavigation />}
+    >
+      {children}
+    </Container>
   );
 };
 
@@ -29,7 +24,7 @@ import { FiChevronRight } from "react-icons/fi";
 const BuyNavigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col gap-2 border-r p-2">
+    <div className="flex flex-col gap-2  p-2">
       {buy_link.map(({ label, path }) => (
         <Link
           key={label}

@@ -17,14 +17,11 @@ const LeftAside = () => {
 
 export default LeftAside;
 
-import { HiOutlineCog6Tooth } from "react-icons/hi2";
-
 const primary_layout_left_buttons = [
   { title: "Live", hrefs: ["/live"], iconSrc: "/astro.png" },
   { title: "Learn", hrefs: ["/learn"], iconSrc: "/Chromecast.svg" },
   { title: "Library", hrefs: ["/library"], iconSrc: "/Chromecast.svg" },
   { title: "Shop", hrefs: ["/shop"], iconSrc: "/Chromecast.svg" },
-  { title: "Gallary", hrefs: ["/gallary"], iconSrc: "/Chromecast.svg" },
   { title: "Challanges", hrefs: ["/challanges"], iconSrc: "/Chromecast.svg" },
   { title: "Leaderboard", hrefs: ["/leaderboard"], iconSrc: "/Chromecast.svg" },
   { title: "Settings", hrefs: ["/settings"], iconSrc: "/Chromecast.svg" },

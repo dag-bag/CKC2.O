@@ -6,7 +6,7 @@ import Header from "./Header";
 import LeftAside from "./left";
 import React, { ReactNode } from "react";
 
-const GridDashboardLayout: React.FC<Props> = ({ children }) => {
+const PrimaryLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="h-screen font-fun">
       <Header />
@@ -20,4 +20,4 @@ const GridDashboardLayout: React.FC<Props> = ({ children }) => {
   );
 };
 
-export default GridDashboardLayout;
+export default PrimaryLayout;

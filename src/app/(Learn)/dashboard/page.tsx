@@ -1,15 +1,16 @@
+import Container from "@/blocks/UI/PageContainer";
 import ContentGrid from "@/blocks/molecules/content-grid";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 const DashboardPage = () => {
   return (
-    <div className=" overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar bg-red-500-">
+    <Container gridType="single">
       <div className="grid gap-5">
         <BannerCarousel />
       </div>
       <ContentGrid title="Continue Watching" />
       <ContentGrid title="Start Learning" />
       <ContentGrid title="How it works" />
-    </div>
+    </Container>
   );
 };
 export default DashboardPage;

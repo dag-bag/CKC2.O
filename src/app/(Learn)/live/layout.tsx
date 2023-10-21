@@ -1,6 +1,6 @@
 import { type Layout } from "@/global_types/general";
-import GridDashboardLayout from "@/blocks/layouts/primary";
+import PrimaryLayout from "@/blocks/layouts/primary";
 const Layout: Layout = ({ children }) => {
-  return <GridDashboardLayout>{children}</GridDashboardLayout>;
+  return <PrimaryLayout>{children}</PrimaryLayout>;
 };
 export default Layout;

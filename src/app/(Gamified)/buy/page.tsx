@@ -1,25 +1,15 @@
 const GamifiedCreditsBuy = () => {
   return (
-    <div className="pr-5">
-      <section className="grid grid-cols-4 gap-5 py-5">
-        <Topup />
-        <Topup />
-        <Topup />
-        <Topup />
-      </section>
-    </div>
+    <section className="grid grid-cols-4 gap-5 py-5">
+      <Topup />
+      <Topup />
+      <Topup />
+      <Topup />
+    </section>
   );
 };
 
 export default GamifiedCreditsBuy;
-
-const Hero = () => {
-  return (
-    <div className="h-[300px] rounded-xl w-full bg-blue-50 center">
-      <h5 className="text-2xl font-heading">Top up</h5>
-    </div>
-  );
-};
 
 const Topup = () => {
   return (

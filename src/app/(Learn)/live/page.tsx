@@ -4,7 +4,7 @@ import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSecti
 
 const DashboardPage = () => {
   return (
-    <div className="px-5 overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar ">
+    <div className="page_force_scroll">
       <div className="grid grid-cols-[auto_350px]">
         <BannerCarousel />
         <div className="center">
