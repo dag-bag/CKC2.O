@@ -4,7 +4,7 @@ interface Props {
 
 import Navigation from "@/blocks/molecules/profile/Navigation";
 import ProfileDashboard from "@/blocks/molecules/profile/dashboard";
-import RightSideProfileSection from "../grid-dashboard/right/ProfileSection";
+import RightSideProfileSection from "../primary/right/ProfileSection";
 
 const Layout = ({ children }: Props) => {
   return (

@@ -1,4 +1,4 @@
-import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
+import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 import { BiSearchAlt } from "react-icons/bi";
 const BedgesPage = () => {
   return (

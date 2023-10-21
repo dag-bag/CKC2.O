@@ -362,7 +362,7 @@ import { RiStarSLine } from "react-icons/ri";
 import { BiSolidVideos } from "react-icons/bi";
 import { VscBook } from "react-icons/vsc";
 import { GiProgression } from "react-icons/gi";
-import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
+import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 
 const DataHeader = () => {
   return (

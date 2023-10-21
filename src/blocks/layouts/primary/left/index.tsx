@@ -2,7 +2,7 @@ import Button from "./LinkButton";
 
 const LeftAside = () => {
   return (
-    <aside className=" px-2 flex flex-col gap-2">
+    <aside className=" px-2 flex flex-col gap-2 ">
       {primary_layout_left_buttons.map(({ title, iconSrc, hrefs }) => (
         <Button
           key={title}

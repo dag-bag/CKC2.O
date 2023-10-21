@@ -10,7 +10,9 @@ const GridDashboardLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="h-screen font-fun">
       <Header />
-      <main className={`grid grid-cols-[300px_auto] h-[calc(100vh-100px)]`}>
+      <main
+        className={`grid grid-cols-[300px_auto] h-[calc(100vh-100px)] pr-5 gap-5`}
+      >
         <LeftAside />
         <div>{children}</div>
       </main>

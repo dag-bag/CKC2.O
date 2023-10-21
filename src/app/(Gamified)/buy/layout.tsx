@@ -1,5 +1,5 @@
 import { type Layout } from "@/global_types/general";
-import GridDashboardLayout from "@/blocks/layouts/grid-dashboard";
+import GridDashboardLayout from "@/blocks/layouts/primary";
 import NestedBuyLayout from "@/blocks/layouts/buy";
 const Layout: Layout = ({ children }) => {
   return (

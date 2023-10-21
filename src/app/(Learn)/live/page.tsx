@@ -1,6 +1,6 @@
 import ContentGrid from "@/blocks/molecules/content-grid";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
+import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 
 const DashboardPage = () => {
   return (

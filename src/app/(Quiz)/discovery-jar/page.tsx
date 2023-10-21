@@ -1,7 +1,7 @@
 import { BiSearchAlt } from "react-icons/bi";
 import { RiFilter3Line } from "react-icons/ri";
 import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
-import RightSideProfileSection from "@/blocks/layouts/grid-dashboard/right/ProfileSection";
+import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 const DiscoveryJarPage = () => {
   return (
     <div className="px-5 gap-5 grid grid-cols-[auto_350px] ">
