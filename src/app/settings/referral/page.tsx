@@ -23,6 +23,8 @@ const SettingsReferralPage = () => {
             Successfull Referrals
           </h2>
         </div>
+
+        <ProgressiveBar />
       </Card>
       <Card title="Referrals Status" className="mt-5">
         <div>
@@ -93,6 +95,37 @@ const CopyArea = ({ title, text }: any) => {
         <button className="py-2 px-5  rounded-xl">
           <LuCopy />
         </button>
+      </div>
+    </div>
+  );
+};
+
+const ProgressiveBar = () => {
+  return (
+    <div className="mt-5 relative">
+      {/* badges  */}
+      <div className="grid grid-cols-3 gap-5">
+        <div className="p-5 center z-10">
+          <p className="bg-white h-[100px] w-[100px] border-[5px] border-gray-400 center rounded-full shadow-md">
+            First
+          </p>
+        </div>
+        <div className="p-5 center z-10">
+          <p className="bg-white h-[100px] w-[100px] border-[5px] border-slate-500 center rounded-full shadow-md">
+            Second
+          </p>
+        </div>
+        <div className="p-5 center z-10">
+          <p className="bg-white h-[100px] w-[100px] border-[5px] border-yellow-500 center rounded-full shadow-md">
+            Third
+          </p>
+        </div>
+      </div>
+
+      {/* line  */}
+
+      <div className="h-[8px] bg-gray-50 w-full absolute top-[50%]">
+        <div className="w-[30%] bg-blue-500 h-[8px] rounded-full"></div>
       </div>
     </div>
   );
