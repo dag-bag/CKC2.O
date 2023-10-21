@@ -1,0 +1,41 @@
+const GamifiedCreditsBuy = () => {
+  return (
+    <div className="pr-5">
+      <section className="grid grid-cols-4 gap-5 py-5">
+        <Topup />
+        <Topup />
+        <Topup />
+        <Topup />
+      </section>
+    </div>
+  );
+};
+
+export default GamifiedCreditsBuy;
+
+const Hero = () => {
+  return (
+    <div className="h-[300px] rounded-xl w-full bg-blue-50 center">
+      <h5 className="text-2xl font-heading">Top up</h5>
+    </div>
+  );
+};
+
+const Topup = () => {
+  return (
+    <div className="rounded-xl bg-gray-100 shadow-md p-3">
+      <div className=" h-[200px] rounded-xl bg-[url('/diamond.png')] bg-cover"></div>
+      <div>
+        <div className="my-2">
+          <h1 className=" font-heading text-xl leading-5 font-medium ">
+            100 Diamonds
+          </h1>
+          <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet.</p>
+        </div>
+        <button className="w-full bg-blue-800 py-2 text-white rounded-xl font-heading">
+          Pay ₹100
+        </button>
+      </div>
+    </div>
+  );
+};

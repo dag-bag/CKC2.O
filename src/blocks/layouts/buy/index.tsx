@@ -7,12 +7,12 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const SettingsLayout: React.FC<Props> = ({ children }) => {
+const NestedBuyLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="px-5- gap-5 grid grid-cols-[auto] bg-[#00000004]-- h-[80vh] rounded-xl">
       <section>
         <div className="grid grid-cols-[320px_auto] gap-5 h-full">
-          <SettingsNavigation />
+          <BuyNavigation />
           <div>{children}</div>
         </div>
       </section>
@@ -21,16 +21,16 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
   );
 };
 
-export default SettingsLayout;
+export default NestedBuyLayout;
 
 import { RiSettings4Fill } from "react-icons/ri";
 import { FiChevronRight } from "react-icons/fi";
 
-const SettingsNavigation = () => {
+const BuyNavigation = () => {
   const pathname = usePathname();
   return (
     <div className="flex flex-col gap-2 border-r p-2">
-      {settings_link.map(({ label, path }) => (
+      {buy_link.map(({ label, path }) => (
         <Link
           key={label}
           href={path}
@@ -39,15 +39,12 @@ const SettingsNavigation = () => {
             pathname == path && " bg-gray-100"
           )}
         >
-          <div className="flex gap-3">
-            <div className="bg-white border px-3 center rounded-lg">
+          <div className="flex py-1 gap-3">
+            <div className="px-3 center rounded-lg">
               <RiSettings4Fill size={22} />
             </div>
             <div>
               <h3 className="text-md font-heading font-medium">{label}</h3>
-              <p className="text-sm -mt-1 text-gray-500">
-                Personal Information
-              </p>
             </div>
           </div>
           <div className="center">
@@ -59,10 +56,7 @@ const SettingsNavigation = () => {
   );
 };
 
-const settings_link = [
-  { label: "General", path: "/settings" },
-  { label: "Notifications", path: "/settings/notifications" },
-  { label: "Transections", path: "/settings/transections" },
-  { label: "Referrals", path: "/settings/referral" },
-  { label: "Help and Support", path: "/settings/help-and-support" },
+const buy_link = [
+  { label: "Topup", path: "/buy" },
+  { label: "Membership", path: "/buy/membership" },
 ];
