@@ -1,4 +1,4 @@
-import Balance from "@/blocks/atoms/Balance";
+import Cart from "@/blocks/molecules/cart";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/Searchbar";
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
       </div>
       <div className="flex items-center justify-between ">
         <SearchBar />
-        {/* <Balance /> */}
+        <Cart />
       </div>
       <div className="flex items-center justify-end">
         <Profile />
