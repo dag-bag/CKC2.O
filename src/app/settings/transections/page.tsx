@@ -1,4 +1,5 @@
 import Card from "@/blocks/UI/Card";
+import SettingIntroduction from "@/blocks/molecules/settings/introduction";
 
 const sampleData = [
   {
@@ -37,24 +38,31 @@ const TransectionsPage = () => {
   return (
     <div className="pr-5 font-heading">
       <Card title="Transections">
-        <div className="grid ">
-          <div className="grid grid-cols-[2fr_1fr_1fr_1fr]  mb-4 px-5 font-semibold text-gray-600">
-            <div>Payment label</div>
-            <div>Payment Status</div>
-            <div>Payment Amount</div>
-            <div>Payment Date</div>
-          </div>
-          {sampleData.map((d, i) => (
-            <div
-              className="p-5 grid grid-cols-[2fr_1fr_1fr_1fr] items-center even:bg-gray-50 rounded-xl "
-              key={i}
-            >
-              <div className="font-semibold">{d.name}</div>
-              <div>{d.paymentStatus}</div>
-              <div>{d.paymentAmount}</div>
-              <div>{d.paymentDate}</div>
+        <div>
+          <SettingIntroduction
+            imageSrc="/astro.png"
+            title="Manage Transections"
+            description="Select push and email notifications that you'd like to receive"
+          />
+          <div className="grid ">
+            <div className="grid grid-cols-[2fr_1fr_1fr_1fr]  mb-4 px-5 font-semibold text-gray-600">
+              <div>Payment label</div>
+              <div>Payment Status</div>
+              <div>Payment Amount</div>
+              <div>Payment Date</div>
             </div>
-          ))}
+            {sampleData.map((d, i) => (
+              <div
+                className="p-5 grid grid-cols-[2fr_1fr_1fr_1fr] items-center even:bg-gray-50 rounded-xl "
+                key={i}
+              >
+                <div className="font-semibold">{d.name}</div>
+                <div>{d.paymentStatus}</div>
+                <div>{d.paymentAmount}</div>
+                <div>{d.paymentDate}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </Card>
     </div>

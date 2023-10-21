@@ -6,6 +6,9 @@ const SettingsPage = () => {
       <Card title="General Information">
         <PersonalInformation />
       </Card>
+      <Card title="Change Password" className="mt-5">
+        <PersonalInformation />
+      </Card>
     </div>
   );
 };
