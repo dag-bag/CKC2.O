@@ -8,6 +8,7 @@ const profile_links = [
   { label: "my gallary", href: "/profile" },
   { label: "my badges", href: "/profile/hello" },
   { label: "my certificates", href: "/profile/certificates" },
+  { label: "my vault", href: "/profile/vault" },
   { label: "recently watched", href: "/profile/watched-history" },
 ];
 
