@@ -38,8 +38,6 @@ const Hero = () => {
   );
 };
 
-import { Rating } from "react-simple-star-rating";
-
 const Product = () => {
   return (
     <Link href="/shop/slug">
@@ -51,10 +49,6 @@ const Product = () => {
             <p className="text-sm text-gray-500">
               Lorem ipsum dolor sit amet..
             </p>
-            <div className="flex text-sm items-center">
-              ⭐⭐⭐⭐⭐{" "}
-              <span className="text-gray-500 ml-3 text-xs">(121)</span>
-            </div>
           </div>
           <div className="center">
             <p className="text-lg text-green-700 font-bold">$1000</p>
