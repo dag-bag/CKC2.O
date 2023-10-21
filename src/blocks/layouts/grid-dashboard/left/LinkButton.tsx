@@ -10,19 +10,29 @@ interface Props {
   href: string;
 }
 
+import { RiSettings4Fill } from "react-icons/ri";
+import { FiChevronRight } from "react-icons/fi";
+
 const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
   const pathname = usePathname();
   return (
     <Link
-      passHref
+      key={title}
       href={href}
       className={clsx(
-        "w-full px-3 py-2 items-center gap-3 grid grid-cols-[30px_auto] rounded-lg",
-        pathname == href && "bg-gray-100"
+        "px-2 pr-4 py-2.5 rounded-md  flex justify-between gap-5  text-black",
+        pathname == href && " bg-gray-100"
       )}
     >
-      <Image src={Icon} alt={title} width={22} height={22} />
-      <h3 className="text-[17px] font-heading tracking-medium">{title}</h3>
+      <div className="flex gap-2">
+        <div className="px-3 center rounded-lg">
+          <RiSettings4Fill size={22} />
+        </div>
+        <div>
+          <h3 className="text-md font-heading font-medium">{title}</h3>
+        </div>
+      </div>
+      <div className="center">{/* <FiChevronRight color="gray" /> */}</div>
     </Link>
   );
 };

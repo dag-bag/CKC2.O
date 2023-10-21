@@ -29,23 +29,22 @@ import { FiChevronRight } from "react-icons/fi";
 const SettingsNavigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col gap-2 border-r p-2">
+    <div className="flex flex-col gap-2  p-2">
       {settings_link.map(({ label, path, description }) => (
         <Link
           key={label}
           href={path}
           className={clsx(
-            "px-2 pr-4 py-2 rounded-md  flex justify-between gap-5  text-black",
+            "px-2 pr-4 py-2.5 rounded-md  flex justify-between gap-5  text-black",
             pathname == path && " bg-gray-100"
           )}
         >
-          <div className="flex gap-3">
-            <div className="bg-white border px-3 center rounded-lg">
+          <div className="flex gap-2  ">
+            <div className="px-3 center rounded-lg">
               <RiSettings4Fill size={22} />
             </div>
             <div>
               <h3 className="text-md font-heading font-medium">{label}</h3>
-              <p className="text-sm -mt-1 text-gray-500">{description}</p>
             </div>
           </div>
           <div className="center">
