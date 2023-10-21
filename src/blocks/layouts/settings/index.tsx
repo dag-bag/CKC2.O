@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 
 const SettingsLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="px-5- gap-5 grid grid-cols-[auto] bg-[#00000004]-- h-[80vh] rounded-xl">
+    <div className="px-5- gap-5 grid grid-cols-[auto]  h-[80vh] rounded-xl">
       <section>
         <div className="grid grid-cols-[320px_auto] gap-5 h-full">
           <SettingsNavigation />
@@ -30,7 +30,7 @@ const SettingsNavigation = () => {
   const pathname = usePathname();
   return (
     <div className="flex flex-col gap-2 border-r p-2">
-      {settings_link.map(({ label, path }) => (
+      {settings_link.map(({ label, path, description }) => (
         <Link
           key={label}
           href={path}
@@ -45,9 +45,7 @@ const SettingsNavigation = () => {
             </div>
             <div>
               <h3 className="text-md font-heading font-medium">{label}</h3>
-              <p className="text-sm -mt-1 text-gray-500">
-                Personal Information
-              </p>
+              <p className="text-sm -mt-1 text-gray-500">{description}</p>
             </div>
           </div>
           <div className="center">
@@ -60,9 +58,29 @@ const SettingsNavigation = () => {
 };
 
 const settings_link = [
-  { label: "General", path: "/settings" },
-  { label: "Notifications", path: "/settings/notifications" },
-  { label: "Transections", path: "/settings/transections" },
-  { label: "Referrals", path: "/settings/referral" },
-  { label: "Help and Support", path: "/settings/help-and-support" },
+  {
+    label: "General",
+    description: "Basic account settings",
+    path: "/settings",
+  },
+  {
+    label: "Notifications",
+    description: "Manage notifications",
+    path: "/settings/notifications",
+  },
+  {
+    label: "Transactions",
+    description: "View Transaction history",
+    path: "/settings/transections",
+  },
+  {
+    label: "Referrals",
+    description: "Refer friends and earn",
+    path: "/settings/referral",
+  },
+  {
+    label: "Help and Support",
+    description: "Get assistance and FAQs",
+    path: "/settings/help-and-support",
+  },
 ];

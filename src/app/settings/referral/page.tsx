@@ -55,27 +55,22 @@ const TrackRow = () => {
 
 const HeroSection = () => {
   return (
-    <div className="grid grid-cols-2 items-center">
+    <div className="grid items-center">
       <div>
-        <h1 className="text-4xl font-heading font-bold">
-          Refer friends. <br /> Earn Crypto Together
-        </h1>
-        <p className="text text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
-          itaque.
-        </p>
+        <h1 className="text-4xl font-medium font-heading ">Refer and Earn</h1>
+        {/* <p className="text text-gray-500">
+          Earn badges and exciting rewards through our referral program
+          achievements.
+        </p> */}
       </div>
       <div>
-        <div className="border max-w-md p-5 rounded-xl">
-          <h3 className="text-xl font-heading mb-3 font-semibold">
-            Referral Links and Code
-          </h3>
+        <div className="flex gap-5 py-5 items-end rounded-xl">
           <CopyArea title="Invitation Code" text="sdfhsdfh12" />
           <CopyArea
             title="Invitation Link"
             text="http://localhost:3000/settings/referral"
           />
-          <button className="bg-blue-500 w-full py-2.5  rounded-xl mt-5 text-white font-medium font-heading text-lg">
+          <button className="bg-blue-500  py-2.5 px-10 rounded-xl mt-5 text-white font-medium font-heading">
             Share
           </button>
         </div>
