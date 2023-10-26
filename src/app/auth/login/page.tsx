@@ -6,7 +6,7 @@ import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
 const Page = () => {
   return (
     <div className="md:h-screen center font-fun bg-gray-50 ">
-      <div className="wrapper rounded-lg grid md:grid-cols-2 bg-white">
+      <div className=" rounded-lg grid md:grid-cols-2 bg-white">
         <div className="bg-blue-500 rounded-lg center hidden md:flex">
           <Image
             src="/home_icon4.png"
@@ -17,7 +17,7 @@ const Page = () => {
           />
         </div>
         <div className="md:p-20 p-10 ">
-          <h1 className="text-3xl font-semibold mb-5">
+          <h1 className="text-4xl font-semibold font-heading mb-5">
             Unlock your learn journey with us! <br /> Start by signing in.
           </h1>
           <GoogleAuthButton type="signin" />
@@ -27,14 +27,14 @@ const Page = () => {
           <div>
             <form className="space-y-4">
               <Textinput
-                classLabel="font-medium text-gray-500"
+                classLabel="font-medium text-gray-500 font-heading"
                 label="Email"
                 type="text"
                 placeholder="Email Adress"
                 className="px-5 w-full bg-gray-100 rounded-md mt-1"
               />
               <Textinput
-                classLabel="font-medium text-gray-500"
+                classLabel="font-medium text-gray-500 font-heading"
                 label="Password"
                 type="password"
                 placeholder="Password"

@@ -72,6 +72,13 @@ const SettingsPage = () => {
                 type="text"
               />
             </div>
+            <p className="text-sm text-gray-600">
+              Customizing your avatars and banners is a breeze in the
+              <b className="underline px-1 font-medium">
+                Profile&apos;s Vault
+              </b>{" "}
+              section.
+            </p>
           </div>
         </div>
       </Card>

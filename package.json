@@ -49,6 +49,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/cleave.js": "^1.4.8"
   }
 }

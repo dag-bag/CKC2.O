@@ -4,7 +4,7 @@ import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
 import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 const DiscoveryJarPage = () => {
   return (
-    <div className="px-5 gap-5 grid grid-cols-[auto_350px] ">
+    <div className="px-5">
       <section>
         <div className="flex flex-col justify-center rounded-xl px-20 h-[330px] items-center mb-10">
           <div className="max-w-2xl mx-auto center flex-col">
@@ -56,9 +56,6 @@ const DiscoveryJarPage = () => {
             <Content />
           </div>
         </div>
-      </section>
-      <section>
-        <RightSideProfileSection />
       </section>
     </div>
   );

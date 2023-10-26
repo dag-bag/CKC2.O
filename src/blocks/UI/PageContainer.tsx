@@ -12,7 +12,7 @@ const PageContainer = ({
   AsideComponentForOppositeDouble,
 }: Props) => {
   if (gridType === "single") {
-    return <div className="page_force_scroll">{children}</div>;
+    return <div className="">{children}</div>;
   }
   if (gridType === "double") {
     return (

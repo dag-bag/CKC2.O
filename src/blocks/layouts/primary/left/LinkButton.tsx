@@ -21,15 +21,15 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
       href={href}
       className={clsx(
         "px-2 pr-4 py-2.5 rounded-md  flex justify-between gap-5  text-black",
-        pathname == href && " bg-gray-100"
+        pathname == href && " bg-gray-100 bg-opacity-20"
       )}
     >
       <div className="flex gap-2">
         <div className="px-3 center rounded-lg">
-          <RiSettings4Fill size={22} />
+          <RiSettings4Fill color={"white"} size={22} />
         </div>
         <div>
-          <h3 className="text-md font-heading font-medium">{title}</h3>
+          <h3 className="text-md font-heading  text-gray-200">{title}</h3>
         </div>
       </div>
       <div className="center">{/* <FiChevronRight color="gray" /> */}</div>

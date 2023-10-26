@@ -1,17 +1,16 @@
 import Cart from "@/blocks/molecules/cart";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/Searchbar";
+import Balance from "@/blocks/atoms/Balance";
+
 const Header = () => {
   return (
-    <header className="h-[80px] gap-3 grid grid-cols-[300px_auto_350px]">
-      <div className="flex items-center px-5">
-        <p className="font-medium text-xl">Cosmic Kids Club</p>
-      </div>
+    <header className="h-[80px] gap-3 flex items-center fixed top-0 z-50  w-[calc(100vw-330px)]  bg-white bg-opacity-80 backdrop-blur-sm ">
       <div className="flex items-center justify-between ">
         <SearchBar />
-        <Cart />
       </div>
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end ml-auto gap-10">
+        <Balance />
         <Profile />
       </div>
     </header>

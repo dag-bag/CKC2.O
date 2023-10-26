@@ -9,8 +9,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: black;
+}
+
 *{
     box-sizing: border-box;
+/* Font Smoothing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @layer components {
@@ -38,5 +45,12 @@
     .page_with_oppose_aside {
         @apply gap-5 grid grid-cols-[320px_auto];
     }
+
+
+
+
+    /* .content_grid{
+        @apply
+    }  */
 
 }

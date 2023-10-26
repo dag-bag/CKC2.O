@@ -11,16 +11,16 @@ const Stage = {
   },
   "/onboarding/setup/birthday": {
     question: "Wow, that's exciting! 🎉 When's your special birthday?",
-    next: "/onboarding/setup/guardian",
-    score: 48,
-  },
-  "/onboarding/setup/guardian": {
-    question: "Nice to meet you, Cosmic Kid! 🚀 What's your superhero parent's name?",
     next: "/onboarding/setup/phone",
-    score: 64,
+    score: 48,
   },
   "/onboarding/setup/phone": {
     question: "Just in case we need to reach you in the Cosmic galaxy 📞, what's your phone number?",
+    next: "/onboarding/setup/location",
+    score: 80,
+  },
+  "/onboarding/setup/location": {
+    question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
     next: "/onboarding/setup/plan",
     score: 80,
   },

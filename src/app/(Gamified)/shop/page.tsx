@@ -1,9 +1,10 @@
 import Link from "next/link";
+
 const ShopPage = () => {
   return (
-    <div className="pr-5">
+    <div>
       <Hero />
-      <div className="grid grid-cols-5 gap-5 py-5">
+      <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 gap-5 py-5">
         <Product />
         <Product />
         <Product />
@@ -28,7 +29,7 @@ export default ShopPage;
 
 const Hero = () => {
   return (
-    <div className="center h-[330px] bg-gray-50 flex-col gap-4 rounded-xl">
+    <div className="center h-[330px] bg-gradient-to-r from-cyan-500 to-blue-500 flex-col gap-4 rounded-xl">
       <h1 className="font-bold font-heading text-5xl">Shop</h1>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis,
@@ -51,7 +52,7 @@ const Product = () => {
             </p>
           </div>
           <div className="center">
-            <p className="text-lg text-green-700 font-bold">$1000</p>
+            <p className="text-xl text-gray-500 font-bold">399🪙</p>
           </div>
         </div>
         <div className="mt-2">

@@ -3,6 +3,20 @@ import { useState } from "react";
 import Card from "@/blocks/UI/Card";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
+
+const keyword_array = [
+  "Account",
+  "Billing",
+  "Shipping",
+  "Product",
+  "Returns and Refunds",
+  "Troubleshooting",
+  "Order Status",
+  "Privacy and Security",
+  "Contact Information",
+  "Account Termination",
+];
+
 const HelpAndSupport = () => {
   return (
     <div className="pr-5">
@@ -13,6 +27,23 @@ const HelpAndSupport = () => {
             title="FAQ's Solutions"
             description="Followings are the solutions of frequently asked question in text and video formet."
           />
+
+          <div>
+            <h3 className="font-heading mb-5 text-lg">
+              Select and filter FAQs
+            </h3>
+            <div className="flex flex-wrap gap-2 pb-10 border-b border-gray-200 mb-5">
+              {keyword_array.map((keyword) => (
+                <button
+                  className="px-5 py-2 border rounded-full font-heading text-sm text-gray-800"
+                  key={keyword}
+                >
+                  {keyword}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="space-y-3">
             {faqData.map((faq, i) => (
               <Question key={i} question={faq.question} solution={faq.answer} />
