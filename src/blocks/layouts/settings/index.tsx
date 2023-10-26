@@ -11,7 +11,7 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="gap-5 grid grid-cols-[auto]">
       <section>
-        <div className="grid grid-cols-[320px_auto] gap-5 h-full">
+        <div className="grid grid-cols-[260px_auto] gap-5 h-full">
           <SettingsNavigation />
           <div>{children}</div>
         </div>
@@ -29,22 +29,32 @@ import { FiChevronRight } from "react-icons/fi";
 const SettingsNavigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col gap-2  p-2">
+    <div className="flex flex-col gap-2   rounded-xl">
       {settings_link.map(({ label, path, description }) => (
         <Link
           key={label}
           href={path}
           className={clsx(
-            "px-2 pr-4 py-2.5 rounded-md  flex justify-between gap-5  text-black",
-            pathname == path && " bg-gray-100"
+            "px-2 pr-4 py-2.5 rounded-xl  flex justify-between gap-5  text-black",
+            pathname == path && "bg-[#2FB2AB]  drop-shadow-lg"
           )}
         >
           <div className="flex gap-2  ">
             <div className="px-3 center rounded-lg">
-              <RiSettings4Fill size={22} />
+              <RiSettings4Fill
+                color={pathname == path ? "white" : "gray"}
+                size={22}
+              />
             </div>
             <div>
-              <h3 className="text-md font-heading font-medium">{label}</h3>
+              <h3
+                className={clsx(
+                  "text-md font-heading  text-gray-700",
+                  pathname == path && "  !text-white"
+                )}
+              >
+                {label}
+              </h3>
             </div>
           </div>
           <div className="center">
