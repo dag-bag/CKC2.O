@@ -9,13 +9,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: black;
-}
 
 *{
     box-sizing: border-box;
-/* Font Smoothing */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
