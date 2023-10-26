@@ -1,28 +1,31 @@
+"use client";
+
 import Button from "./LinkButton";
 import Image from "next/image";
+
 const LeftAside = () => {
   return (
-    <aside className=" px-2 py-4 flex flex-col gap-2 bg-[#180b2a] rounded-xl m-2 ">
-      {primary_layout_left_buttons.map(({ title, iconSrc, hrefs }) => (
+    <aside className=" px-5 flex flex-col pt-[80px] gap-2 bg-[#F6F7F7]">
+      {primary_layout_left_buttons.map(({ title, Icon, hrefs }) => (
         <Button
           key={title}
           title={title}
-          Icon={iconSrc}
+          Icon={Icon}
           href={hrefs.at(0) as any}
         />
       ))}
 
-      <div className="mt-auto p-2 bg-white m-3 rounded-xl">
+      <div className="mt-auto  bg-white rounded-xl-- hidden">
         <Image
-          className="rounded-xl"
+          className="rounded-xl p-5"
           src="/upgrade-gif.gif"
           alt="upgrade gif"
           width={300}
           height={200}
         />
 
-        <button className="bg-white w-full rounded-xl py-2 mt-2 font-heading border">
-          Upgrade to Premium
+        <button className="bg-[#0D0C14] text-white w-full rounded-lg py-2.5 mt-2 font-heading border">
+          Upgrade Plan
         </button>
       </div>
     </aside>
@@ -31,19 +34,32 @@ const LeftAside = () => {
 
 export default LeftAside;
 
-const primary_layout_left_buttons = [
-  { title: "Home", hrefs: ["/dashboard"], iconSrc: "/astro.png" },
+import {
+  RiSettings4Fill,
+  RiHomeSmile2Fill,
+  RiShoppingBag3Fill,
+  RiStoreFill,
+  RiBarChart2Fill,
+  RiVipCrown2Fill,
+  RiBrainFill,
+  RiBook2Fill,
+  RiLiveFill,
+  RiQuestionFill,
+} from "react-icons/ri";
 
-  { title: "Live", hrefs: ["/live"], iconSrc: "/astro.png" },
-  { title: "Learn", hrefs: ["/learn"], iconSrc: "/Chromecast.svg" },
-  { title: "Library", hrefs: ["/library"], iconSrc: "/Chromecast.svg" },
-  { title: "Challanges", hrefs: ["/challanges"], iconSrc: "/Chromecast.svg" },
-  { title: "Leaderboard", hrefs: ["/leaderboard"], iconSrc: "/Chromecast.svg" },
+const primary_layout_left_buttons = [
+  { title: "Live", hrefs: ["/live"], Icon: RiLiveFill },
+  { title: "Learn", hrefs: ["/learn"], Icon: RiBrainFill },
+  { title: "Home", hrefs: ["/dashboard"], Icon: RiHomeSmile2Fill },
+
+  { title: "Library", hrefs: ["/library"], Icon: RiBook2Fill },
+  { title: "Challanges", hrefs: ["/challanges"], Icon: RiVipCrown2Fill },
+  { title: "Leaderboard", hrefs: ["/leaderboard"], Icon: RiBarChart2Fill },
   {
     title: "Discovery Jar",
     hrefs: ["/discovery-jar"],
-    iconSrc: "/Chromecast.svg",
+    Icon: RiQuestionFill,
   },
-  { title: "Marketplace", hrefs: ["/shop"], iconSrc: "/Chromecast.svg" },
-  { title: "Settings", hrefs: ["/settings"], iconSrc: "/Chromecast.svg" },
+  { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
+  { title: "Settings", hrefs: ["/settings"], Icon: RiSettings4Fill },
 ];

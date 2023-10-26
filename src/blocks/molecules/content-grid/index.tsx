@@ -8,7 +8,7 @@ import Content from "./content";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
-export type ContentType = "live_now" | "live_upcoming" | "live_past";
+export type ContentType = "live_now" | "live_upcoming" | "live_past" | "comics";
 
 // this matine carouse is not effective in point of view serverside rendering...
 
@@ -47,8 +47,8 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   return (
     <div className={`my-5`}>
       <div className="flex items-center justify-between mb-2 pl-2">
-        <h3 className="text-2xl font-semibold tracking-medium font-heading">
-          {title} {grid_content_columns_size}
+        <h3 className="text-xl font-semibold tracking-medium font-heading text-gray-800">
+          {title}
         </h3>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
       </div>

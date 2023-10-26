@@ -8,6 +8,9 @@ interface Props {
 }
 
 const Content: React.FC<Props> = ({ type }) => {
+  if (type == "comics") {
+    return <Comics />;
+  }
   if (type == "live_upcoming") {
     return <LiveUpcomingContent />;
   }
@@ -21,16 +24,37 @@ const Content: React.FC<Props> = ({ type }) => {
           <Image src="/1.webp" alt="image" fill />
         </div>
 
-        <h3 className="text-lg font-medium font-heading mt-2">
+        <h3 className="font-medium font-heading mt-2 leading-5">
           Quizmania - The untold story
         </h3>
-        <p className="text-sm -mt-1">Lorem ipsum dolor sit amet.</p>
+        <p className="text-sm text-gray-500  ">
+          This is untold story of quizmania
+        </p>
       </div>
     </Link>
   );
 };
 
 export default Content;
+
+const Comics = () => {
+  return (
+    <Link href="/dashboard/slug" className="rounded-xl">
+      <div className="rounded-xl p-2">
+        <div className="relative h-[170px] rounded-lg overflow-hidden">
+          <Image src="/1.webp" alt="image" fill />
+        </div>
+
+        <h3 className="font-medium font-heading mt-2 leading-5">
+          Quizmania - The untold story
+        </h3>
+        <p className="text-sm text-gray-500  ">
+          This is untold story of quizmania
+        </p>
+      </div>
+    </Link>
+  );
+};
 
 const LiveContent = () => {
   return (

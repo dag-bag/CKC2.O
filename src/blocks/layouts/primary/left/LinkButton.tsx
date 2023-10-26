@@ -5,12 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  Icon: string;
+  Icon: any;
   title: string;
   href: string;
 }
 
-import { RiSettings4Fill } from "react-icons/ri";
+import { RiSettings4Fill, RiHomeSmile2Fill } from "react-icons/ri";
 import { FiChevronRight } from "react-icons/fi";
 
 const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
@@ -20,16 +20,23 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
       key={title}
       href={href}
       className={clsx(
-        "px-2 pr-4 py-2.5 rounded-md  flex justify-between gap-5  text-black",
-        pathname == href && " bg-gray-100 bg-opacity-20"
+        "px-2 pr-4 py-2.5 rounded-xl  flex justify-between gap-5  text-black",
+        pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
       )}
     >
       <div className="flex gap-2">
         <div className="px-3 center rounded-lg">
-          <RiSettings4Fill color={"white"} size={22} />
+          <Icon color={pathname == href ? "white" : "gray"} size={22} />
         </div>
         <div>
-          <h3 className="text-md font-heading  text-gray-200">{title}</h3>
+          <h3
+            className={clsx(
+              "text-md font-heading  text-gray-700",
+              pathname == href && "  !text-white"
+            )}
+          >
+            {title}
+          </h3>
         </div>
       </div>
       <div className="center">{/* <FiChevronRight color="gray" /> */}</div>

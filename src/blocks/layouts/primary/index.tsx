@@ -9,7 +9,7 @@ import React, { ReactNode } from "react";
 const PrimaryLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="h-screen font-fun bg-white">
-      <main className={`grid grid-cols-[300px_auto] h-screen pr-5 gap-3`}>
+      <main className={`grid grid-cols-[280px_auto] h-screen pr-5 gap-3`}>
         <LeftAside />
         <div className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative">
           <Header />

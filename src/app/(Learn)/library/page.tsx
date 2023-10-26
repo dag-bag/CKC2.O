@@ -7,9 +7,8 @@ const DashboardPage = () => {
       <div className="grid gap-5 px-2">
         <BannerCarousel />
       </div>
-      <ContentGrid title="Continue Watching" />
-      <ContentGrid title="Start Learning" />
-      <ContentGrid title="How it works" />
+      <ContentGrid type="comics" title="New Release" />
+      <ContentGrid type="comics" title="All Time Favorite" />
     </Container>
   );
 };
