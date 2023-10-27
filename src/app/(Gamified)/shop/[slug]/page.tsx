@@ -4,19 +4,19 @@ import { useState } from "react";
 
 const ShopSlugPage = () => {
   return (
-    <div className="grid grid-cols-[1fr_1.5fr] gap-10 px-5 ">
-      <div>
-        <div className="w-full h-[500px] bg-green-50 rounded-xl"></div>
+    <div className="grid xl:grid-cols-[1fr_1.5fr] lg:grid-cols-2 gap-10 px-5 pb-10 ">
+      <div className="">
+        <div className="w-full h-[500px] bg-green-50 rounded-xl center">
+        <img src="/product.jpg" className=" mx-auto" alt="" />
+
+        </div>
       </div>
       <div>
         <h1 className="text-3xl font-semibold font-heading pt-5 pb-2">
           Airpod - Max | Best Noise Cancellation
         </h1>
         <p className="text-sm max-w-2xl  mt-2 text-gray-600">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
-          iusto possimus officia quam deleniti recusandae tempore doloremque
-          necessitatibus, eius ducimus saepe nihil consequuntur minima dolor
-          veritatis ea voluptatum eos? Eum.
+        Introducing our latest product, the Pink Elegance - a stunning and vibrant pink-colored accessory. This item combines style and functionality, adding a touch of chic sophistication to your daily life.
         </p>
         <hr className="opacity-30 mb-5" />
         <div className="flex items-end gap-2">
@@ -54,7 +54,7 @@ const PaymentMethods = () => {
   return (
     <div className="mt-5">
       <h3 className="font-heading text-lg">Choose Payment Methods</h3>
-      <div className="flex gap-5 mt-3">
+      <div className="flex gap-5 mt-3 flex-wrap">
         {payment_methods.map(({ title, value }) => (
           <PaymentMethodCard
             key={value}

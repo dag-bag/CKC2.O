@@ -3,7 +3,7 @@ import Container from "@/blocks/UI/PageContainer";
 
 const BedgesPage = () => {
   return (
-    <Container gridType="double">
+    <Container gridType="single">
       {/* hero */}
       <div className="h-[330px] bg-cyan-50 rounded-xl center flex-col">
         <h1 className="text-3xl font-heading font-bold">Challanges</h1>
@@ -34,31 +34,35 @@ const BedgesPage = () => {
 export default BedgesPage;
 
 import Card from "@/blocks/UI/Card";
-
+import clsx from "clsx";
+import Link from "next/link";
 const BadgesGrid = ({ title }: any) => {
   return (
     <Card title={title} description="Lorem ipsum dolor sit amet">
       <div className="grid grid-cols-4 gap-5">
-        <Content />
-        <Content />
-        <Content />
-        <Content />
+        <Content type="enroll" />
+        <Content type="completed"  />
+        <Content type="entrolled" />
+        <Content type="enroll" />
       </div>
     </Card>
   );
 };
 
-const Content = () => {
+const Content = ({type}: any) => {
   return (
-    <div className="bg-gray-100 rounded-xl h-[250px] p-5">
+    <Link href={"/challanges/slug"} className="bg-gray-100 rounded-xl h-[250px] p-5">
       <div className="w-[100px] h-[100px]  mx-auto rounded-full bg-[url('/tes-bedge.jpg')] bg-cover bg-center  border-2"></div>
       <div className="center flex-col mt-5">
         <h3 className="text-xl font-heading font-medium">Space Champion</h3>
         <p className="text-sm">Go!, Conquor The Space.</p>
       </div>
-      <div className="w-full rounded-full bg-gray-200 mt-5">
-        <div className="w-[30%] bg-blue-500 h-[5px] rounded-full"></div>
-      </div>
-    </div>
+
+      <button className={clsx("font-heading bg-white w-full py-2 mt-2 rounded-full capitalize", 
+      type == "completed" && "text-green-500",
+      type == "entrolled" && "text-blue-500")}
+      >{type}</button>
+    
+    </Link>
   );
 };

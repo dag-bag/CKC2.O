@@ -15,14 +15,14 @@ const profile_links = [
 const Navigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex  mt-5 gap-5 mb-0 ">
+    <div className="flex  mt-5 gap-5 mb-0 bg-gray-100 rounded-full p-2 ">
       {profile_links.map(({ label, href }) => (
         <Link
           key={label}
           href={href}
           className={clsx(
-            "font-medium px-5 py-2.5 flex items-center gap-2 capitalize",
-            pathname == href && "border-blue-500 border-b-2"
+            "font-medium px-8 py-3 flex items-center rounded-full gap-2 capitalize font-heading text-gray-800",
+            pathname == href && "bg-[#2FB2AB]  text-white shadow-md"
           )}
         >
           <TbLayoutGrid size={18} />

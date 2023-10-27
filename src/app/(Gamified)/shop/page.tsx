@@ -43,7 +43,9 @@ const Product = () => {
   return (
     <Link href="/shop/slug">
       <div className="font-heading">
-        <div className="h-[200px] bg-gray-100 rounded-xl"></div>
+        <div className="h-[200px] bg-white rounded-xl  bg-cover border overflow-hidden ">
+          <img src="/product.jpg" className="max-w-[180px] mx-auto" alt="" />
+        </div>
         <div className="grid grid-cols-[2fr_1fr] items-center">
           <div>
             <h3 className="mt-2 leading-6">The Product Title</h3>

@@ -5,7 +5,7 @@ import ProfileDashboard from "@/blocks/molecules/profile/dashboard";
 
 const NestedProfileLayout: Layout = ({ children }) => {
   return (
-    <Container gridType="double">
+    <Container gridType="single">
       <ProfileDashboard />
       <Navigation />
       {children}

@@ -9,14 +9,13 @@ import { usePathname } from "next/navigation";
 
 const SettingsLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="gap-5 grid grid-cols-[auto]">
+    <div>
       <section>
         <div className="grid grid-cols-[260px_auto] gap-5 h-full">
           <SettingsNavigation />
           <div>{children}</div>
         </div>
       </section>
-      <aside></aside>
     </div>
   );
 };

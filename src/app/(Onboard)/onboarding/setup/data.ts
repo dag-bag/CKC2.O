@@ -21,7 +21,7 @@ const Stage = {
   },
   "/onboarding/setup/location": {
     question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
-    next: "/onboarding/setup/plan",
+    next: "/onboarding/setup/profile ",
     score: 80,
   },
   "/onboarding/setup/plan": {
@@ -31,8 +31,13 @@ const Stage = {
   },
   "/onboarding/setup/profile": {
     question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
-    next: "/",
+    next: "/onboarding/setup/complete",
     score: 96,
+  },
+  "/onboarding/setup/complete": {
+    question: "Yay! your profile is completed successfully. Oh you got amazing rewards!.",
+    next: "/dashboard",
+    score: 100
   },
 };
 

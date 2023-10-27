@@ -1,7 +1,7 @@
 const Page = () => {
   return (
     <div
-      className="bg-[url('/blog.svg')] bg-cover w-[500px] h-[500px] bg-no-repeat bg-center flex items-center md:flex-row flex-col justify-center gap-5"
+      className="bg-[url('/blog.svg')] bg-cover w-[500px] h-[500px] bg-no-repeat bg-center flex  items-center mdflex-col justify-center gap-5"
       style={{ backgroundSize: "800px 800px" }}
     >
       <input

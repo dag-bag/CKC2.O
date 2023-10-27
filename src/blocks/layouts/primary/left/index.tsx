@@ -37,7 +37,6 @@ export default LeftAside;
 import {
   RiSettings4Fill,
   RiHomeSmile2Fill,
-  RiShoppingBag3Fill,
   RiStoreFill,
   RiBarChart2Fill,
   RiVipCrown2Fill,
@@ -48,10 +47,9 @@ import {
 } from "react-icons/ri";
 
 const primary_layout_left_buttons = [
+  { title: "Home", hrefs: ["/dashboard"], Icon: RiHomeSmile2Fill },
   { title: "Live", hrefs: ["/live"], Icon: RiLiveFill },
   { title: "Learn", hrefs: ["/learn"], Icon: RiBrainFill },
-  { title: "Home", hrefs: ["/dashboard"], Icon: RiHomeSmile2Fill },
-
   { title: "Library", hrefs: ["/library"], Icon: RiBook2Fill },
   { title: "Challanges", hrefs: ["/challanges"], Icon: RiVipCrown2Fill },
   { title: "Leaderboard", hrefs: ["/Leaderboard"], Icon: RiBarChart2Fill },
@@ -61,5 +59,9 @@ const primary_layout_left_buttons = [
     Icon: RiQuestionFill,
   },
   { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
-  { title: "Settings", hrefs: ["/settings"], Icon: RiSettings4Fill },
+  {
+    title: "Settings",
+    hrefs: ["/settings"],
+    Icon: RiSettings4Fill,
+  },
 ];

@@ -18,7 +18,7 @@ const PageContainer = ({
     return (
       <div className="page_with_aside">
         <main className="page_force_scroll">{children}</main>
-        <aside>
+        <aside className="">
           <RightSideProfileSection />
         </aside>
       </div>

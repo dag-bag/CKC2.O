@@ -9,7 +9,7 @@ const Row = ({ name, src }: Props) => {
   return (
     <li className="flex items-center space-x-3">
       <Image src={src} alt={name} width={30} height={30} />
-      <span className="text-md">{name}</span>
+      <span className="text-sm font-fun">{name}</span>
     </li>
   );
 };

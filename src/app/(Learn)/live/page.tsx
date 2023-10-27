@@ -5,11 +5,8 @@ import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSecti
 const DashboardPage = () => {
   return (
     <div className="page_force_scroll">
-      <div className="grid grid-cols-[auto_350px]">
+      <div className="grid grid-cols-[auto]">
         <BannerCarousel />
-        <div className="center">
-          <RightSideProfileSection />
-        </div>
       </div>
       <ContentGrid type="live_now" title="Live Now" />
       <ContentGrid type="live_upcoming" title="Upcoming Live Sessions" />

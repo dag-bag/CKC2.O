@@ -80,12 +80,12 @@ const Page = () => {
                     </span>
                     <br /> It will cost you 50 coins to watch
                   </h3>
-                  <div>
+                  {/* <div>
                     <label htmlFor="cheakbox" className="space-x-2">
                       <input id="cheakbox" type="checkbox" />
                       <span>Dont remind me again</span>
                     </label>
-                  </div>
+                  </div> */}
                   <div className="grid grid-cols-2 gap-5">
                     <button className="btn w-full bg-indigo-500  text-white">
                       Play

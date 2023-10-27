@@ -1,6 +1,5 @@
 "use client";
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -8,10 +7,9 @@ interface Props {
   Icon: any;
   title: string;
   href: string;
+  isDropdown?: boolean;
+  dropdownOptions?: any[];
 }
-
-import { RiSettings4Fill, RiHomeSmile2Fill } from "react-icons/ri";
-import { FiChevronRight } from "react-icons/fi";
 
 const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
   const pathname = usePathname();
@@ -20,7 +18,7 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
       key={title}
       href={href}
       className={clsx(
-        "px-2 pr-4 py-2.5 rounded-xl  flex justify-between gap-5  text-black",
+        "px-2 pr-4 py-2.5 rounded-xl flex justify-between gap-5 text-black",
         pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
       )}
     >
