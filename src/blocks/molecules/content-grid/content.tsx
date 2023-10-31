@@ -2,10 +2,19 @@ import Link from "next/link";
 import { type ContentType } from ".";
 import Image from "next/image";
 const tags = ["Video", "Galaxy", "Astronaut"];
-
+import { BsDot } from "react-icons/bs";
 interface Props {
   type?: ContentType;
 }
+
+import { BiTime } from "react-icons/bi";
+
+const course = {
+  garde: "6th",
+  duration: "10 minutes",
+  required_credits: 100,
+  name: "Quizmania - The untold story",
+};
 
 const Content: React.FC<Props> = ({ type }) => {
   if (type == "comics") {
@@ -17,6 +26,11 @@ const Content: React.FC<Props> = ({ type }) => {
   if (type == "live_now") {
     return <LiveContent />;
   }
+
+  if (type == "course") {
+    return <Course />;
+  }
+
   return (
     <Link href="/dashboard/slug" className="rounded-xl">
       <div className="rounded-xl p-2">
@@ -36,6 +50,47 @@ const Content: React.FC<Props> = ({ type }) => {
 };
 
 export default Content;
+
+const Course = () => {
+  return (
+    <Link href="/dashboard/course" className="rounded-xl">
+      <div className="rounded-xl p-3 border border-gray-100 font-heading">
+        <div className="relative h-[170px] rounded-lg overflow-hidden">
+          <Image src="/1.webp" alt="image" fill />
+        </div>
+
+        <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
+          <BiTime size={17} />
+          <span className="text-gray-800 font-medium">{course.duration}</span>
+        </p>
+
+        <h3 className="font-medium text-[18px] leading-5 mt-1">
+          {course.name}
+        </h3>
+
+        <p className="text-sm text-gray-500 font-fun my-2">
+          <span className="!font-heading text-black">Description &nbsp;</span>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore,
+          pariatur!
+        </p>
+
+        <div className="grid grid-cols-2 mt-1">
+          <p className="text-sm text-gray-800 flex items-center  ">
+            Grade <BsDot />
+            <span className="text-gray-800 font-medium">{course.garde}</span>
+          </p>
+
+          <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">
+            Credits <BsDot />
+            <span className="text-gray-800 font-medium">
+              {course.required_credits}
+            </span>
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Comics = () => {
   return (

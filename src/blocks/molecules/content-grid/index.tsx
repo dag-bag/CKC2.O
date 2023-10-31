@@ -8,7 +8,12 @@ import Content from "./content";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
-export type ContentType = "live_now" | "live_upcoming" | "live_past" | "comics";
+export type ContentType =
+  | "live_now"
+  | "live_upcoming"
+  | "live_past"
+  | "comics"
+  | "course";
 
 // this matine carouse is not effective in point of view serverside rendering...
 

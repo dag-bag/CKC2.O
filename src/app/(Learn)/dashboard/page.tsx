@@ -9,7 +9,7 @@ const DashboardPage = () => {
       </div>
       <ContentGrid title="Continue Watching" />
       <ContentGrid title="Start Learning" />
-      <InContentAdvertisement/>
+      <InContentAdvertisement />
       <ContentGrid title="How it works" />
     </Container>
   );
