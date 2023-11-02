@@ -101,10 +101,9 @@ const Page = () => {
                 </section>
               </div>
             </section>
-            {/* <About /> */}
             <Modules />
             <Quiz />
-            {/* <Gallary /> */}
+            <Reward />
           </div>
         </div>
       </div>
@@ -463,8 +462,6 @@ import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
 
 const ppt = ["/pp-1.jpg", "/ppt-2.png", "/ppt-3.png"];
 import { Modal } from "@mantine/core";
-import { useRouter } from "next/navigation";
-import clsx from "clsx";
 const ModuleScreenPPT = () => {
   return (
     <div className=" bg-white z-50">
@@ -520,7 +517,6 @@ const Quiz = () => {
           <h1 className="text-5xl font-heading font-bold text-black opacity-70--">
             Engaging Learning through
             <span className=" text-purple-800 drop-shadow-md">
-              {" "}
               Interactive Quizzes
             </span>
           </h1>
@@ -540,53 +536,68 @@ const Quiz = () => {
     </div>
   );
 };
-
-const Gallary = () => {
+import Image from "next/image";
+const Reward = () => {
   return (
     <div className="mt-8 mb-10">
       <h3 className="text-xl font-heading font-semibold mb-2 text-gray-700">
-        Post Your Activity
+        Rewards
       </h3>
-
-      <div className="">
-        <div
-          style={{ backgroundImage: "url('/gallary.jpg')" }}
-          className="h-[300px]  w-full border bg-center rounded-xl overflow-hidden"
-        >
-          <div className="w-full h-full center bg-black/30">
-            <h1 className="text-5xl font-heading font-bold text-white">
-              Post Your Activity
-            </h1>
-          </div>
+      <div className="h-[300px] rounded-xl grid grid-cols-5 p-5 bg-gradient-to-r from-purple-50 to-blue-50 gap-5">
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={200}
+            alt="price"
+            className="rounded-xl"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">After completion Module 1</p>
         </div>
-
-        <div className="grid grid-cols-3 gap-5 p-5">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={200}
+            alt="price"
+            className="rounded-xl"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">After completion Module 2</p>
         </div>
-      </div>
-    </div>
-  );
-};
-
-const Post = () => {
-  return (
-    <div>
-      <div
-        style={{ backgroundImage: "url('/sun.jpg')" }}
-        className="h-[200px] bg-cover rounded-xl"
-      ></div>
-      <div className="grid grid-cols-[40px_auto] gap-2 items-center py-2">
-        <div className="h-[40px] w-[40px] rounded-full bg-gray-500"></div>
-        <div>
-          <h3 className="font-heading leading-4">Deepak Vishwakarma</h3>
-          <p className="font-heading text-xs text-gray-500 flex items-center">
-            St Marys Convent Bhopal <BsDot /> 6th Grade
-          </p>
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={200}
+            alt="price"
+            className="rounded-xl"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">After completion Module 3</p>
+        </div>
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={200}
+            alt="price"
+            className="rounded-xl"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">After completion Module 4</p>
+        </div>
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={200}
+            alt="price"
+            className="rounded-xl"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">After completion Module Quiz</p>
         </div>
       </div>
     </div>
