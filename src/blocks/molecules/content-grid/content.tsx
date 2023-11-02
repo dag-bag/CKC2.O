@@ -54,9 +54,12 @@ export default Content;
 const Course = () => {
   return (
     <Link href="/dashboard/course" className="rounded-xl">
-      <div className="rounded-xl p-3 border border-gray-100 font-heading">
+      <div className="rounded-xl p-3  border-gray-100 font-heading">
         <div className="relative h-[170px] rounded-lg overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
+          <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
+            Best Seller
+          </div>
         </div>
 
         <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
