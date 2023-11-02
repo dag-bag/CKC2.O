@@ -5,8 +5,15 @@ import { BiBook, BiTime, BiSpeaker } from "react-icons/bi";
 import { GoShareAndroid } from "react-icons/go";
 import { PiUsersThree } from "react-icons/pi";
 import { FiUsers } from "react-icons/fi";
-import { BiHeart, BiShare, BiAddToQueue } from "react-icons/bi";
+import {
+  BiHeart,
+  BiShare,
+  BiAddToQueue,
+  BiGlobe,
+  BiTrophy,
+} from "react-icons/bi";
 import { RiCopperDiamondLine } from "react-icons/ri";
+import { MdSlideshow } from "react-icons/md";
 import { useState } from "react";
 const Page = () => {
   return (
@@ -57,37 +64,38 @@ const Page = () => {
                 </section>
 
                 <section className="mt-5 space-y-1">
-                  {/* <div className="flex gap-2 font-100">
-                    <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <FiUsers size={16} /> Students <BsDot />
-                    </p>
-                    <p>3,215</p>
-                  </div> */}
                   <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <BiTime size={16} /> Duration <BsDot />
+                      <BiTime size={18} /> Duration <BsDot />
                     </p>
                     <p>2h 24m</p>
                   </div>
                   <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <BiSpeaker size={16} /> Language <BsDot />
+                      <BiGlobe size={18} /> Language <BsDot />
                     </p>
                     <p>English</p>
                   </div>
 
                   <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <FiUsers size={16} /> Modules <BsDot />
+                      <MdSlideshow size={18} /> Modules <BsDot />
                     </p>
-                    <p>4 (Activity & Quiz)</p>
+                    <p>
+                      4 <span className="text-xs">(Activity + Quiz)</span>
+                    </p>
                   </div>
 
                   <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <FiUsers size={16} /> Rewards <BsDot />
+                      <BiTrophy size={18} /> Rewards <BsDot />
                     </p>
-                    <p className=" leading-5">Upon completion of the course</p>
+                    <p className=" leading-5">
+                      100+ Stars and Badge <br />
+                      <span className="text-xs">
+                        (see reward section for more details)
+                      </span>
+                    </p>
                   </div>
                 </section>
 
