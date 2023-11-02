@@ -7,6 +7,7 @@ import { PiUsersThree } from "react-icons/pi";
 import { FiUsers } from "react-icons/fi";
 import { BiHeart, BiShare, BiAddToQueue } from "react-icons/bi";
 import { RiCopperDiamondLine } from "react-icons/ri";
+import { useState } from "react";
 const Page = () => {
   return (
     <div>
@@ -56,23 +57,23 @@ const Page = () => {
                 </section>
 
                 <section className="mt-5 space-y-1">
-                  <div className="flex gap-2 font-100">
+                  {/* <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
                       <FiUsers size={16} /> Students <BsDot />
                     </p>
                     <p>3,215</p>
-                  </div>
-                  <div className="flex gap-2 font-100">
-                    <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-                      <BiSpeaker size={16} /> Language <BsDot />
-                    </p>
-                    <p>English, Hindi</p>
-                  </div>
+                  </div> */}
                   <div className="flex gap-2 font-100">
                     <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
                       <BiTime size={16} /> Duration <BsDot />
                     </p>
                     <p>2h 24m</p>
+                  </div>
+                  <div className="flex gap-2 font-100">
+                    <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+                      <BiSpeaker size={16} /> Language <BsDot />
+                    </p>
+                    <p>English</p>
                   </div>
 
                   <div className="flex gap-2 font-100">
@@ -100,7 +101,7 @@ const Page = () => {
                 </section>
               </div>
             </section>
-            <About />
+            {/* <About /> */}
             <Modules />
             <Quiz />
             {/* <Gallary /> */}
@@ -117,7 +118,7 @@ const Player = () => {
   return (
     <div
       style={{ backgroundImage: 'url("/sun.jpg")' }}
-      className=" h-[500px] rounded-xl bg-cover bg-no-repeat bg-center center"
+      className=" h-[500px] rounded-xl bg-cover bg-no-repeat bg-center flex items-end justify-end p-10"
     >
       <div className="px-10 py-2 bg-black rounded-full flex text-white gap-2 font-heading">
         <BiLockAlt color="white" size={22} /> Unlock
@@ -239,7 +240,7 @@ const modules = [
 ];
 
 import { BsArrowRight, BsPeople } from "react-icons/bs";
-
+import { Accordion } from "@mantine/core";
 const Modules = () => {
   return (
     <div className="mt-8">
@@ -247,102 +248,197 @@ const Modules = () => {
         Modules & Quiz
       </h3>
 
-      <section>
-        <Carousel
-          slideGap={"10px"}
-          withIndicators
-          slideSize={"33%"}
-          slidesToScroll={3}
-          previousControlIcon={
-            <button className="w-[50px] h-[50px] bg-white opacity-100 rounded-full center">
-              <HiMiniChevronLeft size={22} />
-            </button>
-          }
-          nextControlIcon={
-            <button className="w-[50px] h-[50px] bg-white opacity-100 rounded-full center">
-              <HiMiniChevronRight size={22} />
-            </button>
-          }
-          height={"100%"}
-        >
-          {modules.map((feature, i) => {
-            return (
-              <Carousel.Slide key={i + "lorme"}>
-                <Module
-                  unlock={feature.unlock}
-                  img={feature.img}
-                  title={feature.title}
-                />
-              </Carousel.Slide>
-            );
+      <section className="space-y-5">
+        <Accordion>
+          {modules.map((item, i) => {
+            return <Module {...item} key={i} />;
           })}
-        </Carousel>
+        </Accordion>
       </section>
+    </div>
+  );
+};
+
+const supplies = [
+  {
+    title: "Big Dipper Star Poster",
+    description:
+      "High-quality printed poster of the Big Dipper constellation. Suitable for classroom use or personal reference.",
+    type: "printout",
+    quantity: "Print 25 copies",
+    products: [
+      {
+        name: "Big Dipper Poster",
+        productImage: "/big_dipper_poster.png",
+        description: "Glossy finish, A3 size",
+      },
+    ],
+  },
+
+  {
+    title: "Starry Night Sky Maps",
+    description:
+      "A collection of various star maps showing different constellations. Ideal for classroom activities or personal exploration.",
+    type: "printout",
+    quantity: "Print 20 copies",
+    products: [
+      {
+        name: "Starry Night Maps",
+        productImage: "/starry_night_maps.png",
+        description: "Variety of constellation maps included",
+      },
+    ],
+  },
+
+  {
+    title: "Safety Scissors",
+    description:
+      "Child-safe scissors suitable for classroom activities or projects. Designed for easy and safe use by kids.",
+    type: "tool",
+    quantity: "40 Pairs",
+    products: [
+      {
+        name: "Safety Scissors",
+        productImage: "/safety_scissors.png",
+        description: "Rounded tip, colorful handles",
+      },
+    ],
+  },
+
+  {
+    title: "Assorted Color Stickers",
+    description:
+      "Colorful stickers for marking or highlighting specific stars or constellations on maps. Easy to use and distribute.",
+    type: "simple",
+    quantity: "150 Sheets",
+    products: [
+      {
+        name: "Colorful Sticker Set",
+        productImage: "/color_stickers.png",
+        description: "Assorted shapes and sizes",
+      },
+    ],
+  },
+
+  {
+    title: "Assorted Push Pins",
+    description:
+      "Metallic push pins for pinning maps or posters onto boards or walls. Suitable for displaying star maps.",
+    type: "simple",
+    quantity: "100 Pins",
+    products: [],
+  },
+];
+
+const Product = ({ name, description }: any) => {
+  return (
+    <div className="grid grid-cols-[80px_120px] gap-1 bg-gray-50 w-[200px] h-[60px] rounded-lg overflow-hidden">
+      <div className="w-full h-full bg-[url(/pp-1.jpg)] bg-cover bg-center rounded-lg"></div>
+      <div className="p-1.5">
+        <h5 className="text-sm capitalize font-heading">
+          {name.slice(0, 13)}...
+        </h5>
+        <p className="text-xs text-gray-500">{description.slice(0, 22)}...</p>
+      </div>
+    </div>
+  );
+};
+
+const Activity = () => {
+  const [value, setValue] = useState<string | null>(null);
+  return (
+    <div className="max-w-xl p-3 rounded-xl bg-blue-50 mb-5">
+      <Accordion value={value} onChange={setValue}>
+        {supplies.map((item) => {
+          const isActive = value == item.title;
+          return (
+            <Accordion.Item
+              key={item.title}
+              value={item.title}
+              className={isActive ? "!bg-white" : ""}
+            >
+              <Accordion.Control>
+                <div className="flex items-center justify-between pr-5">
+                  <h5 className="font-heading">{item.title}</h5>
+                  <h6 className="font-heading font-medium text-sm text-gray-500">
+                    {item.quantity} {JSON.stringify(isActive)}
+                  </h6>
+                </div>
+              </Accordion.Control>
+              <Accordion.Panel>
+                <section>
+                  <p className=" text-gray-800">{item.description}</p>
+                </section>
+                {item?.products?.length !== 0 && (
+                  <section className="mt-3">
+                    <h5 className="font-heading mb-2">Suggested Products</h5>
+                    <div className="flex gap-2">
+                      {item.products.map((product, i) => (
+                        <Product {...product} key={i} />
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </Accordion.Panel>
+            </Accordion.Item>
+          );
+        })}
+      </Accordion>
     </div>
   );
 };
 
 import { BsDot } from "react-icons/bs";
 
-import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi";
 import { useDisclosure } from "@mantine/hooks";
+import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi";
 
-const Module = ({ title, unlock, img }: any) => {
-  // const [state, setState] = useState(false);
-  const router = useRouter();
+const Module = ({ title, unlock }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <>
       <Modal fullScreen opened={opened} onClose={close}>
         <ModuleScreenPPT />
       </Modal>
-      <div className=" bg-white border border-gray-100 rounded-xl p-3">
-        <div
-          style={{
-            backgroundImage: `url(${img})`,
-          }}
-          className={` h-[200px] bg-cover rounded-xl  shadow-md bg-center relative `}
+      <Accordion.Item value={title}>
+        <Accordion.Control
+          icon={
+            unlock ? (
+              <BiLockOpenAlt color="green" />
+            ) : (
+              <BiLockAlt color="black" />
+            )
+          }
         >
-          {unlock ? (
-            <p className="center px-5 py-1.5 bg-green-500 text-white text-sm gap-1 rounded-full font-heading absolute top-3 right-3">
-              <BiLockOpenAlt />
-              Unlocked
-            </p>
-          ) : (
-            <p className="center px-5 py-1.5 bg-white text-sm gap-1 rounded-full font-heading absolute top-3 right-3">
-              <BiLockAlt />
-              Locked
-            </p>
-          )}
-        </div>
-        {unlock && title !== "Activity Time!" && <Progress />}
-        <h3 className="font-heading text-lg font-semibold text-gray-800 mt-3 ">
-          {title}
-          <p className="text-sm text-gray-700 flex items-center mt-1 ">
+          <h3 className="font-heading text-lg font-semibold text-gray-800  ">
+            {title}
+          </h3>
+          {unlock && <Progress />}
+        </Accordion.Control>
+        <Accordion.Panel>
+          <p className="text-sm text-gray-700 flex items-center mb-3 ">
             <BiTime size={16} className="mr-1" /> Exploration Time <BsDot />
             <span className="text-gray-700 font-medium">3 Minutes</span>
           </p>
-        </h3>
-        <p className="text-sm text-gray-600 mt-2">
-          a. Learn the surface features. <br />
-          b. Understand the atmosphere. <br />
-          c. Life possibility on these planets
-        </p>
-
-        <button
-          disabled={!unlock}
-          onClick={
-            title !== "Activity Time!"
-              ? open
-              : () => {
-                  router.push("/dashboard/course/activity");
-                }
-          }
-          className="font-heading border  px-10 py-2.5 rounded-full mt-5 flex items-center gap-2 disabled:opacity-40"
-        >
-          Let&apos;s start <BsArrowRight />
-        </button>
-      </div>
+          {title !== "Activity Time!" ? (
+            <p className="text-sm text-gray-600 mb-3">
+              a. Learn the surface features. <br />
+              b. Understand the atmosphere. <br />
+              c. Life possibility on these planets
+            </p>
+          ) : (
+            <Activity />
+          )}
+          <button
+            disabled={!unlock}
+            onClick={open}
+            className="font-heading border  px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40"
+          >
+            Let&apos;s start <BsArrowRight />
+          </button>
+        </Accordion.Panel>
+      </Accordion.Item>
     </>
   );
 };
@@ -353,6 +449,7 @@ import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
 const ppt = ["/pp-1.jpg", "/ppt-2.png", "/ppt-3.png"];
 import { Modal } from "@mantine/core";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 const ModuleScreenPPT = () => {
   return (
     <div className=" bg-white z-50">
@@ -477,41 +574,23 @@ const Post = () => {
           </p>
         </div>
       </div>
-      {/* <h2 className="text-xl font-heading">Title of the course.</h2>
-      <h2 className="text-sm font-heading">St Marys Convent Bhopal</h2>
-      <h2 className="text-sm font-heading">6th </h2> */}
     </div>
   );
 };
 
-{
-  /* <div className="bg-white mt-5 rounded-xl p-5">
-<button className="font-heading flex w-full bg-gray-100 center gap-2 py-2 rounded-xl items-center">
-  <GoShareAndroid /> Share
-</button>
-<p className="font-heading text-sm  font-light  py-2 inline-flex items-center gap-2 rounded-xl ">
-  <PiUsersThree size={20} /> 10k Student Enrolled
-</p>
-
-<p className="font-heading text-sm  font-light  py-2 inline-flex items-center gap-2 rounded-xl ">
-  <PiUsersThree size={20} /> 2h 30m total duration
-</p>
-</div> */
-}
-
 const Progress = () => {
   return (
-    <div className="grid grid-cols-10 gap-1 my-3 px-2">
-      <div className="h-[5px] bg-green-500 rounded-full"></div>
-      <div className="h-[5px] bg-green-500 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
-      <div className="h-[5px] bg-gray-200 rounded-full"></div>
+    <div className="grid grid-cols-10 gap-1 my-1 max-w-sm">
+      <div className="h-[2px] bg-green-500 rounded-full"></div>
+      <div className="h-[2px] bg-green-500 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
+      <div className="h-[2px] bg-gray-200 rounded-full"></div>
     </div>
   );
 };
