@@ -240,6 +240,7 @@ const modules = [
 ];
 
 import { BsArrowRight, BsPeople } from "react-icons/bs";
+import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
 const Modules = () => {
   return (
@@ -347,43 +348,45 @@ const Product = ({ name, description }: any) => {
 const Activity = () => {
   const [value, setValue] = useState<string | null>(null);
   return (
-    <div className="max-w-xl p-3 rounded-xl bg-blue-50 mb-5">
-      <Accordion value={value} onChange={setValue}>
-        {supplies.map((item) => {
-          const isActive = value == item.title;
-          return (
-            <Accordion.Item
-              key={item.title}
-              value={item.title}
-              className={isActive ? "!bg-white" : ""}
-            >
-              <Accordion.Control>
-                <div className="flex items-center justify-between pr-5">
-                  <h5 className="font-heading">{item.title}</h5>
-                  <h6 className="font-heading font-medium text-sm text-gray-500">
-                    {item.quantity} {JSON.stringify(isActive)}
-                  </h6>
-                </div>
-              </Accordion.Control>
-              <Accordion.Panel>
-                <section>
-                  <p className=" text-gray-800">{item.description}</p>
-                </section>
-                {item?.products?.length !== 0 && (
-                  <section className="mt-3">
-                    <h5 className="font-heading mb-2">Suggested Products</h5>
-                    <div className="flex gap-2">
-                      {item.products.map((product, i) => (
-                        <Product {...product} key={i} />
-                      ))}
-                    </div>
+    <div className="grid grid-cols-2 gap-5 mb-5">
+      <Card title="Activity Preparation">
+        <Accordion value={value} onChange={setValue}>
+          {supplies.map((item) => {
+            const isActive = value == item.title;
+            return (
+              <Accordion.Item
+                key={item.title}
+                value={item.title}
+                className={isActive ? "!bg-white" : undefined}
+              >
+                <Accordion.Control>
+                  <div className="flex items-center justify-between pr-5">
+                    <h5 className="font-heading">{item.title}</h5>
+                    <h6 className="font-heading font-medium text-sm text-gray-500">
+                      {item.quantity} {JSON.stringify(isActive)}
+                    </h6>
+                  </div>
+                </Accordion.Control>
+                <Accordion.Panel>
+                  <section>
+                    <p className=" text-gray-800">{item.description}</p>
                   </section>
-                )}
-              </Accordion.Panel>
-            </Accordion.Item>
-          );
-        })}
-      </Accordion>
+                  {item?.products?.length !== 0 && (
+                    <section className="mt-3">
+                      <h5 className="font-heading mb-2">Suggested Products</h5>
+                      <div className="flex gap-2">
+                        {item.products.map((product, i) => (
+                          <Product {...product} key={i} />
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                </Accordion.Panel>
+              </Accordion.Item>
+            );
+          })}
+        </Accordion>
+      </Card>
     </div>
   );
 };
@@ -393,8 +396,12 @@ import { BsDot } from "react-icons/bs";
 import { useDisclosure } from "@mantine/hooks";
 import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi";
 
+import { BsPlayCircle, BsCloudUpload } from "react-icons/bs";
+
 const Module = ({ title, unlock }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const isActivityModule = title == "Activity Time!";
 
   return (
     <>
@@ -421,22 +428,30 @@ const Module = ({ title, unlock }: any) => {
             <BiTime size={16} className="mr-1" /> Exploration Time <BsDot />
             <span className="text-gray-700 font-medium">3 Minutes</span>
           </p>
-          {title !== "Activity Time!" ? (
-            <p className="text-sm text-gray-600 mb-3">
+          {!isActivityModule && (
+            <p className=" text-gray-600 mb-3">
               a. Learn the surface features. <br />
               b. Understand the atmosphere. <br />
               c. Life possibility on these planets
             </p>
-          ) : (
-            <Activity />
           )}
-          <button
-            disabled={!unlock}
-            onClick={open}
-            className="font-heading border  px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40"
-          >
-            Let&apos;s start <BsArrowRight />
-          </button>
+          {isActivityModule && <Activity />}
+
+          <div className="flex gap-5">
+            <button
+              disabled={!unlock}
+              onClick={open}
+              className="font-heading border  px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40"
+            >
+              <BsPlayCircle /> {isActivityModule ? "Preview Activity" : "Play"}
+            </button>
+
+            {isActivityModule && (
+              <button className="font-heading border px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40">
+                <BsCloudUpload /> Upload Activity
+              </button>
+            )}
+          </div>
         </Accordion.Panel>
       </Accordion.Item>
     </>
