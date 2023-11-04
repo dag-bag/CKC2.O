@@ -2,6 +2,7 @@
 import Card from "@/blocks/UI/Card";
 import { BiLockAlt, BiShare } from "react-icons/bi";
 import SharePopup from "@/blocks/atoms/SharePopup";
+import BuyPopup from "@/blocks/atoms/BuyPopup";
 
 const Page = () => {
   return (
@@ -90,9 +91,7 @@ const Hero = () => {
               <h1 className="text-3xl font-semibold font-game mr-5">
                 400.99 <span className="text-sm">CRD</span>
               </h1>
-              <button className=" py-3 px-10 flex items-center justify-center text-white  bg-black border rounded-full font-heading  gap-2">
-                <BiLockAlt /> Unlock
-              </button>
+              <BuyPopup />
               <SharePopup />
             </section>
           </div>
