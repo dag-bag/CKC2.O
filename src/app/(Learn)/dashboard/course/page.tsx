@@ -1,12 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
+import Card from "@/blocks/UI/Card";
+import { BiLockAlt } from "react-icons/bi";
 import Player from "@/blocks/molecules/course/Player";
 import Modules from "@/blocks/molecules/course/Modules";
 import CourseInfo from "@/blocks/molecules/course/Info";
 import Description from "@/blocks/molecules/course/Description";
-import ActivityPreparation from "@/blocks/molecules/course/ActivityPreparation";
 import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 import ActionRewardBlock from "@/blocks/molecules/course/ActionRewardBlock";
+import ActivityPreparation from "@/blocks/molecules/course/ActivityPreparation";
+import ActionPostYourActivity from "@/blocks/molecules/course/ActionPostYourActivity";
 const Page = () => {
   return (
     <div>
@@ -30,6 +34,7 @@ const Page = () => {
               <CourseInfo />
               <ActionQuizBlock />
               <ActionRewardBlock />
+              <ActionPostYourActivity />
             </div>
           </section>
         </div>
@@ -39,8 +44,6 @@ const Page = () => {
 };
 
 export default Page;
-
-import { BiLockAlt } from "react-icons/bi";
 
 const Quiz = () => {
   return (
@@ -68,7 +71,6 @@ const Quiz = () => {
             Test your knowledge, discover new insights, and enjoy diverse
             challenges. Join us in the quest for knowledge and fun
           </p>
-
           <div>
             <button className="inline-flex px-10 py-3 mt-5 border border-purple-500 text-purple-800 font-heading rounded-full  items-center gap-2">
               <BiLockAlt /> Unlock Quiz
@@ -80,8 +82,6 @@ const Quiz = () => {
   );
 };
 
-import Image from "next/image";
-import Card from "@/blocks/UI/Card";
 const Reward = () => {
   return (
     <Card title="Rewards" className="mt-5">

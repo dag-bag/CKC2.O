@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { BiLockAlt } from "react-icons/bi";
 const ActionRewardBlock = () => {
   return (
     <div className="p-5 bg-white rounded-xl">
@@ -8,17 +7,23 @@ const ActionRewardBlock = () => {
         <div className="grid gap-2">
           <div className="p-2 border border-gray-100 rounded-xl">
             <h5 className="text-lg">100+ coins</h5>
-            <p className="text-sm">After completion Module 2.</p>
+            <p className="text-sm text-gray-500 italic">
+              After completion Module 2.
+            </p>
           </div>
 
           <div className="p-2 border border-gray-100 rounded-xl">
             <h5 className="text-lg">100+ coins</h5>
-            <p className="text-sm">After completion Module 2.</p>
+            <p className="text-sm text-gray-500 italic">
+              After completion Module 2.
+            </p>
           </div>
 
           <div className="p-2 border border-gray-100 rounded-xl">
             <h5 className="text-lg">100+ coins</h5>
-            <p className="text-sm">After completion Module 2.</p>
+            <p className="text-sm text-gray-500 italic">
+              After completion Module 2.
+            </p>
           </div>
         </div>
       </div>
