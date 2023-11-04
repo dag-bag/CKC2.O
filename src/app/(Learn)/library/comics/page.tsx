@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Card from "@/blocks/UI/Card";
 import { BiLockAlt, BiShare } from "react-icons/bi";
+import SharePopup from "@/blocks/atoms/SharePopup";
 
 const Page = () => {
   return (
@@ -92,9 +93,7 @@ const Hero = () => {
               <button className=" py-3 px-10 flex items-center justify-center text-white  bg-black border rounded-full font-heading  gap-2">
                 <BiLockAlt /> Unlock
               </button>
-              <button className=" py-2.5 px-10 flex items-center justify-center  border-gray-500 border rounded-full font-heading  gap-2">
-                <BiShare /> Share
-              </button>
+              <SharePopup />
             </section>
           </div>
         </div>

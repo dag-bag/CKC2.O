@@ -1,6 +1,7 @@
 import { BsDot } from "react-icons/bs";
 import { MdSlideshow } from "react-icons/md";
 import { BiTime, BiLockAlt, BiShare, BiGlobe, BiTrophy } from "react-icons/bi";
+import SharePopup from "@/blocks/atoms/SharePopup";
 const CourseInfo = () => {
   return (
     <div className="bg-white p-5 rounded-xl">
@@ -47,9 +48,7 @@ const CourseInfo = () => {
         <button className=" py-3 px-5 flex items-center justify-center text-white  bg-black border rounded-full font-heading  gap-2">
           <BiLockAlt /> Unlock
         </button>
-        <button className=" py-2.5 px-5 flex items-center justify-center  border-gray-500 border rounded-full font-heading  gap-2">
-          <BiShare /> Share
-        </button>
+        <SharePopup />
       </section>
     </div>
   );
