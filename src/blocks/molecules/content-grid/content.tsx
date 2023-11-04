@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { type ContentType } from ".";
 import Image from "next/image";
-const tags = ["Video", "Galaxy", "Astronaut"];
+import { type ContentType } from ".";
 import { BsDot } from "react-icons/bs";
 interface Props {
   type?: ContentType;
@@ -11,8 +10,8 @@ import { BiTime } from "react-icons/bi";
 
 const course = {
   garde: "6th",
-  duration: "10 minutes",
   required_credits: 100,
+  duration: "10 minutes",
   name: "Quizmania - The untold story",
 };
 
@@ -99,10 +98,10 @@ const Course = () => {
 
 const Comics = () => {
   return (
-    <Link href="/dashboard/course" className="rounded-xl">
+    <Link href="/library/comics" className="rounded-xl">
       <div className="rounded-xl p-3  border-gray-100 font-heading">
-        <div className="relative h-[170px] rounded-lg overflow-hidden">
-          <Image src="/1.webp" alt="image" fill />
+        <div className="relative h-[400px] rounded-lg overflow-hidden">
+          <Image src="/comic.jpg" alt="image" fill />
           <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
             Best Seller
           </div>

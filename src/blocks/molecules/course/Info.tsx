@@ -1,8 +1,6 @@
 import { BsDot } from "react-icons/bs";
 import { MdSlideshow } from "react-icons/md";
-import { BiLockAlt } from "react-icons/bi";
-import { BiBook, BiTime } from "react-icons/bi";
-import { BiShare, BiGlobe, BiTrophy } from "react-icons/bi";
+import { BiTime, BiLockAlt, BiShare, BiGlobe, BiTrophy } from "react-icons/bi";
 const CourseInfo = () => {
   return (
     <div className="bg-white p-5 rounded-xl">
