@@ -22,9 +22,9 @@ const DiscoveryJarPopup = () => {
       <button
         type="button"
         onClick={openModal}
-        className="rounded-md bg-green-500 bg-opacity-20-- px-5 py-2 font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        className="rounded-full bg-[#A72F2F] px-5 py-2 font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
       >
-        I have an Question
+        I have a Question
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -92,7 +92,7 @@ const DiscoveryJarPopup = () => {
                       className="mr-2 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Upload Video
+                      Submit
                     </button>
 
                     <button
