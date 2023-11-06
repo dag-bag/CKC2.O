@@ -2,7 +2,7 @@ import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
 const Modules = () => {
   return (
-    <Card title="Modules & Quiz" className="mt-5">
+    <Card title="Modules" className="mt-5">
       <section className="space-y-5">
         <Accordion>
           {modules.map((item, i) => {
