@@ -30,6 +30,9 @@ const Content: React.FC<Props> = ({ type }) => {
     return <Course />;
   }
 
+  if (type == "video") {
+    return <Video />;
+  }
   return (
     <Link href="/dashboard/slug" className="rounded-xl">
       <div className="rounded-xl p-2">
@@ -52,6 +55,49 @@ const Content: React.FC<Props> = ({ type }) => {
 };
 
 export default Content;
+
+const Video = () => {
+  return (
+    <Link href="/library/video" className="rounded-xl">
+      <div className="rounded-xl p-3  border-gray-100 font-heading">
+        <div className="relative h-[170px] rounded-lg overflow-hidden">
+          <Image src="/1.webp" alt="image" fill />
+          <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
+            Best Seller
+          </div>
+        </div>
+
+        <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
+          <BiTime size={17} />
+          <span className="text-gray-800 font-medium">{course.duration}</span>
+        </p>
+
+        <h3 className="font-medium text-[18px] leading-5 mt-1">
+          {course.name}
+        </h3>
+
+        <p className="text-sm text-gray-500 font-fun my-2">
+          <span className="!font-heading text-black">Description &nbsp;</span>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        </p>
+
+        <div className="grid grid-cols-2 mt-1">
+          <p className="text-sm text-gray-800 flex items-center  ">
+            Grade <BsDot />
+            <span className="text-gray-800 font-medium">{course.garde}</span>
+          </p>
+
+          <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">
+            Credits <BsDot />
+            <span className="text-gray-800 font-medium">
+              {course.required_credits}
+            </span>
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 const Course = () => {
   return (

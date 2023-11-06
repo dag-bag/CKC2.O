@@ -25,14 +25,14 @@ const DashboardPage = () => {
 
       {state == "Videos" && (
         <section className="grid grid-cols-4 gap-3">
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
-          <Content type="course" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
+          <Content type="video" />
         </section>
       )}
     </Container>

@@ -13,7 +13,8 @@ export type ContentType =
   | "live_upcoming"
   | "live_past"
   | "comics"
-  | "course";
+  | "course"
+  | "video";
 
 // this matine carouse is not effective in point of view serverside rendering...
 
