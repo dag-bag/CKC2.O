@@ -1,51 +1,171 @@
-const challenges = [
-    { title: "Create a Todo List App", isCompleted: false },
-    { title: "Build a Weather App", isCompleted: true },
-    { title: "Implement User Authentication", isCompleted: false },
-    { title: "Create a Responsive Website", isCompleted: true },
-    { title: "Build a Calculator", isCompleted: true },
-    { title: "Implement a Chat Application", isCompleted: false },
-    { title: "Create a Countdown Timer", isCompleted: true },
-    { title: "Build a Memory Game", isCompleted: false },
-    { title: "Implement a To-Do List with Local Storage", isCompleted: true },
-    { title: "Create a Simple Drawing App", isCompleted: false },
-  ];
-
+import Image from "next/image";
 import Card from "@/blocks/UI/Card";
-import clsx from "clsx";
+import { BsDot } from "react-icons/bs";
+import SharePopup from "@/blocks/atoms/SharePopup";
+import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
 
-
-const Page = () => {
-    return (
-        <div>
-
-<Card title="Title of Challange">
-  <div className="grid grid-cols-[300px_auto]">
-   <div className="center">
-      <div className="w-[200px] h-[200px]  mx-auto rounded-full bg-[url('/tes-bedge.jpg')] bg-cover bg-center  border-2"></div>
-
+export default function ChallangeInnerPage() {
+  return (
+    <div>
+      <div className="grid grid-cols-[auto_350px] gap-5">
+        <section>
+          <Banner />
+          <Card title="Description" className="mt-5">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
+              nam quo consequatur vel quia iusto ipsum a inventore, temporibus
+              ducimus sunt rerum officiis recusandae natus illo voluptas modi.
+              Reprehenderit, ad. <br />
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
+              similique error esse, non optio enim fugiat, veniam numquam
+              excepturi exercitationem commodi sapiente distinctio, dolor rem
+              possimus molestias officiis porro. Vel.
+            </p>
+          </Card>
+          <Reward />
+          <Winners />
+        </section>
+        <section className=" p-1">
+          <Info />
+        </section>
+      </div>
     </div>
-    <div className=" flex items-center">
-       <div className="flex-col">
-       <h1 className="text-2xl font-heading font-semibold">Title of Challanges</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
-       </div>
-    </div>
-   </div>
-   
-</Card>
-<Card title="Challanges" className="mt-5">
-    <div className="space-y-3">
-        {challenges.map((challange)=> (
-        <div key={challange.title} className="flex gap-5 border-- items-center">
-            <div className={clsx()}>{challange.isCompleted ? "✅": "⭕"}</div>
-            <h5 className="font-heading">{challange.title}</h5>
-        </div>
-    ))}
-    </div>
-</Card>
-        </div>
-    )
+  );
 }
 
-export default Page
+const Banner = () => (
+  <div
+    style={{
+      backgroundImage: 'url("/challange.png")',
+    }}
+    className="bg-blue-500 rounded-xl h-[400px]"
+  ></div>
+);
+
+const Info = () => (
+  <div className="p-5 bg-white rounded-xl border border-gray-200 ">
+    <div>
+      <h1 className="text-2xl font-heading font-semibold">
+        The Winter Arc Challange
+      </h1>
+      <p className="text-sm text-gray-600">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      </p>
+    </div>
+    <section className="mt-5 space-y-1">
+      <div className="flex gap-2 font-100">
+        <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
+          <BiGlobe size={18} /> Enrolled <BsDot />
+        </p>
+        <p>10,000</p>
+      </div>
+      <div className="flex gap-2 font-100">
+        <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
+          <BiTime size={18} /> Duration <BsDot />
+        </p>
+        <p>12 Nov to 30 Nov</p>
+      </div>
+
+      <div className="flex gap-2 font-100 items-center">
+        <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
+          <BiTime size={18} /> Winner <br /> Announcement <BsDot />
+        </p>
+        <p>30 Nov</p>
+      </div>
+
+      <div className="flex gap-2 font-100">
+        <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
+          <BiTrophy size={18} /> Rewards <BsDot />
+        </p>
+        <p className=" leading-5">
+          100+ Stars and Badge <br />
+          <span className="text-xs">(see reward section for more details)</span>
+        </p>
+      </div>
+
+      <div className="grid gap-2 pt-2">
+        <button className="w-full bg-black py-3 rounded-full text-white font-heading">
+          Start Challange
+        </button>
+        <SharePopup />
+      </div>
+    </section>
+  </div>
+);
+
+const Reward = () => {
+  return (
+    <Card title="Rewards" className="mt-5">
+      <div className=" rounded-xl grid grid-cols-3  gap-5">
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={300}
+            alt="price"
+            className="rounded-lg"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">10 CRDs</p>
+          <p className="text-gray-500">Complition Prize</p>
+        </div>
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={300}
+            alt="price"
+            className="rounded-lg"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+          <p className="text-gray-500">Winning Prize</p>
+        </div>
+        <div className="rounded-xl center flex-col">
+          <Image
+            src="/cup.jpg"
+            width={200}
+            height={300}
+            alt="price"
+            className="rounded-lg"
+          />
+          <p className="font-heading text-lg mt-2 font-medium">1000 CRDs</p>
+          <p className="text-gray-500">First Winning Prize</p>
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+const Winner = () => {
+  return (
+    <div>
+      <Image
+        src="/ed.png"
+        width={100}
+        height={100}
+        alt="price"
+        className="rounded-full"
+      />
+    </div>
+  );
+};
+
+const Winners = () => (
+  <div>
+    <Card title="Winners" className="mt-5">
+      <div className="flex flex-wrap gap-5">
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+        <Winner />
+      </div>
+    </Card>
+  </div>
+);
