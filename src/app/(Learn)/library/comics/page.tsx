@@ -9,28 +9,6 @@ const Page = () => {
   return (
     <div>
       <Hero />
-
-      <Card title="Take a look inside" className="mt-5">
-        <div className="grid grid-cols-4 gap-5">
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-        </div>
-      </Card>
-
       <Reward />
     </div>
   );

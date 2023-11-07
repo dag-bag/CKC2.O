@@ -8,28 +8,8 @@ import SharePopup from "@/blocks/atoms/SharePopup";
 const Page = () => {
   return (
     <div>
+      
       <Hero />
-
-      <Card title="Take a look inside" className="mt-5">
-        <div className="grid grid-cols-4 gap-5">
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-          <img
-            src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-            alt="marval-iamge"
-          />
-        </div>
-      </Card>
 
       <Reward />
     </div>
@@ -49,12 +29,12 @@ const Infor = ({ title, value }: any) => {
 
 const Hero = () => {
   return (
-    <div className="grid grid-cols-1 gap-5 bg-gray-100 rounded-xl">
+    <div className="grid grid-cols-2 gap-5 bg-gray-100 rounded-xl">
       <div>
         <img
           src="/thumbnail.jpg"
           alt="marval-iamge"
-          className="rounded-xl h-[500px] object-cover border border-red-500 w-full"
+          className="rounded-xl   border border-red-500 w-full"
         />
       </div>
       <div>
