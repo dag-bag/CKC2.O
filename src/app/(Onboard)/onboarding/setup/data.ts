@@ -31,16 +31,9 @@ const Stage = {
   },
   "/onboarding/setup/profile": {
     question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
-    next: "/onboarding/setup/preview",
-    score: 96,
-  },
-
-  "/onboarding/setup/preview": {
-    question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
     next: "/onboarding/setup/complete",
     score: 96,
   },
-
   "/onboarding/setup/complete": {
     question: "Yay! your profile is completed successfully. Oh you got amazing rewards!.",
     next: "/dashboard",
