@@ -2,13 +2,11 @@
 import Image from "next/image";
 import Card from "@/blocks/UI/Card";
 import { BiLockAlt } from "react-icons/bi";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
-import SharePopup from "@/blocks/atoms/SharePopup";
-
+import VideoInfo from "@/blocks/molecules/video/Info";
+import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 const Page = () => {
   return (
     <div>
-      
       <Hero />
 
       <Reward />
@@ -29,16 +27,15 @@ const Infor = ({ title, value }: any) => {
 
 const Hero = () => {
   return (
-    <div className="grid grid-cols-2 gap-5 bg-gray-100 rounded-xl">
-      <div>
+    <div className="grid grid-cols-[auto_350px] gap-5  rounded-xl">
+      <main>
         <img
           src="/thumbnail.jpg"
           alt="marval-iamge"
-          className="rounded-xl   border border-red-500 w-full"
+          className="rounded-xl border border-red-500 w-full"
         />
-      </div>
-      <div>
-        <div className="max-w-xl py-5">
+
+        <div className="px-5 mt-5">
           <h1 className="font-heading font-bold text-3xl mb-2">
             Avengers United Infinity Comic (2023) #4
           </h1>
@@ -51,35 +48,38 @@ const Hero = () => {
             <Infor title="Duration:" value="2h 23m" />
             <Infor title="Grade:" value="6th" />
           </div>
-
           <p>
-            The arrival of Gheshian Ambassador Sof changes the stakes as the
-            Avengers become aware of an interplanetary civil war that has been
-            raging for centuries.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+            obcaecati qui corporis minus perspiciatis magni deserunt enim error
+            repudiandae nisi a voluptatum, non veniam, debitis corrupti
+            voluptates quae. Omnis asperiores autem corporis aliquam,
+            voluptatibus voluptas enim iure? Odit, possimus, ad eveniet sint
+            voluptates, quibusdam magnam accusamus adipisci saepe error ratione.
           </p>
-
-          <div className="mt-10  bg-white p-5 rounded-xl">
-            <section className="flex gap-5 items-center ">
+        </div>
+      </main>
+      <aside>
+        <div className="max-w-xl">
+          <div className=" bg-white">
+            <VideoInfo />
+            {/* <section className="flex flex-col gap-5 p-5  bg-blue-50 rounded-xl">
               <h1 className="text-3xl font-semibold font-game mr-2">
                 400.99 <span className="text-sm">CRD</span>
               </h1>
               <BuyPopup />
               <SharePopup />
-            </section>
-          </div>
-
-          <div>
-            <Quiz />
+            </section> */}
+            <ActionQuizBlock />
           </div>
         </div>
-      </div>
+      </aside>
     </div>
   );
 };
 
 const Quiz = () => {
   return (
-    <div className="bg-white mt-5 flex gap-5 p-10 rounded-xl items-cener justify-between">
+    <div className="bg-white mt-5 flex flex-col gap-5 p-10 rounded-xl items-cener justify-between">
       <div>
         <h3 className="font-heading text-xl font-semibold">
           Complete Quiz & Earn Reward
