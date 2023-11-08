@@ -112,17 +112,6 @@ const SettingsPage = () => {
 
 export default SettingsPage;
 
-const PersonalInformation = () => {
-  return (
-    <div className="rounded-xl  grid gap-3  grid-cols-2 max-w-3xl ">
-      <Input label="First Name" placeholder="Your Name" type="text" />
-      <Input label="Last Name" placeholder="Your Name" type="text" />
-      <Input label="Email Address" placeholder="Email Address" type="text" />
-      <Input label="Grade" placeholder="Your Grade" type="text" />
-    </div>
-  );
-};
-
 const Input = ({ label, placeholder, type = "text", value, disabled }: any) => {
   return (
     <div className="p-1 font-heading">
