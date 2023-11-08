@@ -1,6 +1,5 @@
 import ContentGrid from "@/blocks/molecules/content-grid";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import RightSideProfileSection from "@/blocks/layouts/primary/right/ProfileSection";
 
 const DashboardPage = () => {
   return (
@@ -9,8 +8,9 @@ const DashboardPage = () => {
         <BannerCarousel />
       </div>
       <ContentGrid type="live_now" title="Live Now" />
-      <ContentGrid type="live_upcoming" title="Upcoming Live Sessions" />
-      <ContentGrid type="live_past" title="Previous Session" />
+      <ContentGrid type="live_upcoming" title="Upcoming Live" />
+      <ContentGrid type="live_past" title="Recorded Live" />
+      <ContentGrid type="live_now_premium" title="Premiums" />
     </div>
   );
 };

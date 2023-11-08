@@ -22,6 +22,7 @@ export default function ChallangeInnerPage() {
               possimus molestias officiis porro. Vel.
             </p>
           </Card>
+          <Upload />
           <Reward />
           <Winners />
         </section>
@@ -46,10 +47,10 @@ const Info = () => (
   <div className="p-5 bg-white rounded-xl border border-gray-200 ">
     <div>
       <h1 className="text-2xl font-heading font-semibold">
-        The Winter Arc Challange
+        Mars Drawing Challange
       </h1>
       <p className="text-sm text-gray-600">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Create mars drawing on pan and paper
       </p>
     </div>
     <section className="mt-5 space-y-1">
@@ -169,3 +170,16 @@ const Winners = () => (
     </Card>
   </div>
 );
+
+const Upload = () => {
+  return (
+    <Card title="Upload">
+      <div className="center h-[200px] border-2 rounded-xl border-dashed flex-col">
+        <h1 className="font-heading text-gray-500">
+          Upload Photo of your Drawing
+        </h1>
+        <p className="text-xs">Please only upload PNG,JPEG,WEBP formets</p>
+      </div>
+    </Card>
+  );
+};

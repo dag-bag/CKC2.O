@@ -8,6 +8,8 @@ interface Props {
 
 import { BiTime } from "react-icons/bi";
 
+import Live from "./types/Live";
+
 const course = {
   garde: "6th",
   required_credits: 100,
@@ -20,10 +22,18 @@ const Content: React.FC<Props> = ({ type }) => {
     return <Comics />;
   }
   if (type == "live_upcoming") {
-    return <LiveUpcomingContent />;
+    return <Live type="upcoming" />;
   }
   if (type == "live_now") {
-    return <LiveContent />;
+    return <Live type="running" />;
+  }
+
+  if (type == "live_now_premium") {
+    return <Live premium type="running" />;
+  }
+
+  if (type == "live_past") {
+    return <Live type="recording" />;
   }
 
   if (type == "course") {

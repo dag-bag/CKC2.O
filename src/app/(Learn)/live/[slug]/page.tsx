@@ -1,24 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import ContentGrid from "@/blocks/molecules/content-grid";
-import { DirectionProvider, Divider } from "@mantine/core";
 const Page = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-    },
-  };
-
-  const listItem = {
-    hidden: { opacity: 0, y: -20 },
-    show: {
-      opacity: 1,
-      y: 0,
-    },
-  };
   return (
     <div className="px-5 overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar">
       <div className="grid grid-cols-1 h-full">

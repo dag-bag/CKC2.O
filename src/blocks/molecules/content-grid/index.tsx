@@ -12,6 +12,7 @@ export type ContentType =
   | "live_now"
   | "live_upcoming"
   | "live_past"
+  | "live_now_premium"
   | "comics"
   | "course"
   | "video";
