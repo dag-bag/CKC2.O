@@ -72,9 +72,9 @@ const settings_link = [
     path: "/settings",
   },
   {
-    label: "Notifications",
-    description: "Manage notifications",
-    path: "/settings/notifications",
+    label: "Security",
+    description: "Basic account settings",
+    path: "/settings/security",
   },
   {
     label: "Transactions",
@@ -89,6 +89,6 @@ const settings_link = [
   {
     label: "Help and Support",
     description: "Get assistance and FAQs",
-    path: "/settings/help-and-support",
+    path: "/settings/support",
   },
 ];
