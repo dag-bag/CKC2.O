@@ -2,7 +2,7 @@ import Cart from "@/blocks/molecules/cart";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/Searchbar";
 import Balance from "@/blocks/atoms/Balance";
-
+import Notification from "./Notification";
 import {
   RiNotification3Fill,
   RiCopperDiamondFill,
@@ -19,6 +19,7 @@ const Header = () => {
       <div className="flex items-center justify-end ml-auto gap-5">
         {/* <Balance /> */}
         <MyBalance />
+        <Notification />
         <Profile />
       </div>
     </header>

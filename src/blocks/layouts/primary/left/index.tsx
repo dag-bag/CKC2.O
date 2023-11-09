@@ -59,9 +59,9 @@ const primary_layout_left_buttons = [
     Icon: RiQuestionFill,
   },
   { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
-  {
-    title: "Settings",
-    hrefs: ["/settings"],
-    Icon: RiSettings4Fill,
-  },
+  // {
+  //   title: "Settings",
+  //   hrefs: ["/settings"],
+  //   Icon: RiSettings4Fill,
+  // },
 ];
