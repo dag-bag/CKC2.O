@@ -42,15 +42,14 @@ const Profilebar = () => {
 
       <Menu.Dropdown>
         <Menu.Item>
+          <Button title={"Profile"} href={"/profile"} Icon={RiUser2Line} />
+        </Menu.Item>
+        <Menu.Item>
           <Button
             title={"Settings"}
             href={"/settings"}
             Icon={RiSettings4Fill}
           />
-        </Menu.Item>
-
-        <Menu.Item>
-          <Button title={"Profile"} href={"/profile"} Icon={RiUser2Line} />
         </Menu.Item>
 
         <Menu.Divider />
