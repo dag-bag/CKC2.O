@@ -1,76 +1,108 @@
-"use client";
-
+/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+import Card from "@/blocks/UI/Card";
+import { BiLockAlt } from "react-icons/bi";
+import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 const Page = () => {
   return (
-    <div className="px-5 overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar">
-      <div className="grid grid-cols-1 h-full">
-        <main>
-          <div className="bg-blue-50 overflow-hidden  h-[600px] rounded-lg bg-[url('https://images.unsplash.com/photo-1573588028698-f4759befb09a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80')] bg-cover bg-center "></div>
-          <div className="">
-            <div className="my-3 space-y-2 ">
-              <h2 className="text-2xl font-medium">
-                How astronaut survived in mars?
-              </h2>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam
-                aliquid quidem, eos autem consectetur voluptates, laboriosam
-                beatae nobis officia, minus ex dolorum earum hic sit debitis
-                maxime doloribus? Alias, labore.
-              </p>
-            </div>
-            {/* <div className="bg-gray-100"></div> */}
-          </div>
-        </main>
-
-        <WhatYourWillLearnGrid />
-      </div>
+    <div>
+      <Hero />
     </div>
   );
 };
+
 export default Page;
 
-const whatYoutWillLearnData = [
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-];
-
-const WhatYourWillLearnGrid = () => {
+const Infor = ({ title, value }: any) => {
   return (
-    <div className="max-w-4xl mx-auto my-5 border-2 p-10 rounded-lg">
-      <h3 className="text-4xl text-center font-bold mb-8">
-        What you&apos;ll learn?
-      </h3>
-      <ul className="grid grid-cols-2 gap-5 ">
-        {whatYoutWillLearnData.map((data, index) => (
-          <li className="" key={index}>
-            <h3 className="text-xl font-medium mb-2 ">{data.title}</h3>
-            <p className="text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-              repellat odit provident voluptas sunt adipisci error explicabo
-              tempore. Nam exercitationem illo excepturi quo rerum, velit vel
-              asperiores unde quis in!
-            </p>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <h5 className="text-lg font-heading font-semibold">{title}</h5>
+      <p className="text-gray-700">{value}</p>
+    </div>
+  );
+};
+
+const Hero = () => {
+  return (
+    <div className="grid grid-cols-[auto_350px] gap-5  rounded-xl">
+      <main>
+        <img
+          src="/thumbnail.jpg"
+          alt="marval-iamge"
+          className="rounded-xl border border-red-500 w-full"
+        />
+
+        <div className="px-5 mt-5">
+          <h1 className="font-heading font-bold text-3xl mb-2">
+            Avengers United Infinity Comic (2023) #4
+          </h1>
+          <div className="grid grid-cols-3  my-5">
+            <Infor title="Published:" value="November 02, 2023" />
+            <Infor title="mentor:" value="Deepak Vishwakarma" />
+          </div>
+          <div className="my-5 grid grid-cols-3">
+            <Infor title="Credits Required:" value="1,000 CRD" />
+            <Infor title="Duration:" value="2h 23m" />
+            <Infor title="Grade:" value="6th" />
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+            obcaecati qui corporis minus perspiciatis magni deserunt enim error
+            repudiandae nisi a voluptatum, non veniam, debitis corrupti
+            voluptates quae. Omnis asperiores autem corporis aliquam,
+            voluptatibus voluptas enim iure? Odit, possimus, ad eveniet sint
+            voluptates, quibusdam magnam accusamus adipisci saepe error ratione.
+          </p>
+        </div>
+      </main>
+      <aside>
+        <div className="max-w-xl">
+          <div className=" bg-white">
+            <VideoInfo />
+          </div>
+        </div>
+      </aside>
+    </div>
+  );
+};
+
+import { BsDot } from "react-icons/bs";
+import BuyPopup from "@/blocks/atoms/BuyPopup";
+import SharePopup from "@/blocks/atoms/SharePopup";
+import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
+
+const VideoInfo = () => {
+  return (
+    <div className="bg-white p-5 rounded-xl font-heading">
+      <h1 className="text-3xl font-semibold">
+        400.99 <span className="text-sm">CRD</span>
+      </h1>
+      <section className="mt-5 space-y-1">
+        <div className="flex gap-2 font-100">
+          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+            <BiTime size={18} /> Duration <BsDot />
+          </p>
+          <p>2h 24m</p>
+        </div>
+        <div className="flex gap-2 font-100">
+          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+            <BiGlobe size={18} /> Language <BsDot />
+          </p>
+          <p>English</p>
+        </div>
+
+        <div className="flex gap-2 font-100">
+          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+            <BiGlobe size={18} /> Live <BsDot />
+          </p>
+          <p>20 November, 2:30 PM</p>
+        </div>
+      </section>
+
+      <section className="flex gap-2 flex-col mt-5">
+        <BuyPopup />
+        <SharePopup />
+      </section>
     </div>
   );
 };
