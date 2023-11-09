@@ -29,8 +29,14 @@ const Live = ({ type, premium }: Props) => {
         <div className="relative h-[170px] rounded-lg overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
           {premium && (
-            <div className="absolute top-2 border border-white right-2 text-yellow-100 bg-gradient-to-r from-yellow-800 to-yellow-500 z-50  px-3 py-1.5 rounded-md text-sm capitalize">
+            <div className="absolute bottom-2 border border-white right-2 text-yellow-100 bg-gradient-to-r from-yellow-800 to-yellow-500 z-50  px-3 py-1.5 rounded-md text-sm capitalize">
               Premium Content
+            </div>
+          )}
+
+          {isLive && (
+            <div className="absolute flex items-center top-2 border text-white right-2 bg-black z-50  px-5 py-1.5 rounded-md text-sm capitalize">
+              Live
             </div>
           )}
         </div>
