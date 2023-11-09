@@ -33,8 +33,8 @@ const SettingsPage = () => {
               type="password"
             />
             <Input
-              label="Password"
-              placeholder="New Password"
+              label="Confirm Password"
+              placeholder="Confirm Password"
               type="password"
             />
           </div>
