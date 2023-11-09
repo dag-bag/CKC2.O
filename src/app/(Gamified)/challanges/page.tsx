@@ -4,7 +4,11 @@ import Link from "next/link";
 import { Tabs } from "@mantine/core";
 import { BiSearchAlt } from "react-icons/bi";
 import Container from "@/blocks/UI/PageContainer";
+
+import Card from "@/blocks/UI/Card";
+
 const BedgesPage = () => {
+  const SeeMoreButton = <button>see more</button>;
   return (
     <Container gridType="single">
       {/* hero */}
@@ -24,7 +28,23 @@ const BedgesPage = () => {
         </div>
       </div>
 
-      <div className="space-y-5">
+      <Card title="Ongoing Challanges" right={SeeMoreButton}>
+        <div className="grid grid-cols-3 gap-5 ">
+          <Content type="Join" />
+          <Content type="Join" />
+          <Content type="Join" />
+        </div>
+      </Card>
+
+      <Card title="Completed Challanges" right={SeeMoreButton} className="mt-5">
+        <div className="grid grid-cols-3 gap-5 ">
+          <Content type="Join" />
+          <Content type="Join" />
+          <Content type="Join" />
+        </div>
+      </Card>
+
+      {/* <div className="space-y-5">
         <Tabs defaultValue="challanges">
           <Tabs.List>
             <Tabs.Tab className="font-heading" value="challanges">
@@ -50,7 +70,7 @@ const BedgesPage = () => {
             </div>
           </Tabs.Panel>
         </Tabs>
-      </div>
+      </div> */}
     </Container>
   );
 };
@@ -61,11 +81,8 @@ import { BsDot, BsCalendar } from "react-icons/bs";
 
 const Content = ({ type }: any) => {
   return (
-    <Link
-      href={"/challanges/slug"}
-      className=" rounded-xl  p-2 font-heading border"
-    >
-      <div className="h-[200px] bg-blue-50 border-2 border-blue-500 rounded-xl"></div>
+    <Link href={"/challanges/slug"} className=" rounded-xl p-2 font-heading">
+      <div className="h-[200px] bg-blue-50 border border-blue-500 rounded-xl"></div>
 
       <div className="p-2">
         <div className="flex items-center justify-between">
