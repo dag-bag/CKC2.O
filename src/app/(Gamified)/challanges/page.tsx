@@ -1,6 +1,9 @@
+"use client";
+import clsx from "clsx";
+import Link from "next/link";
+import { Tabs } from "@mantine/core";
 import { BiSearchAlt } from "react-icons/bi";
 import Container from "@/blocks/UI/PageContainer";
-
 const BedgesPage = () => {
   return (
     <Container gridType="single">
@@ -22,10 +25,31 @@ const BedgesPage = () => {
       </div>
 
       <div className="space-y-5">
-        <BadgesGrid title="6 to 8" />
-        <BadgesGrid title="8 to 10" />
-        <BadgesGrid title="Above 10" />
-        <BadgesGrid title="Premium" />
+        <Tabs defaultValue="challanges">
+          <Tabs.List>
+            <Tabs.Tab className="font-heading" value="challanges">
+              Challanges
+            </Tabs.Tab>
+            <Tabs.Tab className="font-heading" value="completed_challages">
+              Completed Challanges
+            </Tabs.Tab>
+          </Tabs.List>
+
+          <Tabs.Panel value="challanges">
+            <div className="grid grid-cols-3 gap-5 my-5">
+              <Content type="Join" />
+              <Content type="Join" />
+              <Content type="Join" />
+            </div>
+          </Tabs.Panel>
+          <Tabs.Panel value="completed_challages">
+            <div className="grid grid-cols-3 gap-5 my-5">
+              <Content />
+              <Content />
+              <Content />
+            </div>
+          </Tabs.Panel>
+        </Tabs>
       </div>
     </Container>
   );
@@ -33,36 +57,53 @@ const BedgesPage = () => {
 
 export default BedgesPage;
 
-import Card from "@/blocks/UI/Card";
-import clsx from "clsx";
-import Link from "next/link";
-const BadgesGrid = ({ title }: any) => {
-  return (
-    <Card title={title} description="Lorem ipsum dolor sit amet">
-      <div className="grid grid-cols-4 gap-5">
-        <Content type="enroll" />
-        <Content type="completed"  />
-        <Content type="entrolled" />
-        <Content type="enroll" />
-      </div>
-    </Card>
-  );
-};
+import { BsDot, BsCalendar } from "react-icons/bs";
 
-const Content = ({type}: any) => {
+const Content = ({ type }: any) => {
   return (
-    <Link href={"/challanges/slug"} className="bg-gray-100 rounded-xl h-[250px] p-5">
-      <div className="w-[100px] h-[100px]  mx-auto rounded-full bg-[url('/tes-bedge.jpg')] bg-cover bg-center  border-2"></div>
-      <div className="center flex-col mt-5">
-        <h3 className="text-xl font-heading font-medium">Space Champion</h3>
-        <p className="text-sm">Go!, Conquor The Space.</p>
-      </div>
+    <Link
+      href={"/challanges/slug"}
+      className=" rounded-xl  p-2 font-heading border"
+    >
+      <div className="h-[200px] bg-blue-50 border-2 border-blue-500 rounded-xl"></div>
 
-      <button className={clsx("font-heading bg-white w-full py-2 mt-2 rounded-full capitalize", 
-      type == "completed" && "text-green-500",
-      type == "entrolled" && "text-blue-500")}
-      >{type}</button>
-    
+      <div className="p-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
+            <BsCalendar size={15} />
+            <span className="text-gray-800 font-medium">12 Nov to 10 Dec</span>
+          </p>
+          <p className="text-sm flex items-center border py-1 px-2 rounded-xl bg-green-100">
+            Difficuty Level <BsDot /> Medium
+          </p>
+        </div>
+
+        <h3 className="font-medium text-[18px] leading-7  my-3">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        </h3>
+
+        <div className="grid grid-cols-2 mt-1">
+          <p className="text-sm text-gray-800 flex items-center  ">
+            Grade <BsDot />
+            <span className="text-gray-800 font-medium">6th</span>
+          </p>
+
+          <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">
+            Credits <BsDot />
+            <span className="text-gray-800 font-medium">0</span>
+          </p>
+        </div>
+
+        {type && (
+          <button
+            className={clsx(
+              "font-heading bg-blue-500 text-white w-full py-2 mt-2 rounded-md capitalize"
+            )}
+          >
+            {type}
+          </button>
+        )}
+      </div>
     </Link>
   );
 };
