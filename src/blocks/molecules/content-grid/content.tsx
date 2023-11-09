@@ -32,6 +32,14 @@ const Content: React.FC<Props> = ({ type }) => {
     return <Live premium type="running" />;
   }
 
+  if (type == "live_past_premium") {
+    return <Live premium type="recording" />;
+  }
+
+  if (type == "live_upcoming_premium") {
+    return <Live premium type="upcoming" />;
+  }
+
   if (type == "live_past") {
     return <Live type="recording" />;
   }

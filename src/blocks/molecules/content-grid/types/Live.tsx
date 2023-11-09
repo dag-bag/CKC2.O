@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
@@ -8,12 +10,6 @@ const course = {
   required_credits: 100,
   duration: "10 minutes",
   name: "Quizmania - The untold story",
-};
-
-const liveTagName: any = {
-  running: "live",
-  upcoming: "upcoming",
-  recording: "recorded",
 };
 
 interface Props {
@@ -28,17 +24,15 @@ const Live = ({ type, premium }: Props) => {
   return (
     <Link href="/live" className="rounded-xl">
       <div
-        className={clsx(
-          premium
-            ? "rounded-xl p-2 border-gray-100 border font-heading bg-yellow-100"
-            : "rounded-xl p-2 border-gray-100 border font-heading"
-        )}
+        className={clsx("rounded-xl p-2 border-gray-100 border font-heading")}
       >
         <div className="relative h-[170px] rounded-lg overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
-          <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-md text-sm capitalize">
-            {liveTagName[type]}
-          </div>
+          {premium && (
+            <div className="absolute top-2 border border-white right-2 text-yellow-100 bg-gradient-to-r from-yellow-800 to-yellow-500 z-50  px-3 py-1.5 rounded-md text-sm capitalize">
+              Premium Content
+            </div>
+          )}
         </div>
         <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
           <BiTime size={17} />
@@ -56,7 +50,7 @@ const Live = ({ type, premium }: Props) => {
           {course.name}
         </h3>
         <div className="grid grid-cols-2 mt-1">
-          <p className="text-sm text-gray-800 flex items-center  ">
+          <p className="text-sm text-gray-800 flex items-center">
             Grade <BsDot />
             <span className="text-gray-800 font-medium">{course.garde}</span>
           </p>
@@ -71,13 +65,11 @@ const Live = ({ type, premium }: Props) => {
         <div
         // className={clsx(isUpcoming && "grid grid-cols-2 gap-2")}
         >
-          {isLive && !premium && (
+          {isLive && (
             <button className={"border-2 w-full py-1.5 rounded-full mt-2"}>
               Join
             </button>
           )}
-
-          {premium && <PremiumRequired />}
 
           {isUpcoming && (
             <button className="border-2 w-full py-1.5 rounded-full mt-2 ">
@@ -101,13 +93,13 @@ const PremiumRequired = () => {
     <div>
       <button
         onClick={open}
-        className="border-2 w-full py-1.5 rounded-full mt-2 bg-yellow-500 text-white"
+        className="border-2 w-full py-1.5 rounded-full mt-2"
       >
         Join
       </button>
       <Modal title="Alert" opened={opened} onClose={close}>
         <div>You need to upgrade plan</div>
-        <button className="border-2 w-full py-1.5 rounded-full mt-2 bg-yellow-500 text-white">
+        <button className="border-2 w-full py-1.5 rounded-full mt-2 bg-yellow-500 ">
           Upgrade Plan
         </button>
       </Modal>

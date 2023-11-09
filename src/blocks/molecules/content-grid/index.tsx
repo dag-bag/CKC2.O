@@ -10,9 +10,11 @@ import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
 export type ContentType =
   | "live_now"
-  | "live_upcoming"
   | "live_past"
+  | "live_upcoming"
   | "live_now_premium"
+  | "live_past_premium"
+  | "live_upcoming_premium"
   | "comics"
   | "course"
   | "video";
