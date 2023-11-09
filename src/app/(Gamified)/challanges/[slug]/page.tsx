@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Card from "@/blocks/UI/Card";
 import { BsDot } from "react-icons/bs";
-import SharePopup from "@/blocks/atoms/SharePopup";
 import BuyPopup from "@/blocks/atoms/BuyPopup";
-import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
+import { BiTime, BiGlobe } from "react-icons/bi";
+import SharePopup from "@/blocks/atoms/SharePopup";
+
 export default function ChallangeInnerPage() {
   return (
     <div>
@@ -22,6 +23,33 @@ export default function ChallangeInnerPage() {
               possimus molestias officiis porro. Vel.
             </p>
           </Card>
+
+          <Card title="Video & Images" className="mt-5">
+            <div className="grid grid-cols-2 gap-5">
+              <Image
+                src="/challange.png"
+                width={500}
+                height={300}
+                alt="price"
+                className="rounded-md"
+              />{" "}
+              <Image
+                src="/challange.png"
+                width={500}
+                height={300}
+                alt="price"
+                className="rounded-md"
+              />{" "}
+              <Image
+                src="/challange.png"
+                width={500}
+                height={300}
+                alt="price"
+                className="rounded-md"
+              />
+            </div>
+          </Card>
+
           <Upload />
           <Reward />
           <Winners />
