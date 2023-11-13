@@ -1,9 +1,7 @@
 interface Slide {
     name: string;
-    media: {
-        src: string;
-        type: "ppt" | "img" | "video";
-    };
+    src: string;
+    type: "ppt" | "img" | "video";
 }
 
 interface PreparationMaterial {
@@ -59,6 +57,7 @@ interface Course {
         src: string;
         type: "video";
     };
+    description: unknown
     name: string;
     price: number;
     tags: string[],

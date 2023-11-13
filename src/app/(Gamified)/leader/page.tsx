@@ -95,7 +95,7 @@ const LeaderboardData = [
   },
 ];
 
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsDot } from "react-icons/bs";
 import { RiGlobalLine } from "react-icons/ri";
 import Container from "@/blocks/UI/PageContainer";
 import { MdOutlineCalendarMonth } from "react-icons/md";
@@ -120,7 +120,7 @@ const LeaderboardPage = () => {
   >("Leader Legends");
 
   return (
-    <Container gridType="double">
+    <Container gridType="single">
       <div>
         <Popover className="relative">
           {({ open }) => (
@@ -225,12 +225,14 @@ const LeaderboardPage = () => {
                 172
               </div>
             </div>
-            <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr] p-3 pr-5">
+            <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr] p-3 pr-5">
               <div className="flex gap-3 items-center">
                 <div className="w-[50px] h-[50px] rounded-full bg-black-- bg-[url('/ed.png')] bg-cover"></div>
                 <div>
-                  <h5 className="font-medium">Oye Rahul</h5>
-                  <p className="text-sm -mt-1">Space Crafter</p>
+                  <h5 className="font-medium">Rahul UP</h5>
+                  <p className="text-xs -mt-1 flex items-center ">
+                    6th <BsDot /> Govt. High School
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -240,18 +242,6 @@ const LeaderboardPage = () => {
               <div className="flex items-center gap-3">
                 <SlBadge color="gray" size={25} />
                 <p className="text-md font-medium text-gray-800">{"50"}</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <BiSolidVideos color="gray" size={25} />
-                <p className="text-md font-medium text-gray-800">{"5"}</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <VscBook color="gray" size={25} />
-                <p className="text-md font-medium text-gray-800">{"5"}</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <GiProgression color="gray" size={25} />
-                <p className="text-md font-medium text-gray-800">{"5"}</p>
               </div>
             </div>
           </div>
@@ -266,46 +256,30 @@ const LeaderboardPage = () => {
               className="grid grid-cols-[200px_auto] items-center"
             >
               <div className="center">
-                <div className="text-xl font-medium h-10 w-10 center rounded-full border border-gray-100">
+                <div className="text-xl font-medium h-10 w-10 center rounded-full border border-gray-100 font-game">
                   {data.rank}
                 </div>
               </div>
-              <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr] p-3 pr-5">
+              <div className="w-full  bg-gray-50 rounded-full  grid grid-cols-[300px_1fr_1fr] p-3 pr-5">
                 <div className="flex gap-3 items-center">
                   <div className="w-[50px] h-[50px] rounded-full bg-black-- bg-[url('/ed.png')] bg-cover"></div>
                   <div>
-                    <h5 className="font-medium">{data.name}</h5>
-                    <p className="text-sm -mt-1">Space Crafter</p>
+                    <h5 className="font-medium font-heading">{data.name}</h5>
+                    <p className="text-xs -mt-1 flex items-center font-heading text-gray-600">
+                      6th <BsDot /> Govt. High School
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <FaStar color="#EAB308" size={25} />
-                  <p className="text-md font-medium text-gray-800">
+                  <p className="text-md font-medium text-gray-800 font-game">
                     {data.stars.toLocaleString()}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <SlBadge color="gray" size={25} />
-                  <p className="text-md font-medium text-gray-800">
+                  <p className="text-md font-medium text-gray-800 font-game">
                     {data.badges.toLocaleString()}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <BiSolidVideos color="gray" size={25} />
-                  <p className="text-md font-medium text-gray-800">
-                    {data.watched_videos.toLocaleString()}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <VscBook color="gray" size={25} />
-                  <p className="text-md font-medium text-gray-800">
-                    {data.readed_comics.toLocaleString()}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <GiProgression color="gray" size={25} />
-                  <p className="text-md font-medium text-gray-800">
-                    {data.challanges_completed.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -332,7 +306,7 @@ const DataHeader = () => {
           Rank
         </span>
       </div>
-      <div className="grid grid-cols-[300px_1fr_1fr_1fr_1fr_1fr]  pr-5">
+      <div className="grid grid-cols-[300px_1fr_1fr]  pr-5">
         <span className="font-medium text-sm text-gray-500 uppercase tracking-wider font-heading pl-3">
           Profile
         </span>
@@ -341,15 +315,6 @@ const DataHeader = () => {
         </span>
         <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
           Badges
-        </span>
-        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
-          Videos
-        </span>
-        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
-          Comics
-        </span>
-        <span className="font-medium text-md text-gray-500 uppercase-- tracking-wider font-heading pl-3">
-          Challanges
         </span>
       </div>
     </div>
