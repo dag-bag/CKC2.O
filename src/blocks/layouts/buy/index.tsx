@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type Layout } from "@/global_types/general";
+import { type Layout } from "@/types/general";
 import Container from "@/blocks/UI/PageContainer";
 const NestedBuyLayout: Layout = ({ children }) => {
   return (

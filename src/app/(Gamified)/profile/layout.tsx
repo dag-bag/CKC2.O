@@ -1,4 +1,4 @@
-import { type Layout } from "@/global_types/general";
+import { type Layout } from "@/types/general";
 import NestedProfileLayout from "@/blocks/layouts/profile";
 import PrimaryLayout from "@/blocks/layouts/primary";
 const Layout: Layout = ({ children }) => {

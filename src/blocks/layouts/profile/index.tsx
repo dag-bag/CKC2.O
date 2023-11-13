@@ -1,5 +1,5 @@
 import Container from "@/blocks/UI/PageContainer";
-import { type Layout } from "@/global_types/general";
+import { type Layout } from "@/types/general";
 import Navigation from "@/blocks/molecules/profile/Navigation";
 import ProfileDashboard from "@/blocks/molecules/profile/dashboard";
 

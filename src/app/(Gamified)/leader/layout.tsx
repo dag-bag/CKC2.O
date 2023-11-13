@@ -1,4 +1,4 @@
-import { type Layout } from "@/global_types/general";
+import { type Layout } from "@/types/general";
 import PrimaryLayout from "@/blocks/layouts/primary";
 const Layout: Layout = ({ children }) => {
   return <PrimaryLayout>{children}</PrimaryLayout>;
