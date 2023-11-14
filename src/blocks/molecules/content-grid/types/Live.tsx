@@ -22,7 +22,7 @@ const Live = ({ type, premium }: Props) => {
   const isUpcoming = type == "upcoming";
   const isRecorded = type == "recording";
   return (
-    <Link href="/live" className="rounded-xl">
+    <Link href="/live/slug" className="rounded-xl">
       <div
         className={clsx("rounded-xl p-2 border-gray-100 border font-heading")}
       >
