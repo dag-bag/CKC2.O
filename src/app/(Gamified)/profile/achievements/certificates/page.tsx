@@ -1,9 +1,10 @@
 import Grid from "@/blocks/temporary/Grid";
-const HelloPage = () => {
+
+const ProfileCertificatesPage = () => {
   return (
     <div>
       <Grid />
     </div>
   );
 };
-export default HelloPage;
+export default ProfileCertificatesPage;

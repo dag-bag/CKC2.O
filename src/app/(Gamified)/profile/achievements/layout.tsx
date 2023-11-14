@@ -1,15 +1,23 @@
 "use client";
+import { type Layout } from "@/types/general";
+const Layout: Layout = ({ children }) => {
+  return (
+    <div>
+      <Navigation />
+      {children}
+    </div>
+  );
+};
+export default Layout;
+
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TbLayoutGrid } from "react-icons/tb";
 
 const profile_links = [
-  { label: "my gallary", href: "/profile" },
-  { label: "my bag", href: "/profile/bag/virtual" },
-  { label: "my vault", href: "/profile/vault" },
-  { label: "my achievement", href: "/profile/achievements/badges" },
-  { label: "recently watched", href: "/profile/watched-history" },
+  { label: "my badges", href: "/profile/achievements/badges" },
+  { label: "my certificates", href: "/profile/achievements/certificates" },
 ];
 
 const Navigation = () => {
@@ -32,5 +40,3 @@ const Navigation = () => {
     </div>
   );
 };
-
-export default Navigation;
