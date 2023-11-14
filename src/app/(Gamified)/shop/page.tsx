@@ -1,9 +1,35 @@
 import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
+const Tabs = () => {
+  return (
+    <div className="grid grid-cols-2 gap-5 mt-5">
+      <div className="p-10 bg-blue-50 rounded-lg flex items-center justify-between border border-blue-500">
+        <div>
+          <h2 className="font-heading text-xl font-semibold">Virtual Shop</h2>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div>
+          <BiRightArrowAlt size={22} />
+        </div>
+      </div>
+      <div className="p-10 bg-blue-50 rounded-lg flex items-center justify-between border border-blue-500">
+        <div>
+          <h2 className="font-heading text-xl font-semibold">Buy kits</h2>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div>
+          <BiRightArrowAlt size={22} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ShopPage = () => {
   return (
     <div>
       <Hero />
+      <Tabs />
       <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 gap-5 py-5">
         <Product />
         <Product />
