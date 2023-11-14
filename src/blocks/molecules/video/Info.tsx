@@ -16,12 +16,6 @@ const VideoInfo = () => {
           </p>
           <p>2h 24m</p>
         </div>
-        <div className="flex gap-2 font-100">
-          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-            <BiGlobe size={18} /> Language <BsDot />
-          </p>
-          <p>English</p>
-        </div>
 
         <div className="flex gap-2 font-100">
           <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">

@@ -132,7 +132,7 @@ const faqData = [
   {
     question: "What is JavaScript?",
     answer:
-      "JavaScript is a versatile programming language commonly used for web development. It allows you to add interactivity and dynamic behavior to websites.",
+      "JavaScript is a versatile programming  commonly used for web development. It allows you to add interactivity and dynamic behavior to websites.",
     videoUrl: "/",
   },
   {
