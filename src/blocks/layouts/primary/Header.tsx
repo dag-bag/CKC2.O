@@ -20,6 +20,7 @@ const Header = () => {
         {/* <Balance /> */}
         <MyBalance />
         <Notification />
+        <Cart />
         <Profile />
       </div>
     </header>
