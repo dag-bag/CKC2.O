@@ -1,55 +1,43 @@
-"use client";
-import { useState } from "react";
 import Card from "@/blocks/UI/Card";
-import { Accordion } from "@mantine/core";
+const ListItem = ({
+  type,
+  title,
+  quantity,
+  products,
+}: (typeof supplies)[0]) => {
+  return (
+    <div className=" even:border-y border-gray-100 px-5 py-2 mb-1 flex items-center justify-between font-heading">
+      <div className="flex items-center gap-5">
+        <h3 className="text-sm">{title}</h3>
+        <div className="flex gap-2">
+          {products?.length !== 0 && (
+            <button className="text-xs px-3 py-1 bg-gray-100 rounded-full border">
+              Buy
+            </button>
+          )}
+
+          {type == "printout" && (
+            <button className="text-xs  px-3 py-1 bg-gray-100 rounded-full border">
+              Download
+            </button>
+          )}
+        </div>
+      </div>
+      <h5 className="text-sm text-gray-600">{quantity}</h5>
+    </div>
+  );
+};
+
 const ActivityPreparation = () => {
-  const [value, setValue] = useState<string | null>(null);
   return (
     <div className="my-5">
-      <Card title="Activity Preparation">
-        <Accordion value={value} onChange={setValue}>
-          {supplies.map((item) => {
-            const isActive = value == item.title;
-            return (
-              <Accordion.Item
-                key={item.title}
-                value={item.title}
-                className={isActive ? "!bg-white" : undefined}
-              >
-                <Accordion.Control>
-                  <div className="flex items-center justify-between pr-5">
-                    <h5 className="font-heading">
-                      {item.title}{" "}
-                      {item.type == "printout" && (
-                        <button className="text-sm italic px-2 bg-gray-100 rounded-full">
-                          Printout
-                        </button>
-                      )}
-                    </h5>
-                    <h6 className="font-heading font-medium text-sm text-gray-500">
-                      {item.quantity}
-                    </h6>
-                  </div>
-                </Accordion.Control>
-                <Accordion.Panel>
-                  <section>
-                    <p className=" text-gray-800">{item.description}</p>
-                  </section>
-                  {item?.products?.length !== 0 && (
-                    <section className="mt-3 flex gap-2">
-                      <button className="text-sm italic px-5 py-1 bg-gray-100 rounded-full border">
-                        Buy from CKC Marketplace
-                      </button>
-                      <button className="text-sm italic px-5 py-1 bg-gray-100 rounded-full border">
-                        Download Printout
-                      </button>
-                    </section>
-                  )}
-                </Accordion.Panel>
-              </Accordion.Item>
-            );
-          })}
-        </Accordion>
+      <Card
+        description="This is title for the Activity Preparation Module"
+        title="Activity Preparation"
+      >
+        {supplies.map((item) => (
+          <ListItem key={item.title} {...item} />
+        ))}
       </Card>
     </div>
   );
