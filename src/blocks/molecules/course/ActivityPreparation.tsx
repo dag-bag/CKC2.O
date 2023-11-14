@@ -32,8 +32,8 @@ const ActivityPreparation = () => {
   return (
     <div className="my-5">
       <Card
-        description="This is title for the Activity Preparation Module"
         title="Activity Preparation"
+        description="If you buy from the marketplace, you will receive a kit for the activity."
       >
         {supplies.map((item) => (
           <ListItem key={item.title} {...item} />
