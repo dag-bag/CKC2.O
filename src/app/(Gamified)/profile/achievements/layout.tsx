@@ -1,12 +1,7 @@
 "use client";
 import { type Layout } from "@/types/general";
 const Layout: Layout = ({ children }) => {
-  return (
-    <div>
-      <Navigation />
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 };
 export default Layout;
 
