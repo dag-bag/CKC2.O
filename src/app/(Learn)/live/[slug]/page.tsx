@@ -1,8 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-import Card from "@/blocks/UI/Card";
-import { BiLockAlt } from "react-icons/bi";
-import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 const Page = () => {
   return (
     <div>
@@ -12,15 +8,6 @@ const Page = () => {
 };
 
 export default Page;
-
-const Infor = ({ title, value }: any) => {
-  return (
-    <div>
-      <h5 className="text-lg font-heading font-semibold">{title}</h5>
-      <p className="text-gray-700">{value}</p>
-    </div>
-  );
-};
 
 const Hero = () => {
   return (
@@ -36,15 +23,6 @@ const Hero = () => {
           <h1 className="font-heading font-bold text-3xl mb-2">
             Avengers United Infinity Comic (2023) #4
           </h1>
-          <div className="grid grid-cols-3  my-5">
-            <Infor title="Published:" value="November 02, 2023" />
-            <Infor title="mentor:" value="Deepak Vishwakarma" />
-          </div>
-          <div className="my-5 grid grid-cols-3">
-            <Infor title="Credits Required:" value="1,000 CRD" />
-            <Infor title="Duration:" value="2h 23m" />
-            <Infor title="Grade:" value="6th" />
-          </div>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
             obcaecati qui corporis minus perspiciatis magni deserunt enim error
@@ -83,6 +61,20 @@ const VideoInfo = () => {
             <BiTime size={18} /> Duration <BsDot />
           </p>
           <p>2h 24m</p>
+        </div>
+
+        <div className="flex gap-2 font-100">
+          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+            <BiTime size={18} /> Grade <BsDot />
+          </p>
+          <p>6th</p>
+        </div>
+
+        <div className="flex gap-2 font-100">
+          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+            <BiTime size={18} /> Mentor <BsDot />
+          </p>
+          <p>Aryan sir</p>
         </div>
 
         <div className="flex gap-2 font-100">
