@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 
+const paylaod = {
+  content_id: "random123",
+  user_id: "random345",
+};
+
 const VideoPlayer = ({ userId, videoId, videoDuration }: any) => {
   const [played, setPlayed] = useState(0);
 
