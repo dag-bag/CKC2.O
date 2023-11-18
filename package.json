@@ -44,6 +44,7 @@
     "react-avatar-editor": "^13.0.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "react-player": "^2.13.0",
     "react-share": "^4.4.1",
     "react-simple-star-rating": "^5.1.7",
     "strapi-sdk-js": "^2.3.3",
