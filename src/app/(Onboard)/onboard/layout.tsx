@@ -4,79 +4,79 @@ import { Container } from "@mantine/core";
 import useOnboard from "@/hooks/useOnboard";
 import Header from "@/blocks/layouts/onboarding/Header";
 import { usePathname, useRouter } from "next/navigation";
-const Layout = (props: any) => {
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   const { storage } = useOnboard();
   const stage = getInfo(pathname);
 
+  const checkAndNavigate = (condition: any, nextPath: string) => {
+    if (condition) {
+      router.push(nextPath);
+    } else {
+      alert("Please fill in the required information.");
+    }
+  };
+
   const handleBack = () => {
     router.back();
   };
+
   const handleNext = () => {
-    // conditions
-    if (pathname == "/onboard/name") {
-      if (storage?.firstname && storage?.lastname) {
-        router.push(stage.next);
-      } else {
-        alert("please fill");
-      }
-    }
-
-    if (pathname == "/onboard/standard") {
-      if (storage?.grade) {
-        router.push(stage.next);
-      } else {
-        alert("please fill");
-      }
-    }
-
-    if (pathname == "/onboard/birthday") {
-      if (storage?.dob) {
-        router.push(stage.next);
-      } else {
-        alert("please fill");
-      }
-    }
-
-    if (pathname == "/onboard/phone") {
-      if (storage?.phone) {
-        router.push(stage.next);
-      } else {
-        alert("please fill");
-      }
-    }
-
-    if (pathname == "/onboard/location") {
-      if (storage?.country && storage?.state && storage?.city) {
-        router.push(stage.next);
-      } else {
-        alert("please fill");
-      }
+    switch (pathname) {
+      case "/onboard/name":
+        checkAndNavigate(storage?.firstname && storage?.lastname, stage.next);
+        break;
+      case "/onboard/standard":
+        checkAndNavigate(storage?.grade, stage.next);
+        break;
+      case "/onboard/birthday":
+        checkAndNavigate(storage?.dob, stage.next);
+        break;
+      case "/onboard/phone":
+        checkAndNavigate(storage?.phone, stage.next);
+        break;
+      case "/onboard/location":
+        checkAndNavigate(
+          storage?.country && storage?.state && storage?.city,
+          stage.next
+        );
+        break;
+      case "/onboard/profile":
+        checkAndNavigate(storage?.avatar, stage.next);
+        break;
+      default:
+        break;
     }
   };
 
+  const Button = ({
+    onClick,
+    children,
+  }: {
+    onClick: () => void;
+    children: React.ReactNode;
+  }) => (
+    <button
+      onClick={onClick}
+      className="!px-20 rounded-full capitalize font-medium btn-duolingo font-fun"
+    >
+      {children}
+    </button>
+  );
+
   return (
-    <div className="grid grid-rows-[200px_calc(100vh-400px)_200px]">
+    <div className="grid grid-rows-layout">
       <Header question={stage.question} value={stage.score} />
-      <main className="flex items-center justify-center">{props.children}</main>
+      <main className="flex items-center justify-center">{children}</main>
       <footer>
         <Container
           size={"lg"}
           className="flex items-center justify-between h-full"
         >
-          <button
-            onClick={handleBack}
-            className="!px-20 rounded-full capitalize font-medium btn-duolingo font-fun"
-          >
-            Go Back
-          </button>
-          <button
-            onClick={handleNext}
-            className="!px-20 rounded-full capitalize font-medium btn-duolingo font-fun"
-          >
-            next Step
-          </button>
+          <Button onClick={handleBack}>Go Back</Button>
+          <Button onClick={handleNext}>Next Step</Button>
         </Container>
       </footer>
     </div>

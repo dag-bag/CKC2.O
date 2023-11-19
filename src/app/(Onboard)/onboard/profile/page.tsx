@@ -10,14 +10,25 @@ const Page = () => {
     >
       <div
         style={{ width: "200px", height: "200px" }}
-        className="rounded-full  border-2 relative"
+        className="rounded-full border-2 relative overflow-hidden"
       >
-        <Image src={} alt={"profile"} width={130} height={130} />
+        <Image
+          src={storage?.avatar ?? "/avatars/asian-man.png"}
+          alt={"profile"}
+          width={200}
+          height={200}
+        />
       </div>
 
       <div className="flex flex-wrap justify-center gap-3 mt-10">
         {avatarList.map((a) => (
-          <Avatar key={a.id} {...a} />
+          <Avatar
+            onclick={() => {
+              setter("avatar", a.src);
+            }}
+            key={a.id}
+            {...a}
+          />
         ))}
       </div>
     </div>
@@ -33,9 +44,12 @@ const avatarList = [
   { src: "/avatars/student.png", id: 122, title: "cosmic kids" },
 ];
 
-const Avatar = ({ src }: any) => {
+const Avatar = ({ src, onclick }: any) => {
   return (
-    <button className="relative w-[130px] h-[130px] border-2 rounded-full overflow-hidden">
+    <button
+      onClick={onclick}
+      className="relative w-[130px] h-[130px] border-2 rounded-full overflow-hidden"
+    >
       <Image src={src} alt={src} width={130} height={130} />
     </button>
   );
