@@ -131,7 +131,7 @@ const Input = ({
 };
 
 import { Switch } from "@mantine/core";
-const NotificationSection = ({ title, description }: any) => {
+export const NotificationSection = ({ title, description }: any) => {
   return (
     <div className="flex justify-between items-center border-b  border-gray-100 pb-5 gap-5">
       <div>

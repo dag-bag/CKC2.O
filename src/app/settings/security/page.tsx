@@ -1,15 +1,6 @@
 import Card from "@/blocks/UI/Card";
+import { NotificationSection } from "../page";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
-
-const dgi = {
-  name: "Joseph",
-  grade: "10th",
-  dob: "12/12/12",
-  lastname: "Marray",
-  email: "Joseph@gmail.com",
-  parent_name: "Mr Krocks Marray",
-  ams: "I want to become enginner!",
-};
 
 const SettingsPage = () => {
   return (
@@ -20,7 +11,7 @@ const SettingsPage = () => {
           title="Manage Account Security"
           description="Signed in as deepakvish7354@gmail.com"
         />
-        <div>
+        <div id="password">
           <div className="grid grid-cols-3 gap-3">
             <Input
               label="Current Password"
@@ -41,6 +32,13 @@ const SettingsPage = () => {
           <button className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5">
             Request to Change Password
           </button>
+        </div>
+
+        <div id="visiblity" className="mt-10">
+          <NotificationSection
+            title="Public Account"
+            description="Receive push notifications on your devices, ensuring you don't miss any important updates or messages."
+          />
         </div>
       </Card>
     </div>
