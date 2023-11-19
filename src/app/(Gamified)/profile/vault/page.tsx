@@ -1,10 +1,16 @@
 import Grid from "@/blocks/temporary/Grid";
-const ProfileVaultPage = () => {
+import Card from "@/blocks/UI/Card";
+const ProfileCertificatesPage = () => {
   return (
     <div>
-      <Grid />
+      <Card title="Virtual Purchases" className="mt-5">
+        <Grid />
+      </Card>
+
+      <Card title="Kit Purchases" className="mt-5">
+        <Grid />
+      </Card>
     </div>
   );
 };
-
-export default ProfileVaultPage;
+export default ProfileCertificatesPage;
