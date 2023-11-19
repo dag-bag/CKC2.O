@@ -1,38 +1,38 @@
 const Stage = {
   "/onboard/name": {
-    question: "Hello there, Cosmic Kid! 😊 What's your super cool name?",
-    next: "/onboard/standard",
     score: 14,
+    next: "/onboard/standard",
+    question: "Hello there, Cosmic Kid! 😊 What's your super cool name?",
   },
   "/onboard/standard": {
-    question: "Awesome! 🚀 Which grade are you in, young explorer?",
-    next: "/onboard/birthday",
     score: 28,
+    next: "/onboard/birthday",
+    question: "Awesome! 🚀 Which grade are you in, young explorer?",
   },
   "/onboard/birthday": {
-    question: "Wow, that's exciting! 🎉 When's your special birthday?",
-    next: "/onboard/phone",
     score: 42,
+    next: "/onboard/phone",
+    question: "Wow, that's exciting! 🎉 When's your special birthday?",
   },
   "/onboard/phone": {
-    question: "Just in case we need to reach you in the Cosmic galaxy 📞, what's your phone number?",
-    next: "/onboard/location",
     score: 46,
+    next: "/onboard/location",
+    question: "Just in case we need to reach you in the Cosmic galaxy 📞, what's your phone number?",
   },
   "/onboard/location": {
-    question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
-    next: "/onboard/profile ",
     score: 70,
+    next: "/onboard/profile ",
+    question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
   },
   "/onboard/profile": {
-    question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
-    next: "/onboard/complete",
     score: 84,
+    next: "/onboard/complete",
+    question: "You're almost ready to soar through the stars! 🌟 How about creating your own out-of-this-world avatar?",
   },
   "/onboard/complete": {
-    question: "Yay! your profile is completed successfully. Oh you got amazing rewards!.",
+    score: 100,
     next: "/dashboard",
-    score: 100
+    question: "Yay! your profile is completed successfully. Oh you got amazing rewards!.",
   },
 };
 
