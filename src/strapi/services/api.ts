@@ -14,3 +14,8 @@ const Courses = async (action: Action) => {
 };
 
 export { Courses };
+const Watched = async (action: Action) => {
+  return fetchData("watcheds", action);
+};
+
+export { Watched };

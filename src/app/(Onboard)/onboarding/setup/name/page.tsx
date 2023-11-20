@@ -3,6 +3,7 @@ import { getUser } from "@/services/user";
 
 const Page = async ({ searchParams }: any) => {
   const { user } = await getUser(searchParams.access_token);
+  console.log(user);
   return (
     <div
       className="bg-[url('/blog.svg')] bg-cover w-[500px] h-[500px] bg-no-repeat bg-center flex items-center  justify-center gap-5"

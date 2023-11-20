@@ -39,7 +39,7 @@ const fetchData = async <T>(
           populate: resPopulate,
           fields: action.fields || [],
         });
-        return resOne ? [resOne] : [];
+        return resOne ? resOne.data : {};
 
       default:
         return [];

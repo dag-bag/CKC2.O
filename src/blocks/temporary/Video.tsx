@@ -1,43 +1,32 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import useVideoPlayer from "@/hooks/useVideo";
+import { createWatchRecord, updateWatchRecord } from "@/services/watch";
+import React, { useState } from "react";
 import ReactPlayer from "react-player";
 
-// this is for testing data;
+interface Purchase {
+  id: string;
+}
 
-const purchase = {
-  id: "random123",
-};
+interface Content {
+  id: string;
+}
 
-const content = {
-  id: "random123",
-};
+interface User {
+  id: string;
+}
 
-const user = {
-  id: "random345",
-};
+interface Reward {
+  type: string;
+  value: number;
+}
 
-const reward = {
-  type: "coin",
-  value: 100,
-};
-
-const VideoPlayer = () => {
-  const [played, setPlayed] = useState(0);
-
-  const handleProgress = (progress: any) => {
-    const roundedPlayedSeconds = Math.round(progress.playedSeconds);
-
-    if (roundedPlayedSeconds !== 0) {
-      if (roundedPlayedSeconds % 30 === 0) {
-        console.log(`>> fetch it, ${roundedPlayedSeconds} seconds played!`);
-      }
-    }
-  };
-
-  const handleEnded = () => {
-    //  at this section we need to
-  };
-
+const VideoPlayer: React.FC = () => {
+  const { handleProgress, handleEnded, isLoading } = useVideoPlayer({
+    userId: "33",
+    contentId: "33",
+  });
+  if (isLoading) return <div>loading...</div>;
   return (
     <ReactPlayer
       url="https://vimeo.com/883775791"
@@ -50,8 +39,3 @@ const VideoPlayer = () => {
 };
 
 export default VideoPlayer;
-
-// at StartPlaying - we need to make a table which need content_id and user_id and storing and keep updating progress every 30 seconds
-// at onEnded - take reward from content and provide reward to user_id
-
-// now no need to store reward at watched table

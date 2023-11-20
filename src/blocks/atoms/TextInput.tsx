@@ -9,7 +9,7 @@ interface TextinputProps extends React.HTMLProps<HTMLInputElement> {
   classGroup?: string;
   register?: any; // You can provide a more specific type if possible
   readonly?: boolean;
-  error?: { message: string };
+  error?: { message?: string };
   icon?: string;
   id?: string;
   horizontal?: boolean;
@@ -163,7 +163,7 @@ const Textinput: React.FC<TextinputProps> = ({
               : " text-danger-500 block text-sm"
           }`}
         >
-          {error.message}
+          {error.message || ""}
         </div>
       )}
       {/* validated and success message*/}
