@@ -1,6 +1,5 @@
 import { strapi } from "@/libs/strapi";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { StrapiAuthenticationData } from "strapi-sdk-js";
 interface GetAction {
   type: "GOOGLE";

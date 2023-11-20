@@ -12,8 +12,8 @@ const getUser = async (accessToken: string) => {
   }
 };
 
-const updateUser = async (data: any) => {
-  const res = await strapi.update("users", 1, data);
+const updateUser = async (data: any, id: number) => {
+  const res = await strapi.axios.put(`/users/${id}`, data);
   return res.data;
 };
 const daleteUser = async (id: number) => {
