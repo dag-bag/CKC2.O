@@ -10,8 +10,11 @@ const Cart = () => {
 
   return (
     <>
-      <button className="bg-gray-50 p-3 rounded-full" onClick={open}>
-        <CgShoppingCart size={25} color="black" />
+      <button
+        className="bg-gray-50 w-[45px] h-[45px] center rounded-full"
+        onClick={open}
+      >
+        <CgShoppingCart size={22} color="black" />
       </button>
 
       <Modal

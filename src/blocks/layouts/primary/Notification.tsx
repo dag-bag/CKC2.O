@@ -7,7 +7,7 @@ const Notification = () => {
   return (
     <Menu offset={9} position="bottom-end" shadow="md" width={300}>
       <Menu.Target>
-        <button className="bg-gray-100 p-3 rounded-full">
+        <button className="bg-gray-100  rounded-full w-[45px] h-[45px] center">
           <BiBell size={22} />
         </button>
       </Menu.Target>

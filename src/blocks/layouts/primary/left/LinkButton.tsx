@@ -18,7 +18,7 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
       key={title}
       href={href}
       className={clsx(
-        "px-2 pr-4 py-2.5 rounded-xl flex justify-between gap-5 text-black",
+        "px-2-- pr-4 py-2.5 rounded-xl flex justify-between gap-5 text-black",
         pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
       )}
     >

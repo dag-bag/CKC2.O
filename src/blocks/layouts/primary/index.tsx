@@ -9,11 +9,11 @@ import React, { ReactNode } from "react";
 const PrimaryLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className="h-screen font-fun bg-white">
-      <main className={`grid grid-cols-[280px_auto] h-screen pr-5 gap-3`}>
+      <main className={`grid grid-cols-[250px_auto] h-screen`}>
         <LeftAside />
-        <div className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative">
+        <div className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative ">
           <Header />
-          <div className="pt-[80px]">{children}</div>
+          <div className="pt-[80px] max-w-[1440px] mx-auto">{children}</div>
         </div>
       </main>
     </div>

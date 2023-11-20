@@ -1,27 +1,22 @@
 import Cart from "@/blocks/molecules/cart";
+import { RiAddFill } from "react-icons/ri";
+import Notification from "./Notification";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/Searchbar";
-import Balance from "@/blocks/atoms/Balance";
-import Notification from "./Notification";
-import {
-  RiNotification3Fill,
-  RiCopperDiamondFill,
-  RiHeartAddFill,
-  RiAddFill,
-} from "react-icons/ri";
 
 const Header = () => {
   return (
-    <header className="h-[80px] gap-3 flex items-center fixed top-0 z-50  w-[calc(100vw-300px)]  bg-white bg-opacity-80 backdrop-blur-sm ">
-      <div className="flex items-center justify-between ">
-        <SearchBar />
-      </div>
-      <div className="flex items-center justify-end ml-auto gap-5">
-        {/* <Balance /> */}
-        <MyBalance />
-        <Notification />
-        <Cart />
-        <Profile />
+    <header className="fixed top-0 w-[calc(100vw-250px)] h-[80px] z-50 bg-white bg-opacity-80 backdrop-blur-sm flex items-center gap-3">
+      <div className="flex items-center max-w-[1440px] 2xl:min-w-[1440px] w-full mx-auto px-2">
+        <div className="flex items-center justify-between ">
+          <SearchBar />
+        </div>
+        <div className="flex items-center justify-end ml-auto gap-5">
+          <MyBalance />
+          <Notification />
+          <Cart />
+          <Profile />
+        </div>
       </div>
     </header>
   );

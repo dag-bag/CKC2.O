@@ -20,7 +20,7 @@ const DashboardPage = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 gap-3 py-5">
+      <div className="grid grid-cols-4 gap-5 py-5">
         <Content type="course" />
         <Content type="course" />
         <Content type="course" />

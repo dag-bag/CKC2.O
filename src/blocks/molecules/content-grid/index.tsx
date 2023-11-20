@@ -40,7 +40,7 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   const grid_content_columns_size = breakpoints.A
-    ? "20%"
+    ? "25%"
     : breakpoints.B
     ? "25%"
     : breakpoints.C
@@ -62,8 +62,9 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
       </div>
       <Carousel
-        slideGap="sm"
+        className="px-2"
         align="start"
+        slideGap={"xs"}
         draggable={false}
         slidesToScroll={2}
         slideSize={grid_content_columns_size}
