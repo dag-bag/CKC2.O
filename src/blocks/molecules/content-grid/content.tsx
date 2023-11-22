@@ -14,7 +14,7 @@ const course = {
   garde: "6th",
   required_credits: "1,459",
   duration: "10 M",
-  name: "History of Latin type",
+  name: "What if Jupiter never existed in our solar system?",
 };
 
 const Content: React.FC<Props> = ({ type }) => {
@@ -55,15 +55,16 @@ const Content: React.FC<Props> = ({ type }) => {
     <Link href="/dashboard/slug" className="rounded-xl">
       <div className="rounded-xl bg-blue-50">
         <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
-          <Image src="/1.webp" alt="image" fill />
+          <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
           <Progress />
         </div>
         <div className="px-5 py-2.5 pb-5">
           <h3 className="font-josefin text-lg font-semibold mt-2 leading-5">
-            Quizmania - The untold story
+            What If We Could Build a Space Elevator on Earth?
           </h3>
-          <p className="text-sm text-gray-500 font-josefin  ">
-            Lorem ipsum, dolor sit amet consectetur.
+          <p className="text-sm text-gray-500 font-josefin mt-1.5  ">
+            Embark on an exciting adventure to the final frontier with the
+            concept...
           </p>
         </div>
       </div>
@@ -128,24 +129,30 @@ const Video = () => {
     </Link>
   );
 };
+import { IoPlay } from "react-icons/io5";
 
 const Course = () => {
   return (
     <Link href="/dashboard/course" className="rounded-xl">
-      <div className="rounded-xl bg-gray-50 hover:bg-blue-50 font-josefin group hover:scale-95 duration-200">
+      <div className="rounded-xl bg-gray-50 hover:bg-blue-50 font-josefin group hover:scale-95 duration-200 shadow-sm">
         <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
-          <Image src="/1.webp" alt="image" fill />
+          <Image src="/jupiter.jpg" alt="image" fill />
           {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
             Best Seller
           </div> */}
+          <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
+            <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
+              <IoPlay size={22} />
+            </button>
+          </div>
         </div>
 
         <div className="p-5 pt-3 border-b-2 border-dashed rounded-b-xl">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3 ">
             <h3 className="font-medium text-[18px] leading-5 mt-1">
               {course.name}
             </h3>
-            <div>
+            <div className="min-w-[60px] border--">
               <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
                 <BiTime size={17} />
                 <span className="text-gray-800 font-semibold">
@@ -156,7 +163,8 @@ const Course = () => {
           </div>
 
           <p className="text-sm text-gray-500 font-fun mt-1 mb-1.5 tracking-[-2%]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Join us on a mind-bending journey through an alternate solar
+            system...
           </p>
 
           <div className="flex justify-between mt-1">
