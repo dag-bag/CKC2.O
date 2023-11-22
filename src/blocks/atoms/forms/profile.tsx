@@ -1,28 +1,27 @@
 import { getProfile } from "@/strapi/services/me";
 import React from "react";
 
-export default async function ProfileForm() {
-  const dgi: any = await getProfile();
+export default function ProfileForm({ data }: any) {
   return (
     <div className="grid grid-cols-1 gap-5">
       <div className=" grid grid-cols-3 gap-3">
         <Input
           disabled
-          value={dgi.name}
+          value={data.name}
           label="First Name"
           placeholder="Your Name"
           type="text"
         />
         <Input
           disabled
-          value={dgi.lastname}
+          value={data.lastname}
           label="Last Name"
           placeholder="Your Name"
           type="text"
         />
         <Input
           disabled
-          value={dgi.email}
+          value={data.email}
           label="Email Address"
           placeholder="Email Address"
           type="email"
@@ -30,27 +29,27 @@ export default async function ProfileForm() {
         />
         <Input
           disabled
-          value={dgi.grade}
+          value={data.grade}
           label="Grade"
           placeholder="Your Grade"
           type="text"
         />
         <Input
           disabled
-          value={dgi.parent_name}
+          value={data.parent_name}
           label="Parent Name"
           placeholder="Your Parent Name"
           type="text"
         />
         <Input
           disabled
-          value={dgi.dob}
+          value={data.dob}
           label="Date of Birth"
           placeholder="Your Parent Name"
           type="text"
         />
         <Input
-          value={dgi.bio}
+          value={data.bio}
           label="Bio"
           placeholder="Your Parent Name"
           type="text"

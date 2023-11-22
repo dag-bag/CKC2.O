@@ -1,18 +1,10 @@
 import Card from "@/blocks/UI/Card";
 import ProfileForm from "@/blocks/atoms/forms/profile";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
+import { getProfile } from "@/strapi/services/me";
 
-const dgi = {
-  name: "Joseph",
-  grade: "10th",
-  dob: "12/12/12",
-  lastname: "Marray",
-  email: "Joseph@gmail.com",
-  parent_name: "Mr Krocks Marray",
-  ams: "I want to become enginner!",
-};
-
-const SettingsPage = () => {
+const SettingsPage = async () => {
+  const data: any = await getProfile();
   return (
     <div className="pr-5">
       <Card title="General Information">
@@ -22,9 +14,7 @@ const SettingsPage = () => {
             title="Choose how you appear and what you see on CKC"
             description="Signed in as deepakvish7354@gmail.com"
           />
-          <Suspense fallback={<div>loading...</div>}>
-            <ProfileForm />
-          </Suspense>
+          <ProfileForm data={data} />
         </div>
       </Card>
       <Card title="Manage Notifications" className="mt-5">
@@ -87,3 +77,5 @@ export const NotificationSection = ({ title, description }: any) => {
     </div>
   );
 };
+
+export const revalidate = 3600;
