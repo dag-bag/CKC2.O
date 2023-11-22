@@ -1,14 +1,14 @@
 "use client";
 
 import { Menu } from "@mantine/core";
-import { BiBell } from "react-icons/bi";
+import { LuBell } from "react-icons/lu";
 
 const Notification = () => {
   return (
     <Menu offset={9} position="bottom-end" shadow="md" width={300}>
       <Menu.Target>
-        <button className="bg-gray-100  rounded-full w-[45px] h-[45px] center">
-          <BiBell size={22} />
+        <button className="rounded-full w-[45px] h-[45px] center bg-white">
+          <LuBell size={22} />
         </button>
       </Menu.Target>
 

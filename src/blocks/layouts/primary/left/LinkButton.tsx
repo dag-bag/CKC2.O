@@ -19,7 +19,8 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
       href={href}
       className={clsx(
         "px-2-- pr-4 py-2.5 rounded-xl flex justify-between gap-5 text-black",
-        pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
+        pathname == href &&
+          " bg-gradient-to-r from-cyan-500 to-blue-500  drop-shadow-lg"
       )}
     >
       <div className="flex gap-2">
@@ -29,7 +30,7 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
         <div>
           <h3
             className={clsx(
-              "text-md font-heading  text-gray-700",
+              "text-md font-josefin  text-gray-700",
               pathname == href && "  !text-white"
             )}
           >

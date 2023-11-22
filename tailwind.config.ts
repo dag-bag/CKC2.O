@@ -19,6 +19,7 @@ const config: Config = {
 
         "game": ['Orbitron', 'monospace'],
         "heading": ['Gabarito', 'monospace'],
+        "josefin": ["Josefin Sans", "monospace"],
         "fun": ["Fredoka", "monospace"]
       }
     },

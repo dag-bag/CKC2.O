@@ -15,17 +15,17 @@ const LeftAside = () => {
         />
       ))}
 
-      <div className="mt-auto  bg-white rounded-xl-- hidden">
+      <div className="mt-auto  bg-white mb-5 rounded-xl">
         <Image
-          className="rounded-xl p-5"
+          className="rounded-xl border border-dashed border-black"
           src="/upgrade-gif.gif"
           alt="upgrade gif"
           width={300}
           height={200}
         />
 
-        <button className="bg-[#0D0C14] text-white w-full rounded-lg py-2.5 mt-2 font-heading border">
-          Upgrade Plan
+        <button className="bg-[#0D0C14] text-white w-full rounded-lg py-2 mt-2 font-josefin border">
+          Upgrade to Premium
         </button>
       </div>
     </aside>

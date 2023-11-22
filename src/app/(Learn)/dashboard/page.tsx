@@ -8,9 +8,9 @@ const DashboardPage = () => {
         <BannerCarousel />
       </div>
       <ContentGrid title="Continue Watching" />
-      <ContentGrid title="Start Learning" />
-      <InContentAdvertisement />
-      <ContentGrid title="How it works" />
+      <ContentGrid title="Start Learning" type="course" />
+      {/* <InContentAdvertisement /> */}
+      <ContentGrid type="intros" title="How it works" />
     </Container>
   );
 };

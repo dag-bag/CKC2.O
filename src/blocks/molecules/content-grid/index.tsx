@@ -8,6 +8,7 @@ import Content from "./content";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
+import clsx from "clsx";
 export type ContentType =
   | "live_now"
   | "live_past"
@@ -17,7 +18,9 @@ export type ContentType =
   | "live_upcoming_premium"
   | "comics"
   | "course"
-  | "video";
+  | "video"
+  | "watched"
+  | "intros";
 
 // this matine carouse is not effective in point of view serverside rendering...
 
@@ -54,9 +57,14 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   return (
-    <div className={`my-5`}>
-      <div className="flex items-center justify-between mb-2 pl-2">
-        <h3 className="text-xl font-semibold tracking-medium font-heading text-gray-800">
+    <div
+      className={`py-5 my-2 ${clsx(
+        type === "intros" &&
+          " px-12 !py-8 rounded-xl bg-gradient-to-r from-indigo-100 via-purple-200 to-pink-50"
+      )}`}
+    >
+      <div className="flex items-center justify-between mb-4 pl-2 ">
+        <h3 className="text-2xl font-bold tracking-medium font-josefin text-gray-800">
           {title}
         </h3>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
@@ -64,7 +72,7 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
       <Carousel
         className="px-2"
         align="start"
-        slideGap={"xs"}
+        slideGap={"lg"}
         draggable={false}
         slidesToScroll={2}
         slideSize={grid_content_columns_size}

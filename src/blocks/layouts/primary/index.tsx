@@ -5,6 +5,7 @@ interface Props {
 import Header from "./Header";
 import LeftAside from "./left";
 import React, { ReactNode } from "react";
+import Footer from "./Footer";
 
 const PrimaryLayout: React.FC<Props> = ({ children }) => {
   return (
@@ -14,6 +15,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         <div className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative ">
           <Header />
           <div className="pt-[80px] max-w-[1440px] mx-auto">{children}</div>
+          <Footer />
         </div>
       </main>
     </div>

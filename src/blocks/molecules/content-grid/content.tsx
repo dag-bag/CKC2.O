@@ -12,9 +12,9 @@ import Live from "./types/Live";
 
 const course = {
   garde: "6th",
-  required_credits: 100,
-  duration: "10 minutes",
-  name: "Quizmania - The untold story",
+  required_credits: "1,459",
+  duration: "10 M",
+  name: "History of Latin type",
 };
 
 const Content: React.FC<Props> = ({ type }) => {
@@ -53,24 +53,29 @@ const Content: React.FC<Props> = ({ type }) => {
   }
   return (
     <Link href="/dashboard/slug" className="rounded-xl">
-      <div className="rounded-xl">
-        <div className="relative aspect-w-10 aspect-h-6 rounded-lg overflow-hidden">
+      <div className="rounded-xl bg-blue-50">
+        <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
-          {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
-            Best Seller
-          </div> */}
+          <Progress />
         </div>
-
-        <h3 className="font-medium font-heading mt-2 leading-5">
-          Quizmania - The untold story
-        </h3>
-        <p className="text-sm text-gray-500  ">
-          This is untold story of quizmania
-        </p>
+        <div className="px-5 py-2.5 pb-5">
+          <h3 className="font-josefin text-lg font-semibold mt-2 leading-5">
+            Quizmania - The untold story
+          </h3>
+          <p className="text-sm text-gray-500 font-josefin  ">
+            Lorem ipsum, dolor sit amet consectetur.
+          </p>
+        </div>
       </div>
     </Link>
   );
 };
+
+const Progress = () => (
+  <div className="h-1 absolute top-[98.5%] left-0 w-full">
+    <div className="w-[30%] h-1 bg-red-500 rounded-e-full "></div>
+  </div>
+);
 
 export default Content;
 
@@ -127,44 +132,41 @@ const Video = () => {
 const Course = () => {
   return (
     <Link href="/dashboard/course" className="rounded-xl">
-      <div className="rounded-xl bg-gray-50 font-heading">
-        {/* <div className="relative h-[170px] rounded-lg overflow-hidden">
-          <Image src="/1.webp" alt="image" fill />
-          <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
-            Best Seller
-          </div>
-        </div> */}
-
-        <div className="relative aspect-w-10 aspect-h-6 rounded-lg overflow-hidden">
+      <div className="rounded-xl bg-gray-50 hover:bg-blue-50 font-josefin group hover:scale-95 duration-200">
+        <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
           {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
             Best Seller
           </div> */}
         </div>
 
-        <div className="p-4 pt-2">
-          {/* <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
-            <BiTime size={17} />
-            <span className="text-gray-800">{course.duration}</span>
-          </p> */}
-
-          <h3 className="font-medium text-[18px] leading-5 mt-1">
-            {course.name}
-          </h3>
+        <div className="p-5 pt-3 border-b-2 border-dashed rounded-b-xl">
+          <div className="flex items-center justify-between">
+            <h3 className="font-medium text-[18px] leading-5 mt-1">
+              {course.name}
+            </h3>
+            <div>
+              <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
+                <BiTime size={17} />
+                <span className="text-gray-800 font-semibold">
+                  {course.duration}
+                </span>
+              </p>
+            </div>
+          </div>
 
           <p className="text-sm text-gray-500 font-fun mt-1 mb-1.5 tracking-[-2%]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
-            corrupti?...
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
 
-          <div className="grid grid-cols-2 mt-1">
+          <div className="flex justify-between mt-1">
             <p className="text-sm text-gray-800 flex items-center  ">
               Grade <BsDot />
               <span className="text-gray-800">{course.garde}</span>
             </p>
 
-            <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">
-              Credits <BsDot />
+            <p className="text-sm text-gray-800 bg-white p-1.5 border px-5 rounded-full center gap-2">
+              <Image width={25} height={25} alt="123" src={"/coin3.png"} />
               <span className="text-gray-800 font-medium">
                 {course.required_credits}
               </span>

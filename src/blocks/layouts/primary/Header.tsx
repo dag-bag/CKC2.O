@@ -13,8 +13,8 @@ const Header = () => {
         </div>
         <div className="flex items-center justify-end ml-auto gap-5">
           <MyBalance />
-          <Notification />
-          <Cart />
+          {/* <Notification />
+          <Cart /> */}
           <Profile />
         </div>
       </div>
@@ -24,21 +24,25 @@ const Header = () => {
 
 export default Header;
 
+import Image from "next/image";
 const MyBalance = () => {
   return (
-    <div className="p-2.5">
-      <div className="flex gap-5 text-lg ">
-        <button className="flex gap-2 items-center">
-          <span className="text-xl">🪙</span>{" "}
-          <span className="font-heading">1,000</span>
+    <div className="h-[45px]  flex items-center rounded-full px-5 bg-white ">
+      <div className="flex gap-8 text-lg ">
+        <button className="flex items-center gap-2 font-josefin">
+          <Image width={35} height={35} alt="coin" src={"/coin3.png"} />
+          <span className="mt-1 font-semibold">1,945</span>
         </button>
 
-        <button className="flex items-center">
-          <span className="text-xl mr-2">💎</span>{" "}
-          <span className="font-heading">1,000</span>
-          <span className="ml-1">
-            <RiAddFill size={18} />
-          </span>
+        <button className="flex items-center gap-2 font-josefin">
+          <Image
+            width={30}
+            height={30}
+            alt="coin"
+            src={"/diamond.png"}
+            className=" -rotate-12"
+          />
+          <span className="mt-1 font-semibold">1,000</span>
         </button>
       </div>
     </div>
