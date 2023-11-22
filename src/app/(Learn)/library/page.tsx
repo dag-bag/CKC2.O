@@ -11,9 +11,16 @@ const DashboardPage = () => {
       </div>
       <VideoAndComicsFilter status={state} setState={setState} />
       {state == "Comics" && (
-        <Suspense fallback={<Loading />}>
-          <Comics />
-        </Suspense>
+        <section className="grid grid-cols-4 gap-3">
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+          <Content type="comics" />
+        </section>
       )}
 
       {state == "Videos" && (
