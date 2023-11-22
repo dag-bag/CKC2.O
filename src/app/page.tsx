@@ -180,6 +180,7 @@ const Carousel = () => {
 };
 
 import { BiSearch } from "react-icons/bi";
+import useSession from "@/hooks/use-session";
 const Search = () => {
   return (
     <div className="flex bg-[#F4F5FB] items-center py-2.5 px-5 gap-2.5 rounded-full border-gray-200 border--">

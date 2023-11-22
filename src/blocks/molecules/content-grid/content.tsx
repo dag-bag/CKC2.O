@@ -4,6 +4,7 @@ import { type ContentType } from ".";
 import { BsDot } from "react-icons/bs";
 interface Props {
   type?: ContentType;
+  data?: any;
 }
 
 import { BiTime } from "react-icons/bi";
@@ -17,9 +18,9 @@ const course = {
   name: "Quizmania - The untold story",
 };
 
-const Content: React.FC<Props> = ({ type }) => {
+const Content: React.FC<Props> = ({ type, data }) => {
   if (type == "comics") {
-    return <Comics />;
+    return <Comics data={data} />;
   }
   if (type == "live_upcoming") {
     return <Live type="upcoming" />;
@@ -160,7 +161,7 @@ const Course = () => {
   );
 };
 
-const Comics = () => {
+const Comics = (data?: any) => {
   return (
     <Link href="/library/comics" className="rounded-xl">
       <div className="rounded-xl p-3  border-gray-100 font-heading">

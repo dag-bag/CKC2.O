@@ -4,8 +4,11 @@ import { Container } from "@mantine/core";
 import useOnboard from "@/hooks/useOnboard";
 import Header from "@/blocks/layouts/onboarding/Header";
 import { usePathname, useRouter } from "next/navigation";
+import { updateUser } from "@/services/user";
+import useSession from "@/hooks/use-session";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { update } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const { storage } = useOnboard();
@@ -23,7 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     router.back();
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     switch (pathname) {
       case "/onboard/name":
         checkAndNavigate(storage?.firstname && storage?.lastname, stage.next);
@@ -45,6 +48,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         break;
       case "/onboard/profile":
         checkAndNavigate(storage?.avatar, stage.next);
+        break;
+      case "/onboard/complete":
+        await updateUser(storage);
+        router.push("/settings");
         break;
       default:
         break;

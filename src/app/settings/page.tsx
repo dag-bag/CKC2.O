@@ -1,4 +1,5 @@
 import Card from "@/blocks/UI/Card";
+import ProfileForm from "@/blocks/atoms/forms/profile";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
 
 const dgi = {
@@ -21,66 +22,9 @@ const SettingsPage = () => {
             title="Choose how you appear and what you see on CKC"
             description="Signed in as deepakvish7354@gmail.com"
           />
-          <div className="grid grid-cols-1 gap-5">
-            <div className=" grid grid-cols-3 gap-3">
-              <Input
-                disabled
-                value={dgi.name}
-                label="First Name"
-                placeholder="Your Name"
-                type="text"
-              />
-              <Input
-                disabled
-                value={dgi.lastname}
-                label="Last Name"
-                placeholder="Your Name"
-                type="text"
-              />
-              <Input
-                disabled
-                value={dgi.email}
-                label="Email Address"
-                placeholder="Email Address"
-                type="email"
-                description="If you want to change your email, please contact support."
-              />
-              <Input
-                disabled
-                value={dgi.grade}
-                label="Grade"
-                placeholder="Your Grade"
-                type="text"
-              />
-              <Input
-                disabled
-                value={dgi.parent_name}
-                label="Parent Name"
-                placeholder="Your Parent Name"
-                type="text"
-              />
-              <Input
-                disabled
-                value={dgi.dob}
-                label="Date of Birth"
-                placeholder="Your Parent Name"
-                type="text"
-              />
-              <Input
-                value={dgi.ams}
-                label="Bio"
-                placeholder="Your Parent Name"
-                type="text"
-              />
-            </div>
-            <p className="text-sm text-gray-600">
-              Customizing your avatars and banners is a breeze in the
-              <b className="underline px-1 font-medium">
-                Profile&apos;s Vault
-              </b>{" "}
-              section.
-            </p>
-          </div>
+          <Suspense fallback={<div>loading...</div>}>
+            <ProfileForm />
+          </Suspense>
         </div>
       </Card>
       <Card title="Manage Notifications" className="mt-5">
@@ -131,6 +75,7 @@ const Input = ({
 };
 
 import { Switch } from "@mantine/core";
+import { Suspense } from "react";
 export const NotificationSection = ({ title, description }: any) => {
   return (
     <div className="flex justify-between items-center border-b  border-gray-100 pb-5 gap-5">

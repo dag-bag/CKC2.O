@@ -11,16 +11,9 @@ const DashboardPage = () => {
       </div>
       <VideoAndComicsFilter status={state} setState={setState} />
       {state == "Comics" && (
-        <section className="grid grid-cols-4 gap-3">
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-          <Content type="comics" />
-        </section>
+        <Suspense fallback={<Loading />}>
+          <Comics />
+        </Suspense>
       )}
 
       {state == "Videos" && (
@@ -51,8 +44,10 @@ import {
   RiLiveFill,
   RiQuestionFill,
 } from "react-icons/ri";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Content from "@/blocks/molecules/content-grid/content";
+import Comics from "@/blocks/molecules/sections/comics";
+import Loading from "@/blocks/atoms/loading";
 
 const VideoAndComicsFilter = ({ status, setState }: any) => {
   return (

@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import Textinput from "@/blocks/atoms/TextInput";
 import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
+import Form from "@/blocks/atoms/forms/login";
+import useSession from "@/hooks/use-session";
 const Page = () => {
+  const { session, logout, isLoading } = useSession();
   return (
     <div className="md:h-screen center font-fun bg-gray-50 ">
       <div className=" rounded-lg grid md:grid-cols-2 bg-white">
@@ -25,50 +29,10 @@ const Page = () => {
           <SpaceBreakWithText />
 
           <div>
-            <form className="space-y-4">
-              <Textinput
-                classLabel="font-medium text-gray-500 font-heading"
-                label="Email"
-                type="text"
-                placeholder="Email Adress"
-                className="px-5 w-full bg-gray-100 rounded-md mt-1"
-              />
-              <Textinput
-                classLabel="font-medium text-gray-500 font-heading"
-                label="Password"
-                type="password"
-                placeholder="Password"
-                className="px-5 w-full bg-gray-100 rounded-md mt-1"
-              />
-              <div className="flex items-center justify-between">
-                <div>
-                  <label className="flex gap-2" htmlFor="cheakbox">
-                    <input type="checkbox" id="cheakbox" />
-                    <span>Remember me</span>
-                  </label>
-                </div>
-                <div>
-                  <Link href={"#"} className="capitalize text-blue-500">
-                    forget password?
-                  </Link>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 items-center gap-5">
-                <button className="bg-blue-500 py-2.5 font-medium rounded-lg text-lg text-white">
-                  Login
-                </button>
-                <div>
-                  <p>
-                    Not registered yet? &nbsp;
-                    <Link href={"#"} className="underline font-medium">
-                      Create an account
-                    </Link>
-                  </p>
-                </div>
-              </div>
-            </form>
+            <Form />
           </div>
+          {isLoading ? "loading" : JSON.stringify(session)}
+          <button onClick={() => logout()}>Logout</button>
         </div>
       </div>
     </div>
