@@ -4,12 +4,15 @@ import { type ContentType } from ".";
 import { BsDot } from "react-icons/bs";
 interface Props {
   type?: ContentType;
-  data?: any;
+  data?: ComicBook | any;
 }
 
 import { BiTime } from "react-icons/bi";
 
 import Live from "./types/Live";
+import { ComicBook } from "@/types/Content";
+import { convertGradeToOrdinal } from "@/utils/grade";
+import { estimateReadingTime } from "@/utils/time";
 
 const course = {
   garde: "6th",
@@ -20,7 +23,7 @@ const course = {
 
 const Content: React.FC<Props> = ({ type, data }) => {
   if (type == "comics") {
-    return <Comics data={data} />;
+    return <Comics {...data} />;
   }
   if (type == "live_upcoming") {
     return <Live type="upcoming" />;
@@ -161,12 +164,12 @@ const Course = () => {
   );
 };
 
-const Comics = (data?: any) => {
+const Comics = ({ content, name, grade, thumbnail, page_count }: ComicBook) => {
   return (
     <Link href="/library/comics" className="rounded-xl">
       <div className="rounded-xl p-3  border-gray-100 font-heading">
         <div className="relative h-[400px] rounded-lg overflow-hidden">
-          <Image src="/comic.jpg" alt="image" fill />
+          <Image src={thumbnail} alt="image" fill />
           <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
             Best Seller
           </div>
@@ -174,22 +177,24 @@ const Comics = (data?: any) => {
 
         <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
           <BiTime size={17} />
-          <span className="text-gray-800 font-medium">{course.duration}</span>
+          <span className="text-gray-800 font-medium">
+            {estimateReadingTime(page_count, 2)} min
+          </span>
         </p>
 
-        <h3 className="font-medium text-[18px] leading-5 mt-1">
-          {course.name}
-        </h3>
+        <h3 className="font-medium text-[18px] leading-5 mt-1">{name}</h3>
 
-        <p className="text-sm text-gray-500 font-fun my-2">
-          <span className="!font-heading text-black">Description &nbsp;</span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        <p className="text-sm text-gray-500 font-fun my-2 line-clamp-2">
+          <span className="!font-heading text-black  ">Description &nbsp;</span>
+          {content} Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         </p>
 
         <div className="grid grid-cols-2 mt-1">
           <p className="text-sm text-gray-800 flex items-center  ">
             Grade <BsDot />
-            <span className="text-gray-800 font-medium">{course.garde}</span>
+            <span className="text-gray-800 font-medium">
+              {convertGradeToOrdinal(grade)}
+            </span>
           </p>
 
           <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">

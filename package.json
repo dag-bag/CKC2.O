@@ -24,6 +24,7 @@
     "@mantine/spotlight": "^7.0.0",
     "@mantine/tiptap": "^7.0.0",
     "@tabler/icons-react": "^2.34.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tiptap/extension-link": "^2.1.11",
     "@tiptap/react": "^2.1.11",
     "@tiptap/starter-kit": "^2.1.11",

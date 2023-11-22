@@ -1,7 +1,8 @@
 // comics.ts
+import { ComicBook } from "@/types/Content";
 import { Action, fetchData } from ".";
 import { COURSES_P } from "../populations/courses";
-const Comics = async (action: Action) => {
+const Comics = async (action: Action): Promise<ComicBook[]> => {
   return fetchData("comics", action);
 };
 
