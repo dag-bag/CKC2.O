@@ -23,7 +23,7 @@ const getTransactions = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/user/tran?id=${session.user.id}`,
-      { cache: "force-cache" }
+      { next: { revalidate: 60 }, cache: "force-cache" }
     );
     const data = await res.json();
     // const res = await strapi.find("purchases", {
