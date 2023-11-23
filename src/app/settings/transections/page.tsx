@@ -71,4 +71,4 @@ const TransectionsPage = async () => {
   );
 };
 export default TransectionsPage;
-export const revalidate = 3600;
+export const revalidate = 60;
