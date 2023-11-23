@@ -1,13 +1,11 @@
-import { SessionData, sessionOptions } from "@/libs/iron";
 import { strapi } from "@/libs/strapi";
-import { getIronSession } from "iron-session";
-import { cookies } from "next/headers";
+import { NextRequest } from "next/server";
 
-export async function GET() {
-  const session = await getIronSession<SessionData>(cookies(), sessionOptions);
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get("id");
   const res = await strapi.find("purchases", {
     filters: {
-      user: session.user.id,
+      user: id,
     },
   });
   return Response.json(res.data);
