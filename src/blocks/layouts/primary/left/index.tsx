@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const LeftAside = () => {
   return (
-    <aside className=" px-5 flex flex-col pt-[80px] gap-2 bg-[#F6F7F7]">
+    <aside className="hidden px-5 md:flex flex-col pt-[80px] gap-2 bg-[#F6F7F7]">
       {primary_layout_left_buttons.map(({ title, Icon, hrefs }) => (
         <Button
           key={title}

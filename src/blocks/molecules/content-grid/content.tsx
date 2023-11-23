@@ -58,11 +58,15 @@ const Content: React.FC<Props> = ({ type }) => {
           <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
           <Progress />
         </div>
-        <div className="px-5 py-2.5 pb-5">
-          <h3 className="font-josefin text-lg font-semibold mt-2 leading-5">
+        <div className="md:px-5 md:py-2.5 md:pb-5 p-2">
+          <h3 className="font-josefin md:text-lg font-semibold mt-2 leading-5 hidden md:block">
             What If We Could Build a Space Elevator on Earth?
           </h3>
-          <p className="text-sm text-gray-500 font-josefin mt-1.5  ">
+
+          <h3 className="font-josefin md:text-lg text-sm font-semibold mt-2 leading-5 md:hidden block">
+            What If We Could Build...
+          </h3>
+          <p className="text-sm text-gray-500 font-josefin mt-1.5 hidden md:block  ">
             Embark on an exciting adventure to the final frontier with the
             concept...
           </p>
@@ -98,7 +102,7 @@ const Video = () => {
           </div> */}
         </div>
 
-        <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
+        <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
           <BiTime size={17} />
           <span className="text-gray-800 font-medium">{course.duration}</span>
         </p>
@@ -147,12 +151,15 @@ const Course = () => {
           </div>
         </div>
 
-        <div className="p-5 pt-3 border-b-2 border-dashed rounded-b-xl">
+        <div className="md:p-5 p-2 pt-3 border-b-2 border-dashed rounded-b-xl">
           <div className="flex items-center justify-between gap-3 ">
-            <h3 className="font-medium text-[18px] leading-5 mt-1">
+            <h3 className="font-medium text-[18px] leading-5 mt-1 hidden md:block">
               {course.name}
             </h3>
-            <div className="min-w-[60px] border--">
+            <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
+              What if Jupiter never existed...
+            </h3>
+            <div className="min-w-[60px] border hidden md:block">
               <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
                 <BiTime size={17} />
                 <span className="text-gray-800 font-semibold">
@@ -162,20 +169,20 @@ const Course = () => {
             </div>
           </div>
 
-          <p className="text-sm text-gray-500 font-fun mt-1 mb-1.5 tracking-[-2%]">
+          <p className="text-sm text-gray-500 font-fun mt-1 mb-1.5 tracking-[-2%] hidden md:block">
             Join us on a mind-bending journey through an alternate solar
             system...
           </p>
 
           <div className="flex justify-between mt-1">
-            <p className="text-sm text-gray-800 flex items-center  ">
+            <p className="md:text-sm text-xs text-gray-800 flex items-center  ">
               Grade <BsDot />
               <span className="text-gray-800">{course.garde}</span>
             </p>
 
-            <p className="text-sm text-gray-800 bg-white p-1.5 border px-5 rounded-full center gap-2">
+            <p className="text-sm text-gray-800 bg-white md:p-1.5 p-1 border md:px-5 px-2 rounded-full center md:gap-2 gap-1">
               <Image width={25} height={25} alt="123" src={"/coin3.png"} />
-              <span className="text-gray-800 font-medium">
+              <span className="text-gray-800 font-medium md:text-md text-xs">
                 {course.required_credits}
               </span>
             </p>

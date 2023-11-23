@@ -60,11 +60,11 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
     <div
       className={`py-5 my-2 ${clsx(
         type === "intros" &&
-          " px-12 !py-8 rounded-xl bg-gradient-to-r from-indigo-100 via-purple-200 to-pink-50"
+          " md:px-12 px-5 md:!py-8 md:rounded-xl bg-gradient-to-r from-indigo-100 via-purple-200 to-pink-50"
       )}`}
     >
-      <div className="flex items-center justify-between mb-4 pl-2 ">
-        <h3 className="text-2xl font-bold tracking-medium font-josefin text-gray-800">
+      <div className="flex items-center justify-between md:mb-4 mb-2 pl-2 ">
+        <h3 className="md:text-2xl text-lg font-bold tracking-medium font-josefin text-gray-800">
           {title}
         </h3>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
