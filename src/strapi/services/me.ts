@@ -18,16 +18,19 @@ const getProfile = async () => {
 };
 
 const getTransactions = async () => {
-  const session = await getSession();
-  console.log(session);
+  // const session = await getSession();
+  // console.log(session);
   try {
-    const res = await strapi.find("purchases", {
-      filters: {
-        user: session.user.id,
-      },
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/user/tran`);
+    const data = await res.json();
+    // const res = await strapi.find("purchases", {
+    //   filters: {
+    //     user: 3,
+    //   },
+    // });
 
-    return res.data as Purchase[];
+    // return res.data as Purchase[];
+    return data as Purchase[];
   } catch (error) {
     console.log(error);
   }
