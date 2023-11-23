@@ -1,7 +1,7 @@
 import Card from "@/blocks/UI/Card";
 import ProfileForm from "@/blocks/atoms/forms/profile";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
-import { getSession } from "@/strapi/services/me";
+import Notifications from "@/blocks/molecules/settings/sections/notification";
 import { getProfile } from "@/strapi/services/me";
 
 const SettingsPage = async () => {
@@ -18,28 +18,11 @@ const SettingsPage = async () => {
           <ProfileForm data={data} />
         </div>
       </Card>
-      <Card title="Manage Notifications" className="mt-5">
-        <div>
-          <NotificationSection
-            title="Daily Updates"
-            description="Receive push notifications on your devices, ensuring you don't miss any important updates or messages."
-          />
-
-          <NotificationSection
-            title="System Notifications"
-            description="Receive important system notifications and updates related to your account or the application."
-          />
-
-          <NotificationSection
-            title="Payments Notifications"
-            description="Stay informed about payment-related events, such as successful transactions, pending payments, or payment failures."
-          />
-        </div>
-      </Card>
+      <Notifications data={data} />
     </div>
   );
 };
-
+export const revalidate = 3600;
 export default SettingsPage;
 
 const Input = ({
@@ -66,7 +49,6 @@ const Input = ({
 };
 
 import { Switch } from "@mantine/core";
-import { Suspense } from "react";
 export const NotificationSection = ({ title, description }: any) => {
   return (
     <div className="flex justify-between items-center border-b  border-gray-100 pb-5 gap-5">
@@ -78,5 +60,3 @@ export const NotificationSection = ({ title, description }: any) => {
     </div>
   );
 };
-
-export const revalidate = 3600;

@@ -1,5 +1,6 @@
 import Card from "@/blocks/UI/Card";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
+import { getTransactions } from "@/strapi/services/me";
 
 const sampleData = [
   {
@@ -34,7 +35,8 @@ const sampleData = [
   },
 ];
 
-const TransectionsPage = () => {
+const TransectionsPage = async () => {
+  const data = await getTransactions();
   return (
     <div className="pr-5 font-heading">
       <Card title="Transections">
@@ -51,15 +53,15 @@ const TransectionsPage = () => {
               <div>Payment Amount</div>
               <div>Payment Date</div>
             </div>
-            {sampleData.map((d, i) => (
+            {data?.map((d, i) => (
               <div
                 className="p-5 grid grid-cols-[2fr_1fr_1fr_1fr] items-center even:bg-gray-50 rounded-xl "
                 key={i}
               >
-                <div className="font-semibold">{d.name}</div>
-                <div>{d.paymentStatus}</div>
-                <div>{d.paymentAmount}</div>
-                <div>{d.paymentDate}</div>
+                <div className="font-semibold">{d.label}</div>
+                <div>{d.status}</div>
+                <div>{d.amount}</div>
+                <div>{d.purchase_date}</div>
               </div>
             ))}
           </div>
@@ -69,3 +71,4 @@ const TransectionsPage = () => {
   );
 };
 export default TransectionsPage;
+export const revalidate = 3600;

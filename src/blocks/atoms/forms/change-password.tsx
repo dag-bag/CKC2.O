@@ -8,6 +8,10 @@ import {
   Controller,
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getSession } from "@/strapi/services/me";
+import { strapi } from "@/libs/strapi";
+import axios from "axios";
+
 // Define the schema for the form data using yup
 const schema = yup.object().shape({
   currentPassword: yup.string().required("Current Password is required"),
@@ -35,8 +39,6 @@ interface InputProps {
   description?: string;
 }
 
-// ... (previous imports)
-
 const Input: React.FC<InputProps> = ({
   label,
   placeholder,
@@ -59,12 +61,6 @@ const Input: React.FC<InputProps> = ({
               placeholder={placeholder}
               className="px-3 py-2.5 w-full border rounded-lg"
             />
-            {/* Display validation error if it exists */}
-            {/* {control.fieldState[name]?.error && (
-              <p className="text-xs text-red-500">
-                {control.fieldState[name]?.error?.message}
-              </p>
-            )} */}
           </>
         )}
       />
@@ -81,11 +77,9 @@ export default function ChangePassword() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
+  console.log(errors);
   // Define the onSubmit handler
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormData> = async (data) => {};
 
   return (
     <form id="password" onSubmit={handleSubmit(onSubmit)}>

@@ -1,7 +1,30 @@
-import { getProfile } from "@/strapi/services/me";
-import React from "react";
+"use client";
+import { updateUser } from "@/services/user";
+import React, { useState } from "react";
 
 export default function ProfileForm({ data }: any) {
+  const [editableData, setEditableData] = useState({
+    grade: data.grade,
+    parentname: data.parentname,
+    bio: data.bio,
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setEditableData((prevEditableData) => ({
+      ...prevEditableData,
+      [field]: value,
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      updateUser(editableData);
+      alert("Data saved successfully!");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 gap-5">
       <div className=" grid grid-cols-3 gap-3">
@@ -28,18 +51,18 @@ export default function ProfileForm({ data }: any) {
           description="If you want to change your email, please contact support."
         />
         <Input
-          disabled
-          value={data.grade}
+          value={editableData.grade}
           label="Grade"
           placeholder="Your Grade"
           type="text"
+          onChange={(value: any) => handleInputChange("grade", value)}
         />
         <Input
-          disabled
-          value={data.parent_name}
+          value={editableData.parentname}
           label="Parent Name"
           placeholder="Your Parent Name"
           type="text"
+          onChange={(value: any) => handleInputChange("parentname", value)}
         />
         <Input
           disabled
@@ -49,14 +72,16 @@ export default function ProfileForm({ data }: any) {
           type="text"
         />
         <Input
-          value={data.bio}
+          value={editableData.bio}
           label="Bio"
           placeholder="Your Parent Name"
           type="text"
+          onChange={(value: any) => handleInputChange("bio", value)}
         />
         <button
-          type="submit"
-          className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5"
+          type="button"
+          onClick={handleSave}
+          className="px-5  bg-blue-500 rounded-xl text-white font-heading mt-7"
         >
           Save
         </button>
@@ -69,12 +94,14 @@ export default function ProfileForm({ data }: any) {
     </div>
   );
 }
+
 const Input = ({
   label,
   placeholder,
   type = "text",
   value,
   disabled,
+  onChange,
   description,
 }: any) => {
   return (
@@ -86,6 +113,7 @@ const Input = ({
         type={type}
         placeholder={placeholder}
         className="px-3 py-2.5 w-full border  rounded-lg"
+        onChange={(e) => onChange && onChange(e.target.value)}
       />
       {description && <p className="text-xs text-gray-500">{description}</p>}
     </div>
