@@ -82,7 +82,7 @@ export const NotificationSection = ({ title, description }: any) => {
 const getProfile = async () => {
   const session = await getSession();
   const res = await fetch(
-    "http://localhost:3000/api/user/profile?id=" + session.user.id,
+    `"${process.env.NEXT_PUBLIC_URL}/api/user/profile?id=` + session.user.id,
     {
       next: { tags: ["profile"] },
     }
