@@ -1,9 +1,15 @@
+import { SessionData, sessionOptions } from "@/libs/iron";
+import { strapi } from "@/libs/strapi";
 import { getProfile } from "@/strapi/services/me";
+import { getIronSession } from "iron-session";
+import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const data = await getProfile();
-  console.log(data);
+export async function GET(req: NextRequest) {
+  const id = req.nextUrl.searchParams.get("id");
 
-  return Response.json(data);
+  const res = await strapi.findOne("users", id as string);
+  console.log(res);
+
+  return Response.json(res);
 }

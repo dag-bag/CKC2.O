@@ -1,6 +1,5 @@
 import Content from "@/blocks/molecules/content-grid/content";
 import { Comics } from "@/strapi/services/api";
-import { ComicBook } from "@/types/Content";
 import React from "react";
 
 export default async function page() {

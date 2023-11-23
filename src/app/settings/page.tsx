@@ -1,7 +1,8 @@
 import Card from "@/blocks/UI/Card";
 import ProfileForm from "@/blocks/atoms/forms/profile";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
-import { getProfile } from "@/strapi/services/me";
+import { getSession } from "@/strapi/services/me";
+// import { getProfile } from "@/strapi/services/me";
 
 const SettingsPage = async () => {
   const data: any = await getProfile();
@@ -76,6 +77,17 @@ export const NotificationSection = ({ title, description }: any) => {
       <Switch defaultChecked />
     </div>
   );
+};
+
+const getProfile = async () => {
+  const session = await getSession();
+  const res = await fetch(
+    "http://localhost:3000/api/user/profile?id=" + session.user.id,
+    {
+      next: { tags: ["profile"] },
+    }
+  );
+  return await res.json();
 };
 
 export const revalidate = 3600;

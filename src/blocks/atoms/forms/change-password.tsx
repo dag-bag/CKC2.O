@@ -1,50 +1,123 @@
+"use client";
 import React from "react";
-export default function ChangePassword() {
-  return (
-    <div id="password">
-      <div className="grid grid-cols-3 gap-3">
-        <Input
-          label="Current Password"
-          placeholder="Current Password"
-          type="password"
-        />
-        <Input
-          label="New Password"
-          placeholder="New Password"
-          type="password"
-        />
-        <Input
-          label="Confirm Password"
-          placeholder="Confirm Password"
-          type="password"
-        />
-      </div>
-      <button className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5">
-        Request to Change Password
-      </button>
-    </div>
-  );
+import * as yup from "yup";
+import {
+  useForm,
+  SubmitHandler,
+  UseFormReturn,
+  Controller,
+} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+// Define the schema for the form data using yup
+const schema = yup.object().shape({
+  currentPassword: yup.string().required("Current Password is required"),
+  newPassword: yup.string().required("New Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("newPassword")], "Passwords must match")
+    .required("Confirm Password is required"),
+});
+
+// Define the type for the form data
+interface FormData {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
-const Input = ({
+// Define the type for the Input component props
+interface InputProps {
+  label: string;
+  placeholder: string;
+  type?: string;
+  name: keyof FormData;
+  control: any;
+  description?: string;
+}
+
+// ... (previous imports)
+
+const Input: React.FC<InputProps> = ({
   label,
   placeholder,
   type = "text",
-  value,
-  disabled,
+  name,
+  control,
   description,
-}: any) => {
+}) => {
   return (
     <div className="p-1 font-heading">
-      <h3 className=" text-gray-500 font-medium text-sm mb-1.5 ">{label}</h3>
-      <input
-        disabled={disabled}
-        value={value}
-        type={type}
-        placeholder={placeholder}
-        className="px-3 py-2.5 w-full border  rounded-lg"
+      <h3 className="text-gray-500 font-medium text-sm mb-1.5 ">{label}</h3>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <>
+            <input
+              {...field}
+              type={type}
+              placeholder={placeholder}
+              className="px-3 py-2.5 w-full border rounded-lg"
+            />
+            {/* Display validation error if it exists */}
+            {/* {control.fieldState[name]?.error && (
+              <p className="text-xs text-red-500">
+                {control.fieldState[name]?.error?.message}
+              </p>
+            )} */}
+          </>
+        )}
       />
       {description && <p className="text-xs text-gray-500">{description}</p>}
     </div>
   );
 };
+
+export default function ChangePassword() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
+  // Define the onSubmit handler
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form id="password" onSubmit={handleSubmit(onSubmit)}>
+      <div className="grid grid-cols-3 gap-3">
+        <Input
+          label="Current Password"
+          placeholder="Current Password"
+          type="password"
+          name="currentPassword"
+          control={control}
+        />
+        <Input
+          label="New Password"
+          placeholder="New Password"
+          type="password"
+          name="newPassword"
+          control={control}
+        />
+        <Input
+          label="Confirm Password"
+          placeholder="Confirm Password"
+          type="password"
+          name="confirmPassword"
+          control={control}
+        />
+      </div>
+      <button
+        type="submit"
+        className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5"
+      >
+        Request to Change Password
+      </button>
+    </form>
+  );
+}

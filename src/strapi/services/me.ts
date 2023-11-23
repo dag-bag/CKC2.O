@@ -8,6 +8,8 @@ async function getSession() {
   return session;
 }
 
+export { getSession };
+
 const getProfile = async () => {
   const session = await getSession();
   const res = await strapi.findOne("users", session.user.id);

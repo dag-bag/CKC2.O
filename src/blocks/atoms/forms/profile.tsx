@@ -54,6 +54,12 @@ export default function ProfileForm({ data }: any) {
           placeholder="Your Parent Name"
           type="text"
         />
+        <button
+          type="submit"
+          className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5"
+        >
+          Save
+        </button>
       </div>
       <p className="text-sm text-gray-600">
         Customizing your avatars and banners is a breeze in the

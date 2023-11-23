@@ -1,6 +1,7 @@
 import Card from "@/blocks/UI/Card";
 import { NotificationSection } from "../page";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
+import ChangePassword from "@/blocks/atoms/forms/change-password";
 
 const SettingsPage = () => {
   return (
@@ -11,28 +12,7 @@ const SettingsPage = () => {
           title="Manage Account Security"
           description="Signed in as deepakvish7354@gmail.com"
         />
-        <div id="password">
-          <div className="grid grid-cols-3 gap-3">
-            <Input
-              label="Current Password"
-              placeholder="Current Password"
-              type="password"
-            />
-            <Input
-              label="New Password"
-              placeholder="New Password"
-              type="password"
-            />
-            <Input
-              label="Confirm Password"
-              placeholder="Confirm Password"
-              type="password"
-            />
-          </div>
-          <button className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5">
-            Request to Change Password
-          </button>
-        </div>
+        <ChangePassword />
 
         <div id="visiblity" className="mt-10">
           <NotificationSection
