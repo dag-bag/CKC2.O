@@ -159,7 +159,7 @@ const Course = () => {
             <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
               What if Jupiter never existed...
             </h3>
-            <div className="min-w-[60px] border hidden md:block">
+            <div className="min-w-[60px] hidden md:block">
               <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
                 <BiTime size={17} />
                 <span className="text-gray-800 font-semibold">

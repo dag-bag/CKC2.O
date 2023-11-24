@@ -58,7 +58,7 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
 
   return (
     <div
-      className={`py-5 my-2 ${clsx(
+      className={`py-5 my-2  ${clsx(
         type === "intros" &&
           " md:px-12 px-5 md:!py-8 md:rounded-xl bg-gradient-to-r from-indigo-100 via-purple-200 to-pink-50"
       )}`}
