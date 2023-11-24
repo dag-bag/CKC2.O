@@ -25,12 +25,12 @@ const LeftButton: React.FC<Props> = ({ Icon, title, href }) => {
     >
       <div className="flex gap-2">
         <div className="px-3 center rounded-lg">
-          <Icon color={pathname == href ? "white" : "gray"} size={22} />
+          <Icon color={pathname == href ? "white" : "black"} size={22} />
         </div>
         <div>
           <h3
             className={clsx(
-              "text-md font-josefin  text-gray-700",
+              "text-md font-semibold font-josefin text-black",
               pathname == href && "  !text-white"
             )}
           >
