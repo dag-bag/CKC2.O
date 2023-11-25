@@ -5,12 +5,12 @@ enum ColorScheme {
 }
 
 interface RouteConfig {
-    isBackButtonVisible: boolean;
-    score: number;
     next: string;
-    colorScheme: ColorScheme;
+    score: number;
     banner: string;
     question: string;
+    colorScheme: ColorScheme;
+    isBackButtonVisible: boolean;
 }
 
 const Banner1 = "/view-3d-businessman_23-2150709814.avif";
@@ -55,7 +55,7 @@ export const routeConfiguration: Record<string, RouteConfig> = {
         score: 16 * 5,
         next: "/newboard/avatar",
         colorScheme: ColorScheme.Yellow,
-        banner: Banner1,
+        banner: Banner2,
         question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
     },
     "/newboard/avatar": {
@@ -63,7 +63,7 @@ export const routeConfiguration: Record<string, RouteConfig> = {
         score: 16 * 6,
         next: "/newboard/name",
         colorScheme: ColorScheme.Green,
-        banner: Banner1,
+        banner: Banner3,
         question: "How about creating your own out-of-this-world avatar?",
     },
 };

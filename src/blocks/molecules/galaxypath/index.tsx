@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useMediaQuery } from "@mantine/hooks";
 const levels = [16, 32, 48, 64, 80, 96];
 
 const svgPaths = {
@@ -12,13 +11,30 @@ const svgPaths = {
 
 const GalaxyPath = ({ initialProgress }: any) => {
   const animated = () => {};
-  const isTablet = useMediaQuery("(min-width: 768px)");
-  const isDesktop = useMediaQuery("(min-width: 1280px)");
-  const path = isDesktop ? svgPaths.xl : isTablet ? svgPaths.md : svgPaths.sm;
 
   return (
     <div>
-      <Path progress={initialProgress} animated={animated} path={path} />
+      <div className="block md:hidden">
+        <Path
+          path={svgPaths.sm}
+          animated={animated}
+          progress={initialProgress}
+        />
+      </div>
+      <div className="hidden md:block xl:hidden">
+        <Path
+          path={svgPaths.md}
+          animated={animated}
+          progress={initialProgress}
+        />
+      </div>
+      <div className="hidden xl:block">
+        <Path
+          path={svgPaths.xl}
+          animated={animated}
+          progress={initialProgress}
+        />
+      </div>
     </div>
   );
 };
@@ -63,7 +79,7 @@ const Level = ({ progress, number, path }: any) => {
       onClick={() => {
         console.log("here");
       }}
-      className="rounded-full absolute z-50 w-[20px] h-[20px]"
+      className="rounded-full absolute z-50 w-[20px] h-[20px] md:w-[30px] md:h-[30px]"
       style={{
         offsetDistance: `${progress}%`,
         offsetPath: `path('${path}')`,
@@ -95,7 +111,7 @@ const Passenger = ({ progress, animated, path }: any) => {
       initial="initial"
       variants={varients}
       onAnimationComplete={animated}
-      className="rounded-full absolute z-50 w-[40px] h-[40px]"
+      className="rounded-full absolute z-50 w-[40px] h-[40px] md:w-[50px] md:h-[50px]"
     >
       <Image fill alt="iamge" src={"/ufo.png"} className="rounded-full" />
     </motion.div>

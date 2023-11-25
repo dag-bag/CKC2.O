@@ -26,8 +26,7 @@ export default function OnboardLayout() {
         <div
           className="grid 
           lg:grid-cols-[auto_350px]
-        xl:grid-cols-[auto_450px]
-
+          xl:grid-cols-[auto_450px]
           w-screen h-screen p-5 gap-5 max-w-[1440px] mx-auto"
         >
           <div className="md:space-y-5 space-y-3">
