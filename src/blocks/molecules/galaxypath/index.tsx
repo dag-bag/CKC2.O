@@ -48,7 +48,7 @@ const Path = ({ progress, animated, path }: any) => {
       style={{
         backgroundImage: "url('/spaca-bg.avif')",
       }}
-      className="relative w-full h-[150px] overflow-hidden rounded-xl py-10"
+      className="relative w-full overflow-hidden rounded-xl xl:py-14 xl:h-[200px] py-10 h-[150px]"
     >
       <svg height="" version="1.1" className="block w-full absolute">
         <motion.path
@@ -111,9 +111,9 @@ const Passenger = ({ progress, animated, path }: any) => {
       initial="initial"
       variants={varients}
       onAnimationComplete={animated}
-      className="rounded-full absolute z-50 w-[40px] h-[40px] md:w-[50px] md:h-[50px]"
+      className="rounded-full absolute z-50 w-[60px] h-[40px] md:w-[80px] md:h-[50px] drop-shadow-2xl"
     >
-      <Image fill alt="iamge" src={"/ufo.png"} className="rounded-full" />
+      <Image fill alt="iamge" src={"/ship.png"} className="rounded-full" />
     </motion.div>
   );
 };

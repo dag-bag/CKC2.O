@@ -12,6 +12,7 @@ import MobileInput from "./actions/MobileInput";
 import LocationInput from "./actions/LocationInput";
 import GradeSelection from "./actions/GradeSelection";
 import AvatarSelection from "./actions/AvatarSelection";
+import clsx from "clsx";
 
 export default function OnboardLayout() {
   const router = useRouter();
@@ -60,11 +61,27 @@ export default function OnboardLayout() {
             </div>
           </div>
           <div
-            style={{
-              backgroundImage: `url('${banner}')`,
-            }}
-            className="rounded-2xl bg-cover bg-center border-2 lg:block hidden"
-          />
+            className={clsx(
+              colorScheme == "blue" &&
+                "bg-gradient-to-tl to-white from-blue-500",
+              colorScheme == "green" &&
+                "bg-gradient-to-tl to-white from-[#77D451] ",
+              colorScheme == "yellow" &&
+                "bg-gradient-to-tl to-white  from-[#FEE273]",
+              "rounded-2xl lg:block hidden"
+            )}
+          >
+            <div
+              style={{
+                backgroundImage: `url('${banner}')`,
+              }}
+              className="rounded-2xl bg-no-repeat  bg-center border-2  w-full h-full
+              bg-[length:300px_auto]
+              xl:bg-[length:400px_auto]
+              
+              "
+            />
+          </div>
         </div>
       </div>
     </div>
