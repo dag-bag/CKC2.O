@@ -3,7 +3,7 @@ import { useState } from "react";
 const AvatarSelection = () => {
   const [state, setState] = useState("/avatars/asian-man.png");
   return (
-    <div className="h-[300px] flex items-center rounded-2xl space-x-3">
+    <div className="xl:h-[300px] bg-gray-50 p-5 flex items-center rounded-2xl gap-3 flex-wrap">
       {avatarList.map((a) => (
         <Avatar
           onclick={() => {
@@ -32,7 +32,7 @@ const Avatar = ({ src, onclick, selected }: any) => {
     <button
       onClick={onclick}
       style={selected ? { border: "5px #22C55E solid" } : undefined}
-      className="relative w-[130px] h-[130px] border-2 rounded-full overflow-hidden"
+      className="relative xl:w-[130px] xl:h-[130px] w-[100px] h-[100px] border-2 rounded-full overflow-hidden"
     >
       <Image src={src} alt={src} width={130} height={130} />
     </button>

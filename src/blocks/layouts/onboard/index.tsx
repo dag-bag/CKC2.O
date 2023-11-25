@@ -25,18 +25,18 @@ export default function OnboardLayout() {
       <div>
         <div
           className="grid 
-          md:grid-cols-[auto_350px]
-        lg:grid-cols-[auto_450px]
+          lg:grid-cols-[auto_350px]
+        xl:grid-cols-[auto_450px]
 
-          w-screen h-screen p-5 gap-10 max-w-[1440px] mx-auto"
+          w-screen h-screen p-5 gap-5 max-w-[1440px] mx-auto"
         >
-          <div className="space-y-5">
+          <div className="md:space-y-5 space-y-3">
             <Header />
             <GalaxyPath initial={score} />
             <div>
               <h1
                 dangerouslySetInnerHTML={{ __html: question }}
-                className="xl:text-5xl md:text-4xl text-2xl  font-heading mt-10 md:leading-[5rem] font-semibold"
+                className="xl:text-4xl md:text-4xl text-2xl font-heading mt-5 md:mt-8 font-semibold"
               />
             </div>
 
@@ -64,7 +64,7 @@ export default function OnboardLayout() {
             style={{
               backgroundImage: `url('${banner}')`,
             }}
-            className="rounded-2xl bg-cover bg-center border-2 md:block hidden"
+            className="rounded-2xl bg-cover bg-center border-2 lg:block hidden"
           />
         </div>
       </div>

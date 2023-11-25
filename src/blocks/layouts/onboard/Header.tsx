@@ -3,8 +3,11 @@ import Image from "next/image";
 const Header = () => {
   return (
     <div>
-      <div id="header" className="h-[100px] rounded-2xl flex items-center">
-        <Image src={"/logo.png"} alt="logo" width={130} height={130} />
+      <div
+        id="header"
+        className=" w-[80px] h-[60px] md:w-[100px] md:h-[70px]  relative"
+      >
+        <Image src={"/logo.png"} alt="logo" fill />
       </div>
     </div>
   );

@@ -19,12 +19,12 @@ const Banner3 = "/3d-green.jpg";
 
 export const routeConfiguration: Record<string, RouteConfig> = {
     "/newboard/name": {
-        isBackButtonVisible: true,
+        isBackButtonVisible: false,
         score: 16 * 1,
         next: "/newboard/grade",
         colorScheme: ColorScheme.Blue,
         banner: Banner1,
-        question: "Hello there, Cosmic Kid! <br /> What&apos;s your super cool name?",
+        question: "Hello there, Cosmic Kid! What&apos;s your super cool name?",
     },
     "/newboard/grade": {
         isBackButtonVisible: true,
@@ -61,7 +61,7 @@ export const routeConfiguration: Record<string, RouteConfig> = {
     "/newboard/avatar": {
         isBackButtonVisible: true,
         score: 16 * 6,
-        next: "/newboard/location",
+        next: "/newboard/name",
         colorScheme: ColorScheme.Green,
         banner: Banner1,
         question: "How about creating your own out-of-this-world avatar?",
