@@ -57,7 +57,7 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   return (
-    <div className={`py-5 my-2  `}>
+    <div className={`py-5 my-2 px-2`}>
       <div className="flex items-center justify-between md:mb-4 mb-2 pl-2 ">
         <h3 className="md:text-2xl text-lg font-bold tracking-medium font-josefin text-gray-800">
           {title}

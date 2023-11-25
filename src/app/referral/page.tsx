@@ -65,7 +65,6 @@ const HeroSection = () => {
       </div>
       <div>
         <div className="flex gap-5 py-5 items-end rounded-xl">
-          <CopyArea title="Invitation Code" text="sdfhsdfh12" />
           <CopyArea
             title="Invitation Link"
             text="http://localhost:3000/settings/referral"

@@ -199,7 +199,7 @@ const Course = () => {
           className="md:p-5 p-2 pt-3 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500  rounded-b-xl  "
         >
           <div className="flex items-center justify-between gap-3 ">
-            <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-white ">
+            <h3 className="font-medium text-2xl leading-6 mt-1 hidden md:block text-white ">
               {course.name}
             </h3>
             <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
