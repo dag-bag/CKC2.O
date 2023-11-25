@@ -32,7 +32,7 @@ const Avatar = ({ src, onclick, selected }: any) => {
     <button
       onClick={onclick}
       style={selected ? { border: "5px #22C55E solid" } : undefined}
-      className="relative xl:w-[130px] xl:h-[130px] w-[100px] h-[100px] border-2 rounded-full overflow-hidden"
+      className="relative xl:w-[130px] xl:h-[130px] w-[70px] h-[70px] border-2 rounded-full overflow-hidden"
     >
       <Image src={src} alt={src} width={130} height={130} />
     </button>
