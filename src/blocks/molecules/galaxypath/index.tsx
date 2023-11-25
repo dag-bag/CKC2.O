@@ -1,147 +1,103 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, Input } from "@mantine/core";
-
-const realign = (state: any) => {
-  const realignment: any = {
-    30: -120,
-    60: -70,
-    90: -60,
-  };
-  return realignment[state];
-};
-
+import { motion } from "framer-motion";
+import { useMediaQuery } from "@mantine/hooks";
 const levels = [16, 32, 48, 64, 80, 96];
 
-const curveyPath =
-  "M1 101.682C1 101.682 87.4994 61.9711 174.477 101.682C261.454 141.394 339.351 132.97 386.185 101.682C433.019 70.3947 508.527 53.6182 588.814 101.682C669.1 149.746 801 101.682 801 101.682";
+const svgPaths = {
+  xl: "M1 41.3104C1 41.3104 87.4994 -11.9027 174.477 41.3104C261.454 94.5235 339.351 83.2359 386.185 41.3104C433.019 -0.61504 508.527 -23.0955 588.814 41.3104C669.1 105.716 801 41.3104 801 41.3104",
+  md: "M1 41.3104C1 41.3104 65.8746 -11.9027 131.108 41.3104C196.34 94.5235 254.764 83.2359 289.889 41.3104C325.014 -0.61504 381.645 -23.0955 441.86 41.3104C502.075 105.716 601 41.3104 601 41.3104",
+  sm: "M1 41.251C1 41.251 38.8435 -11.8838 76.896 41.251C114.949 94.3858 149.029 83.1148 169.519 41.251C190.008 -0.612723 223.043 -23.0601 258.168 41.251C293.294 105.562 351 41.251 351 41.251",
+};
 
-const GalaxyPath = ({ initial }: any) => {
-  const [state, setState] = useState(initial);
-  const [opened, { open, close }] = useDisclosure(false);
-
-  const animated = () => {
-    open();
-  };
-
-  const onPopupClose = () => {
-    close();
-    setState(state + 10);
-  };
+const GalaxyPath = ({ initialProgress }: any) => {
+  const animated = () => {};
+  const isTablet = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1280px)");
+  const path = isDesktop ? svgPaths.xl : isTablet ? svgPaths.md : svgPaths.sm;
 
   return (
-    <>
-      <div>
-        <div>
-          <Path state={state} animated={animated} />
-        </div>
-      </div>
-    </>
+    <div>
+      <Path progress={initialProgress} animated={animated} path={path} />
+    </div>
   );
 };
 
 export default GalaxyPath;
 
-const Path = ({ state, animated }: any) => {
+const Path = ({ progress, animated, path }: any) => {
   return (
     <div
+      id="svg-wrapper"
       style={{
         backgroundImage: "url('/spaca-bg.avif')",
       }}
-      id="svg-wrapper"
-      className="relative w-full h-[200px] overflow-hidden rounded-xl"
+      className="relative w-full h-[150px] overflow-hidden rounded-xl py-10"
     >
-      <svg
-        height=""
-        className="w-[800px] h-[200px] block absolute"
-        version="1.1"
-      >
+      <svg height="" version="1.1" className="block w-full absolute">
         <motion.path
-          d={curveyPath}
-          stroke-width="3"
+          d={path}
           stroke="white"
+          stroke-width="3"
           fill="transparent"
-          strokeLinecap="round"
           strokeOpacity={0.8}
+          strokeLinecap="round"
           strokeDasharray={"5"}
         ></motion.path>
       </svg>
 
       <>
         {levels.map((lvl, i) => (
-          <Level key={i} number={i + 1} state={lvl} />
+          <Level key={i} number={i + 1} progress={lvl} path={path} />
         ))}
       </>
 
-      <Passenger animated={animated} state={state} />
+      <Passenger animated={animated} progress={progress} path={path} />
     </div>
   );
 };
 
-const Planet = ({ className }: any) => {
-  return (
-    <div className={className}>
-      <Image
-        width={60}
-        height={60}
-        alt="iamge"
-        src={"/planet3.png"}
-        className="rounded-full"
-      />
-    </div>
-  );
-};
-
-const Level = ({ state, number }: any) => {
+const Level = ({ progress, number, path }: any) => {
   return (
     <motion.div
       onClick={() => {
         console.log("here");
       }}
-      className="rounded-full absolute z-50"
+      className="rounded-full absolute z-50 w-[20px] h-[20px]"
       style={{
-        width: "30px",
-        height: "30px",
-        rotate: realign(state),
-        offsetDistance: `${state}%`,
-        offsetPath: `path('${curveyPath}')`,
+        offsetDistance: `${progress}%`,
+        offsetPath: `path('${path}')`,
       }}
     >
-      <div className="w-full h-full border border-[#00ABED] bg-white rounded-full center font-game font-semibold ">
+      <div className="w-full h-full border border-[#00ABED] bg-white rounded-full center font-game font-semibold text-xs  ">
         {number}
       </div>
     </motion.div>
   );
 };
 
-const Passenger = ({ state, animated }: any) => {
+const Passenger = ({ progress, animated, path }: any) => {
+  const varients = {
+    initial: {
+      offsetDistance: `${progress - 16}%`,
+      offsetPath: `path('${path}')`,
+    },
+    animate: {
+      offsetDistance: `${progress}%`,
+      transition: {
+        duration: 1,
+      },
+    },
+  };
   return (
     <motion.div
+      animate="animate"
+      initial="initial"
+      variants={varients}
       onAnimationComplete={animated}
-      className="rounded-full absolute z-50"
-      style={{
-        width: "80px",
-        height: "80px",
-        rotate: realign(state),
-        offsetPath: `path('${curveyPath}')`,
-      }}
-      animate={{
-        offsetDistance: `${state}%`,
-        transition: {
-          duration: 2,
-        },
-      }}
+      className="rounded-full absolute z-50 w-[40px] h-[40px]"
     >
-      <Image
-        width={80}
-        height={80}
-        alt="iamge"
-        src={"/ufo.png"}
-        className="rounded-full"
-      />
+      <Image fill alt="iamge" src={"/ufo.png"} className="rounded-full" />
     </motion.div>
   );
 };

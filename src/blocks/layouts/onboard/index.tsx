@@ -32,7 +32,7 @@ export default function OnboardLayout() {
         >
           <div className="md:space-y-5 space-y-3">
             <Header />
-            <GalaxyPath initial={score} />
+            <GalaxyPath initialProgress={score} />
             <div>
               <h1
                 dangerouslySetInnerHTML={{ __html: question }}
