@@ -51,22 +51,56 @@ const Content: React.FC<Props> = ({ type }) => {
   if (type == "video") {
     return <Video />;
   }
+
+  if (type == "intros") {
+    return (
+      <Link href="/dashboard/slug" className="rounded-xl ">
+        <div className=" bg-white group border-[3px] border-green-500 border-b-[10px] rounded-b-md rounded-t-xl overflow-hidden">
+          <div className="relative aspect-w-10 aspect-h-6 ">
+            <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
+            <Progress />
+          </div>
+          <div className="md:px-5 md:py-2.5 md:pb-5 p-2 bg-green-50 ">
+            <div className="flex items-center justify-between gap-3 font-heading ">
+              <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-black ">
+                How to do challanges in Ckc?
+              </h3>
+              <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
+                How to do challanges in CKC?
+              </h3>
+              <div className="min-w-[60px] hidden md:block">
+                <p className="text-sm text-gray-800 flex items-center mt-2 gap-1 ">
+                  <BiTime size={17} />
+                  <span className="text-gray-800 font-semibold">
+                    {course.duration}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 font-josefin mt-1.5 hidden md:block  ">
+              Embark on an exciting adventure to the final frontier with the
+              concept...
+            </p>
+          </div>
+        </div>
+      </Link>
+    );
+  }
   return (
-    <Link href="/dashboard/slug" className="rounded-xl">
-      <div className="rounded-xl bg-blue-50">
-        <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
+    <Link href="/dashboard/slug" className="rounded-xl ">
+      <div className="rounded-xl bg-white border-[3px] border-black group hover:bg-green-100 hover:scale-90 duration-200 ">
+        <div className="relative aspect-w-10 aspect-h-6">
           <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
           <Progress />
         </div>
-        <div className="md:px-5 md:py-2.5 md:pb-5 p-2">
-          <h3 className="font-josefin md:text-lg font-semibold mt-2 leading-5 hidden md:block">
-            What If We Could Build a Space Elevator on Earth?
+        <div className="md:px-5 md:py-2.5 md:pb-5 p-2 ">
+          <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-black ">
+            How to do challanges in Ckc?
           </h3>
-
-          <h3 className="font-josefin md:text-lg text-sm font-semibold mt-2 leading-5 md:hidden block">
-            What If We Could Build...
+          <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
+            How to do challanges in CKC?
           </h3>
-          <p className="text-sm text-gray-500 font-josefin mt-1.5 hidden md:block  ">
+          <p className="text-sm text-gray-600 font-josefin mt-1.5 hidden md:block  ">
             Embark on an exciting adventure to the final frontier with the
             concept...
           </p>
@@ -87,7 +121,7 @@ export default Content;
 const Video = () => {
   return (
     <Link href="/library/video" className="rounded-xl">
-      <div className="rounded-xlborder-gray-100 font-heading">
+      <div className="rounded-xl border-gray-100 font-heading bg-[url(/gold-pattern.png)] overflow-hidden hover:shadow-lg duration-300 hover:shadow-black ">
         {/* <div className="relative h-[170px] rounded-lg overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
           <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm">
@@ -102,32 +136,39 @@ const Video = () => {
           </div> */}
         </div>
 
-        <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
-          <BiTime size={17} />
-          <span className="text-gray-800 font-medium">{course.duration}</span>
-        </p>
-
-        <h3 className="font-medium text-[18px] leading-5 mt-1">
-          {course.name}
-        </h3>
-
-        <p className="text-sm text-gray-500 font-fun my-2">
-          <span className="!font-heading text-black">Description &nbsp;</span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-        </p>
-
-        <div className="grid grid-cols-2 mt-1">
-          <p className="text-sm text-gray-800 flex items-center  ">
-            Grade <BsDot />
-            <span className="text-gray-800 font-medium">{course.garde}</span>
+        <div className="p-5 bg-gradient-to-t from-black/30 ">
+          <p className="text-sm text-black flex items-center mb-2 gap-1 ">
+            <BiTime size={17} />
+            <span className="text-black font-medium">{course.duration}</span>
           </p>
 
-          <p className="text-sm text-gray-800 bg-gray-100 p-2 rounded-full center">
-            Credits <BsDot />
-            <span className="text-gray-800 font-medium">
-              {course.required_credits}
-            </span>
+          <h3
+            style={{
+              textShadow: "2px 2px 2px rgba(0,0,0,0.6)",
+            }}
+            className="font-medium text-2xl  leading-6  z-50 relative text-white"
+          >
+            {course.name}
+          </h3>
+
+          <p className=" text-black font-heading my-2 leading-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate,
+            dolorum.
           </p>
+
+          <div className="flex justify-between mt-1">
+            <p className="md:text-sm text-xs black flex items-center  ">
+              Grade <BsDot />
+              <span className="black">{course.garde}</span>
+            </p>
+
+            <p className="text-sm text-gray-800 bg-white md:p-1.5 p-1 border md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+              <Image width={25} height={25} alt="123" src={"/coin3.png"} />
+              <span className="text-gray-800 font-medium md:text-md text-xs">
+                {course.required_credits}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </Link>
@@ -138,7 +179,7 @@ import { IoPlay } from "react-icons/io5";
 const Course = () => {
   return (
     <Link href="/dashboard/course" className="rounded-xl">
-      <div className="rounded-xl bg-gray-50 hover:bg-blue-50 font-josefin group hover:scale-95 duration-200 shadow-sm">
+      <div className="rounded-xl bg-blue-800 font-heading group hover:scale-95 duration-200 shadow-sm">
         <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
           <Image src="/jupiter.jpg" alt="image" fill />
           {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
@@ -151,33 +192,38 @@ const Course = () => {
           </div>
         </div>
 
-        <div className="md:p-5 p-2 pt-3 border-b-2 border-dashed rounded-b-xl">
+        <div
+          style={{
+            backgroundImage: "url(/topography.svg)",
+          }}
+          className="md:p-5 p-2 pt-3 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500  rounded-b-xl  "
+        >
           <div className="flex items-center justify-between gap-3 ">
-            <h3 className="font-medium text-[18px] leading-5 mt-1 hidden md:block">
+            <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-white ">
               {course.name}
             </h3>
             <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
               What if Jupiter never existed...
             </h3>
             <div className="min-w-[60px] hidden md:block">
-              <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
+              <p className="text-sm text-gray-200 flex items-center mt-2 gap-1 ">
                 <BiTime size={17} />
-                <span className="text-gray-800 font-semibold">
+                <span className="text-gray-200 font-semibold">
                   {course.duration}
                 </span>
               </p>
             </div>
           </div>
 
-          <p className="text-sm text-gray-500 font-fun mt-1 mb-1.5 tracking-[-2%] hidden md:block">
+          <p className="text-sm text-gray-300 font-josefin mt-2 mb-1.5 tracking-[-2%] hidden md:block">
             Join us on a mind-bending journey through an alternate solar
             system...
           </p>
 
           <div className="flex justify-between mt-1">
-            <p className="md:text-sm text-xs text-gray-800 flex items-center  ">
+            <p className="md:text-sm text-xs text-gray-300 flex items-center  ">
               Grade <BsDot />
-              <span className="text-gray-800">{course.garde}</span>
+              <span className="text-gray-300">{course.garde}</span>
             </p>
 
             <p className="text-sm text-gray-800 bg-white md:p-1.5 p-1 border md:px-5 px-2 rounded-full center md:gap-2 gap-1">
