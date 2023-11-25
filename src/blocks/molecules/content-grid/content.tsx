@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { type ContentType } from ".";
@@ -18,6 +20,9 @@ const course = {
 };
 
 const Content: React.FC<Props> = ({ type }) => {
+  const MotionLink = motion(Link);
+  const rocket = useAnimation();
+
   if (type == "comics") {
     return <Comics />;
   }
@@ -54,11 +59,11 @@ const Content: React.FC<Props> = ({ type }) => {
 
   if (type == "intros") {
     return (
-      <Link href="/dashboard/slug" className="rounded-xl ">
+      <MotionLink href="/dashboard/slug" className="rounded-xl ">
         <div className=" bg-white group border-[3px] border-green-500 border-b-[10px] rounded-b-md rounded-t-xl overflow-hidden">
           <div className="relative aspect-w-10 aspect-h-6 ">
             <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
-            <Progress />
+            {/* <Progress /> */}
           </div>
           <div className="md:px-5 md:py-2.5 md:pb-5 p-2 bg-green-50 ">
             <div className="flex items-center justify-between gap-3 font-heading ">
@@ -83,11 +88,32 @@ const Content: React.FC<Props> = ({ type }) => {
             </p>
           </div>
         </div>
-      </Link>
+      </MotionLink>
     );
   }
   return (
-    <Link href="/dashboard/slug" className="rounded-xl ">
+    <MotionLink
+      onHoverStart={() => {
+        rocket.start({
+          x: 0,
+          y: 0,
+          rotate: 420,
+          scale: 1,
+          transition: { duration: 1 },
+        });
+      }}
+      onHoverEnd={() => {
+        rocket.start({
+          x: 100,
+          y: 100,
+          rotate: 0,
+          scale: 0.5,
+          transition: { duration: 1 },
+        });
+      }}
+      href="/dashboard/slug"
+      className="rounded-xl "
+    >
       <div className="rounded-xl bg-white border-[3px] border-black group hover:bg-green-100 hover:scale-90 duration-200 ">
         <div className="relative aspect-w-10 aspect-h-6">
           <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
@@ -106,7 +132,18 @@ const Content: React.FC<Props> = ({ type }) => {
           </p>
         </div>
       </div>
-    </Link>
+      <motion.div
+        initial={{
+          x: 100,
+          y: 100,
+          scale: 0.5,
+        }}
+        animate={rocket}
+        className="absolute z-50 bottom-0"
+      >
+        <Image width={100} height={100} alt="n" src={"/5start.png"} />
+      </motion.div>
+    </MotionLink>
   );
 };
 
@@ -175,67 +212,90 @@ const Video = () => {
   );
 };
 import { IoPlay } from "react-icons/io5";
-
+import { motion, useAnimate, useAnimation } from "framer-motion";
 const Course = () => {
+  const MotionLink = motion(Link);
+  const rocket = useAnimation();
   return (
-    <Link href="/dashboard/course" className="rounded-xl">
-      <div className="rounded-xl bg-blue-800 font-heading group hover:scale-95 duration-200 shadow-sm">
-        <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
-          <Image src="/jupiter.jpg" alt="image" fill />
-          {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
+    <>
+      <MotionLink
+        onHoverStart={() => {
+          rocket.start({ x: 0, y: 0, transition: { duration: 1 } });
+        }}
+        onHoverEnd={() => {
+          rocket.start({ x: 100, y: 100, transition: { duration: 1 } });
+        }}
+        href="/dashboard/course"
+        className="rounded-xl"
+      >
+        <div className="rounded-xl bg-blue-800 font-heading group hover:scale-95 scale duration-200 shadow-sm">
+          <div className="relative aspect-w-10 aspect-h-6 rounded-2xl overflow-hidden">
+            <Image src="/jupiter.jpg" alt="image" fill />
+            {/* <div className="absolute top-2 right-2 bg-white z-50  px-3 py-1.5 rounded-full text-sm font-heading">
             Best Seller
           </div> */}
-          <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
-            <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
-              <IoPlay size={22} />
-            </button>
+            <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
+              <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
+                <IoPlay size={22} />
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div
-          style={{
-            backgroundImage: "url(/topography.svg)",
-          }}
-          className="md:p-5 p-2 pt-3 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500  rounded-b-xl  "
-        >
-          <div className="flex items-center justify-between gap-3 ">
-            <h3 className="font-medium text-2xl leading-6 mt-1 hidden md:block text-white ">
-              {course.name}
-            </h3>
-            <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
-              What if Jupiter never existed...
-            </h3>
-            <div className="min-w-[60px] hidden md:block">
-              <p className="text-sm text-gray-200 flex items-center mt-2 gap-1 ">
-                <BiTime size={17} />
-                <span className="text-gray-200 font-semibold">
-                  {course.duration}
+          <div
+            style={{
+              backgroundImage: "url(/topography.svg)",
+            }}
+            className="md:p-5 p-2 pt-3 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500  rounded-b-xl  "
+          >
+            <div className="flex items-center justify-between gap-3 ">
+              <h3 className="font-medium text-2xl leading-6 mt-1 hidden md:block text-white ">
+                {course.name}
+              </h3>
+              <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
+                What if Jupiter never existed...
+              </h3>
+              <div className="min-w-[60px] hidden md:block">
+                <p className="text-sm text-gray-200 flex items-center mt-2 gap-1 ">
+                  <BiTime size={17} />
+                  <span className="text-gray-200 font-semibold">
+                    {course.duration}
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-300 font-josefin mt-2 mb-1.5 tracking-[-2%] hidden md:block">
+              Join us on a mind-bending journey through an alternate solar
+              system...
+            </p>
+
+            <div className="flex justify-between mt-1">
+              <p className="md:text-sm text-xs text-gray-300 flex items-center  ">
+                Grade <BsDot />
+                <span className="text-gray-300">{course.garde}</span>
+              </p>
+
+              <p className="text-sm text-gray-800 bg-white md:p-1.5 p-1 border md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                <Image width={25} height={25} alt="123" src={"/coin3.png"} />
+                <span className="text-gray-800 font-medium md:text-md text-xs">
+                  {course.required_credits}
                 </span>
               </p>
             </div>
           </div>
-
-          <p className="text-sm text-gray-300 font-josefin mt-2 mb-1.5 tracking-[-2%] hidden md:block">
-            Join us on a mind-bending journey through an alternate solar
-            system...
-          </p>
-
-          <div className="flex justify-between mt-1">
-            <p className="md:text-sm text-xs text-gray-300 flex items-center  ">
-              Grade <BsDot />
-              <span className="text-gray-300">{course.garde}</span>
-            </p>
-
-            <p className="text-sm text-gray-800 bg-white md:p-1.5 p-1 border md:px-5 px-2 rounded-full center md:gap-2 gap-1">
-              <Image width={25} height={25} alt="123" src={"/coin3.png"} />
-              <span className="text-gray-800 font-medium md:text-md text-xs">
-                {course.required_credits}
-              </span>
-            </p>
-          </div>
         </div>
-      </div>
-    </Link>
+        <motion.div
+          initial={{
+            x: 100,
+            y: 100,
+          }}
+          animate={rocket}
+          className="absolute z-50 bottom-0"
+        >
+          <Image width={100} height={100} alt="n" src={"/astro-riding.webp"} />
+        </motion.div>
+      </MotionLink>
+    </>
   );
 };
 
