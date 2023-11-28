@@ -1,40 +1,23 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Tooltip } from "@mantine/core";
 const levels = [16, 32, 48, 64, 80, 96];
 
-const svgPaths = {
-  xl: "M1 41.3104C1 41.3104 87.4994 -11.9027 174.477 41.3104C261.454 94.5235 339.351 83.2359 386.185 41.3104C433.019 -0.61504 508.527 -23.0955 588.814 41.3104C669.1 105.716 801 41.3104 801 41.3104",
-  md: "M1 41.3104C1 41.3104 65.8746 -11.9027 131.108 41.3104C196.34 94.5235 254.764 83.2359 289.889 41.3104C325.014 -0.61504 381.645 -23.0955 441.86 41.3104C502.075 105.716 601 41.3104 601 41.3104",
-  sm: "M1 41.251C1 41.251 38.8435 -11.8838 76.896 41.251C114.949 94.3858 149.029 83.1148 169.519 41.251C190.008 -0.612723 223.043 -23.0601 258.168 41.251C293.294 105.562 351 41.251 351 41.251",
+const tooltip: any = {
+  16: "Name",
+  32: "Grade",
+  48: "Birthday",
+  64: "Mobile",
+  80: "Location",
+  96: "Avatar",
 };
 
-const GalaxyPath = ({ initialProgress }: any) => {
+const GalaxyPath = ({ initialProgress, path }: any) => {
   const animated = () => {};
-
   return (
     <div>
-      <div className="block md:hidden">
-        <Path
-          path={svgPaths.sm}
-          animated={animated}
-          progress={initialProgress}
-        />
-      </div>
-      <div className="hidden md:block xl:hidden">
-        <Path
-          path={svgPaths.md}
-          animated={animated}
-          progress={initialProgress}
-        />
-      </div>
-      <div className="hidden xl:block">
-        <Path
-          path={svgPaths.xl}
-          animated={animated}
-          progress={initialProgress}
-        />
-      </div>
+      <Path path={path} animated={animated} progress={initialProgress} />
     </div>
   );
 };
@@ -45,20 +28,17 @@ const Path = ({ progress, animated, path }: any) => {
   return (
     <div
       id="svg-wrapper"
-      style={{
-        backgroundImage: "url('/spaca-bg.avif')",
-      }}
-      className="relative w-full overflow-hidden rounded-xl xl:py-14 xl:h-[200px] py-10 h-[150px]"
+      className="relative w-full overflow-hidden rounded-xl py-20 h-[360px]"
     >
       <svg height="" version="1.1" className="block w-full absolute">
         <motion.path
           d={path}
-          stroke="white"
+          stroke="whitesmoke"
           stroke-width="3"
           fill="transparent"
           strokeOpacity={0.8}
           strokeLinecap="round"
-          strokeDasharray={"5"}
+          strokeDasharray={"15"}
         ></motion.path>
       </svg>
 
@@ -75,20 +55,29 @@ const Path = ({ progress, animated, path }: any) => {
 
 const Level = ({ progress, number, path }: any) => {
   return (
-    <motion.div
-      onClick={() => {
-        console.log("here");
-      }}
-      className="rounded-full absolute z-50 w-[20px] h-[20px] md:w-[30px] md:h-[30px]"
-      style={{
-        offsetDistance: `${progress}%`,
-        offsetPath: `path('${path}')`,
-      }}
-    >
-      <div className="w-full h-full border border-[#00ABED] bg-white rounded-full center font-game font-semibold text-xs  ">
-        {number}
-      </div>
-    </motion.div>
+    <Tooltip withArrow label={tooltip[progress]}>
+      <motion.div
+        onClick={() => {
+          console.log("here");
+        }}
+        whileHover={{
+          scale: 1.2,
+        }}
+        whileTap={{
+          scale: 0.9,
+        }}
+        className="rounded-full cursor-pointer absolute z-50 w-[20px] h-[20px] md:w-[60px] md:h-[60px] border p-1 border-indigo-300"
+        style={{
+          rotate: realign(progress),
+          offsetPath: `path('${path}')`,
+          offsetDistance: `${progress}%`,
+        }}
+      >
+        <div className="w-full text-2xl h-full shadow-xl text-white border bg-white rounded-full center --font-game font-semibold bg-gradient-to-t from-blue-500 to-indigo-500  ">
+          {number}
+        </div>
+      </motion.div>
+    </Tooltip>
   );
 };
 
@@ -99,9 +88,10 @@ const Passenger = ({ progress, animated, path }: any) => {
       offsetPath: `path('${path}')`,
     },
     animate: {
+      rotate: realign(progress),
       offsetDistance: `${progress}%`,
       transition: {
-        duration: 1,
+        duration: 2,
       },
     },
   };
@@ -111,9 +101,21 @@ const Passenger = ({ progress, animated, path }: any) => {
       initial="initial"
       variants={varients}
       onAnimationComplete={animated}
-      className="rounded-full absolute z-50 w-[60px] h-[40px] md:w-[80px] md:h-[50px] drop-shadow-2xl"
+      className="rounded-full absolute z-50 w-[60px] h-[40px] md:w-[100px] md:h-[60px] drop-shadow-2xl"
     >
       <Image fill alt="iamge" src={"/ship.png"} className="rounded-full" />
     </motion.div>
   );
+};
+
+const realign = (progress: number) => {
+  const t: any = {
+    16: -15,
+    32: 45,
+    48: -15,
+    64: 40,
+    80: -20,
+    96: 40,
+  };
+  return t[progress];
 };

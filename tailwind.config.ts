@@ -14,6 +14,8 @@ const config: Config = {
         "sans": ['Quicksand', 'monospace'],
         "heading": ['Gabarito', 'monospace'],
         "josefin": ["Josefin Sans", "monospace"],
+        "one": ["Lilita One", "monospace"],
+
       }
     },
   },

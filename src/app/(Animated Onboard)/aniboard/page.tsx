@@ -85,7 +85,7 @@ const Path = ({ state, animated }: any) => {
       >
         <motion.path
           d={curveyPath}
-          stroke-width="3"
+          strokeWidth="3"
           stroke="gray"
           fill="transparent"
           strokeLinecap="round"
