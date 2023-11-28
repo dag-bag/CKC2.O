@@ -12,22 +12,22 @@ export default function Newboard() {
     <div id="newboard_wrapper">
       <Canvas progress={configuration?.progress} />
       <motion.div id="newboard_main">
-        <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9 gap-10 border">
-          <h1 className=" font-josefin  font-bold lg:text-5xl text-3xl leading-14">
+        <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9  border">
+          <h1 className=" font-josefin  font-bold lg:text-5xl md:text-2xl text-xl leading-14">
             {configuration?.question}
           </h1>
-          <>
+          <div className="py-5">
             {pathname == "/newboard/name" && <NameAction />}
             {pathname == "/newboard/grade" && <GradeAction />}
             {pathname == "/newboard/mobile" && <MobileAction />}
             {pathname == "/newboard/location" && <LocationAction />}
             {pathname == "/newboard/birthday" && <BirthdateAction />}
             {pathname == "/newboard/avatar" && <AvatarSelectionAction />}
-          </>
-          <div>
+          </div>
+          <div className="">
             <Link
               href={configuration?.nextPath}
-              className="bg-blue-500 md:px-16 px-14 md:py-4 py-4 rounded-full text-white text-lg shadow-lg"
+              className="bg-blue-500 w-[120px] center  h-[48px] rounded-full text-white md:text-lg shadow-lg"
             >
               Next
             </Link>
@@ -62,7 +62,7 @@ const Input = ({ placeholder, type }: any) => {
       <input
         type={type}
         placeholder={placeholder}
-        className="border-none outline-none bg-transparent md:placeholder:text-lg text-lg"
+        className="border-none outline-none bg-transparent md:placeholder:text-lg"
       />
     </div>
   );
@@ -84,7 +84,7 @@ export const GradeAction = () => {
     <div className="flex flex-wrap md:gap-5 gap-2">
       {grades.map((grade) => (
         <button
-          className="w-[60px] h-[60px] bg-blue-50 rounded-full border-b-2 border-blue-500 text-xl"
+          className="md:w-[60px] md:h-[60px] w-[55px] h-[55px] bg-blue-50 rounded-full border-b-2 border-blue-500 text-xl"
           key={grade}
         >
           {grade}
@@ -93,7 +93,6 @@ export const GradeAction = () => {
     </div>
   );
 };
-
 export const BirthdateAction = () => {
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
@@ -133,7 +132,20 @@ export const AvatarSelectionAction = () => {
           key={avatarURL}
           className="rounded-full border-b-[3px] border-blue-500 drop-shadow-xl overflow-hidden"
         >
-          <Image alt={avatarURL} src={avatarURL} width={100} height={100} />
+          <Image
+            alt={avatarURL}
+            src={avatarURL}
+            width={100}
+            height={100}
+            className="hidden md:block"
+          />
+          <Image
+            alt={avatarURL}
+            src={avatarURL}
+            width={80}
+            height={80}
+            className="block md:hidden"
+          />
         </button>
       ))}
     </div>

@@ -22,7 +22,7 @@ export const data: any = {
     "/newboard/location": {
         progress: 80,
         nextPath: "/newboard/avatar",
-        question: "We'd like to know more about your location in the Cosmic galaxy!  🌍✨ ",
+        question: "What's your location in the Cosmic galaxy!  🌍✨ ",
     },
     "/newboard/avatar": {
         progress: 96,
