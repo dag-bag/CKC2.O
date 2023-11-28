@@ -28,7 +28,7 @@ const Path = ({ progress, animated, path }: any) => {
   return (
     <div
       id="svg-wrapper"
-      className="relative w-full overflow-hidden rounded-xl py-20 h-[360px]"
+      className="relative w-full overflow-hidden rounded-xl md:py-20 pt-12 h-[280px]"
     >
       <svg height="" version="1.1" className="block w-full absolute">
         <motion.path
@@ -66,14 +66,14 @@ const Level = ({ progress, number, path }: any) => {
         whileTap={{
           scale: 0.9,
         }}
-        className="rounded-full cursor-pointer absolute z-50 w-[20px] h-[20px] md:w-[60px] md:h-[60px] border p-1 border-indigo-300"
+        className="rounded-full cursor-pointer absolute z-50 w-[40px] h-[40px] md:w-[60px] md:h-[60px] border p-1 border-indigo-300"
         style={{
           rotate: realign(progress),
           offsetPath: `path('${path}')`,
           offsetDistance: `${progress}%`,
         }}
       >
-        <div className="w-full text-2xl h-full shadow-xl text-white border bg-white rounded-full center --font-game font-semibold bg-gradient-to-t from-blue-500 to-indigo-500  ">
+        <div className="w-full lg:text-2xl h-full shadow-xl text-white border bg-white rounded-full center --font-game font-semibold bg-gradient-to-t from-blue-500 to-indigo-500  ">
           {number}
         </div>
       </motion.div>

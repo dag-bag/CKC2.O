@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useViewportSize } from "@mantine/hooks";
 import GalaxyPath from "@/blocks/molecules/galaxypath";
 import { responsiveCurveGeneration } from "@/libs/curve-generation";

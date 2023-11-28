@@ -20,8 +20,8 @@ export const responsiveCurveGeneration = (w: number) => {
   ]);
 
   const object = curveFromToPoints.map(([sx, ex]) => {
-    const cp1x = sx + (ex - sx) * (1 / 3); // Formula for the first control point's x-coordinate
-    const cp2x = sx + (ex - sx) * (2 / 3); // Formula for the second control point's x-coordinate
+    const cp1x = sx + (ex - sx) * (1 / 5); // Formula for the first control point's x-coordinate
+    const cp2x = sx + (ex - sx) * (2 / 5); // Formula for the second control point's x-coordinate
     return {
       end: { x: ex, y: 50 },
       start: { x: sx, y: 50 },

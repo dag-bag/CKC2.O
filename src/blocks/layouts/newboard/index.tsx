@@ -12,8 +12,8 @@ export default function Newboard() {
     <div id="newboard_wrapper">
       <Canvas progress={configuration?.progress} />
       <motion.div id="newboard_main">
-        <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9  border">
-          <h1 className=" font-josefin  font-bold lg:text-5xl md:text-2xl text-xl leading-14">
+        <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9">
+          <h1 className=" font-josefin font-bold lg:text-5xl md:text-2xl text-2xl leading-14">
             {configuration?.question}
           </h1>
           <div className="py-5">
