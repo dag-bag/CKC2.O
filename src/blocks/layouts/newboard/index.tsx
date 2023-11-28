@@ -56,10 +56,11 @@ const Logo = () => {
   );
 };
 
-const Input = ({ placeholder, type }: any) => {
+const Input = ({ placeholder, type, name }: any) => {
   return (
     <div className="md:h-[60px] h-[50px] inline-flex items-center md:px-10 px-5 border-b-2 border-blue-500 bg-blue-50">
       <input
+        name={name}
         type={type}
         placeholder={placeholder}
         className="border-none outline-none bg-transparent md:placeholder:text-lg"
@@ -72,8 +73,8 @@ const Input = ({ placeholder, type }: any) => {
 export const NameAction = () => {
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input placeholder="First Name" />
-      <Input placeholder="Last Name" />
+      <Input name={"first_name"} placeholder="First Name" />
+      <Input name={"last_name"} placeholder="Last Name" />
     </div>
   );
 };
@@ -96,7 +97,7 @@ export const GradeAction = () => {
 export const BirthdateAction = () => {
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input placeholder="Birthdate" type="date" />
+      <Input name="date_of_birth" placeholder="Birthdate" type="date" />
     </div>
   );
 };
@@ -104,7 +105,7 @@ export const BirthdateAction = () => {
 export const MobileAction = () => {
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input placeholder="Mobile Number" type="number" />
+      <Input name="phone" placeholder="Mobile Number" type="number" />
     </div>
   );
 };
@@ -112,9 +113,9 @@ export const MobileAction = () => {
 export const LocationAction = () => {
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input placeholder="City" />
-      <Input placeholder="State" />
-      <Input placeholder="Country" />
+      <Input name="city" placeholder="City" />
+      <Input name="state" placeholder="State" />
+      <Input name="country" placeholder="Country" />
     </div>
   );
 };
