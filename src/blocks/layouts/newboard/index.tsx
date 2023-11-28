@@ -56,13 +56,15 @@ const Logo = () => {
   );
 };
 
-const Input = ({ placeholder, type, name }: any) => {
+const Input = ({ placeholder, type, name, value, ...props }: any) => {
   return (
     <div className="md:h-[60px] h-[50px] inline-flex items-center md:px-10 px-5 border-b-2 border-blue-500 bg-blue-50">
       <input
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
+        {...props}
         className="border-none outline-none bg-transparent md:placeholder:text-lg"
       />
     </div>
