@@ -10,6 +10,7 @@ export default function Newboard() {
   const configuration = data[pathname];
   return (
     <div id="newboard_wrapper">
+      <Logo />
       <Canvas progress={configuration?.progress} />
       <motion.div id="newboard_main">
         <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9">
@@ -50,7 +51,7 @@ const Model = () => {
 
 const Logo = () => {
   return (
-    <div className="absolute bottom-8 left-5 h-[80px] w-[110px] ">
+    <div className="absolute md:bottom-8 md:top-auto md:left-5 top-2 md:h-[80px] md:w-[110px] h-[40px] w-[55px]  z-50">
       <Image alt="running" src={"/logo.png"} fill />
     </div>
   );
