@@ -25,7 +25,7 @@ export default function Newboard() {
             {pathname == "/newboard/birthday" && <BirthdateAction />}
             {pathname == "/newboard/avatar" && <AvatarSelectionAction />}
           </div>
-          <div className="">
+          <div className="flex">
             <Link
               href={configuration?.nextPath}
               className="bg-blue-500 w-[120px] center  h-[48px] rounded-full text-white md:text-lg shadow-lg"
@@ -34,8 +34,8 @@ export default function Newboard() {
             </Link>
           </div>
         </div>
-        {/* <Model /> */}
-        {/* <Logo /> */}
+        <Model />
+        <Logo />
       </motion.div>
     </div>
   );
@@ -43,8 +43,8 @@ export default function Newboard() {
 
 const Model = () => {
   return (
-    <div className="absolute bottom-10 right-10 lg:h-[300px] lg:w-[300px] w-[150px] h-[150px] ">
-      <Image alt="running" src={"/running.png"} fill />
+    <div className="absolute bottom-0 right-0 lg:h-[300px] lg:w-[350px] w-[170px] h-[150px] ">
+      <Image alt="running" src={"/run-astro.png"} fill />
     </div>
   );
 };
