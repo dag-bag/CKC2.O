@@ -13,8 +13,8 @@ export default function Newboard() {
       <Logo />
       <Canvas progress={configuration?.progress} />
       <motion.div id="newboard_main">
-        <div className="max-w-6xl mx-auto md:p-10 p-5 lg:mt-12 grid md:gap-9">
-          <h1 className=" font-josefin font-bold lg:text-5xl md:text-2xl text-2xl leading-14">
+        <div className="max-w-6xl mx-auto md:p-10 p-5 xl:mt-5 grid md:gap-2">
+          <h1 className=" font-josefin font-bold xl:text-4xl md:text-2xl lg:text-4xl text-2xl leading-14">
             {configuration?.question}
           </h1>
           <div className="py-5">
@@ -35,7 +35,6 @@ export default function Newboard() {
           </div>
         </div>
         <Model />
-        <Logo />
       </motion.div>
     </div>
   );
@@ -51,7 +50,7 @@ const Model = () => {
 
 const Logo = () => {
   return (
-    <div className="absolute md:bottom-8 md:top-auto md:left-5 top-2 md:h-[80px] md:w-[110px] h-[40px] w-[55px]  z-50">
+    <div className="absolute  md:left-0 md:top-3  top-2 md:h-[70px] md:w-[95px] h-[40px] w-[55px]  z-50">
       <Image alt="running" src={"/logo.png"} fill />
     </div>
   );
