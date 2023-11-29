@@ -27,7 +27,7 @@ const CourseCard = () => {
   };
 
   const handleHoverEnd = () => {
-    rocket.start({ x: 100, y: 100, transition: { duration: 1 } });
+    rocket.start({ ...initial, transition: { duration: 1 } });
   };
 
   return (
