@@ -1,7 +1,6 @@
 import Container from "@/blocks/UI/PageContainer";
 import ContentGrid from "@/blocks/molecules/content-grid";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import Content from "@/blocks/molecules/content-grid/content";
 const DashboardPage = () => {
   return (
     <Container gridType="single">
@@ -9,18 +8,8 @@ const DashboardPage = () => {
         <BannerCarousel />
       </div>
       <ContentGrid title="Continue Watching" />
-      {/* <InContentAdvertisement /> */}
       <ContentGrid title="Start Learning" type="course" />
-      <ContentGrid title="Watch Videos" type="video" />
-
       <ContentGrid type="intros" title="How it works" />
-
-      <div className="grid xl:grid-cols-3 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-2 gap-5 px-2">
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-      </div>
     </Container>
   );
 };

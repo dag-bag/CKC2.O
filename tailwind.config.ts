@@ -3,7 +3,7 @@ import type { Config } from 'tailwindcss'
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/blocks/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/blocks/**/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
@@ -15,6 +15,8 @@ const config: Config = {
         "heading": ['Gabarito', 'monospace'],
         "josefin": ["Josefin Sans", "monospace"],
         "one": ["Lilita One", "monospace"],
+        "amar": ["Amaranth", "monospace"],
+
 
       }
     },

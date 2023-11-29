@@ -1,15 +1,24 @@
 "use client";
-
+import Image from "next/image";
 import Button from "./LinkButton";
+import { LeftButton2 } from "./LinkButton";
+const Logo = () => {
+  return (
+    <div className="relative md:h-[70px] md:w-[95px] h-[40px] w-[55px] z-50 my-2 mx-auto">
+      <Image alt="running" src={"/logo.png"} fill />
+    </div>
+  );
+};
 
 const LeftAside = () => {
   return (
-    <aside className="hidden px-5 md:flex flex-col pt-[80px] gap-2 bg-white">
+    <aside className="hidden px-5 md:flex flex-col  gap-2 bg-white">
+      <Logo />
       {primary_layout_left_buttons.map(({ title, Icon, hrefs }) => (
         <Button
+          Icon={Icon}
           key={title}
           title={title}
-          Icon={Icon}
           href={hrefs.at(0) as any}
         />
       ))}

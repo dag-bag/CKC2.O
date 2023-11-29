@@ -57,9 +57,14 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   return (
-    <div className={`py-5 my-2 px-2`}>
+    <div className={`md:py-5 my-3 px-2`}>
       <div className="flex items-center justify-between md:mb-4 mb-2 pl-2 ">
-        <h3 className="md:text-2xl text-lg font-bold tracking-medium font-josefin text-gray-800">
+        <h3
+          style={{
+            textShadow: "2px 2px 2px #18007ac6",
+          }}
+          className="md:text-3xl text-lg font-semibold tracking-medium font-amar tracking-wide text-white"
+        >
           {title}
         </h3>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />

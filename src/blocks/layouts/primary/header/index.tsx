@@ -1,16 +1,15 @@
-import Cart from "@/blocks/molecules/cart";
-import { RiAddFill } from "react-icons/ri";
-import Notification from "./Notification";
+import Image from "next/image";
+import { LuAlignRight } from "react-icons/lu";
 import Profile from "@/blocks/atoms/Profilebar";
-import SearchBar from "@/blocks/molecules/Searchbar";
+import SearchBar from "@/blocks/molecules/searchbar";
 
 const Header = () => {
   return (
     <>
       <MobileHeader />
-      <header className=" hidden md:flex  fixed top-0 w-[calc(100vw-250px)] h-[80px] z-50 bg-blue-50 bg-opacity-80 backdrop-blur-sm  items-center gap-3">
+      <header className="hidden md:flex fixed top-0 w-[calc(100vw-250px)] h-[80px] z-50 bg-white bg-opacity-90 backdrop-blur-sm items-center gap-3">
         <div className="flex items-center max-w-[1440px] 2xl:min-w-[1440px] w-full mx-auto px-2">
-          <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between">
             <SearchBar />
           </div>
           <div className="flex items-center justify-end ml-auto gap-5">
@@ -22,13 +21,12 @@ const Header = () => {
     </>
   );
 };
-import { LuAlignRight } from "react-icons/lu";
 
 const MobileHeader = () => {
   return (
     <header
       id="mobile-header"
-      className=" h-[80px] flex md:hidden items-center justify-between fixed top-0 left-0 w-full  bg-white bg-opacity-80 backdrop-blur-sm z-50 pl-3 pr-5"
+      className="h-[80px] flex md:hidden items-center justify-between fixed top-0 left-0 w-full bg-white bg-opacity-80 backdrop-blur-sm z-50 pl-3 pr-5"
     >
       <Profile />
       <div className="flex items-center gap-2">
@@ -43,7 +41,6 @@ const MobileHeader = () => {
 
 export default Header;
 
-import Image from "next/image";
 const MyBalance = () => {
   return (
     <div className="h-[45px]  flex items-center rounded-full px-5 bg-white ">

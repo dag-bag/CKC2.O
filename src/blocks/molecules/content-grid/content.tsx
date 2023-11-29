@@ -9,7 +9,7 @@ interface Props {
 }
 
 import { BiTime } from "react-icons/bi";
-
+import CourseCard from "../cards/Course";
 import Live from "./types/Live";
 
 const course = {
@@ -21,7 +21,6 @@ const course = {
 
 const Content: React.FC<Props> = ({ type }) => {
   const MotionLink = motion(Link);
-  const rocket = useAnimation();
 
   if (type == "comics") {
     return <Comics />;
@@ -50,102 +49,17 @@ const Content: React.FC<Props> = ({ type }) => {
   }
 
   if (type == "course") {
-    return <Course />;
+    return <CourseCard />;
   }
 
   if (type == "video") {
     return <Video />;
   }
 
-  if (type == "intros") {
-    return (
-      <MotionLink href="/dashboard/slug" className="rounded-xl ">
-        <div className=" bg-white group border-[3px] border-green-500 border-b-[10px] rounded-b-md rounded-t-xl overflow-hidden">
-          <div className="relative aspect-w-10 aspect-h-6 ">
-            <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
-            {/* <Progress /> */}
-          </div>
-          <div className="md:px-5 md:py-2.5 md:pb-5 p-2 bg-green-50 ">
-            <div className="flex items-center justify-between gap-3 font-heading ">
-              <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-black ">
-                How to do challanges in Ckc?
-              </h3>
-              <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
-                How to do challanges in CKC?
-              </h3>
-              <div className="min-w-[60px] hidden md:block">
-                <p className="text-sm text-gray-800 flex items-center mt-2 gap-1 ">
-                  <BiTime size={17} />
-                  <span className="text-gray-800 font-semibold">
-                    {course.duration}
-                  </span>
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 font-josefin mt-1.5 hidden md:block  ">
-              Embark on an exciting adventure to the final frontier with the
-              concept...
-            </p>
-          </div>
-        </div>
-      </MotionLink>
-    );
-  }
-  return (
-    <MotionLink
-      onHoverStart={() => {
-        rocket.start({
-          x: 0,
-          y: 0,
-          rotate: 420,
-          scale: 1,
-          transition: { duration: 1 },
-        });
-      }}
-      onHoverEnd={() => {
-        rocket.start({
-          x: 100,
-          y: 100,
-          rotate: 0,
-          scale: 0.5,
-          transition: { duration: 1 },
-        });
-      }}
-      href="/dashboard/slug"
-      className="rounded-xl "
-    >
-      <div className="rounded-xl bg-white border-[3px] border-black group hover:bg-green-100 hover:scale-90 duration-200 ">
-        <div className="relative aspect-w-10 aspect-h-6">
-          <Image src="/94311_SpaceElevator.jpg" alt="image" fill />
-          <Progress />
-        </div>
-        <div className="md:px-5 md:py-2.5 md:pb-5 p-2 ">
-          <h3 className="font-medium text-xl leading-5 mt-1 hidden md:block text-black ">
-            How to do challanges in Ckc?
-          </h3>
-          <h3 className="font-medium text-sm leading-5 mt-1 block md:hidden">
-            How to do challanges in CKC?
-          </h3>
-          <p className="text-sm text-gray-600 font-josefin mt-1.5 hidden md:block  ">
-            Embark on an exciting adventure to the final frontier with the
-            concept...
-          </p>
-        </div>
-      </div>
-      <motion.div
-        initial={{
-          x: 100,
-          y: 100,
-          scale: 0.5,
-        }}
-        animate={rocket}
-        className="absolute z-50 bottom-0"
-      >
-        <Image width={100} height={100} alt="n" src={"/5start.png"} />
-      </motion.div>
-    </MotionLink>
-  );
+  return <WatchedCard />;
 };
+
+import WatchedCard from "../cards/Watched";
 
 const Progress = () => (
   <div className="h-1 absolute top-[98.5%] left-0 w-full">
@@ -213,7 +127,7 @@ const Video = () => {
 };
 import { IoPlay } from "react-icons/io5";
 import { motion, useAnimate, useAnimation } from "framer-motion";
-const Course = () => {
+const Coursesss = () => {
   const MotionLink = motion(Link);
   const rocket = useAnimation();
   return (
