@@ -1,10 +1,10 @@
 const course = {
   garde: "6th",
-  required_credits: "1,459",
   duration: "10 M",
+  thumbnail: "/jupiter.jpg",
+  required_credits: "1,459",
   name: "What if Jupiter never existed in our solar system?",
   desc: "Join us on a mind-bending journey through an alternate solar system...",
-  thumbnail: "/jupiter.jpg",
 };
 
 const initial = {
@@ -36,8 +36,9 @@ const CourseCard = () => {
         href="/dashboard/course"
         onHoverEnd={handleHoverEnd}
         onHoverStart={handleHoverStart}
+        className="overflow-hidden"
       >
-        <div className="bg-white font-heading group hover:scale-95 scale duration-200 shadow-sm">
+        <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-sm">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
             <Image src={course.thumbnail} alt={course.name} fill />
             {/* play button  */}
@@ -77,9 +78,17 @@ const CourseCard = () => {
         <motion.div
           animate={rocket}
           initial={initial}
+          style={{
+            pointerEvents: "none",
+          }}
           className="absolute z-50 bottom-0"
         >
-          <Image width={100} height={100} alt="n" src={"/astro-riding.webp"} />
+          <Image
+            width={100}
+            height={100}
+            alt="n"
+            src={getRandomString(["/astro-riding.webp", "/planet.png"])}
+          />
         </motion.div>
       </MotionLink>
     </>
@@ -96,3 +105,16 @@ export default CourseCard;
 //   </span>
 // </p>
 // </div>
+
+function getRandomString(arr: string[]): string {
+  // Check if the array is empty
+  if (arr.length === 0) {
+    return "Array is empty";
+  }
+
+  // Generate a random index within the array length
+  const randomIndex: number = Math.floor(Math.random() * arr.length);
+
+  // Return the randomly selected string
+  return arr[randomIndex];
+}
