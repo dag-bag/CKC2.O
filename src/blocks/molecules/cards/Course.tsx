@@ -8,8 +8,8 @@ const course = {
 };
 
 const initial = {
-  x: 100,
-  y: 100,
+  x: 120,
+  y: 120,
 };
 
 import Link from "next/link";
@@ -38,7 +38,7 @@ const CourseCard = () => {
         onHoverStart={handleHoverStart}
         className="overflow-hidden"
       >
-        <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-sm">
+        <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
             <Image src={course.thumbnail} alt={course.name} fill />
             {/* play button  */}

@@ -70,9 +70,12 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
       </div>
       <Carousel
+        classNames={{
+          container: "py-3",
+        }}
         align="start"
         slideGap={"lg"}
-        draggable={false}
+        // draggable={false}
         slidesToScroll={2}
         slideSize={grid_content_columns_size}
         nextControlProps={
@@ -106,7 +109,7 @@ export default ContentGrid;
 
 const Controller = ({ handleControllerRight, handleControllerLeft }: any) => {
   return (
-    <div className="grid grid-cols-2 w-[50px]">
+    <div className="grid grid-cols-2 w-[50px] text-white">
       <button onClick={handleControllerLeft}>
         <HiMiniChevronLeft size={22} />
       </button>
