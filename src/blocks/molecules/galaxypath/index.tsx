@@ -28,7 +28,13 @@ const GalaxyPath = ({ initialProgress, path }: any) => {
         </svg>
 
         {levels.map((lvl, i) => (
-          <Level key={i} number={i + 1} progress={lvl} path={path} />
+          <Level
+            key={i}
+            number={i + 1}
+            progress={lvl}
+            path={path}
+            initial={initialProgress}
+          />
         ))}
         <CosmicHome progress={96} path={path} />
         <Passenger animated={animated} progress={initialProgress} path={path} />
@@ -57,7 +63,7 @@ const CosmicHome = ({ progress, path }: any) => {
 export const realign = (progress: number) => {
   const t: any = {
     16: -15,
-    32: 45,
+    32: 35,
     48: -15,
     64: 40,
     80: -20,
