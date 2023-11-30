@@ -18,7 +18,7 @@ import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { motion, useAnimation } from "framer-motion";
 
-const CourseCard = () => {
+const VideoCard = () => {
   const rocket = useAnimation();
   const MotionLink = motion(Link);
 
@@ -41,7 +41,6 @@ const CourseCard = () => {
         <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
             <Image src={course.thumbnail} alt={course.name} fill />
-            {/* play button  */}
             <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
               <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
                 <IoPlay size={22} />
@@ -92,7 +91,7 @@ const CourseCard = () => {
   );
 };
 
-export default CourseCard;
+export default VideoCard;
 
 // <div className="min-w-[60px] hidden md:block">
 // <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">

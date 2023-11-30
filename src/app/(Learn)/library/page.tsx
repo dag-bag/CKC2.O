@@ -1,4 +1,5 @@
 import Container from "@/blocks/UI/PageContainer";
+import Content from "@/blocks/molecules/content-grid/content";
 const DashboardPage = () => {
   return (
     <Container gridType="single">
@@ -16,6 +17,3 @@ const DashboardPage = () => {
   );
 };
 export default DashboardPage;
-
-import { useState } from "react";
-import Content from "@/blocks/molecules/content-grid/content";

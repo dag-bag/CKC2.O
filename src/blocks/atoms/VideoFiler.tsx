@@ -1,22 +1,24 @@
 "use client";
-import Link from "next/link";
 import clsx from "clsx";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RiBook2Fill, RiLiveFill } from "react-icons/ri";
 
 const VideoAndComicsFilter = () => {
   const path = usePathname();
-  const isComics = path === "/library/comics";
   const isVideos = path === "/library";
+  const isComics = path === "/library/comics";
 
   return (
-    <div className="py-5 flex gap-5">
-      <Button active={isComics} href={"/library/comics"} Icon={RiBook2Fill}>
-        Comics
-      </Button>
-      <Button active={isVideos} href={"/library"} Icon={RiLiveFill}>
-        Videos
-      </Button>
+    <div className="py-5">
+      <div className="inline-flex gap-5 bg-white p-1 rounded-full">
+        <Button active={isComics} href={"/library/comics"} Icon={RiBook2Fill}>
+          Comics
+        </Button>
+        <Button active={isVideos} href={"/library"} Icon={RiLiveFill}>
+          Videos
+        </Button>
+      </div>
     </div>
   );
 };
@@ -26,8 +28,9 @@ const Button = ({ active, href, Icon, children }: any) => {
     <Link href={href} passHref>
       <div
         className={clsx(
-          "px-10 py-2.5 rounded-xl flex justify-between gap-5 text-black border",
-          active && " bg-[#2FB2AB]  drop-shadow-lg"
+          "px-10 py-2.5 rounded-full flex justify-between gap-5 text-black font-amar",
+          active &&
+            " bg-gradient-to-t from-blue-700 to-blue-500  drop-shadow-lg"
         )}
       >
         <div className="flex gap-2">
@@ -36,16 +39,12 @@ const Button = ({ active, href, Icon, children }: any) => {
           </div>
           <div>
             <h3
-              className={clsx(
-                "text-md font-heading text-gray-700",
-                active && "text-white"
-              )}
+              className={clsx("text-lg text-gray-700", active && "text-white")}
             >
               {children}
             </h3>
           </div>
         </div>
-        <div className="center">{/* <FiChevronRight color="gray" /> */}</div>
       </div>
     </Link>
   );
