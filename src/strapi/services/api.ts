@@ -6,12 +6,16 @@ const Comics = async (action: Action): Promise<ComicBook[]> => {
   return fetchData("comics", action);
 };
 
-export { Comics };
+export { Comics, Videos };
 
 // courses.ts
 
 const Courses = async (action: Action) => {
   return fetchData("courses", action, COURSES_P);
+};
+
+const Videos = async (action: Action) => {
+  return fetchData("videos", action, COURSES_P);
 };
 
 export { Courses };

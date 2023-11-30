@@ -1,19 +1,14 @@
-import Container from "@/blocks/UI/PageContainer";
-import Content from "@/blocks/molecules/content-grid/content";
-const DashboardPage = () => {
+import { Videos } from "@/strapi/services/api";
+import VideoCard from "@/blocks/molecules/cards/Video";
+
+const DashboardPage = async () => {
+  const data = await Videos({ type: "GET" });
   return (
-    <Container gridType="single">
-      <section className="grid grid-cols-4 gap-3">
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-        <Content type="video" />
-      </section>
-    </Container>
+    <section className="grid grid-cols-4 gap-3">
+      {data.map((video: any) => (
+        <VideoCard key={video.id} {...video} />
+      ))}
+    </section>
   );
 };
 export default DashboardPage;
