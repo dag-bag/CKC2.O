@@ -1,6 +1,9 @@
 import { BiSearchAlt, BiPlayCircle, BiInfoCircle } from "react-icons/bi";
 import { RiFilter3Line } from "react-icons/ri";
 import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
+import DiscoveryCard from "@/blocks/molecules/cards/Discovery";
+
+import Categorizer from "@/blocks/molecules/categorizer";
 
 const Banner = () => {
   return (
@@ -57,28 +60,21 @@ const DiscoveryJarPage = () => {
           </div>
         </div>
 
-        {/* <div className="flex flex-col justify-center rounded-xl px-20 h-[330px] items-center mb-10">
-            <div className="max-w-2xl mx-auto center flex-col">
-              <p className="text-2xl font-medium mb-5">Discovery Jar Curiosity</p>
-              <h1 className="text-5xl font-bold  font-heading text-center mb-4">
-                Ask Questions & get <br /> detailed solutions
-              </h1>
-              <p className="text-center text-lg mb-5  text-gray-600">
-                Welcome to <b className="text-green-500">DISCOVERY JAR</b>, where
-                your curiosity takes center stage. Share your video questions and
-                get featured in the world of knowledge and exploration. Ask away!
-              </p>
-            </div>
-            <div className="flex gap-5">
-              <DiscoveryJarPopup />
-              <button className="btn !bg-transparent text-white--- underline">
-                How it works?
-              </button>
-            </div>
-          </div> */}
-
         <div>
-          <div className="flex items-center justify-between mb-5">
+          <Categorizer title="Question & Answers">
+            <div className="grid grid-cols-4 gap-5 px-2">
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+              <DiscoveryCard />
+            </div>
+          </Categorizer>
+
+          {/* <div className="flex items-center justify-between mb-5">
             <h3 className="text-2xl font-medium py-4">Questions & Answers</h3>
             <div className="flex gap-5">
               <div className="w-[300px] h-[50px] drop-shadow-md-- bg-gray-100  flex gap-3 items-center rounded-full px-5">
@@ -94,17 +90,7 @@ const DiscoveryJarPage = () => {
                 <RiFilter3Line size={25} />
               </button>
             </div>
-          </div>
-          <div className="grid grid-cols-4 gap-5">
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-            <Content />
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
