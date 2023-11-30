@@ -13,11 +13,16 @@ export default function NewboardCanvas({ progress }: Props) {
   return (
     <div
       style={{
-        backgroundImage: "url('/space.svg')",
+        backgroundImage: "linear-gradient(#00B3FF, #0571C8,#0F0068)",
       }}
-      className="relative lg:h-[360px] md:h-[300px] h-[300px] bg-cover bg-no-repeat bg-center overflow-hidden"
+      className="relative lg:h-[360px] md:h-[300px] h-[300px] overflow-hidden"
     >
-      <div className="h-full">
+      <div
+        style={{
+          backgroundSize: "800px 800px",
+        }}
+        className="h-full bg-cover bg-[url('/svgs/121212.png')] bg-opacity-50"
+      >
         {width !== 0 && <GalaxyPath initialProgress={progress} path={path} />}
       </div>
 
@@ -28,3 +33,5 @@ export default function NewboardCanvas({ progress }: Props) {
     </div>
   );
 }
+
+// linear-gradient(top,#00B3FF,#0571C8,#0F0068)",
