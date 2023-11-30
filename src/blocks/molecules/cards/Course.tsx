@@ -94,14 +94,16 @@ const CourseCard = () => {
 
 export default CourseCard;
 
-// <div className="min-w-[60px] hidden md:block">
-// <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
-//   <BiTime size={17} />
-//   <span className="text-gray-500 font-semibold">
-//     {course.duration}
-//   </span>
-// </p>
-// </div>
+{
+  /* <div className="min-w-[60px] hidden md:block">
+<p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
+  <BiTime size={17} />
+  <span className="text-gray-500 font-semibold">
+    {course.duration}
+  </span>
+</p>
+</div> */
+}
 
 function getRandomString(arr: string[]): string {
   // Check if the array is empty

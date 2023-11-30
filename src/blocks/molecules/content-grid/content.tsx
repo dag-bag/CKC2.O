@@ -19,6 +19,9 @@ import { convertGradeToOrdinal } from "@/utils/grade";
 import { estimateReadingTime } from "@/utils/time";
 import WatchedCard from "../cards/Watched";
 import ComicCard from "../cards/Comics";
+
+import LiveCard from "../cards/Live";
+
 const course = {
   garde: "6th",
   required_credits: "1,459",
@@ -31,26 +34,26 @@ const Content: React.FC<Props> = ({ type, data }) => {
     return <ComicCard {...data} />;
   }
   if (type == "live_upcoming") {
-    return <Live type="upcoming" />;
+    return <LiveCard type="upcoming" />;
   }
   if (type == "live_now") {
-    return <Live type="running" />;
+    return <LiveCard type="running" />;
   }
 
   if (type == "live_now_premium") {
-    return <Live premium type="running" />;
+    return <LiveCard premium type="running" />;
   }
 
   if (type == "live_past_premium") {
-    return <Live premium type="recording" />;
+    return <LiveCard premium type="recording" />;
   }
 
   if (type == "live_upcoming_premium") {
-    return <Live premium type="upcoming" />;
+    return <LiveCard premium type="upcoming" />;
   }
 
   if (type == "live_past") {
-    return <Live type="recording" />;
+    return <LiveCard type="recording" />;
   }
 
   if (type == "course") {

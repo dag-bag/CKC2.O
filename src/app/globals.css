@@ -18,6 +18,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url("../styles/utilities.css");
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -53,5 +54,33 @@
     .page_with_oppose_aside {
         @apply gap-5 grid grid-cols-[320px_auto];
     }
+
+    /* card spefic styles  */
+
+    .content_card { 
+        @apply bg-white font-heading  shadow-slate-600 shadow-md
+    }
+
+
+    .content_card .top {
+        @apply relative aspect-w-10 aspect-h-6 overflow-hidden
+
+    }
+    .content_card .bottom {
+        @apply md:p-5 p-2 
+
+    }
+
+    .content_card .question {
+        @apply font-medium !font-amar md:text-xl text-sm leading-6 md:mt-1 line-clamp-1 md:line-clamp-none
+    }
+
+    .content_card .description {
+        @apply text-sm text-[#4D4D4D] mt-2 mb-1.5 tracking-[-2%] leading-4 hidden md:block font-light
+    }
+
 }
+
+
+/* bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md */
 

@@ -12,3 +12,4 @@ make more gradient based on logo colour
 
 // prioritize
 // color combinations
+// how premium card look like
