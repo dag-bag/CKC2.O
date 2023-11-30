@@ -2,7 +2,7 @@
 import Button from "./LinkButton";
 import Logo from "@/blocks/atoms/Logo";
 
-const LeftAside = () => {
+const Aside = () => {
   return (
     <aside className="hidden px-5 md:flex flex-col  gap-2 bg-white">
       <Logo />
@@ -18,7 +18,7 @@ const LeftAside = () => {
   );
 };
 
-export default LeftAside;
+export default Aside;
 
 import {
   RiSettings4Fill,

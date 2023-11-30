@@ -6,14 +6,7 @@ import { usePathname } from "next/navigation";
 import { type Layout } from "@/types/general";
 import Container from "@/blocks/UI/PageContainer";
 const NestedBuyLayout: Layout = ({ children }) => {
-  return (
-    <Container
-      gridType="opposite_double"
-      AsideComponentForOppositeDouble={<BuyNavigation />}
-    >
-      {children}
-    </Container>
-  );
+  return <Container gridType="opposite_double">{children}</Container>;
 };
 
 export default NestedBuyLayout;
