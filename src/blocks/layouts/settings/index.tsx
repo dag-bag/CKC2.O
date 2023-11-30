@@ -81,11 +81,11 @@ const settings_link = [
     description: "View Transaction history",
     path: "/settings/transections",
   },
-  {
-    label: "Referrals",
-    description: "Refer friends and earn",
-    path: "/settings/referral",
-  },
+  // {
+  //   label: "Referrals",
+  //   description: "Refer friends and earn",
+  //   path: "/settings/referral",
+  // },
   {
     label: "Help and Support",
     description: "Get assistance and FAQs",

@@ -8,6 +8,7 @@ import Content from "./content";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
+import clsx from "clsx";
 export type ContentType =
   | "live_now"
   | "live_past"
@@ -17,7 +18,9 @@ export type ContentType =
   | "live_upcoming_premium"
   | "comics"
   | "course"
-  | "video";
+  | "video"
+  | "watched"
+  | "intros";
 
 // this matine carouse is not effective in point of view serverside rendering...
 
@@ -40,7 +43,7 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   const grid_content_columns_size = breakpoints.A
-    ? "20%"
+    ? "25%"
     : breakpoints.B
     ? "25%"
     : breakpoints.C
@@ -54,17 +57,25 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
   };
 
   return (
-    <div className={`my-5`}>
-      <div className="flex items-center justify-between mb-2 pl-2">
-        <h3 className="text-xl font-semibold tracking-medium font-heading text-gray-800">
+    <div className={`md:py-5 my-3 px-2`}>
+      <div className="flex items-center justify-between md:mb-4 mb-2 pl-2 ">
+        <h3
+          style={{
+            textShadow: "2px 2px 2px #18007ac6",
+          }}
+          className="md:text-3xl text-lg font-semibold tracking-medium font-amar tracking-wide text-white"
+        >
           {title}
         </h3>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
       </div>
       <Carousel
-        slideGap="sm"
+        classNames={{
+          container: "py-3",
+        }}
         align="start"
-        draggable={false}
+        slideGap={"lg"}
+        // draggable={false}
         slidesToScroll={2}
         slideSize={grid_content_columns_size}
         nextControlProps={
@@ -98,7 +109,7 @@ export default ContentGrid;
 
 const Controller = ({ handleControllerRight, handleControllerLeft }: any) => {
   return (
-    <div className="grid grid-cols-2 w-[50px]">
+    <div className="grid grid-cols-2 w-[50px] text-white">
       <button onClick={handleControllerLeft}>
         <HiMiniChevronLeft size={22} />
       </button>

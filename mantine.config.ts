@@ -2,7 +2,9 @@
 
 import { createTheme } from '@mantine/core';
 
- const Mantine = createTheme({
-  /* Put your mantine theme override here */
+const Mantine = createTheme({
+  fontFamily: 'Josefin Sans, sans-serif',
+  fontFamilyMonospace: 'Monaco, Courier, monospace',
+  headings: { fontFamily: "Gabarito, sans-serif" },
 });
 export default Mantine

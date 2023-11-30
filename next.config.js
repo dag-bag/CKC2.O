@@ -4,5 +4,4 @@ const nextConfig = {
     domains: ["cdn.marvel.com"],
   },
 };
-
 module.exports = nextConfig;

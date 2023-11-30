@@ -30,32 +30,36 @@ const Profilebar = () => {
       position="bottom-end"
     >
       <Menu.Target>
-        <div className="h-[50px] flex items-center rounded-lg  px-2 ">
-          <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden bg-gray-400 mr-1 bg-[url('/avatar.png')] bg-cover bg-center ">
+        <div className="h-[50px] flex items-center rounded-lg px-2 gap-1 ">
+          <div className="relative w-[45px] h-[45px] border rounded-full overflow-hidden bg-gray-400 mr-1 bg-[url('/avatars/asian-man.png')] bg-cover bg-center ">
             &nbsp;
           </div>
           <div>
-            <FiChevronDown />
+            <h3 className=" font-josefin">Kenjiro</h3>
           </div>
         </div>
       </Menu.Target>
 
       <Menu.Dropdown>
         <Menu.Item>
-          <Button title={"Profile"} href={"/profile"} Icon={RiUser2Line} />
+          <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
+        </Menu.Item>
+
+        <Menu.Item>
+          <Button title={"Cart"} href={"/settings"} Icon={LuShoppingCart} />
+        </Menu.Item>
+
+        <Menu.Item>
+          <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
         </Menu.Item>
         <Menu.Item>
-          <Button
-            title={"Settings"}
-            href={"/settings"}
-            Icon={RiSettings4Fill}
-          />
+          <Button title={"Settings"} href={"/settings"} Icon={LuSettings} />
         </Menu.Item>
 
         <Menu.Divider />
 
         <Menu.Item>
-          <Button title={"Logout"} href={"/logout"} Icon={RiLogoutBoxLine} />
+          <Button title={"Logout"} href={"/logout"} Icon={LuLogOut} />
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>
@@ -67,6 +71,13 @@ export default Profilebar;
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  LuUser2,
+  LuSettings,
+  LuLogOut,
+  LuShoppingCart,
+  LuBell,
+} from "react-icons/lu";
 
 interface Props {
   Icon: any;
@@ -83,18 +94,18 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
       key={title}
       href={href}
       className={clsx(
-        "px-2 pr-4 py-2 rounded-xl flex justify-between gap-5 text-black",
+        " rounded-xl flex justify-between gap-5 text-black",
         pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
       )}
     >
       <div className="flex gap-2">
         <div className="px-3 center rounded-lg">
-          <Icon color={pathname == href ? "white" : "gray"} size={22} />
+          <Icon color={pathname == href ? "white" : "gray"} size={20} />
         </div>
         <div>
           <h3
             className={clsx(
-              "text-md font-heading  text-gray-700",
+              "text-md font-josefin  text-gray-700",
               pathname == href && "  !text-white"
             )}
           >

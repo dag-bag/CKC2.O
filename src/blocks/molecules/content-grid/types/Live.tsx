@@ -26,9 +26,9 @@ const Live = ({ type, premium }: Props) => {
       <div
         className={clsx("rounded-xl p-2 border-gray-100 border font-heading")}
       >
-        <div className="relative h-[170px] rounded-lg overflow-hidden">
+        <div className="relative aspect-w-10 aspect-h-6 rounded-lg overflow-hidden">
           <Image src="/1.webp" alt="image" fill />
-          {premium && (
+          {/* {premium && (
             <div className="absolute bottom-2 border border-white right-2 text-yellow-100 bg-gradient-to-r from-yellow-800 to-yellow-500 z-50  px-3 py-1.5 rounded-md text-sm capitalize">
               Premium Content
             </div>
@@ -38,7 +38,7 @@ const Live = ({ type, premium }: Props) => {
             <div className="absolute flex items-center top-2 border text-white right-2 bg-black z-50  px-5 py-1.5 rounded-md text-sm capitalize">
               Live
             </div>
-          )}
+          )} */}
         </div>
         <p className="text-sm text-gray-500 flex items-center  mt-2 gap-1 ">
           <BiTime size={17} />

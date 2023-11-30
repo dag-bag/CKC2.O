@@ -4,14 +4,18 @@ import { useState } from "react";
 
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
+import { LuShoppingCart } from "react-icons/lu";
 
 const Cart = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <>
-      <button className="bg-gray-50 p-3 rounded-full" onClick={open}>
-        <CgShoppingCart size={25} color="black" />
+      <button
+        className="w-[45px] h-[45px] center rounded-full center bg-white"
+        onClick={open}
+      >
+        <LuShoppingCart size={22} color="black" />
       </button>
 
       <Modal
