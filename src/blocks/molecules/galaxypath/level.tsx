@@ -53,7 +53,7 @@ const Level = ({
   };
 
   const handleClick = () => {
-    if (progress < initialProgress) {
+    if (condition) {
       router.push(pathnames[progress]);
     }
   };
