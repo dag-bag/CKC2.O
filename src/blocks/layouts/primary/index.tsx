@@ -56,7 +56,9 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
           className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative"
         >
           <Header />
-          <div className="pt-[100px] max-w-[1440px] mx-auto">{children}</div>
+          <div className="pt-[100px] max-w-[1440px] mx-auto px-5">
+            {children}
+          </div>
         </div>
       </main>
     </div>
