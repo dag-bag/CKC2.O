@@ -4,8 +4,8 @@ interface Props {
   children: ReactNode;
 }
 
-import Header from "./header";
 import Aside from "./aside";
+import Header from "./header";
 import React, { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
@@ -18,6 +18,17 @@ const theme: any = {
       "linear-gradient(to top, rgba(106, 45, 0, 0.87), rgba(247, 210, 40, 0.8))",
   },
   "/learn": {
+    background:
+      "linear-gradient(to bottom, rgba(144, 253, 0, 0.8), rgba(0, 62, 39, 0.87))",
+  },
+  "/library/videos": {
+    background: "linear-gradient(to bottom, #00b3ffcd, #18007ac6)",
+  },
+  "/library/comics": {
+    background:
+      "linear-gradient(to top, rgba(106, 45, 0, 0.87), rgba(247, 210, 40, 0.8))",
+  },
+  "/challanges": {
     background:
       "linear-gradient(to bottom, rgba(144, 253, 0, 0.8), rgba(0, 62, 39, 0.87))",
   },
