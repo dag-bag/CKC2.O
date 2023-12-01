@@ -1,64 +1,93 @@
 // useVideoPlayer.tsx
 import useSWR, { useSWRConfig } from "swr";
-import { createWatchRecord, updateWatchRecord } from "@/services/watch";
-import { Watched } from "@/strapi/services/api";
+import { strapi } from "@/libs/strapi";
 
-interface UseVideoPlayerProps {
+interface VideoPlayerProps {
   userId: string;
   contentId: string;
+  contentType: string;
 }
 
-interface Reward {
+type WatchRecord = {
+  id: string;
+  user_id: string;
+  content_id: string;
+  watched_date: string;
   type: string;
-  value: number;
-}
+  watch_progress: number;
+};
 
-const useVideoPlayer = ({ userId, contentId }: UseVideoPlayerProps) => {
+type VideoPlayerResult = {
+  handleProgress: (progress: { playedSeconds: number }) => Promise<void>;
+  isLoading: boolean;
+};
+
+const useVideoPlayer = ({
+  userId,
+  contentId,
+  contentType,
+}: VideoPlayerProps): VideoPlayerResult => {
   const { mutate } = useSWRConfig();
-  const { data: watchRecord, isLoading } = useSWR(`watched/${6}`, () =>
-    Watched({ type: "GET_ONE", payload: 6 })
-  );
 
-  const handleProgress = async (progress: any) => {
-    const roundedPlayedSeconds = Math.round(progress.playedSeconds);
-
-    if (roundedPlayedSeconds !== 0 && roundedPlayedSeconds % 10 === 0) {
-      if (watchRecord) {
-        const res = await updateWatchRecord(
-          {
-            watch_progress: roundedPlayedSeconds,
-          },
-          // @ts-ignore
-          watchRecord?.id as string
-        );
-        console.log(`>> Update watch record: ${res}`);
-      } else {
-        mutate(`watched/${6}`, () =>
-          createWatchRecord({
-            user_id: userId,
-            content_id: contentId,
-            watched_date: "11-02-2033",
-            type: "video",
-            watch_progress: roundedPlayedSeconds,
-          })
-        );
-        console.log("> > createing new Record");
-      }
-      console.log(`>> fetch it, ${roundedPlayedSeconds} seconds played!`);
+  const getWatchedRecords = async (): Promise<WatchRecord[]> => {
+    try {
+      const response = await strapi.find("watcheds", {
+        filters: {
+          content_id: contentId,
+          user_id: userId,
+        },
+      });
+      return response.data as WatchRecord[];
+    } catch (error) {
+      return [];
     }
   };
 
-  const handleEnded = () => {
-    handleRewardLogic();
+  const createWatchRecord = async (): Promise<void> => {
+    await strapi.create("watcheds", {
+      user_id: userId,
+      content_id: contentId,
+      watched_date: new Date().toISOString(),
+      type: contentType,
+      watch_progress: 0,
+    });
+    mutate(`watched/${contentId}`);
   };
 
-  const handleRewardLogic = () => {
-    console.log("Reward Information:");
+  const updateWatchRecord = async (watchProgress: number): Promise<void> => {
+    const watchRecordToUpdate = watchRecords?.find(
+      (record) => record.content_id === contentId && record.user_id === userId
+    );
+    if (watchRecordToUpdate) {
+      await strapi.update("watcheds", watchRecordToUpdate.id, {
+        watch_progress: watchProgress,
+      });
+    }
+  };
+
+  const { data: watchRecords, isLoading } = useSWR<WatchRecord[]>(
+    `watched/${contentId}`,
+    getWatchedRecords,
+    {
+      onSuccess: (data) => {
+        if (data.length === 0) {
+          createWatchRecord();
+        }
+      },
+    }
+  );
+
+  const handleProgress = async (progress: {
+    playedSeconds: number;
+  }): Promise<void> => {
+    const roundedPlayedSeconds = Math.floor(progress.playedSeconds);
+    if (roundedPlayedSeconds !== 0 && roundedPlayedSeconds % 10 === 0) {
+      await updateWatchRecord(roundedPlayedSeconds);
+    }
   };
 
   return {
     handleProgress,
-    handleEnded,
     isLoading,
   };
 };

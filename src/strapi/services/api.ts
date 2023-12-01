@@ -6,7 +6,7 @@ const Comics = async (action: Action): Promise<ComicBook[]> => {
   return fetchData("comics", action);
 };
 
-export { Comics, Videos };
+export { Comics, Videos, Courses, Watched };
 
 // courses.ts
 
@@ -18,9 +18,6 @@ const Videos = async (action: Action) => {
   return fetchData("videos", action, COURSES_P);
 };
 
-export { Courses };
 const Watched = async (action: Action) => {
   return fetchData("watcheds", action);
 };
-
-export { Watched };

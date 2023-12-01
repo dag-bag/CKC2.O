@@ -38,4 +38,7 @@ const getTransactions = async () => {
     console.log(error);
   }
 };
+
+// globalSession.js
+
 export { getProfile, getTransactions };
