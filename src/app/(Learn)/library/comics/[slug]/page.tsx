@@ -60,8 +60,8 @@ const Hero = () => {
               <h1 className="text-3xl font-semibold font-game mr-2">
                 400.99 <span className="text-sm">CRD</span>
               </h1>
-              <BuyPopup />
-              <SharePopup />
+              {/* <BuyPopup />
+              <SharePopup /> */}
             </section>
           </div>
 

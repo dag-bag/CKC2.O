@@ -5,7 +5,7 @@ const Player = () => {
       style={{ backgroundImage: 'url("/sun.jpg")' }}
       className=" h-[500px] rounded-xl bg-cover bg-no-repeat bg-center flex items-end justify-end p-10"
     >
-      <BuyPopup />
+      {/* <BuyPopup /> */}
     </div>
   );
 };

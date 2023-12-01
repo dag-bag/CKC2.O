@@ -6,6 +6,7 @@ import {
   BiLogoTwitter,
   BiLogoWhatsapp,
   BiLogoFacebook,
+  BiLink,
 } from "react-icons/bi";
 
 import {
@@ -18,11 +19,17 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton } from "@mantine/core";
 
-export default function SharePopup() {
+interface Props {
+  shareableURL: string;
+  title: string;
+}
+
+export default function SharePopup({ shareableURL, title }: Props) {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const shareUrl = "this is url";
-  const title = "this is title";
+  const copyLinkHandler = () => {
+    navigator.clipboard.writeText(shareableURL);
+  };
 
   return (
     <>
@@ -38,29 +45,40 @@ export default function SharePopup() {
           </div>
 
           <div className="flex gap-2 center">
-            <EmailShareButton url={shareUrl} title={title} separator="::">
+            <EmailShareButton url={shareableURL} title={title} separator="::">
               <div className="p-3 bg-gray-100 rounded-full">
                 <BiLogoGmail size={25} />
               </div>
             </EmailShareButton>
 
-            <WhatsappShareButton url={shareUrl} title={title} separator="::">
+            <WhatsappShareButton
+              url={shareableURL}
+              title={title}
+              separator="::"
+            >
               <div className="p-3 bg-gray-100 rounded-full">
                 <BiLogoWhatsapp size={25} />
               </div>
             </WhatsappShareButton>
 
-            <FacebookShareButton url={shareUrl} title={title}>
+            <FacebookShareButton url={shareableURL} title={title}>
               <div className="p-3 bg-gray-100 rounded-full">
                 <BiLogoFacebook size={25} />
               </div>
             </FacebookShareButton>
 
-            <TwitterShareButton url={shareUrl} title={title}>
+            <TwitterShareButton url={shareableURL} title={title}>
               <div className="p-3 bg-gray-100 rounded-full">
                 <BiLogoTwitter size={25} />
               </div>
             </TwitterShareButton>
+
+            <button
+              onClick={copyLinkHandler}
+              className="w-[49px] h-[49px] bg-gray-100 center rounded-full"
+            >
+              <BiLink size={22} />
+            </button>
           </div>
         </div>
       </Modal>

@@ -41,8 +41,8 @@ const CourseInfo = () => {
       </section>
 
       <section className="flex gap-2 flex-col mt-5">
-        <BuyPopup />
-        <SharePopup />
+        {/* <BuyPopup />
+        <SharePopup /> */}
       </section>
     </div>
   );

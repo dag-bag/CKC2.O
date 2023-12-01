@@ -20,9 +20,19 @@ import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { motion, useAnimation } from "framer-motion";
 
-const VideoCard = ({ thumbnail, title, desc, grade, price, premium }: any) => {
+const VideoCard = ({
+  thumbnail,
+  title,
+  desc,
+  grade,
+  price,
+  premium,
+  slug,
+  id,
+}: any) => {
   const rocket = useAnimation();
   const MotionLink = motion(Link);
+  const href = `/library/video/${id}`;
 
   const handleHoverStart = () => {
     rocket.start({ x: 0, y: 0, transition: { duration: 1 } });
@@ -35,7 +45,7 @@ const VideoCard = ({ thumbnail, title, desc, grade, price, premium }: any) => {
   return (
     <>
       <MotionLink
-        href="/dashboard/course"
+        href={href}
         onHoverEnd={handleHoverEnd}
         onHoverStart={handleHoverStart}
         className="overflow-hidden relative grid"

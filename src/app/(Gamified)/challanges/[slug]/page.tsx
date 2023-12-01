@@ -127,8 +127,8 @@ const Info = () => (
       </div>
 
       <div className="grid gap-2 pt-2">
-        <BuyPopup />
-        <SharePopup />
+        {/* <BuyPopup />
+        <SharePopup /> */}
       </div>
     </section>
   </div>

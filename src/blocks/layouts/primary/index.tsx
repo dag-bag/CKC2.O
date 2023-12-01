@@ -39,7 +39,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         <div
           style={
             theme[pathname] ?? {
-              background: "linear-gradient(to bottom, #00b3ffcd, #18007ac6)",
+              background: "whitesmoke",
             }
           }
           className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative"
