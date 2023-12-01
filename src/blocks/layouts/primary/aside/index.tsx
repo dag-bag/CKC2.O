@@ -36,7 +36,7 @@ const primary_layout_left_buttons = [
   { title: "Home", hrefs: ["/dashboard"], Icon: RiHomeSmile2Fill },
   { title: "Live", hrefs: ["/live"], Icon: RiLiveFill },
   { title: "Learn", hrefs: ["/learn"], Icon: RiBrainFill },
-  { title: "Library", hrefs: ["/library"], Icon: RiBook2Fill },
+  { title: "Library", hrefs: ["/library/videos"], Icon: RiBook2Fill },
   { title: "Challanges", hrefs: ["/challanges"], Icon: RiVipCrown2Fill },
   { title: "Leaderboard", hrefs: ["/leader"], Icon: RiBarChart2Fill },
   {

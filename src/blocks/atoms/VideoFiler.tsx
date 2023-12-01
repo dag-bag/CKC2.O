@@ -6,7 +6,7 @@ import { RiBook2Fill, RiLiveFill } from "react-icons/ri";
 
 const VideoAndComicsFilter = () => {
   const path = usePathname();
-  const isVideos = path === "/library";
+  const isVideos = path === "/library/videos";
   const isComics = path === "/library/comics";
 
   return (
@@ -15,7 +15,7 @@ const VideoAndComicsFilter = () => {
         <Button active={isComics} href={"/library/comics"} Icon={RiBook2Fill}>
           Comics
         </Button>
-        <Button active={isVideos} href={"/library"} Icon={RiLiveFill}>
+        <Button active={isVideos} href={"/library/videos"} Icon={RiLiveFill}>
           Videos
         </Button>
       </div>
