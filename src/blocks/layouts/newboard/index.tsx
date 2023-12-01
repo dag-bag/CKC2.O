@@ -13,11 +13,11 @@ export default function Newboard() {
       <Logo />
       <Canvas progress={configuration?.progress} />
       <motion.div id="newboard_main">
-        <div className="max-w-6xl mx-auto md:p-10 p-5 xl:mt-5 grid md:gap-2">
+        <div className="max-w-6xl mx-auto px-5 pt-8 xl:mt-5 grid md:gap-2">
           <h1 className=" font-josefin font-bold xl:text-4xl md:text-2xl lg:text-4xl text-2xl leading-14">
             {configuration?.question}
           </h1>
-          <div className="py-5">
+          <div className="py-3">
             {pathname == "/newboard/name" && <NameAction />}
             {pathname == "/newboard/grade" && <GradeAction />}
             {pathname == "/newboard/mobile" && <MobileAction />}
@@ -28,7 +28,7 @@ export default function Newboard() {
           <div className="flex">
             <Link
               href={configuration?.nextPath}
-              className="bg-blue-500 w-[120px] center  h-[48px] rounded-full text-white md:text-lg shadow-lg"
+              className="bg-blue-500 w-[120px] center  h-[45px] rounded-full text-white md:text-lg shadow-lg"
             >
               Next
             </Link>
@@ -42,7 +42,7 @@ export default function Newboard() {
 
 const Model = () => {
   return (
-    <div className="absolute bottom-0 right-0 lg:h-[300px] lg:w-[350px] w-[170px] h-[150px] ">
+    <div className="absolute bottom-0 right-0 lg:h-[200px] lg:w-[230px] xl:h-[300px] xl:w-[350px]   w-[170px] h-[150px] ">
       <Image alt="running" src={"/run-astro.png"} fill />
     </div>
   );
@@ -58,7 +58,7 @@ const Logo = () => {
 
 const Input = ({ placeholder, type, name, value, ...props }: any) => {
   return (
-    <div className="md:h-[60px] h-[50px] inline-flex items-center md:px-10 px-5 border-b-2 border-blue-500 bg-blue-50">
+    <div className="md:h-[50px] h-[50px] inline-flex items-center md:px-8 px-5 border-b-2 border-blue-500 bg-blue-50">
       <input
         name={name}
         type={type}
