@@ -1,44 +1,151 @@
 "use client";
-import Link from "next/link";
+import clsx from "clsx";
 import Canvas from "./canvas";
 import { data } from "./data";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Modal } from "@mantine/core";
+import useOnboard from "@/hooks/useOnboard";
+import { useRouter } from "next/navigation";
+import { FaBackward } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
+import { useDisclosure } from "@mantine/hooks";
+import { Free, Premium } from "@/blocks/molecules/cards/plan";
+
 export default function Newboard() {
+  const router = useRouter();
   const pathname = usePathname();
+  const { storage } = useOnboard();
   const configuration = data[pathname];
+  // popup modal
+  const [opened, popupHanders] = useDisclosure(false);
+
+  // handlers
+
+  const Alert = () => {
+    alert("You are forgetting to fill some inputs.");
+  };
+
+  const onBackHandler = () => {
+    router.replace(configuration.backPath);
+  };
+
+  const onNextHandler = () => {
+    switch (pathname) {
+      case "/newboard/name":
+        storage?.firstname && storage.lastname
+          ? router.push(configuration?.nextPath)
+          : Alert();
+        break;
+
+      case "/newboard/grade":
+        storage?.grade ? router.push(configuration?.nextPath) : Alert();
+        break;
+
+      case "/newboard/mobile":
+        storage?.phone ? router.push(configuration?.nextPath) : Alert();
+        break;
+
+      case "/newboard/location":
+        storage?.city && storage.state && storage.country
+          ? router.push(configuration?.nextPath)
+          : Alert();
+        break;
+
+      case "/newboard/birthday":
+        storage?.dob ? router.push(configuration?.nextPath) : Alert();
+        break;
+
+      case "/newboard/avatar":
+        storage?.avatar ? onboardCompletion() : Alert();
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const onboardCompletion = () => {
+    // api calling goes here - after an successfull response call [69 - line code]
+    popupHanders.open();
+  };
+
+  // Renders
+
+  const componentMap: any = {
+    "/newboard/name": <NameAction />,
+    "/newboard/grade": <GradeAction />,
+    "/newboard/mobile": <MobileAction />,
+    "/newboard/location": <LocationAction />,
+    "/newboard/birthday": <BirthdateAction />,
+    "/newboard/avatar": <AvatarSelectionAction />,
+  };
+
+  const RenderedComponent = componentMap[pathname] || null;
+
   return (
-    <div id="newboard_wrapper">
+    <div>
       <Logo />
+      <CompletionModal opened={opened} onClose={popupHanders.close} />
       <Canvas progress={configuration?.progress} />
-      <motion.div id="newboard_main">
+      <div>
         <div className="max-w-6xl mx-auto px-5 pt-8 xl:mt-5 grid md:gap-2">
           <h1 className=" font-josefin font-bold xl:text-4xl md:text-2xl lg:text-4xl text-2xl leading-14">
             {configuration?.question}
           </h1>
-          <div className="py-3">
-            {pathname == "/newboard/name" && <NameAction />}
-            {pathname == "/newboard/grade" && <GradeAction />}
-            {pathname == "/newboard/mobile" && <MobileAction />}
-            {pathname == "/newboard/location" && <LocationAction />}
-            {pathname == "/newboard/birthday" && <BirthdateAction />}
-            {pathname == "/newboard/avatar" && <AvatarSelectionAction />}
-          </div>
-          <div className="flex">
-            <Link
-              href={configuration?.nextPath}
+          <div className="py-3">{RenderedComponent}</div>
+          <div className="flex gap-2">
+            {configuration?.backPath && (
+              <button
+                onClick={onBackHandler}
+                className="bg-gray-400 w-[50px] center  h-[45px] rounded-xl text-white md:text-lg shadow-lg"
+              >
+                <FaBackward />
+              </button>
+            )}
+            <button
+              onClick={onNextHandler}
               className="bg-blue-500 w-[120px] center  h-[45px] rounded-full text-white md:text-lg shadow-lg"
             >
-              Next
-            </Link>
+              {pathname == "/newboard/avatar" ? "Complete" : "Next"}
+            </button>
           </div>
         </div>
         <Model />
-      </motion.div>
+      </div>
     </div>
   );
 }
+
+const CompletionModal = ({ opened, onClose }: any) => {
+  return (
+    <Modal
+      centered
+      size={500}
+      opened={opened}
+      onClose={onClose}
+      withCloseButton={false}
+    >
+      <Image
+        alt="3d"
+        width={200}
+        height={200}
+        src={"/1515.png"}
+        className="mx-auto"
+      />
+      <h2 className="text-xl text-center font-semibold font-heading">
+        Account Created Sucessfully
+      </h2>
+      <h5 className="text-sm text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </h5>
+
+      <div className="flex gap-2 mt-10 h-[300px]">
+        <Free />
+        <Premium />
+      </div>
+    </Modal>
+  );
+};
 
 const Model = () => {
   return (
@@ -73,21 +180,50 @@ const Input = ({ placeholder, type, name, value, ...props }: any) => {
 
 // Actions
 export const NameAction = () => {
+  const { setter, storage } = useOnboard();
+
+  const handleFirstNameChange = (event: any) => {
+    setter("firstname", event.target.value);
+  };
+  const handleLastNameChange = (event: any) => {
+    setter("lastname", event.target.value);
+  };
+
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input name={"first_name"} placeholder="First Name" />
-      <Input name={"last_name"} placeholder="Last Name" />
+      <Input
+        name={"first_name"}
+        placeholder="First Name"
+        value={storage?.firstname}
+        onChange={handleFirstNameChange}
+      />
+      <Input
+        name={"last_name"}
+        placeholder="Last Name"
+        value={storage?.lastname}
+        onChange={handleLastNameChange}
+      />
     </div>
   );
 };
 
 export const GradeAction = () => {
-  const grades = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const grades = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const { setter, storage } = useOnboard();
+
   return (
     <div className="flex flex-wrap md:gap-5 gap-2">
       {grades.map((grade) => (
         <button
-          className="md:w-[60px] md:h-[60px] w-[55px] h-[55px] bg-blue-50 rounded-full border-b-2 border-blue-500 text-xl"
+          onClick={() => {
+            setter("grade", grade);
+          }}
+          className={clsx(
+            "md:w-[60px] md:h-[60px] w-[55px] h-[55px] rounded-full border-b-2 border-blue-500 text-xl",
+            storage?.grade === grade
+              ? "bg-blue-400 text-white duration-300 scale-95 shadow-lg"
+              : "bg-blue-50"
+          )}
           key={grade}
         >
           {grade}
@@ -97,27 +233,70 @@ export const GradeAction = () => {
   );
 };
 export const BirthdateAction = () => {
+  const { setter, storage } = useOnboard();
+  const onChangeHandler = (event: any) => {
+    setter("dob", event.target.value);
+  };
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input name="date_of_birth" placeholder="Birthdate" type="date" />
+      <Input
+        type="date"
+        name="date_of_birth"
+        value={storage?.dob}
+        placeholder="Birthdate"
+        onChange={onChangeHandler}
+      />
     </div>
   );
 };
 
 export const MobileAction = () => {
+  const { setter, storage } = useOnboard();
+  const onChangeHandler = (event: any) => {
+    setter("phone", event.target.value);
+  };
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input name="phone" placeholder="Mobile Number" type="number" />
+      <Input
+        name="phone"
+        type="number"
+        value={storage?.phone}
+        onChange={onChangeHandler}
+        placeholder="Mobile Number"
+      />
     </div>
   );
 };
 
 export const LocationAction = () => {
+  const { setter, storage } = useOnboard();
+
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input name="city" placeholder="City" />
-      <Input name="state" placeholder="State" />
-      <Input name="country" placeholder="Country" />
+      <Input
+        onChange={(event: any) => {
+          setter("city", event?.target.value);
+        }}
+        value={storage?.city}
+        name="city"
+        placeholder="City"
+      />
+      <Input
+        onChange={(event: any) => {
+          setter("state", event?.target.value);
+        }}
+        value={storage?.state}
+        name="state"
+        placeholder="State"
+      />
+      <Input
+        onChange={(event: any) => {
+          setter("country", event?.target.value);
+        }}
+        value={storage?.country}
+        name="country"
+        placeholder="Country"
+      />
     </div>
   );
 };
@@ -128,12 +307,23 @@ export const AvatarSelectionAction = () => {
     "/avatars/black-man.png",
     "/avatars/punjabi.png",
   ];
+
+  const { setter, storage } = useOnboard();
+
   return (
     <div className="flex md:gap-5 gap-2 ">
       {avatars.map((avatarURL) => (
         <button
           key={avatarURL}
-          className="rounded-full border-b-[3px] border-blue-500 drop-shadow-xl overflow-hidden"
+          onClick={() => {
+            setter("avatar", avatarURL);
+          }}
+          className={clsx(
+            "rounded-full border-b-[3px] border-blue-500 drop-shadow-xl overflow-hidden",
+            storage?.avatar == avatarURL
+              ? "border-blue-400 border-2 text-white duration-300 scale-95 shadow-lg"
+              : " border-transparent border-2"
+          )}
         >
           <Image
             alt={avatarURL}

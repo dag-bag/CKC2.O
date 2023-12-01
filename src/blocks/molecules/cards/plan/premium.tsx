@@ -6,25 +6,22 @@ const _features = [
 ];
 const Premium = () => {
   return (
-    <div className=" relative flex flex-col p-5 mx-auto max-w-lg text-center text-white bg-gradient-to-tl  from-indigo-500 to-purple-500  rounded-lg  shadow xl:p-8 border-2   ">
-      <h3 className="mb-2 text-xl font-semibold">Premium Plan</h3>
-
-      <div className="flex justify-center items-baseline my-2">
-        <span className="mr-2 text-3xl font-extrabold">₹1999</span>
-        <span className="text-white">/year</span>
+    <div className=" grid  rounded-xl p-5 bg-gradient-to-t from-cyan-200 to-blue-200">
+      <h3>Premium Plan</h3>
+      <div className="flex items-end gap-2">
+        <h2 className="text-3xl font-one fomt-bold">1,999 $</h2>
+        <span className="text-sm">/ 12 Months</span>
       </div>
-      {/* List */}
-      <ul role="list" className="mb-8 space-y-4 text-left">
-        {_features.map((feature) => (
-          <Row key={feature.name} {...feature} />
-        ))}
-      </ul>
-      <Link
-        href="/buy/membership"
-        className="text-indigo-500 bg-white hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg px-5 py-3 border-b-4 border-gray-300 "
-      >
-        Upgrade Premium
-      </Link>
+      <p className="text-sm mt-1">One single Premium Plan per purchase.</p>
+      <div>
+        <ul className=" list-disc pl-5 text-sm">
+          <li>300 Free Credits</li>
+          <li>12 Months Validity</li>
+        </ul>
+      </div>
+      <button className="bg-blue-500 border-blue-500 border rounded-full text-white">
+        Buy Plan{" "}
+      </button>
     </div>
   );
 };

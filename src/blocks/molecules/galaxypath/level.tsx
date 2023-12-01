@@ -26,10 +26,17 @@ interface Props {
   progress: number;
   number: number;
   path: string;
-  initial: number;
+  initialProgress: number;
+  condition: boolean;
 }
 
-const Level = ({ progress, number, path, initial }: Props) => {
+const Level = ({
+  progress,
+  number,
+  path,
+  initialProgress,
+  condition,
+}: Props) => {
   const router = useRouter();
   const Properties = {
     whileHover: {
@@ -46,7 +53,7 @@ const Level = ({ progress, number, path, initial }: Props) => {
   };
 
   const handleClick = () => {
-    if (progress < initial) {
+    if (progress < initialProgress) {
       router.push(pathnames[progress]);
     }
   };
@@ -60,7 +67,7 @@ const Level = ({ progress, number, path, initial }: Props) => {
       >
         <div className="w-full lg:text-xl h-full shadow-xl text-white border bg-white rounded-full center gap-0.5 font-semibold bg-gradient-to-t from-blue-500 to-indigo-500">
           {number}{" "}
-          {progress > initial && (
+          {!condition && (
             <span className="text-xs md:text-sm">
               <BiSolidLockAlt />
             </span>

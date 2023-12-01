@@ -3,8 +3,11 @@ import Level from "./level";
 import Image from "next/image";
 import Passenger from "./passanger";
 import { motion } from "framer-motion";
+import useOnboard from "@/hooks/useOnboard";
 const levels = [16, 32, 48, 64, 80, 96];
+
 const GalaxyPath = ({ initialProgress, path }: any) => {
+  const { storage } = useOnboard();
   const animated = () => {};
   return (
     <div>
@@ -24,15 +27,19 @@ const GalaxyPath = ({ initialProgress, path }: any) => {
           />
         </svg>
 
-        {levels.map((lvl, i) => (
+        {levels.map((level, index) => (
           <Level
-            key={i}
-            path={path}
-            progress={lvl}
-            number={i + 1}
-            initial={initialProgress}
+            key={index}
+            {...LevelPropsFeeder(
+              path,
+              index + 1,
+              level,
+              getCondition(index, storage),
+              initialProgress
+            )}
           />
         ))}
+
         <CosmicHome progress={96} path={path} />
         <Passenger animated={animated} progress={initialProgress} path={path} />
       </div>
@@ -40,6 +47,29 @@ const GalaxyPath = ({ initialProgress, path }: any) => {
   );
 };
 export default GalaxyPath;
+
+const LevelPropsFeeder = (
+  path: string,
+  number: number,
+  progress: number,
+  condition: any,
+  initialProgress: number
+) => {
+  return { path, number, condition: condition, progress, initialProgress };
+};
+
+const getCondition = (index: number, storage: any) => {
+  const conditions = [
+    storage?.firstname && storage?.lastname,
+    storage?.grade,
+    storage?.phone,
+    storage?.city && storage.country && storage.city,
+    storage?.dob,
+    storage?.avatar,
+  ];
+
+  return conditions[index];
+};
 
 const CosmicHome = ({ progress, path }: any) => {
   return (
