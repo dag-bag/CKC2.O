@@ -10,6 +10,7 @@ import { FaBackward } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { Free, Premium } from "@/blocks/molecules/cards/plan";
+import { updateUser } from "@/services/user";
 
 export default function Newboard() {
   const router = useRouter();
@@ -64,8 +65,10 @@ export default function Newboard() {
     }
   };
 
-  const onboardCompletion = () => {
+  const onboardCompletion = async () => {
     // api calling goes here - after an successfull response call [69 - line code]
+    const res = await updateUser(storage);
+    console.log(res);
     popupHanders.open();
   };
 

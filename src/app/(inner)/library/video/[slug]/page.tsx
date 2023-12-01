@@ -8,10 +8,11 @@ import { Videos } from "@/strapi/services/api";
 
 const Page = async (props: any) => {
   const data = await Videos({ type: "GET_ONE", payload: props.params.slug });
+  const purchases = await getTransactions();
   return (
     <div className="bg-gray-100  rounded-xl">
       {/* {JSON.stringify(data)} */}
-      <Hero {...data} />
+      <Hero {...data} purchases={purchases} />
       {/* <Reward /> */}
     </div>
   );
@@ -29,6 +30,7 @@ const Infor = ({ title, value }: any) => {
 };
 
 import Player from "@/blocks/molecules/player";
+import { getTransactions } from "@/strapi/services/me";
 
 const Hero = ({
   thumbnail,
@@ -42,8 +44,12 @@ const Hero = ({
   publishedAt,
   mediaUrl,
   id,
+  purchases,
 }: any) => {
-  const isLocked = false;
+  const isLocked =
+    purchases.length === 0 ||
+    purchases.some((purchase: any) => parseInt(purchase.content_id) !== id);
+  console.log(purchases);
   return (
     <div className="grid grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
@@ -85,6 +91,7 @@ const Hero = ({
         <div className="max-w-xl">
           <div>
             <VideoInfo
+              isLocked={isLocked}
               slug={slug}
               duration={secondsToHoursMinutes(duration)}
               reward={"100+ Stars and Badge"}
