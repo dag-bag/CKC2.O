@@ -2,7 +2,6 @@
 import { useViewportSize } from "@mantine/hooks";
 import GalaxyPath from "@/blocks/molecules/galaxypath";
 import { responsiveCurveGeneration } from "@/libs/curve-generation";
-
 interface Props {
   progress: number;
 }
@@ -15,7 +14,7 @@ export default function NewboardCanvas({ progress }: Props) {
       style={{
         backgroundImage: "linear-gradient(#00B3FF, #0571C8,#0F0068)",
       }}
-      className="relative lg:h-[360px] md:h-[300px] h-[300px] overflow-hidden"
+      className="relative overflow-hidden h-[250px]"
     >
       <div
         style={{
@@ -27,11 +26,13 @@ export default function NewboardCanvas({ progress }: Props) {
       </div>
 
       {/* clouds layer */}
-      {/* <div className="absolute -bottom-5 w-full aspect-w-11 aspect-h-1 border-red-500">
-        <Image src={"/no-shadow-cloud.png"} alt="cloud" fill />
-      </div> */}
+      <div
+        style={{
+          backgroundSize: "1000px 60px",
+          backgroundImage: "url('/no-shadow-cloud.png')",
+        }}
+        className="absolute bottom-0 w-full h-[50px] bg-bottom"
+      />
     </div>
   );
 }
-
-// linear-gradient(top,#00B3FF,#0571C8,#0F0068)",

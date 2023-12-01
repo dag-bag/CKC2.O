@@ -3,17 +3,14 @@ import Level from "./level";
 import Image from "next/image";
 import Passenger from "./passanger";
 import { motion } from "framer-motion";
-
 const levels = [16, 32, 48, 64, 80, 96];
-
 const GalaxyPath = ({ initialProgress, path }: any) => {
   const animated = () => {};
-  ``;
   return (
     <div>
       <div
         id="svg-wrapper"
-        className="relative w-full overflow-hidden rounded-xl md:py-20 pt-12 h-[280px]"
+        className="relative w-full overflow-hidden pt-9 h-[250px]"
       >
         <svg height="" version="1.1" className="block w-full absolute">
           <motion.path
@@ -30,9 +27,9 @@ const GalaxyPath = ({ initialProgress, path }: any) => {
         {levels.map((lvl, i) => (
           <Level
             key={i}
-            number={i + 1}
-            progress={lvl}
             path={path}
+            progress={lvl}
+            number={i + 1}
             initial={initialProgress}
           />
         ))}
@@ -53,7 +50,7 @@ const CosmicHome = ({ progress, path }: any) => {
         offsetDistance: `${progress}%`,
       }}
       className="absolute z-[51] center
-      md:w-[200px] md:h-[200px] h-[100px] w-[100px]"
+      md:w-[180px] md:h-[180px] h-[100px] w-[100px]"
     >
       <Image src={"/planet.png"} alt="planet" width={500} height={500} />
     </div>
