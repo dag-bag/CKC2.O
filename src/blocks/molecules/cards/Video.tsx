@@ -84,9 +84,9 @@ const VideoCard = ({
                 <span>{grade}</span>
               </p>
               {/* Credits Required */}
-              <p className="text-sm text-[#4D4D4D] bg-gray-100 shadow-sm md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+              <p className="text-sm  bg-blue-400 shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
                 <Image width={25} height={25} alt="123" src={"/coin3.png"} />
-                <span className="text-[#4D4D4D] font-medium md:text-lg text-xs">
+                <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
                   {price}
                 </span>
               </p>
