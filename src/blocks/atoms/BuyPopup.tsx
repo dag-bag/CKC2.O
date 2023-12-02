@@ -5,6 +5,7 @@ import { BiLockAlt } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton, Button } from "@mantine/core";
+import useSession from "@/hooks/use-session";
 
 interface Props {
   price: number;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function BuyPopup({ price, type, title, id }: Props) {
+  const { update } = useSession();
   const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, loaderHandler] = useDisclosure(false);
@@ -27,6 +29,7 @@ export default function BuyPopup({ price, type, title, id }: Props) {
         label: title,
       })
       .then(() => {
+        update({ coins: price } as any);
         close();
         loaderHandler.close();
         router.refresh();

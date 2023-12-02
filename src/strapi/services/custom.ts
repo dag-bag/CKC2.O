@@ -1,9 +1,9 @@
 import { strapi } from "@/libs/strapi";
 import { getSession } from "./me";
 import axios from "axios";
+
 const getCoins = async () => {
-  const session = await getSession();
-  const res = await strapi.axios.get("/coins?id=" + session.user.id);
+  const res = await axios.get("/api/user/coins");
   return res.data;
 };
 

@@ -1,3 +1,4 @@
+import joi from "joi";
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { getIronSession } from "iron-session";
@@ -12,6 +13,7 @@ export async function POST(request: NextRequest) {
     id: number;
     username: string;
     email: string;
+    coins: number;
   };
   session.isLoggedIn = true;
   session.user = data;
@@ -40,18 +42,45 @@ export async function DELETE() {
   return Response.json(defaultSession);
 }
 
-// update session
+// Update session
 export async function PUT(request: NextRequest) {
-  const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-  const data = (await request.json()) as {
-    id: number;
-    username: string;
-    email: string;
-  };
-  console.log(data);
-  session.user = { ...session.user, ...data };
-  console.log(session);
-  await session.save();
+  try {
+    const session = await getIronSession<SessionData>(
+      cookies(),
+      sessionOptions
+    );
+    if (!session.isLoggedIn) {
+      throw new Error("Invalid session");
+    }
+    const data = (await request.json()) as {
+      coins: number;
+    };
 
-  return Response.json(session);
+    // Validate input data using joi
+    const { error, value } = joi
+      .object({
+        coins: joi.number().required(),
+      })
+      .validate(data);
+
+    if (error) {
+      return Response.json({ error: error.details[0].message });
+    }
+
+    if (value.coins && session.user.coins >= value.coins) {
+      session.user.coins -= value.coins;
+    }
+
+    await session.save();
+
+    return Response.json({
+      id: session.user.id,
+      username: session.user.username,
+      email: session.user.email,
+      coins: session.user.coins,
+    });
+  } catch (error) {
+    console.error(error);
+    return Response.json({ error: "An error occurred" }, { status: 500 });
+  }
 }

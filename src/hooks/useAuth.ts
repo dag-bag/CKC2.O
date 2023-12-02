@@ -30,6 +30,7 @@ export default function useAuth() {
           id: user.id,
           email: user.email,
           username: user.username,
+          coins: user.coins,
           jwt,
         } as any,
         {
@@ -39,6 +40,7 @@ export default function useAuth() {
               id: user.id,
               email: user.email,
               username: user.username,
+              coins: user.coins,
               jwt,
             },
           },

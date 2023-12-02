@@ -1,12 +1,18 @@
+"use client";
+import Loading from "@/blocks/atoms/loading";
+import useSession from "@/hooks/use-session";
+import { getCoins } from "@/strapi/services/custom";
 import Image from "next/image";
-
+import useSwr from "swr";
 const MyBalance = () => {
+  const { session, isLoading } = useSession();
+  if (isLoading) return <Loading />;
   return (
     <div className="h-[45px] flex items-center rounded-full px-5 bg-white ">
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-josefin">
           <Image width={35} height={35} alt="coin" src={"/coin3.png"} />
-          <span className="mt-1 font-semibold">1,945</span>
+          <span className="mt-1 font-semibold">{session.user.coins}</span>
         </button>
 
         <button className="flex items-center gap-2 font-josefin">

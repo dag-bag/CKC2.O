@@ -6,6 +6,7 @@ export interface SessionData {
     id: number;
     username: string;
     email: string;
+    coins: number;
   };
 }
 
@@ -15,6 +16,7 @@ export const defaultSession: SessionData = {
     username: "",
     id: 0,
     email: "",
+    coins: 0,
   },
 };
 

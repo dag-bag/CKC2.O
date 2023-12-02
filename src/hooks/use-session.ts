@@ -50,7 +50,7 @@ export default function useSession() {
     revalidate: false,
   });
   const { trigger: update } = useSWRMutation(sessionApiRoute, doUpdate, {
-    revalidate: false,
+    revalidate: true,
   });
   const { trigger: logout } = useSWRMutation(sessionApiRoute, doLogout);
 
