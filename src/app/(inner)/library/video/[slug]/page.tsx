@@ -11,7 +11,7 @@ const Page = async (props: any) => {
   const purchases = await getTransactions();
   return (
     <div className="bg-gray-100 rounded-xl">
-      {/* {JSON.stringify(data)} */}
+      {/* {JSON.stringify(purchases)} */}
       <Hero {...data} purchases={purchases} />
     </div>
   );
@@ -46,8 +46,8 @@ const Hero = ({
   purchases,
 }: any) => {
   const isLocked =
-    purchases.length === 0 ||
-    purchases.some((purchase: any) => parseInt(purchase.content_id) !== id);
+    purchases?.length === 0 ||
+    purchases?.some((purchase: any) => parseInt(purchase.content_id) !== id);
   console.log(purchases);
   return (
     <div className="grid grid-cols-[auto_350px] gap-5 rounded-xl">
@@ -89,16 +89,18 @@ const Hero = ({
       <aside>
         <div className="max-w-xl">
           <div className="grid gap-2">
-            <VideoInfo
-              isLocked={isLocked}
-              slug={slug}
-              duration={secondsToHoursMinutes(duration)}
-              reward={"100+ Stars and Badge"}
-              title={title}
-              type="video"
-              price={price}
-              shareableURL={"something"}
-            />
+            {isLocked && (
+              <VideoInfo
+                isLocked={isLocked}
+                slug={slug}
+                duration={secondsToHoursMinutes(duration)}
+                reward={"100+ Stars and Badge"}
+                title={title}
+                type="video"
+                price={price}
+                shareableURL={"something"}
+              />
+            )}
             <ActionQuizBlock />
           </div>
         </div>
