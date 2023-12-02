@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Row from "./row";
 
 const _features = [
@@ -20,7 +21,9 @@ const Free = () => {
           <li>12 Months Validity</li>
         </ul>
       </div>
-      <button className="border-black border rounded-full ">Select Free</button>
+      <button className="border-black border rounded-full ">
+        <Link href={"/settings"}>Select Free</Link>
+      </button>
     </div>
   );
 };

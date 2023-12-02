@@ -11,6 +11,7 @@ interface Props {
   type: string;
   price: number;
   shareableURL: string;
+  isLocked: boolean;
 }
 
 const VideoInfo = ({
@@ -21,6 +22,7 @@ const VideoInfo = ({
   type,
   price,
   shareableURL,
+  isLocked,
 }: Props) => {
   return (
     <div className="bg-white p-5 rounded-2xl">
@@ -49,7 +51,8 @@ const VideoInfo = ({
       </section>
 
       <section className="flex gap-2 flex-col mt-5">
-        <BuyPopup price={price} title={title} type={type} />
+        {isLocked ? <BuyPopup price={price} title={title} type={type} /> : null}
+
         <SharePopup shareableURL={shareableURL} title={title} />
       </section>
     </div>

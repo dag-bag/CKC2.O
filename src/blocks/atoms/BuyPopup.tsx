@@ -3,6 +3,8 @@
 import { BiLockAlt } from "react-icons/bi";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton } from "@mantine/core";
+import { revalidateTag } from "next/cache";
+import submit from "@/app/actions";
 
 interface Props {
   price: number;
@@ -55,7 +57,10 @@ export default function BuyPopup({ price, type, title }: Props) {
             </div>
 
             <div>
-              <button className="py-2 w-full  flex items-center justify-center  border-2 rounded-xl font-heading  gap-2">
+              <button
+                className="py-2 w-full  flex items-center justify-center  border-2 rounded-xl font-heading  gap-2"
+                onClick={submit}
+              >
                 Unlock
               </button>
             </div>
