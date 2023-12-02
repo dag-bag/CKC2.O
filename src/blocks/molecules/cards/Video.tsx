@@ -1,5 +1,3 @@
-"use client";
-
 const course = {
   garde: "6th",
   duration: "10 M",
@@ -18,7 +16,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
-import { motion, useAnimation } from "framer-motion";
 
 const VideoCard = ({
   thumbnail,
@@ -31,26 +28,10 @@ const VideoCard = ({
   id,
   isUnlocked,
 }: any) => {
-  const rocket = useAnimation();
-  const MotionLink = motion(Link);
   const href = `/library/video/${id}`;
-
-  const handleHoverStart = () => {
-    rocket.start({ x: 0, y: 0, transition: { duration: 1 } });
-  };
-
-  const handleHoverEnd = () => {
-    rocket.start({ ...initial, transition: { duration: 1 } });
-  };
-
   return (
     <>
-      <MotionLink
-        href={href}
-        onHoverEnd={handleHoverEnd}
-        onHoverStart={handleHoverStart}
-        className="overflow-hidden relative grid"
-      >
+      <Link href={href} className="overflow-hidden relative grid">
         <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
             <Image src={thumbnail} alt={title} fill />
@@ -74,11 +55,11 @@ const VideoCard = ({
               {title}
             </h3>
 
-            <p className="text-sm text-[#4D4D4D] font-amer mt-2 mb-1.5 tracking-[-2%] leading-4 hidden md:block font-light line-clamp-1">
-              {course.desc}
-            </p>
+            <h3 className="font-medium font-amar  text-sm line-clamp-2 leading-5 my-1  text-gray-600">
+              {desc}
+            </h3>
 
-            <div className="flex justify-between mt-1">
+            <div className="flex justify-between mt-5">
               {/* Grade Specific  */}
               <p className="md:text-sm text-xs text-[#4D4D4D] flex items-center">
                 Grade <BsDot />
@@ -102,20 +83,7 @@ const VideoCard = ({
             </div>
           </div>
         </div>
-        {/* Astronaut Animation  */}
-        <motion.div
-          animate={rocket}
-          initial={initial}
-          className="absolute z-50 bottom-0 user-select-none"
-        >
-          <Image
-            width={100}
-            height={100}
-            alt="n"
-            src={getRandomString(["/astro-riding.webp", "/planet.png"])}
-          />
-        </motion.div>
-      </MotionLink>
+      </Link>
     </>
   );
 };
