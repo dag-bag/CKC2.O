@@ -1,5 +1,10 @@
+"use client";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 export default function Home() {
+  if (true) {
+    redirect("/dashboard");
+  }
   return (
     <div className="">
       <header className=" h-28 px-5 flex items-center gap-5">
