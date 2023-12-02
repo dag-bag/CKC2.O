@@ -8,20 +8,14 @@ import { updateUser } from "@/services/user";
 // login
 export async function POST(request: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-
   const data = (await request.json()) as {
     id: number;
     username: string;
     email: string;
   };
-
   session.isLoggedIn = true;
   session.user = data;
   await session.save();
-
-  // simulate looking up the user in db
-  await sleep(250);
-
   return Response.json(session);
 }
 

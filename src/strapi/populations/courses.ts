@@ -4,4 +4,6 @@ export const COURSES_P = [
   "activity_modules",
   "activity_modules.slides",
   "activity_modules.prepration_materials",
+  "rewards",
+  "quiz",
 ];

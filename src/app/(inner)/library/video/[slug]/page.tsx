@@ -11,7 +11,7 @@ const Page = async (props: any) => {
   const purchases = await getTransactions();
   return (
     <div className="bg-gray-100 rounded-xl">
-      {/* {JSON.stringify(purchases)} */}
+      {JSON.stringify(data)}
       <Hero {...data} purchases={purchases} />
     </div>
   );
@@ -48,7 +48,6 @@ const Hero = ({
   const isLocked =
     purchases?.length === 0 ||
     purchases?.some((purchase: any) => parseInt(purchase.content_id) !== id);
-  console.log(purchases);
   return (
     <div className="grid grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
