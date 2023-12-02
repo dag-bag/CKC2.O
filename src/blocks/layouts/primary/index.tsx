@@ -24,6 +24,7 @@ const theme: any = {
   "/library/videos": {
     background: "linear-gradient(to bottom, #00b3ffcd, #18007ac6)",
   },
+
   "/library/comics": {
     background:
       "linear-gradient(to top, rgba(106, 45, 0, 0.87), rgba(247, 210, 40, 0.8))",
