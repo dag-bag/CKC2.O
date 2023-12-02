@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Card from "@/blocks/UI/Card";
-import { BiLockAlt } from "react-icons/bi";
+import { BiLockAlt, BiShare } from "react-icons/bi";
 import { Videos } from "@/strapi/services/api";
 import VideoInfo from "@/blocks/molecules/video/Info";
 import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
@@ -11,7 +11,6 @@ const Page = async (props: any) => {
   const purchases = await getTransactions();
   return (
     <div className="bg-gray-100 rounded-xl">
-      {/* {JSON.stringify(purchases)} */}
       <Hero {...data} purchases={purchases} />
     </div>
   );
@@ -45,15 +44,13 @@ const Hero = ({
   id,
   purchases,
 }: any) => {
-  const isLocked =
-    purchases?.length === 0 ||
-    purchases?.some((purchase: any) => parseInt(purchase.content_id) !== id);
-  console.log(purchases);
+  const list = purchases.map((pur: any) => pur.content_id);
+  const isLocked = list.includes(`${id}`);
   return (
     <div className="grid grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
         <div className="relative aspect-w-12 aspect-h-7">
-          {isLocked ? (
+          {!isLocked ? (
             <Image
               fill
               src={thumbnail}
@@ -70,18 +67,16 @@ const Hero = ({
           )}
         </div>
         <div className="px-5 mt-5">
-          <h1 className="font-amar font-bold text-3xl mb-2">{title}</h1>
-          <div className="grid grid-cols-3  my-5">
-            <Infor
-              title="Published:"
-              value={convertToHumanReadableDate(publishedAt)}
-            />
-            <Infor title="Creator:" value={mentor} />
+          <div className="flex justify-between">
+            <h1 className="font-amar font-bold text-3xl mb-2">{title}</h1>
+            <button className="bg-white center h-[50px] w-[50px] rounded-full">
+              <BiShare />
+            </button>
           </div>
-          <div className="my-5 grid grid-cols-3">
-            <Infor title="Credits Required:" value={`${price} CRD`} />
-            <Infor title="Duration:" value={secondsToHoursMinutes(duration)} />
-            <Infor title="Grade:" value={numbersStringToOrdinals(grade)} />
+          <div className="grid grid-cols-3  my-5">
+            <Infor title="Author" value={mentor} />
+            <Infor title="Credits Required" value={`${price} CRD`} />
+            <Infor title="Grade" value={numbersStringToOrdinals(grade)} />
           </div>
           <p className=" font-heading text-gray-600">{desc}</p>
         </div>
