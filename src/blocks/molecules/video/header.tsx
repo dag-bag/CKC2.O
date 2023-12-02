@@ -27,7 +27,7 @@ const Header = ({
   const listOfIds = purchases.map((pur: any) => pur.content_id);
   const locked = !listOfIds.includes(id.toString());
   return (
-    <div className="grid grid-cols-[auto_350px] gap-5 rounded-xl">
+    <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
         <div className="relative aspect-w-12 aspect-h-7">
           {locked ? (
@@ -49,11 +49,8 @@ const Header = ({
         <div className="px-5 mt-5">
           <div className="flex justify-between">
             <h1 className="font-amar font-bold text-3xl mb-2">{title}</h1>
-            <button className="bg-white center h-[50px] w-[50px] rounded-full">
-              <BiShare />
-            </button>
           </div>
-          <div className="grid grid-cols-3  my-5">
+          <div className="grid md:grid-cols-3 grid-cols-2  my-5">
             <Infor title="Author" value={mentor} />
             <Infor title="Credits Required" value={`${price} CRD`} />
             <Infor title="Grade" value={numbersStringToOrdinals(grade)} />
