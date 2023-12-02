@@ -2,9 +2,9 @@
 import Image from "next/image";
 import Card from "@/blocks/UI/Card";
 import { BiLockAlt } from "react-icons/bi";
+import { Videos } from "@/strapi/services/api";
 import VideoInfo from "@/blocks/molecules/video/Info";
 import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
-import { Videos } from "@/strapi/services/api";
 
 const Page = async (props: any) => {
   const data = await Videos({ type: "GET_ONE", payload: props.params.slug });
@@ -12,7 +12,7 @@ const Page = async (props: any) => {
     <div className="bg-gray-100  rounded-xl">
       {/* {JSON.stringify(data)} */}
       <Hero {...data} />
-      {/* <Reward /> */}
+      <Reward />
     </div>
   );
 };
@@ -83,7 +83,7 @@ const Hero = ({
       </main>
       <aside>
         <div className="max-w-xl">
-          <div>
+          <div className="grid gap-2">
             <VideoInfo
               slug={slug}
               duration={secondsToHoursMinutes(duration)}
@@ -93,7 +93,7 @@ const Hero = ({
               price={price}
               shareableURL={"something"}
             />
-            {/* <ActionQuizBlock /> */}
+            <ActionQuizBlock />
           </div>
         </div>
       </aside>
