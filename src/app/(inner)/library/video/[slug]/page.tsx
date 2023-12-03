@@ -11,10 +11,10 @@ interface Props {
 }
 
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
+  const user = await getSession();
   const purchases = await getTransactions();
   const data = await Videos({ type: "GET_ONE", payload: parseInt(slug) });
-  const user = await getSession();
-  const achivements = await getUserRewards();
+  const achivements = await getUserRewards(user.user.id);
   return (
     <div className="bg-gray-100 rounded-xl">
       {JSON.stringify(achivements)}

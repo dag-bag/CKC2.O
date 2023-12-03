@@ -1,6 +1,6 @@
 "use client";
 import useSession from "@/hooks/use-session";
-import { getCoins } from "@/strapi/services/custom";
+import { createReward, getCoins } from "@/strapi/services/custom";
 import axios from "axios";
 import React from "react";
 import { BsDatabase } from "react-icons/bs";
@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div>
       {JSON.stringify(session)}
-      <button onClick={() => update({ coins: 100 } as any)}>
+      <button onClick={() => createReward({ reward_id: 1, user: 2 } as any)}>
         Update Session
       </button>
     </div>

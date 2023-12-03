@@ -1,5 +1,6 @@
 import { strapi } from "@/libs/strapi";
 import axios from "axios";
+import { getSession } from "./me";
 
 const getCoins = async () => {
   const res = await axios.get("/api/user/coins");
@@ -7,12 +8,16 @@ const getCoins = async () => {
 };
 
 const createReward = async (data: any) => {
-  const res = await strapi.create("user-achievements", data);
+  const res = await strapi.create("achivements", data);
   return res.data;
 };
-const getUserRewards = async () => {
+const getUserRewards = async (id: number) => {
   try {
-    const res = await axios.get("/api/user/reward");
+    const res = await strapi.find("achivements", {
+      filters: {
+        user: id,
+      },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
