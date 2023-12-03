@@ -28,9 +28,8 @@ export default function RootLayout({
       </head>
       <body>
         <div>
-          <Toaster />
+          <Toaster position="top-left" />
         </div>
-
         <MantineProvider theme={MantineTheme}>{children}</MantineProvider>
       </body>
     </html>

@@ -5,8 +5,8 @@ import { useState, useRef } from "react";
 import useVideoPlayer from "@/hooks/useVideo";
 
 interface Props {
-  mediaURL: string;
   userId: string;
+  mediaURL: string;
   thumbnail: string;
   contentId: string;
   contentType: string;
@@ -54,7 +54,6 @@ const Player: React.FC<Props> = ({
     <div className="w-full">
       <ReactPlayer
         muted
-        playing
         controls
         playsinline
         url={mediaURL}
@@ -66,8 +65,11 @@ const Player: React.FC<Props> = ({
         onEnded={handleVideoEnd}
       />
       {isLoading && <Loader thumbnail={thumbnail} />}
+      <button onClick={customToast}>click</button>
     </div>
   );
 };
 
 export default Player;
+
+import { customToast } from "@/blocks/atoms/Custom";
