@@ -22,6 +22,7 @@ const Header = ({
   purchases,
   quiz,
   rewards,
+  user,
 }: any) => {
   const listOfIds = purchases.map((pur: any) => pur.content_id);
   const locked = !listOfIds.includes(id.toString());
@@ -38,6 +39,7 @@ const Header = ({
             />
           ) : (
             <Player
+              userId={user.id}
               contentId={id}
               contentType="video"
               mediaURL={mediaUrl}

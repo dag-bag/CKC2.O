@@ -4,12 +4,19 @@ import Image from "next/image";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 import { Loader } from "@mantine/core";
-const Player = ({ mediaURL, thumbnail, contentId, contentType }: any) => {
+import useSession from "@/hooks/use-session";
+const Player = ({
+  mediaURL,
+  thumbnail,
+  contentId,
+  contentType,
+  userId,
+}: any) => {
   const [isLoading, setLoading] = useState(true);
   const { handleProgress } = useVideoPlayer({
     contentId: "1",
     contentType: "video",
-    userId: "1",
+    userId: `${userId}`,
   });
 
   const handleReadyToWatch = () => {

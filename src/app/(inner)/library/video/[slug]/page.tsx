@@ -1,7 +1,7 @@
 import { Videos } from "@/strapi/services/api";
 import Header from "@/blocks/molecules/video/header";
 import Reward from "@/blocks/molecules/video/reward";
-import { getTransactions } from "@/strapi/services/me";
+import { getSession, getTransactions } from "@/strapi/services/me";
 
 interface Props {
   params: {
@@ -12,9 +12,10 @@ interface Props {
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const purchases = await getTransactions();
   const data = await Videos({ type: "GET_ONE", payload: parseInt(slug) });
+  const user = await getSession();
   return (
     <div className="bg-gray-100 rounded-xl">
-      <Header {...{ purchases, ...data }} />
+      <Header {...{ purchases, ...data, ...user }} />
       {data?.rewards && data?.rewards.length !== 0 && (
         <Reward rewards={data?.rewards} />
       )}
