@@ -1,9 +1,8 @@
-import { SessionData, sessionOptions } from "@/libs/iron";
-import { strapi } from "@/libs/strapi";
-import { getProfile } from "@/strapi/services/me";
-import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
+import { strapi } from "@/libs/strapi";
 import { NextRequest } from "next/server";
+import { getIronSession } from "iron-session";
+import { SessionData, sessionOptions } from "@/libs/iron";
 
 export async function POST(req: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
