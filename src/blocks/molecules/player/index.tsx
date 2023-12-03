@@ -14,7 +14,7 @@ const Player = ({
 }: any) => {
   const [isLoading, setLoading] = useState(true);
   const { handleProgress } = useVideoPlayer({
-    contentId: "1",
+    contentId: contentId,
     contentType: "video",
     userId: `${userId}`,
   });
