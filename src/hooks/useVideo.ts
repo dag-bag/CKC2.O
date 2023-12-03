@@ -61,7 +61,7 @@ const useVideoPlayer = ({
     if (watchRecordToUpdate) {
       await strapi.update("watcheds", watchRecordToUpdate.id, {
         watch_progress: watchProgress,
-      })
+      });
     }
   };
 
@@ -82,7 +82,7 @@ const useVideoPlayer = ({
   }): Promise<void> => {
     const roundedPlayedSeconds = Math.floor(progress.playedSeconds);
     if (roundedPlayedSeconds !== 0 && roundedPlayedSeconds % 10 === 0) {
-      console.log('watch recored - ', roundedPlayedSeconds)
+      console.log("watch recored - ", roundedPlayedSeconds);
       await updateWatchRecord(roundedPlayedSeconds);
     }
   };

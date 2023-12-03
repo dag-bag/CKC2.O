@@ -40,7 +40,7 @@ const Header = ({
           ) : (
             <Player
               userId={user.id}
-              contentId={id}
+              contentId={`${id}`}
               contentType="video"
               mediaURL={mediaUrl}
               thumbnail={thumbnail}
