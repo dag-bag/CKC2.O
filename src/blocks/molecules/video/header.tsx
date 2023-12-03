@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Player from "../player";
 import VideoInfo from "./Info";
-import { BiShare } from "react-icons/bi";
 import ActionQuizBlock from "../course/ActionQuizBlock";
 
 import {

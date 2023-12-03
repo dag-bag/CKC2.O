@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton, Button } from "@mantine/core";
 import useSession from "@/hooks/use-session";
-
+import { FaSpinner } from "react-icons/fa6";
 interface Props {
   price: number;
   type: string;
@@ -77,14 +77,18 @@ export default function BuyPopup({ price, type, title, id }: Props) {
             </div>
 
             <div>
-              <Button
-                fullWidth
-                loading={loading}
+              <button
                 className="py-2 w-full  flex items-center justify-center  border-2 rounded-xl font-heading  gap-2"
                 onClick={unlock}
               >
-                Unlock
-              </Button>
+                {loading ? (
+                  <span className="animate-spin">
+                    <FaSpinner />
+                  </span>
+                ) : (
+                  "Unlock"
+                )}
+              </button>
             </div>
           </div>
         </div>
