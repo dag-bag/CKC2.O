@@ -39,7 +39,7 @@ const Header = ({
             />
           ) : (
             <Player
-              userId={user.id}
+              userId={user.id.toString()}
               contentId={`${id}`}
               contentType="video"
               mediaURL={mediaUrl}
