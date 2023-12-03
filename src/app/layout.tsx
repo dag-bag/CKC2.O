@@ -4,6 +4,7 @@ import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import MantineTheme from "../../mantine.config";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Cosmic Kids Club",
@@ -26,6 +27,10 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <div>
+          <Toaster />
+        </div>
+
         <MantineProvider theme={MantineTheme}>{children}</MantineProvider>
       </body>
     </html>

@@ -40,6 +40,16 @@ const Player: React.FC<Props> = ({
     }
   };
 
+  const handleVideoEnd = () => {
+    // Check if the video has reached 80% completion
+    const duration = playerRef.current.getDuration();
+    const progress = (watchRecords.at(0)?.watch_progress ?? 0) / duration;
+
+    if (progress >= 0.8) {
+      // Handle the end of the video at 80% completion
+      console.log("Video reached 80% completion!");
+    }
+  };
   return (
     <div className="w-full">
       <ReactPlayer
@@ -53,6 +63,7 @@ const Player: React.FC<Props> = ({
         height={"100%"}
         onProgress={handleProgress}
         onReady={handleReadyToWatch}
+        onEnded={handleVideoEnd}
       />
       {isLoading && <Loader thumbnail={thumbnail} />}
     </div>

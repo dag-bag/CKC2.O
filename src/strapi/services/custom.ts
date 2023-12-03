@@ -7,4 +7,8 @@ const getCoins = async () => {
   return res.data;
 };
 
+const createReward = async () => {
+  // const res = await strapi.
+};
+
 export { getCoins };
