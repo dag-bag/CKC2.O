@@ -15,6 +15,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   return (
     <div className="bg-gray-100 rounded-xl">
+      {/* {JSON.stringify(data)} */}
       <Header {...{ purchases, ...data, ...user }} />
       {data?.rewards && data?.rewards.length !== 0 && (
         <Reward rewards={data?.rewards} />

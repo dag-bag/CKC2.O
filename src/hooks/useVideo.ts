@@ -20,6 +20,7 @@ type WatchRecord = {
 type VideoPlayerResult = {
   handleProgress: (progress: { playedSeconds: number }) => Promise<void>;
   isLoading: boolean;
+  watchRecords: WatchRecord[]
 };
 
 const useVideoPlayer = ({
@@ -50,7 +51,7 @@ const useVideoPlayer = ({
       watched_date: new Date().toISOString(),
       type: contentType,
       watch_progress: 0,
-    });
+    })
     mutate(`watched/${contentId}`);
   };
 
@@ -88,8 +89,9 @@ const useVideoPlayer = ({
   };
 
   return {
-    handleProgress,
     isLoading,
+    handleProgress,
+    watchRecords: watchRecords as WatchRecord[]
   };
 };
 
