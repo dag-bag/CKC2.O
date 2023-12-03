@@ -39,6 +39,7 @@ const Header = ({
             />
           ) : (
             <Player
+              rewards={rewards}
               userId={user.id.toString()}
               contentId={`${id}`}
               contentType="video"

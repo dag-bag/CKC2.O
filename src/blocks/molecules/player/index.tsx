@@ -4,15 +4,19 @@ import ReactPlayer from "react-player";
 import { useState, useRef } from "react";
 import useVideoPlayer from "@/hooks/useVideo";
 
+import { createReward } from "@/strapi/services/custom";
+
 interface Props {
   userId: string;
   mediaURL: string;
   thumbnail: string;
   contentId: string;
   contentType: string;
+  rewards: any[];
 }
 
 const Player: React.FC<Props> = ({
+  rewards,
   mediaURL,
   userId,
   thumbnail,
@@ -41,19 +45,24 @@ const Player: React.FC<Props> = ({
   };
 
   const handleVideoEnd = () => {
-    // Check if the video has reached 80% completion
-    const duration = playerRef.current.getDuration();
-    const progress = (watchRecords.at(0)?.watch_progress ?? 0) / duration;
+    console.log("ended");
+    createReward({ reward_id: rewards.at(0).id, user: userId } as any).then(
+      () => {
+        customToast();
+      }
+    );
 
-    if (progress >= 0.8) {
-      // Handle the end of the video at 80% completion
-      console.log("Video reached 80% completion!");
-    }
+    // Check if the video has reached 80% completion
+    // const duration = playerRef.current.getDuration();
+    // const progress = (watchRecords.at(0)?.watch_progress ?? 0) / duration;
+    // if (progress >= 0.8) {
+    //   // Handle the end of the video at 80% completion
+    //   console.log("Video reached 80% completion!");
+    // }
   };
   return (
     <div className="w-full">
       <ReactPlayer
-        muted
         controls
         playsinline
         url={mediaURL}
@@ -65,7 +74,7 @@ const Player: React.FC<Props> = ({
         onEnded={handleVideoEnd}
       />
       {isLoading && <Loader thumbnail={thumbnail} />}
-      <button onClick={customToast}>click</button>
+      {/* <button onClick={customToast}>click</button> */}
     </div>
   );
 };
@@ -73,3 +82,4 @@ const Player: React.FC<Props> = ({
 export default Player;
 
 import { customToast } from "@/blocks/atoms/Custom";
+import Rewards from "../video/reward";

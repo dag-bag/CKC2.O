@@ -18,6 +18,9 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   return (
     <div className="bg-gray-100 rounded-xl">
       {JSON.stringify(achivements)}
+      <hr />
+      {JSON.stringify(data)}
+
       <Header {...{ purchases, ...data, ...user }} />
       {data?.rewards && data?.rewards.length !== 0 && (
         <Reward rewards={data?.rewards} />
