@@ -65,7 +65,7 @@ const CourseCard = () => {
                 <span>{course.garde}</span>
               </p>
               {/* Credits Required */}
-              <p className="text-sm  bg-blue-400 shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+              <p className="text-sm  bg-[#1E783C] shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
                 <Image width={25} height={25} alt="123" src={"/coin3.png"} />
                 <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
                   {course.required_credits}
