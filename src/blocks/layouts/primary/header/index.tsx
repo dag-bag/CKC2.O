@@ -12,12 +12,34 @@ const Header = () => {
             <SearchBar />
           </div>
           <div className="flex items-center justify-end ml-auto gap-5">
+            <LeaderboardButton />
+            <MarketplaceButton />
             <MyBalance />
             <Profile />
           </div>
         </div>
       </header>
     </>
+  );
+};
+
+import { RiStoreFill, RiBarChart2Fill } from "react-icons/ri";
+
+const LeaderboardButton = () => {
+  return (
+    <button className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md">
+      <RiBarChart2Fill size={20} />
+      {/* Leaderboard */}
+    </button>
+  );
+};
+
+const MarketplaceButton = () => {
+  return (
+    <button className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md">
+      <RiStoreFill size={20} />
+      {/* Marketplace */}
+    </button>
   );
 };
 

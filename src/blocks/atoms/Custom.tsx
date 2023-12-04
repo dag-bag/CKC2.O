@@ -47,14 +47,9 @@ export const customToast = () => {
     <div className="w-screen h-screen  -ml-[16px] -mt-[16px] z-[9999999999] bg-black/50  fixed top-0 left-0 center ">
       <div className="w-[400px] bg-white p-5 shadow-md rounded-md">
         <h1 className="font-semibold font-amar mb-5 text-xl">
-          You got something...
+          Rewardedd and Quiz Unlocked
         </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error sequi
-          harum ullam quibusdam, ad maxime natus inventore facilis magni?
-          Dolores dolore deleniti quia nobis distinctio voluptate, sunt
-          voluptatibus inventore fugit.
-        </p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         <button
           onClick={() => toast.dismiss(t.id)}
           className="bg-black text-white w-full py-3 rounded-xl"

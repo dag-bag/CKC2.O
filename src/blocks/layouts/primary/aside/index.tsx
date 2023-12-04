@@ -38,16 +38,16 @@ const primary_layout_left_buttons = [
   { title: "Learn", hrefs: ["/learn"], Icon: RiBrainFill },
   { title: "Library", hrefs: ["/library/videos"], Icon: RiBook2Fill },
   { title: "Challanges", hrefs: ["/challanges"], Icon: RiVipCrown2Fill },
-  { title: "Leaderboard", hrefs: ["/leader"], Icon: RiBarChart2Fill },
+  // { title: "Leaderboard", hrefs: ["/leader"], Icon: RiBarChart2Fill },
   {
     title: "Discovery Jar",
     hrefs: ["/discovery-jar"],
     Icon: RiQuestionFill,
   },
-  { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
-  {
-    title: "Refer & Earn",
-    hrefs: ["/referral"],
-    Icon: RiSettings4Fill,
-  },
+  // { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
+  // {
+  //   title: "Refer & Earn",
+  //   hrefs: ["/referral"],
+  //   Icon: RiSettings4Fill,
+  // },
 ];

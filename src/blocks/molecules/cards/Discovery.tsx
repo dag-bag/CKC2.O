@@ -8,16 +8,19 @@ const DiscoveryCard = () => {
           <Image src="/jupiter.jpg" alt="image" fill />
         </div>
         <div className="md:p-5 p-2">
-          <h3 className="font-medium font-amar md:text-xl text-sm line-clamp-2 leading-5 mt-1  text-black">
+          <h3 className="font-medium font-amar md:text-xl text-sm line-clamp-2 leading-4 mt-1  text-black">
             What if Jupiter never existed in our solar system?
           </h3>
+          <p className="font-heading text-sm text-gray-600 leading-4 mt-1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
 
-          <div className="grid gap-1 mt-2">
+          {/* <div className="grid gap-1 mt-2">
             <div>
               <p className=" text-sm font-amar text-gray-600 ">Inquisitor </p>
             </div>
             <AvatarBlock />
-          </div>
+          </div> */}
 
           {/* <p className="text-sm text-gray-800 !font-heading mt-2 hidden md:block leading-4 ">
             <span className="font-semibold">Question by</span> @Kenjiro

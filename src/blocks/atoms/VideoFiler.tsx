@@ -12,10 +12,20 @@ const VideoAndComicsFilter = () => {
   return (
     <div className="py-5">
       <div className="inline-flex gap-5 bg-white p-1 rounded-full">
-        <Button active={isComics} href={"/library/comics"} Icon={RiBook2Fill}>
+        <Button
+          color="#F6AC3B"
+          active={isComics}
+          href={"/library/comics"}
+          Icon={RiBook2Fill}
+        >
           Comics
         </Button>
-        <Button active={isVideos} href={"/library/videos"} Icon={RiLiveFill}>
+        <Button
+          color="#1F95D4"
+          active={isVideos}
+          href={"/library/videos"}
+          Icon={RiLiveFill}
+        >
           Videos
         </Button>
       </div>
@@ -23,23 +33,32 @@ const VideoAndComicsFilter = () => {
   );
 };
 
-const Button = ({ active, href, Icon, children }: any) => {
+const Button = ({ active, href, Icon, children, color }: any) => {
   return (
     <Link href={href} passHref>
       <div
+        style={
+          active
+            ? {
+                background: color,
+              }
+            : undefined
+        }
         className={clsx(
           "px-10 py-2.5 rounded-full flex justify-between gap-5 text-black font-amar",
-          active &&
-            " bg-gradient-to-t from-blue-700 to-blue-500  drop-shadow-lg"
+          active && "shadow-xl"
         )}
       >
         <div className="flex gap-2">
           <div className="px-3 center rounded-lg">
-            <Icon color={active ? "white" : "gray"} size={22} />
+            <Icon color={active ? "white" : "black"} size={22} />
           </div>
           <div>
             <h3
-              className={clsx("text-lg text-gray-700", active && "text-white")}
+              className={clsx(
+                "text-lg text-black",
+                active && "text-white drop-shadow-2xl"
+              )}
             >
               {children}
             </h3>
