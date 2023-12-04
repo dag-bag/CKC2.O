@@ -12,7 +12,7 @@ const MyBalance = () => {
           <Image width={35} height={35} alt="coin" src={"/coin3.png"} />
           <span className="mt-1 font-semibold">{session.user.coins}</span>
         </button>
-        {/* <button className="flex items-center gap-2 font-josefin">
+        <button className="flex items-center gap-2 font-josefin">
           <Image
             width={30}
             height={30}
@@ -21,7 +21,7 @@ const MyBalance = () => {
             className=" -rotate-12"
           />
           <span className="mt-1 font-semibold">1,000</span>
-        </button> */}
+        </button>
       </div>
     </div>
   );
@@ -38,7 +38,7 @@ export const MobileMyBalance = () => {
           <span className="mt-1 font-semibold">{session.user.coins}</span>
         </button>
 
-        {/* <button className="flex items-center gap-1 font-josefin ">
+        <button className="flex items-center gap-1 font-josefin ">
           <Image
             width={20}
             height={20}
@@ -47,7 +47,7 @@ export const MobileMyBalance = () => {
             className=" -rotate-12"
           />
           <span className="mt-1 font-semibold">1,000</span>
-        </button> */}
+        </button>
       </div>
     </div>
   );

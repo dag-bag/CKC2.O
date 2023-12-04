@@ -16,6 +16,7 @@ import {
   RiLogoutBoxLine,
   RiProfileLine,
   RiUser2Line,
+  RiShareForwardBoxFill,
 } from "react-icons/ri";
 
 const Profilebar = () => {
@@ -34,9 +35,6 @@ const Profilebar = () => {
           <div className="relative w-[45px] h-[45px] border rounded-full overflow-hidden bg-gray-400 mr-1 bg-[url('/avatars/asian-man.png')] bg-cover bg-center ">
             &nbsp;
           </div>
-          <div>
-            <h3 className=" font-josefin">Kenjiro</h3>
-          </div>
         </div>
       </Menu.Target>
 
@@ -54,6 +52,13 @@ const Profilebar = () => {
         </Menu.Item>
         <Menu.Item>
           <Button title={"Settings"} href={"/settings"} Icon={LuSettings} />
+        </Menu.Item>
+        <Menu.Item>
+          <Button
+            title={"Referrals"}
+            href={"/referral"}
+            Icon={RiShareForwardBoxFill}
+          />
         </Menu.Item>
 
         <Menu.Divider />
