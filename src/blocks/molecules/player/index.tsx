@@ -2,10 +2,12 @@
 import Loader from "./loader";
 import ReactPlayer from "react-player";
 import { useState, useRef } from "react";
-import useVideoPlayer from "@/hooks/useVideo";
-import { customToast } from "@/blocks/atoms/Custom";
-import { createReward } from "@/strapi/services/custom";
 import { useRouter } from "next/navigation";
+import useVideoPlayer from "@/hooks/useVideo";
+import { createReward } from "@/strapi/services/custom";
+import RewardPopup from "../popups/reward";
+import { useDisclosure } from "@mantine/hooks";
+
 interface Props {
   rewards: any[];
   userId: string;
@@ -32,6 +34,7 @@ const Player: React.FC<Props> = ({
   const playerRef = useRef<any>(null);
   const [playing, setPlaying] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const [opened, popupHandler] = useDisclosure(false);
   const [maxTimePlayed, setMaxTimePlayed] = useState<number>(0);
 
   // handle forcefully update timestamp with validation
@@ -64,14 +67,13 @@ const Player: React.FC<Props> = ({
       trackProgress(state);
       // [end of video]
       if (parseInt(duration) === playedSeconds) {
-        customToast();
+        popupHandler.open();
         createReward({
           user: userId,
           reward_id: rewards.at(0).id,
           coins: 100,
           type: "video",
         } as any).then(() => {
-          router.refresh();
           // update({ coins: 100, type: "add" } as any);
         });
       }
@@ -124,6 +126,17 @@ const Player: React.FC<Props> = ({
 
   return (
     <div className="w-full">
+      {opened && (
+        <RewardPopup
+          points={100}
+          title="Congrats!"
+          desc="quiz is unlocked!"
+          onClose={() => {
+            router.refresh();
+            popupHandler.close();
+          }}
+        />
+      )}
       <ReactPlayer
         controls
         playsinline
