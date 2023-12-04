@@ -89,10 +89,10 @@ const CosmicHome = ({ progress, path }: any) => {
 
 export const realign = (progress: number) => {
   const t: any = {
-    16: -15,
+    16: -10,
     32: 35,
-    48: -15,
-    64: 40,
+    48: -14,
+    64: 30,
     80: -20,
     96: 40,
   };

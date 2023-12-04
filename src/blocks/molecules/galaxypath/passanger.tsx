@@ -22,9 +22,9 @@ const Passenger = ({ progress, animated, path }: any) => {
       initial="initial"
       variants={varients}
       onAnimationComplete={animated}
-      className="rounded-full absolute z-50 w-[60px] h-[40px] md:w-[100px] md:h-[60px] drop-shadow-2xl"
+      className="rounded-full absolute z-50 w-[100px] h-[60px] md:w-[200px] md:h-[120px] drop-shadow-2xl"
     >
-      <Image fill alt="iamge" src={"/ship.png"} className="rounded-full" />
+      <Image fill alt="iamge" src={"/svgs/ship.png"} className="rounded-full" />
     </motion.div>
   );
 };

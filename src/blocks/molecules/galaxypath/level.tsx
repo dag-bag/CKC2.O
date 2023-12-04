@@ -63,12 +63,12 @@ const Level = ({
       <motion.div
         onClick={handleClick}
         {...Properties}
-        className="rounded-full cursor-pointer absolute z-50 w-[50px] h-[50px] md:w-[50px] md:h-[50px] border p-1 border-indigo-300"
+        className="rounded-full cursor-pointer absolute z-50 w-[50px] h-[50px] md:w-[60px] md:h-[60px] border p-1 border-green-300"
       >
-        <div className="w-full lg:text-xl h-full shadow-xl text-white border bg-white rounded-full center gap-0.5 font-semibold bg-gradient-to-t from-blue-500 to-indigo-500">
-          {number}{" "}
+        <div className="w-full lg:text-xl h-full shadow-xl text-white border bg-white rounded-full center gap-0.5 font-semibold bg-gradient-to-t from-green-800 to-green-500 ">
+          {number}
           {!condition && (
-            <span className="text-xs md:text-sm">
+            <span className="text-[12px] text-white">
               <BiSolidLockAlt />
             </span>
           )}

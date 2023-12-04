@@ -28,10 +28,10 @@ export default function NewboardCanvas({ progress }: Props) {
       {/* clouds layer */}
       <div
         style={{
-          backgroundSize: "1000px 60px",
+          backgroundSize: "1000px 100px",
           backgroundImage: "url('/no-shadow-cloud.png')",
         }}
-        className="absolute bottom-0 w-full h-[50px] bg-bottom"
+        className="absolute bottom-0 w-full h-[100px] bg-bottom"
       />
     </div>
   );
