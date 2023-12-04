@@ -1,17 +1,3 @@
-const course = {
-  garde: "6th",
-  duration: "10 M",
-  thumbnail: "/jupiter.jpg",
-  required_credits: "1,459",
-  name: "What if Jupiter never existed in our solar system?",
-  desc: "Join us on a mind-bending journey through an alternate solar system...",
-};
-
-const initial = {
-  x: 120,
-  y: 120,
-};
-
 import Link from "next/link";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
@@ -89,25 +75,3 @@ const VideoCard = ({
 };
 
 export default VideoCard;
-
-// <div className="min-w-[60px] hidden md:block">
-// <p className="text-sm text-gray-500 flex items-center mt-2 gap-1 ">
-//   <BiTime size={17} />
-//   <span className="text-gray-500 font-semibold">
-//     {course.duration}
-//   </span>
-// </p>
-// </div>
-
-function getRandomString(arr: string[]): string {
-  // Check if the array is empty
-  if (arr.length === 0) {
-    return "Array is empty";
-  }
-
-  // Generate a random index within the array length
-  const randomIndex: number = Math.floor(Math.random() * arr.length);
-
-  // Return the randomly selected string
-  return arr[randomIndex];
-}

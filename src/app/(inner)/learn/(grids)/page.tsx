@@ -4,6 +4,9 @@ import Content from "@/blocks/molecules/content-grid/content";
 import { Courses } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 const tags = ["JavaScript", "HTML", "CSS", "Programming", "Web Development"];
+
+import CourseCard from "@/blocks/molecules/cards/Course";
+
 const DashboardPage = async () => {
   const [data, purchases] = await Promise.all([
     Courses({ type: "GET" }),
@@ -11,8 +14,7 @@ const DashboardPage = async () => {
   ]);
 
   return (
-    <Container gridType="single">
-      {JSON.stringify(data)}
+    <div>
       <div className="grid gap-5 px-2">
         <BannerCarousel />
       </div>
@@ -30,10 +32,10 @@ const DashboardPage = async () => {
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3 py-5">
         {data.map((course: any) => (
-          <Content type="course" key={course.id} />
+          <CourseCard {...course} key={course.id} />
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
 export default DashboardPage;
