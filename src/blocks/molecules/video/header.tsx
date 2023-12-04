@@ -23,9 +23,11 @@ const Header = ({
   quiz,
   rewards,
   user,
+  isAlreadyRewarded,
 }: any) => {
   const listOfIds = purchases.map((pur: any) => pur.content_id);
   const locked = !listOfIds.includes(id.toString());
+
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
@@ -40,11 +42,13 @@ const Header = ({
           ) : (
             <Player
               rewards={rewards}
-              userId={user.id.toString()}
               contentId={`${id}`}
-              contentType="video"
+              duration={duration}
               mediaURL={mediaUrl}
+              contentType="video"
               thumbnail={thumbnail}
+              userId={user.id.toString()}
+              isAlreadyRewarded={isAlreadyRewarded}
             />
           )}
         </div>
@@ -76,7 +80,7 @@ const Header = ({
                 reward={rewards.map((rew: any) => rew.title).join(", ")}
               />
             )}
-            {quiz && <ActionQuizBlock locked={true} />}
+            {quiz && <ActionQuizBlock unlocked={isAlreadyRewarded} />}
           </div>
         </div>
       </aside>
