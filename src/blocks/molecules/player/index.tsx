@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 import useVideoPlayer from "@/hooks/useVideo";
 import { customToast } from "@/blocks/atoms/Custom";
 import { createReward } from "@/strapi/services/custom";
+import { useRouter } from "next/navigation";
 interface Props {
   rewards: any[];
   userId: string;
@@ -26,6 +27,7 @@ const Player: React.FC<Props> = ({
   contentType,
   isAlreadyRewarded,
 }) => {
+  const router = useRouter();
   const seconds = useRef<any>([]);
   const playerRef = useRef<any>(null);
   const [playing, setPlaying] = useState(false);
@@ -63,7 +65,15 @@ const Player: React.FC<Props> = ({
       // [end of video]
       if (parseInt(duration) === playedSeconds) {
         customToast();
-        createReward({ reward_id: rewards.at(0).id, user: userId } as any);
+        createReward({
+          user: userId,
+          reward_id: rewards.at(0).id,
+          coins: 100,
+          type: "video",
+        } as any).then(() => {
+          router.refresh();
+          // update({ coins: 100, type: "add" } as any);
+        });
       }
     }
 
