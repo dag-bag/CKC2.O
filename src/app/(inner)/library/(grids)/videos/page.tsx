@@ -2,9 +2,6 @@ import { Videos } from "@/strapi/services/api";
 import VideoCard from "@/blocks/molecules/cards/Video";
 import { getTransactions } from "@/strapi/services/me";
 const VideosPage = async () => {
-  // const data = await Videos({ type: "GET" });
-  // const purchases = await getTransactions();
-
   const [data, purchases] = await Promise.all([
     Videos({ type: "GET" }),
     getTransactions(),

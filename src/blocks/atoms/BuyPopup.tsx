@@ -29,7 +29,7 @@ export default function BuyPopup({ price, type, title, id }: Props) {
         label: title,
       })
       .then(() => {
-        update({ coins: price } as any);
+        update({ coins: price, type: "remove" } as any);
         close();
         loaderHandler.close();
         router.refresh();

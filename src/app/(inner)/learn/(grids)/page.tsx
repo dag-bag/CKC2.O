@@ -1,10 +1,18 @@
 import Container from "@/blocks/UI/PageContainer";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 import Content from "@/blocks/molecules/content-grid/content";
+import { Courses } from "@/strapi/services/api";
+import { getTransactions } from "@/strapi/services/me";
 const tags = ["JavaScript", "HTML", "CSS", "Programming", "Web Development"];
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const [data, purchases] = await Promise.all([
+    Courses({ type: "GET" }),
+    getTransactions(),
+  ]);
+
   return (
     <Container gridType="single">
+      {JSON.stringify(data)}
       <div className="grid gap-5 px-2">
         <BannerCarousel />
       </div>
@@ -21,19 +29,9 @@ const DashboardPage = () => {
       </div>
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3 py-5">
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
-        <Content type="course" />
+        {data.map((course: any) => (
+          <Content type="course" key={course.id} />
+        ))}
       </div>
     </Container>
   );

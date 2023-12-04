@@ -8,8 +8,10 @@ const getCoins = async () => {
 };
 
 const createReward = async (data: any) => {
-  const res = await strapi.create("achivements", data);
-  return res.data;
+  try {
+    const res = await strapi.create("achivements", data);
+    return res.data;
+  } catch (error) {}
 };
 const getUserRewards = async (id: number) => {
   try {

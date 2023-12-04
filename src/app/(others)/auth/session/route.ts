@@ -54,12 +54,14 @@ export async function PUT(request: NextRequest) {
     }
     const data = (await request.json()) as {
       coins: number;
+      type: "add" | "remove";
     };
 
     // Validate input data using joi
     const { error, value } = joi
       .object({
         coins: joi.number().required(),
+        type: joi.string().valid("add", "remove").required(),
       })
       .validate(data);
 
@@ -67,8 +69,26 @@ export async function PUT(request: NextRequest) {
       return Response.json({ error: error.details[0].message });
     }
 
-    if (value.coins && session.user.coins >= value.coins) {
-      session.user.coins -= value.coins;
+    switch (value.type) {
+      case "add":
+        // @ts-ignore
+        session.user.coins = parseInt(session.user.coins, 10) + value.coins;
+        break;
+      case "remove":
+        if (session.user.coins >= value.coins) {
+          session.user.coins -= value.coins;
+        } else {
+          return Response.json(
+            { error: "Not enough coins to remove" },
+            { status: 400 }
+          );
+        }
+        break;
+      default:
+        return Response.json(
+          { error: "Invalid operation type" },
+          { status: 400 }
+        );
     }
 
     await session.save();

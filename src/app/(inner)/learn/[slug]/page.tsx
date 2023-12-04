@@ -1,8 +1,6 @@
-import { Videos } from "@/strapi/services/api";
-import Header from "@/blocks/molecules/video/header";
-import Reward from "@/blocks/molecules/video/reward";
-import { getSession, getTransactions } from "@/strapi/services/me";
+import { Courses } from "@/strapi/services/api";
 import { getUserRewards } from "@/strapi/services/custom";
+import { getSession, getTransactions } from "@/strapi/services/me";
 
 interface Props {
   params: {
@@ -13,7 +11,7 @@ interface Props {
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
-    Videos({ type: "GET_ONE", payload: parseInt(slug) }),
+    Courses({ type: "GET_ONE", payload: parseInt(slug) }),
     getTransactions(),
     getUserRewards(user.user.id),
   ]);
@@ -23,13 +21,9 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
       {JSON.stringify(achivements)}
       <hr />
       {JSON.stringify(data)}
-
-      <Header {...{ purchases, ...data, ...user }} />
-      {data?.rewards && data?.rewards.length !== 0 && (
-        <Reward rewards={data?.rewards} />
-      )}
     </div>
   );
 };
-
 export default Page;
+
+export const revalidate = 10;

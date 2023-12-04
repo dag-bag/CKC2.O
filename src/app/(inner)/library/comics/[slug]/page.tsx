@@ -4,8 +4,21 @@ import Card from "@/blocks/UI/Card";
 import { BiLockAlt } from "react-icons/bi";
 import BuyPopup from "@/blocks/atoms/BuyPopup";
 import SharePopup from "@/blocks/atoms/SharePopup";
-
-const Page = () => {
+import { getSession, getTransactions } from "@/strapi/services/me";
+import { getUserRewards } from "@/strapi/services/custom";
+import { Comics } from "@/strapi/services/api";
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+const Page: React.FC<Props> = async ({ params: { slug } }) => {
+  const user = await getSession();
+  const [data, purchases, achivements] = await Promise.all([
+    Comics({ type: "GET_ONE", payload: parseInt(slug) }),
+    getTransactions(),
+    getUserRewards(user.user.id),
+  ]);
   return (
     <div>
       <Hero />
