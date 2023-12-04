@@ -82,7 +82,9 @@ const Player: React.FC<Props> = ({
 
     // Update the maxTimePlayed if the current played time is greater than the current maxTimePlayed
     if (maxTimePlayed === null || current > maxTimePlayed) {
-      setMaxTimePlayed(current);
+      if (current - previous < 30) {
+        setMaxTimePlayed(current);
+      }
     }
 
     // Check if the current played time is less than the last played time
