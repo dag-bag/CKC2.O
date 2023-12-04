@@ -19,9 +19,9 @@ type WatchRecord = {
 };
 
 type VideoPlayerResult = {
-  handleProgress: (progress: { playedSeconds: number }) => Promise<void>;
+  trackProgress: (progress: { playedSeconds: number }) => Promise<void>;
   isLoading: boolean;
-  watchRecords: WatchRecord[];
+  lastPlayed: number;
 };
 
 const useVideoPlayer = ({
@@ -79,7 +79,7 @@ const useVideoPlayer = ({
     }
   );
 
-  const handleProgress = async (progress: {
+  const trackProgress = async (progress: {
     playedSeconds: number;
   }): Promise<void> => {
     const roundedPlayedSeconds = Math.floor(progress.playedSeconds);
@@ -92,8 +92,8 @@ const useVideoPlayer = ({
 
   return {
     isLoading,
-    handleProgress,
-    watchRecords: watchRecords as WatchRecord[],
+    trackProgress,
+    lastPlayed: watchRecords?.at(0)?.watch_progress ?? 0,
   };
 };
 

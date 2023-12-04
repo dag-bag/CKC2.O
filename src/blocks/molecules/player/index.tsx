@@ -3,8 +3,8 @@ import Loader from "./loader";
 import ReactPlayer from "react-player";
 import { useState, useRef } from "react";
 import useVideoPlayer from "@/hooks/useVideo";
+import { customToast } from "@/blocks/atoms/Custom";
 import { createReward } from "@/strapi/services/custom";
-
 interface Props {
   rewards: any[];
   userId: string;
@@ -41,7 +41,7 @@ const Player: React.FC<Props> = ({
   };
 
   // handling records
-  const { handleProgress, watchRecords } = useVideoPlayer({
+  const { trackProgress, lastPlayed } = useVideoPlayer({
     userId,
     contentId,
     contentType,
@@ -49,7 +49,7 @@ const Player: React.FC<Props> = ({
 
   const handleReadyToWatch = () => {
     setLoading(false);
-    forceUpdate(watchRecords.at(0)?.watch_progress ?? 0);
+    forceUpdate(lastPlayed);
   };
 
   const progress = (state: { playedSeconds: number }) => {
@@ -59,7 +59,7 @@ const Player: React.FC<Props> = ({
     // sending user completion of video
     if (!isAlreadyRewarded) {
       // [tracking user watched]
-      handleProgress(state);
+      trackProgress(state);
       // [end of video]
       if (parseInt(duration) === playedSeconds) {
         customToast();
@@ -129,6 +129,3 @@ const Player: React.FC<Props> = ({
 };
 
 export default Player;
-
-import { customToast } from "@/blocks/atoms/Custom";
-import { string } from "joi";
