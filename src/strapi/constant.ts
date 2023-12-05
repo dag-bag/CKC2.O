@@ -1,0 +1,9 @@
+export const COURSES = "courses";
+export const VIDEOS = "videos";
+export const WATCHED = "watcheds";
+export const COINS = "coins";
+export const DISCOVERY_JARS_QUESTION = "discovery-jar-questions";
+export const DISCOVERY_JARS_ANSWER = "discovery-jar-answers";
+export const UPCOMING_LIVES = "upcoming-lives";
+export const LIVES = "lives";
+export const RECORDED_LIVES = "recorded-lives";

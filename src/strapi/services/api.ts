@@ -6,7 +6,18 @@ const Comics = async (action: Action): Promise<ComicBook[]> => {
   return fetchData("comics", action);
 };
 
-export { Comics, Videos, Courses, Watched, Coins };
+export {
+  Comics,
+  Videos,
+  Courses,
+  Watched,
+  Coins,
+  DiscoveryJarsQuestion,
+  Upcoming,
+  Live,
+  Recorded,
+  DiscoveryJarsAnswer,
+};
 
 // courses.ts
 
@@ -24,4 +35,21 @@ const Watched = async (action: Action) => {
 
 const Coins = async (action: Action) => {
   return fetchData("coins", action);
+};
+
+const DiscoveryJarsQuestion = async (action: Action) => {
+  return fetchData("discovery-jar-questions", action);
+};
+const DiscoveryJarsAnswer = async (action: Action) => {
+  return fetchData("discovery-jar-answers", action);
+};
+
+const Upcoming = async (action: Action) => {
+  return fetchData("upcoming-lives", action);
+};
+const Live = async (action: Action) => {
+  return fetchData("lives", action);
+};
+const Recorded = async (action: Action) => {
+  return fetchData("recorded-lives", action);
 };

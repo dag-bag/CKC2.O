@@ -4,6 +4,10 @@ import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
 import DiscoveryCard from "@/blocks/molecules/cards/Discovery";
 
 import Categorizer from "@/blocks/molecules/categorizer";
+import {
+  DiscoveryJarsAnswer,
+  DiscoveryJarsQuestion,
+} from "@/strapi/services/api";
 
 const Banner = () => {
   return (
@@ -20,7 +24,8 @@ const Banner = () => {
   );
 };
 
-const DiscoveryJarPage = () => {
+const DiscoveryJarPage = async () => {
+  const data = await DiscoveryJarsAnswer({ type: "GET" });
   return (
     <div className="px-5">
       <section>
@@ -63,14 +68,9 @@ const DiscoveryJarPage = () => {
         <div>
           <Categorizer title="Question & Answers">
             <div className="grid grid-cols-4 gap-5 px-2">
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
-              <DiscoveryCard />
+              {data.map((item: any) => (
+                <DiscoveryCard key={item.id} />
+              ))}
             </div>
           </Categorizer>
 
@@ -138,3 +138,5 @@ const Content = () => {
         </div>
       </div> */
 }
+
+export const revalidate = 400000;

@@ -1,8 +1,16 @@
 import Categorizer from "@/blocks/molecules/categorizer";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 import Content from "@/blocks/molecules/content-grid/content";
+import { Live, Recorded, Upcoming } from "@/strapi/services/api";
+import { getTransactions } from "@/strapi/services/me";
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  const [live, upcoming, recorded, unlocked] = await Promise.all([
+    Live({ type: "GET" }),
+    Upcoming({ type: "GET" }),
+    Recorded({ type: "GET" }),
+    getTransactions(),
+  ]);
   return (
     <div className="page_force_scroll">
       <div className="grid grid-cols-[auto]">
@@ -51,3 +59,5 @@ const Button = () => (
     See more
   </button>
 );
+
+export const revalidate = 100;
