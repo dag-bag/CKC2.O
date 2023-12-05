@@ -1,13 +1,15 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import Textinput from "@/blocks/atoms/TextInput";
-import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
-import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
-import Form from "@/blocks/atoms/forms/login";
+import { useRouter } from "next/navigation";
 import useSession from "@/hooks/use-session";
+import Form from "@/blocks/atoms/forms/login";
+import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
+import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 const Page = () => {
-  const { session, logout, isLoading } = useSession();
+  const router = useRouter();
+  const { session } = useSession();
+  if (session.isLoggedIn) {
+    router.replace("/dashboard");
+  }
   return (
     <div className="md:h-screen center font-fun bg-gray-100 ">
       <div className=" rounded-lg grid md:grid-cols-2 bg-white max-w-7xl w-full  mx-auto ">
