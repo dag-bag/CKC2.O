@@ -20,6 +20,12 @@ import {
 } from "react-icons/ri";
 
 const Profilebar = () => {
+  const router = useRouter();
+  const { logout } = useSession();
+  const handleLogout = () => {
+    logout();
+    router.replace("/auth/login");
+  };
   return (
     <Menu
       shadow="md"
@@ -64,7 +70,9 @@ const Profilebar = () => {
         <Menu.Divider />
 
         <Menu.Item>
-          <Button title={"Logout"} href={"/logout"} Icon={LuLogOut} />
+          <button className="capitalize" onClick={handleLogout}>
+            logout
+          </button>
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>
@@ -83,6 +91,8 @@ import {
   LuShoppingCart,
   LuBell,
 } from "react-icons/lu";
+import useSession from "@/hooks/use-session";
+import { useRouter } from "next/navigation";
 
 interface Props {
   Icon: any;
