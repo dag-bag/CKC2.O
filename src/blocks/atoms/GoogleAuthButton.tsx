@@ -12,7 +12,7 @@ const GoogleAuthButton = ({ type }: Props) => {
     type == "signin" ? "Sign in with Google" : "Sign up with Google";
   return (
     <button
-      className="px-5 text-md font-medium py-3 bg-black text-white center gap-2 font-fun rounded-lg w-full"
+      className="px-5 text-md font-medium font-heading py-4 bg-slate-800 text-white center gap-2 rounded-full w-full"
       onClick={() => login({ type: "GOOGLE" })}
     >
       <FcGoogle size={22} /> {title}

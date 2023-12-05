@@ -57,7 +57,7 @@ const Textinput: React.FC<TextinputProps> = ({
 
   return (
     <div
-      className={`fromGroup ${error ? "has-error" : ""} ${
+      className={`fromGroup font-heading ${error ? "has-error" : ""} ${
         horizontal ? "flex" : ""
       } ${validate ? "is-valid" : ""}`}
     >

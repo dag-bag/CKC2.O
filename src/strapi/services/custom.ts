@@ -11,7 +11,9 @@ const createReward = async (data: any) => {
   try {
     const res = await strapi.create("achivements", data);
     return res.data;
-  } catch (error) {}
+  } catch (error) {
+    console.error(error)
+  }
 };
 const getUserRewards = async (id: number) => {
   try {
