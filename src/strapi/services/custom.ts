@@ -12,7 +12,7 @@ const createReward = async (data: any) => {
     const res = await strapi.create("achivements", data);
     return res.data;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
 const getUserRewards = async (id: number) => {
@@ -27,5 +27,13 @@ const getUserRewards = async (id: number) => {
     console.log(error);
   }
 };
+const getRecentWatched = async (id: number) => {
+  try {
+    const res = await strapi.axios.get("/recent-watched?id=3");
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export { getCoins, getUserRewards, createReward };
+export { getCoins, getUserRewards, createReward, getRecentWatched };

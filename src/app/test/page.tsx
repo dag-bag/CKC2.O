@@ -8,15 +8,5 @@ import React from "react";
 import { BsDatabase } from "react-icons/bs";
 
 export default function Page() {
-  return (
-    <div>
-      <iframe
-        allowfullscreen="allowfullscreen"
-        scrolling="no"
-        class="fp-iframe"
-        src="https://cosmickidsclub.aflip.in/1fcc274278.html"
-        // style="border: 1px solid lightgray; width: 100%; height: 400px;"
-      ></iframe>
-    </div>
-  );
+  return <div></div>;
 }

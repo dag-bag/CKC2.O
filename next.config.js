@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["cdn.marvel.com", "cosmickids.club"],
-  },
-  experimental: {
-    serverActions: true,
+    remotePatterns: [
+      { hostname: "cdn.marvel.com" },
+      { hostname: "cosmickids.club" },
+    ],
   },
 };
 module.exports = nextConfig;

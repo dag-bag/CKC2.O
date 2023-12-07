@@ -9,6 +9,7 @@ interface BaseAction {
 
 interface GetAction extends BaseAction {
   type: "GET";
+  filter?: Record<string, any>;
 }
 
 interface GetOneAction extends BaseAction {
@@ -31,6 +32,7 @@ const fetchData = async <T>(
         const resAll = await strapi.find(entity, {
           populate: resPopulate,
           fields: action.fields || [],
+          filters: action.filter || {},
         });
         return resAll.data;
 

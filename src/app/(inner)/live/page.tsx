@@ -1,20 +1,28 @@
 import Categorizer from "@/blocks/molecules/categorizer";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 import Content from "@/blocks/molecules/content-grid/content";
-import { Live, Recorded, Upcoming } from "@/strapi/services/api";
+import { Live } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 
 const DashboardPage = async () => {
-  const [live, upcoming, recorded, unlocked] = await Promise.all([
-    Live({ type: "GET" }),
-    Upcoming({ type: "GET" }),
-    Recorded({ type: "GET" }),
+  // Live({
+  //   type: "GET",
+  //   filter: {
+  //     type: "upcoming",
+  //   },
+  // }),
+
+  const [live, unlocked] = await Promise.all([
+    Live({
+      type: "GET",
+    }),
     getTransactions(),
   ]);
   return (
     <div className="page_force_scroll">
       <div className="grid grid-cols-[auto]">
         <BannerCarousel />
+        {JSON.stringify(live)}
       </div>
 
       <main>
