@@ -25,9 +25,11 @@ const Header = ({
   user,
   isAlreadyRewarded,
 }: any) => {
-  const listOfIds = purchases.map((pur: any) => pur.content_id);
-  const locked = !listOfIds.includes(id.toString());
-
+  // const listOfIds = purchases.map((pur: any) => pur.content_id);
+  const locked =
+    price !== 0
+      ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
+      : false;
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
