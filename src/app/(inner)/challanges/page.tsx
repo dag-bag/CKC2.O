@@ -5,7 +5,9 @@ import { BiSearchAlt } from "react-icons/bi";
 import Container from "@/blocks/UI/PageContainer";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ChallangeCard from "@/blocks/molecules/cards/Challange";
-const BedgesPage = () => {
+import { Challange } from "@/strapi/services/api";
+const BedgesPage = async () => {
+  const data = await Challange({ type: "GET" });
   return (
     <Container gridType="single">
       <div className="h-[350px] bg-cyan-50-- md:rounded-xl center flex-col bg-[url(/challanges.png)] bg-cover bg-center bg-no-repeat text-white">
@@ -14,6 +16,7 @@ const BedgesPage = () => {
       </div>
 
       <Categorizer title="Ongoing Challanges" right={<Button />}>
+        {JSON.stringify(data)}
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 px-2">
           <ChallangeCard type="Join" />
           <ChallangeCard type="Join" />
