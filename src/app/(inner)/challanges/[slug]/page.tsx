@@ -1,22 +1,33 @@
 import Image from "next/image";
 import Card from "@/blocks/UI/Card";
 import { BsDot } from "react-icons/bs";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
 import { BiTime, BiGlobe } from "react-icons/bi";
-import SharePopup from "@/blocks/atoms/SharePopup";
+import { getSession, getTransactions } from "@/strapi/services/me";
+import { Challange, ChallangeReq } from "@/strapi/services/api";
 
-export default function ChallangeInnerPage() {
+export default async function ChallangeInnerPage() {
+  const user = await getSession();
+  const [t, challange, challangeReq] = await Promise.all([
+    getTransactions(),
+    Challange({ type: "GET_ONE", payload: 1 }),
+    ChallangeReq({
+      type: "GET",
+      filter: { challenge_id: 1 },
+    }),
+  ]);
+
   return (
     <div>
       <div className="grid grid-cols-[auto_350px] gap-5">
         <section>
           <Banner />
+          {JSON.stringify(challangeReq)}
           <Card title="Description" className="mt-5">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat,
-              nam quo consequatur vel quia iusto ipsum a inventore, temporibus
-              ducimus sunt rerum officiis recusandae natus illo voluptas modi.
-              Reprehenderit, ad. <br />
+              Lorem ipsu,m dolor sit amet consectetur adipisicing elit.
+              Repellat, nam quo consequatur vel quia iusto ipsum a inventore,
+              temporibus ducimus sunt rerum officiis recusandae natus illo
+              voluptas modi. Reprehenderit, ad. <br />
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
               similique error esse, non optio enim fugiat, veniam numquam
               excepturi exercitationem commodi sapiente distinctio, dolor rem

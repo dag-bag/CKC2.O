@@ -6,6 +6,7 @@ import DiscoveryCard from "@/blocks/molecules/cards/Discovery";
 import Categorizer from "@/blocks/molecules/categorizer";
 import {
   DiscoveryJarsAnswer,
+  DiscoveryJarsConfig,
   DiscoveryJarsQuestion,
 } from "@/strapi/services/api";
 
@@ -25,12 +26,19 @@ const Banner = () => {
 };
 
 const DiscoveryJarPage = async () => {
-  const data = await DiscoveryJarsAnswer({ type: "GET" });
+  const currentTimestamp = Math.floor(Date.now() / 1000);
+  const data = await DiscoveryJarsConfig({
+    type: "GET",
+    filter: {
+      start_timestamp: { $lte: currentTimestamp },
+    },
+  });
+  console.log(currentTimestamp);
   return (
     <div className="px-5">
       <section>
         <Banner />
-
+        {JSON.stringify(data)}
         <div className="px-20">
           <div className="-mt-[5rem] mb-5 grid grid-cols-1 gap-2 px-20 py-16 bg-[whitesmoke] rounded-2xl  outline outline-offset-4 outline-white ">
             <div>
@@ -68,9 +76,9 @@ const DiscoveryJarPage = async () => {
         <div>
           <Categorizer title="Question & Answers">
             <div className="grid grid-cols-4 gap-5 px-2">
-              {data.map((item: any) => (
+              {/* {data.map((item: any) => (
                 <DiscoveryCard key={item.id} />
-              ))}
+              ))} */}
             </div>
           </Categorizer>
 

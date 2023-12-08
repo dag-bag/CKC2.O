@@ -4,18 +4,24 @@ import { Action, fetchData } from ".";
 import { COURSES_P } from "../populations/courses";
 import {
   CAROUSEL_ENTITY,
+  CHALLANGE_REQ_ENTITY,
   CHALLENGES_ENTITY,
   COINS_ENTITY,
   COMICS_ENTITY,
   COURSES_ENTITY,
   DISCOVERY_JARS_ANSWER_ENTITY,
+  DISCOVERY_JARS_CONFIG_ENTITY,
   DISCOVERY_JARS_QUESTION_ENTITY,
   HOW_IT_WORKS_ENTITY,
   LIVES_ENTITY,
   VIDEOS_ENTITY,
   WATCHED_ENTITY,
 } from "../constant";
-import { CAROUSEL_P } from "../populations";
+import {
+  CAROUSEL_P,
+  CHALLANGE_REQ_P,
+  DISCONVER_JAR_CONFIG_P,
+} from "../populations";
 
 export {
   Comics,
@@ -29,6 +35,8 @@ export {
   Challange,
   Carousel,
   HowItWorks,
+  ChallangeReq,
+  DiscoveryJarsConfig,
 };
 const Comics = async (action: Action): Promise<ComicBook[]> => {
   return fetchData(COMICS_ENTITY, action);
@@ -70,4 +78,16 @@ const Carousel = async (action: Action) => {
 
 const HowItWorks = async (action: Action) => {
   return fetchData(HOW_IT_WORKS_ENTITY, action);
+};
+
+const ChallangeReq = async (action: Action) => {
+  return fetchData(CHALLANGE_REQ_ENTITY, action, CHALLANGE_REQ_P);
+};
+
+const DiscoveryJarsConfig = async (action: Action) => {
+  return fetchData(
+    DISCOVERY_JARS_CONFIG_ENTITY,
+    action,
+    DISCONVER_JAR_CONFIG_P
+  );
 };
