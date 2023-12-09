@@ -34,26 +34,26 @@ const Content: React.FC<Props> = ({ type, data }) => {
     return <ComicCard {...data} />;
   }
   if (type == "live_upcoming") {
-    return <LiveCard type="upcoming" />;
+    return <LiveCard type="upcoming" {...data} />;
   }
   if (type == "live_now") {
-    return <LiveCard type="running" />;
+    return <LiveCard type="running" {...data} />;
   }
 
   if (type == "live_now_premium") {
-    return <LiveCard premium type="running" />;
+    return <LiveCard premium type="running" {...data} />;
   }
 
   if (type == "live_past_premium") {
-    return <LiveCard premium type="recording" />;
+    return <LiveCard premium type="recording" {...data} />;
   }
 
   if (type == "live_upcoming_premium") {
-    return <LiveCard premium type="upcoming" />;
+    return <LiveCard premium type="upcoming" {...data} />;
   }
 
   if (type == "live_past") {
-    return <LiveCard type="recording" />;
+    return <LiveCard type="recording" {...data} />;
   }
 
   if (type == "course") {

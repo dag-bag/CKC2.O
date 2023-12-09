@@ -31,11 +31,22 @@ const actions: any = {
   },
 };
 
-const LiveCard = ({ type, premium }: any) => {
+const LiveCard = ({
+  type,
+  thumbsnail,
+  title,
+  desc,
+  grade,
+  price,
+  premium,
+  slug,
+  id,
+  isUnlocked,
+}: any) => {
   const Action = actions[type];
   return (
     <>
-      <Link href="/dashboard/course" className="overflow-hidden relative">
+      <Link href={`/live/${id}`} className="overflow-hidden relative">
         <div className="content_card group hover:scale-90 scale duration-500">
           <div className="top">
             <Image src={course.thumbnail} alt={course.name} fill />

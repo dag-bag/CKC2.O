@@ -65,7 +65,7 @@ const DiscoveryJarsAnswer = async (action: Action) => {
   return fetchData(DISCOVERY_JARS_ANSWER_ENTITY, action);
 };
 const Live = async (action: Action) => {
-  const data = fetchData(LIVES_ENTITY, action);
+  const data = fetchData(LIVES_ENTITY, action, COURSES_P);
   return data;
 };
 const Challange = async (action: Action) => {
