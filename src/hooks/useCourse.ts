@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 interface VideoPlayerProps {
   userId: string;
   contentId: string;
+  courseId: string;
   contentType: string;
 }
 
@@ -21,13 +22,15 @@ type WatchRecord = {
 type VideoPlayerResult = {
   trackProgress: (progress: { playedSeconds: number }) => Promise<void>;
   isLoading: boolean;
-  lastPlayed: number;
+  watchRecords: any;
+  create: () => Promise<void>;
 };
 
 const useCourse = ({
   userId,
   contentId,
   contentType,
+  courseId,
 }: VideoPlayerProps): VideoPlayerResult => {
   const { mutate } = useSWRConfig();
 
@@ -35,7 +38,7 @@ const useCourse = ({
     try {
       const response = await strapi.find("watcheds", {
         filters: {
-          content_id: contentId,
+          course_id: contentId,
           user_id: userId,
         },
       });
@@ -48,12 +51,13 @@ const useCourse = ({
   const createWatchRecord = async (): Promise<void> => {
     await strapi.create("watcheds", {
       user_id: userId,
-      content_id: contentId,
+      content_id: contentId, // module id
       watched_date: new Date().toISOString(),
       type: contentType,
       watch_progress: 0,
+      course_id: courseId,
     });
-    mutate(`watched/${contentId}`);
+    mutate(`watched/courrse/${contentId}`);
   };
 
   const updateWatchRecord = async (watchProgress: number): Promise<void> => {
@@ -68,15 +72,8 @@ const useCourse = ({
   };
 
   const { data: watchRecords, isLoading } = useSWR<WatchRecord[]>(
-    `watched/${contentId}`,
-    getWatchedRecords,
-    {
-      onSuccess: (data) => {
-        if (data.length === 0) {
-          createWatchRecord();
-        }
-      },
-    }
+    `watched/courrse/${contentId}`,
+    getWatchedRecords
   );
 
   const trackProgress = async (progress: {
@@ -93,7 +90,8 @@ const useCourse = ({
   return {
     isLoading,
     trackProgress,
-    lastPlayed: watchRecords?.at(0)?.watch_progress ?? 0,
+    watchRecords: watchRecords,
+    create: createWatchRecord,
   };
 };
 
