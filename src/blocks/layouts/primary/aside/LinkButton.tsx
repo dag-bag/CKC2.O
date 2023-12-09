@@ -21,7 +21,7 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
 
   const getTitleClasses = () =>
     clsx(
-      "text-sm font-medium font-amar",
+      "text-sm font-medium font-amar text-center",
       isActive ? "text-blue-800" : "text-gray-600"
     );
 

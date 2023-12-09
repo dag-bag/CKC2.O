@@ -52,7 +52,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         backgroundImage: "url('/pattern.jpg')",
       }}
     >
-      <main className="grid md:grid-cols-[150px_auto] h-screen">
+      <main className="grid md:grid-cols-[120px_auto] h-screen">
         <Aside />
         <div
           style={
