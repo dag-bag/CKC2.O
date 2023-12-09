@@ -1,3 +1,4 @@
+"use client";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
 const Modules = () => {

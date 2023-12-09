@@ -29,7 +29,7 @@ const getUserRewards = async (id: number) => {
 };
 const getRecentWatched = async (id: number) => {
   try {
-    const res = await strapi.axios.get("/recent-watched?id=3");
+    const res = await strapi.axios.get("/recent-watched?id=" + id);
     return res.data;
   } catch (error) {
     console.log(error);

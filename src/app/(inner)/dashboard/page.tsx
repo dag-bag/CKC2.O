@@ -4,16 +4,18 @@ import WatchedCard from "@/blocks/molecules/cards/Watched";
 import { getRecentWatched } from "@/strapi/services/custom";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 import TipsVideoCard from "@/blocks/molecules/cards/HowItWorks";
+import { getSession } from "@/strapi/services/me";
 
 const DashboardPage = async () => {
+  const session = await getSession();
   const [tipsVideos, recent] = await Promise.all([
     HowItWorks({ type: "GET" }),
-    getRecentWatched(3),
+    getRecentWatched(session.user.id),
   ]);
   return (
     <>
       <BannerCarousel />
-
+      {JSON.stringify(recent)}
       {recent?.recentWatched && (
         <Grider title="Continue Watching">
           {recent?.recentWatched?.map((watched: any, index: number) => (
