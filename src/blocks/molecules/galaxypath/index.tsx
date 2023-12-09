@@ -82,7 +82,12 @@ const CosmicHome = ({ progress, path }: any) => {
       className="absolute z-[51] center
       md:w-[180px] md:h-[180px] h-[100px] w-[100px]"
     >
-      <Image src={"/planet.png"} alt="planet" width={500} height={500} />
+      <Image
+        src={"/onboard/cropped-planet.png"}
+        alt="planet"
+        width={500}
+        height={500}
+      />
     </div>
   );
 };

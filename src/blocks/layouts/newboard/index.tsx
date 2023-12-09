@@ -7,10 +7,10 @@ import { Modal } from "@mantine/core";
 import useOnboard from "@/hooks/useOnboard";
 import { useRouter } from "next/navigation";
 import { FaBackward } from "react-icons/fa6";
+import { updateUser } from "@/services/user";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { Free, Premium } from "@/blocks/molecules/cards/plan";
-import { updateUser } from "@/services/user";
 
 export default function Newboard() {
   const router = useRouter();
@@ -113,7 +113,7 @@ export default function Newboard() {
             </button>
           </div>
         </div>
-        <Model />
+        <Model src={configuration?.imagePath} />
       </div>
     </div>
   );
@@ -150,10 +150,10 @@ const CompletionModal = ({ opened, onClose }: any) => {
   );
 };
 
-const Model = () => {
+const Model = ({ src }: any) => {
   return (
-    <div className="absolute bottom-0 right-0 lg:h-[200px] lg:w-[230px] xl:h-[300px] xl:w-[350px]   w-[170px] h-[150px] ">
-      <Image alt="running" src={"/run-astro.png"} fill />
+    <div className="absolute bottom-0 right-0 lg:h-[200px] lg:w-[230px] xl:h-[350px] xl:w-[350px]   w-[170px] h-[150px] ">
+      <Image alt="running" src={src} fill />
     </div>
   );
 };
