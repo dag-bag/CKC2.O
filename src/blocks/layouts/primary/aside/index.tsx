@@ -40,8 +40,8 @@ const primary_layout_left_buttons = [
   { title: "Challanges", hrefs: ["/challanges"], Icon: RiVipCrown2Fill },
   // { title: "Leaderboard", hrefs: ["/leader"], Icon: RiBarChart2Fill },
   {
-    title: "Discovery Jar",
-    hrefs: ["/discovery-jar"],
+    title: "Discovery Bag ",
+    hrefs: ["/discovery-bag"],
     Icon: RiQuestionFill,
   },
   // { title: "Marketplace", hrefs: ["/shop"], Icon: RiStoreFill },
