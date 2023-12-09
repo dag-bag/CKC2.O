@@ -144,7 +144,6 @@ const Player: React.FC<Props> = ({
         width={"100%"}
         height={"100%"}
         ref={playerRef}
-        playing={playing}
         onReady={handleReadyToWatch}
         onProgress={!isAlreadyRewarded ? progress : undefined}
       />

@@ -3,8 +3,8 @@
 import { Videos } from "@/strapi/services/api";
 import Header from "@/blocks/molecules/video/header";
 import Reward from "@/blocks/molecules/video/reward";
-import { getSession, getTransactions } from "@/strapi/services/me";
 import { getUserRewards } from "@/strapi/services/custom";
+import { getSession, getTransactions } from "@/strapi/services/me";
 
 interface Props {
   params: {
