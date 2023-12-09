@@ -1,19 +1,38 @@
-import ContentGrid from "@/blocks/molecules/content-grid";
-import BannerCarousel from "@/blocks/molecules/BannerCarousel";
+import Grider from "@/blocks/molecules/grider";
 import { HowItWorks } from "@/strapi/services/api";
+import WatchedCard from "@/blocks/molecules/cards/Watched";
 import { getRecentWatched } from "@/strapi/services/custom";
+import BannerCarousel from "@/blocks/molecules/BannerCarousel";
+import TipsVideoCard from "@/blocks/molecules/cards/HowItWorks";
+
 const DashboardPage = async () => {
-  const [how, recent] = await Promise.all([
+  const [tipsVideos, recent] = await Promise.all([
     HowItWorks({ type: "GET" }),
     getRecentWatched(3),
   ]);
   return (
     <>
-      {JSON.stringify(how)}
       <BannerCarousel />
-      <ContentGrid title="Continue Watching" />
-      <ContentGrid title="Start Learning" type="course" />
-      <ContentGrid title="How it works" />
+
+      {recent?.recentWatched && (
+        <Grider title="Continue Watching">
+          {recent?.recentWatched?.map((watched: any, index: number) => (
+            <WatchedCard
+              {...{
+                ...watched.contentDetails,
+                watched: watched.watch_progress,
+              }}
+              key={index}
+            />
+          ))}
+        </Grider>
+      )}
+
+      <Grider title="How it works">
+        {tipsVideos.map((watched: any, index: number) => (
+          <TipsVideoCard {...watched} key={index} />
+        ))}
+      </Grider>
     </>
   );
 };

@@ -1,29 +1,28 @@
 "use client";
 interface Props {
   title: string;
-  type?: ContentType;
+  children: ReactNode;
 }
-import { useRef } from "react";
-import Content from "./content";
+import { ReactNode, useRef, Children } from "react";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
-export type ContentType =
-  | "live_now"
-  | "live_past"
-  | "live_upcoming"
-  | "live_now_premium"
-  | "live_past_premium"
-  | "live_upcoming_premium"
-  | "comics"
-  | "course"
-  | "video"
-  | "watched"
-  | "intros";
+// export type ContentType =
+//   | "live_now"
+//   | "live_past"
+//   | "live_upcoming"
+//   | "live_now_premium"
+//   | "live_past_premium"
+//   | "live_upcoming_premium"
+//   | "comics"
+//   | "course"
+//   | "video"
+//   | "watched"
+//   | "intros";
 
 // this matine carouse is not effective in point of view serverside rendering...
 
-const ContentGrid: React.FC<Props> = ({ title, type }) => {
+const Grider: React.FC<Props> = ({ title, children }) => {
   // carousel-action-control-refs
   const nextControlRef = useRef<any>(null);
   const prevControlRef = useRef<any>(null);
@@ -74,7 +73,6 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
         }}
         align="start"
         slideGap={"lg"}
-        // draggable={false}
         slidesToScroll={2}
         slideSize={grid_content_columns_size}
         nextControlProps={
@@ -84,27 +82,15 @@ const ContentGrid: React.FC<Props> = ({ title, type }) => {
           { ref: prevControlRef, style: hideCarouselDefaultControls } as any
         }
       >
-        <Carousel.Slide>
-          <Content type={type} />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Content type={type} />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Content type={type} />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Content type={type} />
-        </Carousel.Slide>
-        <Carousel.Slide>
-          <Content type={type} />
-        </Carousel.Slide>
+        {Children.map(children, (child) => {
+          return <Carousel.Slide>{child}</Carousel.Slide>;
+        })}
       </Carousel>
     </div>
   );
 };
 
-export default ContentGrid;
+export default Grider;
 
 const Controller = ({ handleControllerRight, handleControllerLeft }: any) => {
   return (

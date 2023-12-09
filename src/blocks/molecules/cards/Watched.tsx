@@ -9,22 +9,25 @@ interface Props {
   durationTimestamp: number;
 }
 
-const WatchedCard = () => {
+const WatchedCard = ({ thumbnail, title, desc, watched, duration }: any) => {
   return (
     <Link href="/dashboard">
       <div className=" bg-white shadow-xl">
         <div className="relative aspect-w-10 aspect-h-6">
-          <Image src="/jupiter.jpg" alt="image" fill />
+          <Image src={thumbnail} alt="image" fill />
           <Progress />
         </div>
         <div className="md:p-5 p-2">
           <h3 className="font-medium font-amar md:text-xl text-sm line-clamp-1 leading-5 mt-1  text-black">
-            What if Jupiter never existed in our solar system?
+            {title}
           </h3>
 
-          <p className="text-sm text-gray-800 font-heading mt-2 hidden md:block leading-4 ">
-            Embark on an exciting adventure to the final frontier with the
-            concept...
+          <p>
+            {parseInt(duration)} {parseInt(watched)}
+          </p>
+
+          <p className="text-sm text-gray-800 font-heading mt-2  leading-4 line-clamp-2 ">
+            {desc}
           </p>
         </div>
       </div>
@@ -39,3 +42,12 @@ const Progress = () => (
     <div className="w-[30%] h-1 bg-indigo-500 rounded-e-full "></div>
   </div>
 );
+
+function calculatePercentage(x: number, y: number): number {
+  if (typeof x !== "number" || typeof y !== "number" || y === 0) {
+    return 0;
+  }
+
+  const percentage: number = (x / y) * 100;
+  return percentage;
+}
