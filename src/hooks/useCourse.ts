@@ -20,7 +20,10 @@ type WatchRecord = {
 };
 
 type VideoPlayerResult = {
-  trackProgress: (progress: { playedSeconds: number }) => Promise<void>;
+  trackProgress: (progress: {
+    playedSeconds: number;
+    moduleId: string;
+  }) => Promise<void>;
   isLoading: boolean;
   watchRecords: any;
   create: () => Promise<void>;
@@ -60,12 +63,15 @@ const useCourse = ({
     mutate(`watched/courrse/${contentId}`);
   };
 
-  const updateWatchRecord = async (watchProgress: number): Promise<void> => {
+  const updateWatchRecord = async (
+    watchProgress: number,
+    moduleId: string
+  ): Promise<void> => {
     const watchRecordToUpdate = watchRecords?.find(
       (record) => record.content_id === contentId && record.user_id === userId
     );
     if (watchRecordToUpdate) {
-      await strapi.update("watcheds", watchRecordToUpdate.id, {
+      await strapi.update("watcheds", moduleId, {
         watch_progress: watchProgress,
       });
     }
@@ -76,14 +82,18 @@ const useCourse = ({
     getWatchedRecords
   );
 
-  const trackProgress = async (progress: {
+  const trackProgress = async ({
+    playedSeconds,
+    moduleId,
+  }: {
     playedSeconds: number;
+    moduleId: string;
   }): Promise<void> => {
-    const roundedPlayedSeconds = Math.floor(progress.playedSeconds);
+    const roundedPlayedSeconds = Math.floor(playedSeconds);
     if (roundedPlayedSeconds !== 0 && roundedPlayedSeconds % 10 === 0) {
       console.log("watch recored - ", roundedPlayedSeconds);
 
-      await updateWatchRecord(roundedPlayedSeconds);
+      await updateWatchRecord(roundedPlayedSeconds, moduleId);
     }
   };
 
