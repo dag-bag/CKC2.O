@@ -18,7 +18,7 @@ const DashboardPage = async () => {
       {JSON.stringify(recent)}
       {recent?.recentWatched && (
         <Grider title="Continue Watching">
-          {recent?.recentWatched?.map((watched: any, index: number) => (
+          {/* {recent?.recentWatched?.map((watched: any, index: number) => (
             <WatchedCard
               {...{
                 ...watched.contentDetails,
@@ -26,7 +26,7 @@ const DashboardPage = async () => {
               }}
               key={index}
             />
-          ))}
+          ))} */}
         </Grider>
       )}
 
