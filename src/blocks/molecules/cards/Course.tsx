@@ -5,7 +5,7 @@ import { IoPlay } from "react-icons/io5";
 
 const CourseCard = ({
   id,
-  name,
+  title,
   desc,
   price,
   grade,
@@ -18,7 +18,7 @@ const CourseCard = ({
       <Link href={href} className="overflow-hidden relative">
         <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
-            <Image src={thumbnail} alt={name} fill />
+            <Image src={thumbnail} alt={title} fill />
             {/* play button  */}
             <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
               <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
@@ -29,7 +29,7 @@ const CourseCard = ({
 
           <div className="md:p-5 p-2  bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 ">
             <h3 className="font-medium !font-amar md:text-xl text-sm leading-6 md:mt-1 line-clamp-1 md:line-clamp-none">
-              {name}
+              {title}
             </h3>
 
             <h3 className="font-medium font-amar  text-sm line-clamp-2 leading-5 my-1  text-gray-600">

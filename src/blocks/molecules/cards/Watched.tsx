@@ -9,22 +9,23 @@ interface Props {
   durationTimestamp: number;
 }
 
-const WatchedCard = ({ thumbnail, title, desc, watched, duration }: any) => {
+const WatchedCard = ({ thumbnail, title, desc, type, id }: any) => {
+  const conditionalPath =
+    type == "video" ? `/library/video/${id}` : `/learn/${id}`;
+
   return (
-    <Link href="/dashboard">
+    <Link href={conditionalPath}>
       <div className=" bg-white shadow-xl">
         <div className="relative aspect-w-10 aspect-h-6">
           <Image src={thumbnail} alt="image" fill />
-          <Progress />
         </div>
         <div className="md:p-5 p-2">
+          <p className="uppercase font-heading text-xs tracking-wider font-semibold">
+            {type}
+          </p>
           <h3 className="font-medium font-amar md:text-xl text-sm line-clamp-1 leading-5 mt-1  text-black">
             {title}
           </h3>
-
-          <p>
-            {parseInt(duration)} {parseInt(watched)}
-          </p>
 
           <p className="text-sm text-gray-800 font-heading mt-2  leading-4 line-clamp-2 ">
             {desc}

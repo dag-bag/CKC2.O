@@ -11,7 +11,7 @@ import Modules from "@/blocks/molecules/course/Modules";
 
 const Header = ({
   thumbnail,
-  name,
+  title,
   desc,
   duration,
   price,
@@ -47,7 +47,7 @@ const Header = ({
         </div>
         <div className="px-5 mt-5">
           <div className="flex justify-between">
-            <h1 className="font-amar font-bold text-3xl mb-2">{name}</h1>
+            <h1 className="font-amar font-bold text-3xl mb-2">{title}</h1>
           </div>
           <div className="grid md:grid-cols-3 grid-cols-2 my-5">
             <Infor title="Author" value={mentor} />
@@ -72,7 +72,7 @@ const Header = ({
                 id={id}
                 slug={slug}
                 type="course"
-                title={name}
+                title={title}
                 price={price}
                 isLocked={locked}
                 shareableURL={"something"}

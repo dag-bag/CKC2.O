@@ -1,6 +1,4 @@
-import Container from "@/blocks/UI/PageContainer";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import Content from "@/blocks/molecules/content-grid/content";
 import { Courses } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 const tags = ["JavaScript", "HTML", "CSS", "Programming", "Web Development"];
