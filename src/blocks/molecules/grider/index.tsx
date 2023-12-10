@@ -7,20 +7,6 @@ import { ReactNode, useRef, Children } from "react";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
-// export type ContentType =
-//   | "live_now"
-//   | "live_past"
-//   | "live_upcoming"
-//   | "live_now_premium"
-//   | "live_past_premium"
-//   | "live_upcoming_premium"
-//   | "comics"
-//   | "course"
-//   | "video"
-//   | "watched"
-//   | "intros";
-
-// this matine carouse is not effective in point of view serverside rendering...
 
 const Grider: React.FC<Props> = ({ title, children }) => {
   // carousel-action-control-refs
@@ -37,7 +23,7 @@ const Grider: React.FC<Props> = ({ title, children }) => {
   const breakpoints = {
     A: useMediaQuery("(min-width: 1632px)"),
     B: useMediaQuery("(min-width: 1381px)"),
-    C: useMediaQuery("(min-width: 1280px)"),
+    C: useMediaQuery("(min-width: 120px)"),
   };
 
   const grid_content_columns_size = breakpoints.A
@@ -55,8 +41,8 @@ const Grider: React.FC<Props> = ({ title, children }) => {
   };
 
   return (
-    <div className={`md:py-5 my-3 px-2`}>
-      <div className="flex items-center justify-between md:mb-4 mb-2 pl-2 ">
+    <div>
+      <div className="flex items-center justify-between md:mb-3 mb-2 pl-2 ">
         <h3
           style={{
             textShadow: "2px 2px 2px #18007ac6",

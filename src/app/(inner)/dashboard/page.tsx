@@ -21,8 +21,9 @@ const DashboardPage = async () => {
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
 
   return (
-    <>
+    <div className="grid gap-2">
       <BannerCarousel />
+
       {recent?.recentWatched && (
         <Grider title="Continue Watching">
           {recent?.recentWatched?.map((watched: any, index: number) => (
@@ -53,7 +54,7 @@ const DashboardPage = async () => {
           <TipsVideoCard {...watched} key={index} />
         ))}
       </Grider>
-    </>
+    </div>
   );
 };
 export default DashboardPage;
