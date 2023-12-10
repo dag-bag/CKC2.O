@@ -37,3 +37,17 @@ export function numbersStringToOrdinals(numbersString: string): string {
 
     return numbers.map(numberToOrdinal).join(", ");
 }
+
+export function convertSecondsToTime(seconds: number): string {
+    if (typeof seconds !== "number" || seconds < 0) {
+        return "Invalid input";
+    }
+
+    const minutes: number = Math.floor(seconds / 60);
+    const remainingSeconds: number = seconds % 60;
+
+    const formattedTime: string = `${minutes}:${remainingSeconds < 10 ? "0" : ""
+        }${remainingSeconds}`;
+
+    return formattedTime;
+}
