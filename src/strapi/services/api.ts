@@ -22,6 +22,7 @@ import {
   CHALLANGE_REQ_P,
   DISCONVER_JAR_CONFIG_P,
 } from "../populations";
+import { COMICS_P } from "../populations/comics";
 
 export {
   Comics,
@@ -38,8 +39,8 @@ export {
   ChallangeReq,
   DiscoveryJarsConfig,
 };
-const Comics = async (action: Action): Promise<ComicBook[]> => {
-  return fetchData(COMICS_ENTITY, action);
+const Comics = async (action: Action) => {
+  return fetchData(COMICS_ENTITY, action, COMICS_P);
 };
 
 const Courses = async (action: Action) => {

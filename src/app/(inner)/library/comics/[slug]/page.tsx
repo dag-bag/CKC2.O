@@ -7,6 +7,8 @@ import SharePopup from "@/blocks/atoms/SharePopup";
 import { getSession, getTransactions } from "@/strapi/services/me";
 import { getUserRewards } from "@/strapi/services/custom";
 import { Comics } from "@/strapi/services/api";
+import Rewards from "@/blocks/molecules/video/reward";
+import { validateRewarded } from "@/utils/reward";
 interface Props {
   params: {
     slug: string;
@@ -21,8 +23,13 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   ]);
   return (
     <div>
-      <Hero />
-      <Reward />
+      <Hero {...{ purchases, ...data, ...user }} />
+      {data?.rewards && data?.rewards.length !== 0 && (
+        <Rewards
+          rewards={data?.rewards}
+          isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
+        />
+      )}
     </div>
   );
 };
@@ -38,40 +45,48 @@ const Infor = ({ title, value }: any) => {
   );
 };
 
-const Hero = () => {
+const Hero = (props: any) => {
+  const {
+    title,
+    published,
+    creator,
+    page_count,
+    grade,
+    description,
+    thumbnail,
+    price,
+    purchases,
+    id,
+  } = props;
+  const locked =
+    price !== 0
+      ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
+      : false;
+  console.log(id);
   return (
     <div className="grid grid-cols-[400px_auto] gap-5 bg-gray-100 rounded-xl p-5 ">
       <div>
-        <img
-          src="https://cdn.marvel.com/u/prod/marvel/i/mg/7/30/64fb86722f83f/clean.jpg"
-          alt="marval-iamge"
-        />
+        <img src={thumbnail} alt={title} />
       </div>
       <div>
         <div className="max-w-xl py-5">
-          <h1 className="font-heading font-bold text-3xl mb-2">
-            Avengers United Infinity Comic (2023) #4
-          </h1>
-          <div className="grid grid-cols-3  my-5">
-            <Infor title="Published:" value="November 02, 2023" />
-            <Infor title="Creator:" value="Deepak Vishwakarma" />
+          <h1 className="font-heading font-bold text-3xl mb-2">{title}</h1>
+          <div className="grid grid-cols-3 my-5">
+            <Infor title="Published:" value={published} />
+            <Infor title="Creator:" value={creator} />
           </div>
           <div className="my-5 grid grid-cols-3">
-            <Infor title="Credits Required:" value="1,000 CRD" />
-            <Infor title="Page Count:" value="23" />
-            <Infor title="Grade:" value="6th" />
+            <Infor title="Credits Required:" value={`${price} CRD`} />
+            <Infor title="Page Count:" value={page_count} />
+            <Infor title="Grade:" value={grade} />
           </div>
 
-          <p>
-            The arrival of Gheshian Ambassador Sof changes the stakes as the
-            Avengers become aware of an interplanetary civil war that has been
-            raging for centuries.
-          </p>
+          <p>{description}</p>
 
-          <div className="mt-10  bg-white p-5 rounded-xl">
+          <div className="mt-10 bg-white p-5 rounded-xl">
             <section className="flex gap-5 items-center ">
               <h1 className="text-3xl font-semibold font-game mr-2">
-                400.99 <span className="text-sm">CRD</span>
+                {price} <span className="text-sm">CRD</span>
               </h1>
               {/* <BuyPopup />
               <SharePopup /> */}
@@ -79,7 +94,7 @@ const Hero = () => {
           </div>
 
           <div>
-            <Quiz />
+            <Quiz price={price} id={id} />
           </div>
         </div>
       </div>
@@ -87,7 +102,7 @@ const Hero = () => {
   );
 };
 
-const Quiz = () => {
+const Quiz = ({ id, price }: any) => {
   return (
     <div className="bg-white mt-5 flex gap-5 p-10 rounded-xl items-cener justify-between">
       <div>
@@ -98,39 +113,39 @@ const Quiz = () => {
       </div>
 
       <button className=" py-3 px-10 flex items-center justify-center text-white  bg-black rounded-full font-heading  gap-2">
-        <BiLockAlt /> Unlock
+        <BuyPopup id={id} price={price} title="Buy Comic" type="comic" /> Unlock
       </button>
     </div>
   );
 };
 
-const Reward = () => {
-  return (
-    <Card title="Rewards" className="mt-5">
-      <div className=" rounded-xl grid grid-cols-4  gap-5">
-        <div className="rounded-xl center flex-col">
-          <Image
-            src="/cup.jpg"
-            width={200}
-            height={200}
-            alt="price"
-            className="rounded-xl"
-          />
-          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
-          <p className="text-gray-500">After Comics completion</p>
-        </div>
-        <div className="rounded-xl center flex-col">
-          <Image
-            src="/cup.jpg"
-            width={200}
-            height={200}
-            alt="price"
-            className="rounded-xl"
-          />
-          <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
-          <p className="text-gray-500">After Quiz completion</p>
-        </div>
-      </div>
-    </Card>
-  );
-};
+// const Reward = () => {
+//   return (
+//     <Card title="Rewards" className="mt-5">
+//       <div className=" rounded-xl grid grid-cols-4  gap-5">
+//         <div className="rounded-xl center flex-col">
+//           <Image
+//             src="/cup.jpg"
+//             width={200}
+//             height={200}
+//             alt="price"
+//             className="rounded-xl"
+//           />
+//           <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+//           <p className="text-gray-500">After Comics completion</p>
+//         </div>
+//         <div className="rounded-xl center flex-col">
+//           <Image
+//             src="/cup.jpg"
+//             width={200}
+//             height={200}
+//             alt="price"
+//             className="rounded-xl"
+//           />
+//           <p className="font-heading text-lg mt-2 font-medium">100 CRDs</p>
+//           <p className="text-gray-500">After Quiz completion</p>
+//         </div>
+//       </div>
+//     </Card>
+//   );
+// };
