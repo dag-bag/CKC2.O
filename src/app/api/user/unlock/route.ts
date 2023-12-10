@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
     coins: data.coins,
     content_id: data.content_id,
     label: data.label,
+    type: data.type,
   });
   return Response.json(res.data);
 }

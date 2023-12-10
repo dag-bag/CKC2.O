@@ -4,7 +4,7 @@ import { getTransactions } from "@/strapi/services/me";
 export default async function page() {
   const [data, purchases] = await Promise.all([
     Comics({ type: "GET" }),
-    getTransactions(),
+    getTransactions("comic"),
   ]);
 
   return (

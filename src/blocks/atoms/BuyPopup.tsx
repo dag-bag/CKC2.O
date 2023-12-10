@@ -27,6 +27,7 @@ export default function BuyPopup({ price, type, title, id }: Props) {
         coins: price,
         content_id: id,
         label: title,
+        type: type,
       })
       .then(() => {
         update({ coins: price, type: "remove" } as any);

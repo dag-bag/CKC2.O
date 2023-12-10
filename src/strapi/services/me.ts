@@ -17,12 +17,12 @@ const getProfile = async () => {
   return res;
 };
 
-const getTransactions = async () => {
+const getTransactions = async (type: string) => {
   const session = await getSession();
   // console.log(session);
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/user/tran?id=${session.user.id}`
+      `${process.env.NEXT_PUBLIC_URL}/api/user/tran?id=${session.user.id}&type=${type}`
     );
     const data = await res.json();
     // const res = await strapi.find("purchases", {

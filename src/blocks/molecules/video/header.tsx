@@ -73,7 +73,7 @@ const Header = ({
               <VideoInfo
                 id={id}
                 slug={slug}
-                type="video"
+                type="live"
                 title={title}
                 price={price}
                 isLocked={locked}

@@ -16,14 +16,13 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
     Live({ type: "GET_ONE", payload: parseInt(slug) }),
-    getTransactions(),
+    getTransactions("live"),
     getUserRewards(user.user.id),
   ]);
 
   return (
     <div className="bg-gray-100 rounded-xl">
       {/* {JSON.stringify({ ...{ purchases, ...data, ...user, achivements } })} */}
-
       <Header
         isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
         {...{ purchases, ...data, ...user }}

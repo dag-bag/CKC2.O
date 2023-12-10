@@ -4,7 +4,7 @@ import { getTransactions } from "@/strapi/services/me";
 const VideosPage = async () => {
   const [data, purchases] = await Promise.all([
     Videos({ type: "GET" }),
-    getTransactions(),
+    getTransactions("video"),
   ]);
 
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);

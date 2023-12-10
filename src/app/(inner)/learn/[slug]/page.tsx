@@ -13,7 +13,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achievements, watched] = await Promise.all([
     Courses({ type: "GET_ONE", payload: parseInt(slug) }),
-    getTransactions(),
+    getTransactions("course"),
     getUserRewards(user.user.id),
     Watched({ type: "GET" }),
   ]);

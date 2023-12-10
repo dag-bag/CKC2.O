@@ -8,7 +8,7 @@ import CourseCard from "@/blocks/molecules/cards/Course";
 const DashboardPage = async () => {
   const [data, purchases] = await Promise.all([
     Courses({ type: "GET" }),
-    getTransactions(),
+    getTransactions("course"),
   ]);
 
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);

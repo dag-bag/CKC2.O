@@ -16,12 +16,13 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
     Videos({ type: "GET_ONE", payload: parseInt(slug) }),
-    getTransactions(),
+    getTransactions("video"),
     getUserRewards(user.user.id),
   ]);
 
   return (
     <div className="bg-gray-100 rounded-xl">
+      {JSON.stringify(purchases)}
       {/* {JSON.stringify({ ...{ purchases, ...data, ...user, achivements } })} */}
 
       <Header

@@ -16,7 +16,7 @@ const DashboardPage = async () => {
     Live({
       type: "GET",
     }),
-    getTransactions(),
+    getTransactions("live"),
   ]);
   const [upcoming, liveNow, recorded] = categorizeEvents(live);
   return (

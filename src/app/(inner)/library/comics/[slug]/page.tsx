@@ -9,6 +9,8 @@ import { getUserRewards } from "@/strapi/services/custom";
 import { Comics } from "@/strapi/services/api";
 import Rewards from "@/blocks/molecules/video/reward";
 import { validateRewarded } from "@/utils/reward";
+import { Modal } from "@mantine/core";
+import Unlocked from "@/blocks/molecules/comic/unlocked-section";
 interface Props {
   params: {
     slug: string;
@@ -18,7 +20,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
     Comics({ type: "GET_ONE", payload: parseInt(slug) }),
-    getTransactions(),
+    getTransactions("comic"),
     getUserRewards(user.user.id),
   ]);
   return (
@@ -62,7 +64,6 @@ const Hero = (props: any) => {
     price !== 0
       ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
       : false;
-  console.log(id);
   return (
     <div className="grid grid-cols-[400px_auto] gap-5 bg-gray-100 rounded-xl p-5 ">
       <div>
@@ -93,9 +94,7 @@ const Hero = (props: any) => {
             </section>
           </div>
 
-          <div>
-            <Quiz price={price} id={id} />
-          </div>
+          <div>{locked ? <Quiz price={price} id={id} /> : <Unlocked />}</div>
         </div>
       </div>
     </div>
@@ -112,9 +111,7 @@ const Quiz = ({ id, price }: any) => {
         <p className="text-sm">Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <button className=" py-3 px-10 flex items-center justify-center text-white  bg-black rounded-full font-heading  gap-2">
-        <BuyPopup id={id} price={price} title="Buy Comic" type="comic" /> Unlock
-      </button>
+      <BuyPopup id={id} price={price} title="Buy Comic" type="comic" />
     </div>
   );
 };
