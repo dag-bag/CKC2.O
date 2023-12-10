@@ -10,7 +10,7 @@ export default async function page() {
 
   return (
     <section className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3">
-      {data.map((item) => {
+      {data.map((item: any) => {
         return (
           <Content
             type="comics"

@@ -7,8 +7,7 @@ import { Challange, ChallangeReq } from "@/strapi/services/api";
 
 export default async function ChallangeInnerPage() {
   const user = await getSession();
-  const [t, challange, challangeReq] = await Promise.all([
-    getTransactions(),
+  const [challange, challangeReq] = await Promise.all([
     Challange({ type: "GET_ONE", payload: 1 }),
     ChallangeReq({
       type: "GET",

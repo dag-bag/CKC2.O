@@ -1,4 +1,4 @@
-import { Product } from "../page";
+// import { Product } from "../page";
 
 const PhysicalShopPage = () => {
   return (
@@ -7,14 +7,14 @@ const PhysicalShopPage = () => {
         Physical Shop
       </h1>
       <div className="grid grid-cols-4 gap-3">
+        {/* <Product />
         <Product />
         <Product />
         <Product />
         <Product />
         <Product />
-        <Product />
-        <Product />
-        <Product />
+        <Product /> */}
+        {/* <Product /> */}
       </div>
     </div>
   );

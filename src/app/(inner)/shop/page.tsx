@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { BiRightArrowAlt } from "react-icons/bi";
 const Tabs = () => {
@@ -54,30 +55,30 @@ const Hero = () => {
   );
 };
 
-export const Product = () => {
-  return (
-    <Link href="/shop/slug">
-      <div className="font-heading">
-        <div className="h-[200px] bg-white rounded-xl  bg-cover border overflow-hidden ">
-          <img src="/product.jpg" className="max-w-[180px] mx-auto" alt="" />
-        </div>
-        <div className="grid grid-cols-[2fr_1fr] items-center">
-          <div>
-            <h3 className="mt-2 leading-6">The Product Title</h3>
-            <p className="text-sm text-gray-500">
-              Lorem ipsum dolor sit amet..
-            </p>
-          </div>
-          <div className="center">
-            <p className="text-xl text-gray-500 font-bold">399🪙</p>
-          </div>
-        </div>
-        <div className="mt-2">
-          <button className="border rounded-full px-5 py-2 text-sm">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </Link>
-  );
-};
+// export const Product = () => {
+//   return (
+//     <Link href="/shop/slug">
+//       <div className="font-heading">
+//         <div className="h-[200px] bg-white rounded-xl  bg-cover border overflow-hidden ">
+//           <img src="/product.jpg" className="max-w-[180px] mx-auto" alt="" />
+//         </div>
+//         <div className="grid grid-cols-[2fr_1fr] items-center">
+//           <div>
+//             <h3 className="mt-2 leading-6">The Product Title</h3>
+//             <p className="text-sm text-gray-500">
+//               Lorem ipsum dolor sit amet..
+//             </p>
+//           </div>
+//           <div className="center">
+//             <p className="text-xl text-gray-500 font-bold">399🪙</p>
+//           </div>
+//         </div>
+//         <div className="mt-2">
+//           <button className="border rounded-full px-5 py-2 text-sm">
+//             Add to Cart
+//           </button>
+//         </div>
+//       </div>
+//     </Link>
+//   );
+// };

@@ -1,4 +1,4 @@
-import { Product } from "../page";
+// import { Product } from "../page";
 import Card from "@/blocks/UI/Card";
 const VirtualShopPage = () => {
   return (
@@ -9,19 +9,19 @@ const VirtualShopPage = () => {
 
       <Card title="Avatars">
         <div className="grid grid-cols-4 gap-3">
+          {/* <Product />
           <Product />
           <Product />
-          <Product />
-          <Product />
+          <Product /> */}
         </div>
       </Card>
 
       <Card title="Banners" className="mt-5">
         <div className="grid grid-cols-4 gap-3">
+          {/* <Product />
           <Product />
           <Product />
-          <Product />
-          <Product />
+          <Product /> */}
         </div>
       </Card>
     </div>

@@ -36,7 +36,7 @@ const sampleData = [
 ];
 
 const TransectionsPage = async () => {
-  const data = await getTransactions();
+  const data = await getTransactions("");
   return (
     <div className="pr-5 font-heading">
       <Card title="Transections">

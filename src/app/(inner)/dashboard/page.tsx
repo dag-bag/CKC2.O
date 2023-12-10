@@ -15,7 +15,7 @@ const DashboardPage = async () => {
     HowItWorks({ type: "GET" }),
     getRecentWatched(session.user.id),
     Courses({ type: "GET" }),
-    getTransactions(),
+    getTransactions("course"),
   ]);
 
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
