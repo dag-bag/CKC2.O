@@ -9,10 +9,14 @@ interface Props {
   durationTimestamp: number;
 }
 
-const WatchedCard = ({ thumbnail, title, desc, type, id }: any) => {
-  const conditionalPath =
-    type == "video" ? `/library/video/${id}` : `/learn/${id}`;
+const hrefs: any = {
+  video: "/library/video/",
+  course: "/learn/",
+  live: "/live/",
+};
 
+const WatchedCard = ({ thumbnail, title, desc, type, id }: any) => {
+  const conditionalPath = hrefs[type] + id;
   return (
     <Link href={conditionalPath}>
       <div className=" bg-white shadow-xl">
