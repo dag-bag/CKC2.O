@@ -4,3 +4,5 @@ export const DISCONVER_JAR_CONFIG_P = [
   "discovery_jar_answers",
   "discovery_jar_answers.time_stamps",
 ];
+
+export const COMIC_P = ["rewards"];

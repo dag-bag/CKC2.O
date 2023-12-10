@@ -26,10 +26,7 @@ type VideoPlayerResult = {
   isLoading: boolean;
   watchRecords: any;
   create: () => Promise<void>;
-  updateWatchRecord: (
-    watchProgress: number,
-    moduleId: string
-  ) => Promise<void>
+  updateWatchRecord: (watchProgress: number, moduleId: string) => Promise<void>;
 };
 
 const useCourse = ({
@@ -55,7 +52,7 @@ const useCourse = ({
   };
 
   const createWatchRecord = async (): Promise<void> => {
-    console.log("creating...")
+    console.log("creating...");
     await strapi.create("watcheds", {
       user_id: userId,
       content_id: contentId, // module id
@@ -76,7 +73,7 @@ const useCourse = ({
     );
     if (watchRecordToUpdate) {
       await strapi.update("watcheds", moduleId, {
-        watch_progress: watchProgress,
+        watch_progress: watchProgress.toString(),
       });
     }
   };
@@ -106,7 +103,7 @@ const useCourse = ({
     trackProgress,
     watchRecords: watchRecords,
     create: createWatchRecord,
-    updateWatchRecord
+    updateWatchRecord,
   };
 };
 
