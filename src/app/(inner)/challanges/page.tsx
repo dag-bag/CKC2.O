@@ -15,7 +15,6 @@ const BedgesPage = async () => {
       </div>
 
       <Categorizer title="Ongoing Challanges" right={<Button />}>
-        {JSON.stringify(data)}
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 px-2">
           <ChallangeCard type="Join" />
           <ChallangeCard type="Join" />
