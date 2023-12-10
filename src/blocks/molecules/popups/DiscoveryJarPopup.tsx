@@ -5,15 +5,30 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { BiLockAlt, BiTrash, BiUpload } from "react-icons/bi";
 import { Textarea, Modal, FileButton, Button } from "@mantine/core";
+import { CreateQuestion } from "@/services/discovery-jar";
+import useSession from "@/hooks/use-session";
 const DiscoveryJarPopup = () => {
+  const { session } = useSession();
   const [opened, { open, close }] = useDisclosure(false);
   const [files, setFiles] = useState<File | null>(null);
-  const [formData, setFormData] = useState({
+  const initialState = {
     question: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialState);
 
   const handleTextareaChange = (event: any) => {
     setFormData({ ...formData, question: event.target.value });
+  };
+
+  const onClose = () => {
+    CreateQuestion({
+      user_id: session.user.id,
+      question: formData.question,
+      discovery_jar_config: 1,
+    }).then(() => {
+      setFormData(initialState);
+      close();
+    });
   };
 
   return (
@@ -89,7 +104,7 @@ const DiscoveryJarPopup = () => {
           <button
             type="button"
             className="ml-auto inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            onClick={close}
+            onClick={onClose}
           >
             Submit
           </button>
