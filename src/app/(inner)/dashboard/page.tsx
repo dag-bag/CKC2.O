@@ -1,10 +1,10 @@
 import Grider from "@/blocks/molecules/grider";
+import { getSession } from "@/strapi/services/me";
 import { HowItWorks } from "@/strapi/services/api";
 import WatchedCard from "@/blocks/molecules/cards/Watched";
 import { getRecentWatched } from "@/strapi/services/custom";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
 import TipsVideoCard from "@/blocks/molecules/cards/HowItWorks";
-import { getSession } from "@/strapi/services/me";
 
 const DashboardPage = async () => {
   const session = await getSession();
@@ -12,9 +12,11 @@ const DashboardPage = async () => {
     HowItWorks({ type: "GET" }),
     getRecentWatched(session.user.id),
   ]);
+
   return (
     <>
       <BannerCarousel />
+      {/* {JSON.stringify(session)} */}
       {recent?.recentWatched && (
         <Grider title="Continue Watching">
           {recent?.recentWatched?.map((watched: any, index: number) => (

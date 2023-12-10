@@ -3,10 +3,19 @@ import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 
-const CourseCard = ({ name, desc, thumbnail, price, grade }: any) => {
+const CourseCard = ({
+  id,
+  name,
+  desc,
+  price,
+  grade,
+  thumbnail,
+  isUnlocked,
+}: any) => {
+  const href = `/learn/${id}`;
   return (
     <>
-      <Link href="/dashboard/course" className="overflow-hidden relative">
+      <Link href={href} className="overflow-hidden relative">
         <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
           <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
             <Image src={thumbnail} alt={name} fill />
@@ -33,12 +42,20 @@ const CourseCard = ({ name, desc, thumbnail, price, grade }: any) => {
                 <span>{grade}</span>
               </p>
               {/* Credits Required */}
-              <p className="text-sm  bg-[#1E783C] shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
-                <Image width={25} height={25} alt="123" src={"/coin3.png"} />
-                <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
-                  {price}
-                </span>
-              </p>
+              {isUnlocked ? (
+                <p className="text-sm  border-2  shadow-md md:p-1.5 p-1  md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                  <span className="text-gray-500 font-medium md:text-[15px] tracking-wider text-xs py-1">
+                    Unlocked
+                  </span>
+                </p>
+              ) : (
+                <p className="text-sm  bg-blue-400 shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                  <Image width={25} height={25} alt="123" src={"/coin3.png"} />
+                  <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
+                    {price}
+                  </span>
+                </p>
+              )}
             </div>
           </div>
         </div>

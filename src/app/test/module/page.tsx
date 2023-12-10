@@ -2,7 +2,7 @@
 import useCourse from "@/hooks/useCourse";
 import React from "react";
 
-export default function page() {
+export default function Page() {
   const { create, isLoading, watchRecords, trackProgress } = useCourse({
     contentId: "1", // module id note that
     contentType: "course",

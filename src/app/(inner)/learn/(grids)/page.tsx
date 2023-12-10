@@ -13,6 +13,8 @@ const DashboardPage = async () => {
     getTransactions(),
   ]);
 
+  const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
+
   return (
     <div>
       <div className="grid gap-5 px-2">
@@ -32,7 +34,11 @@ const DashboardPage = async () => {
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3 py-5">
         {data.map((course: any) => (
-          <CourseCard {...course} key={course.id} />
+          <CourseCard
+            {...course}
+            key={course.id}
+            isUnlocked={listOfPurchagesIds?.includes(`${course.id}`)}
+          />
         ))}
       </div>
     </div>

@@ -1,13 +1,42 @@
 "use client";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
-const Modules = () => {
+const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
+  const com2 = () => {
+    const obj: any = {};
+    modules.forEach((mod: any, index: number) => {
+      const f = historyOfModules.filter((his: any) => his.content_id == mod.id);
+
+      if (f) {
+        obj[index] = {
+          watched_progress: f.length == 0 ? undefined : f.at(0).watch_progress,
+          completed: f.length == 0 ? undefined : f.at(0).completed,
+        };
+      } else {
+        obj[index] = undefined;
+      }
+    });
+
+    return obj;
+  };
+
+  const t: any = com2();
+
   return (
     <Card title="Modules" className="mt-5">
       <section className="space-y-5">
         <Accordion>
-          {modules.map((item, i) => {
-            return <Module {...item} key={i} />;
+          {modules.map((item: any, i: any) => {
+            return (
+              <Module
+                key={i}
+                {...item}
+                courseId={courseId}
+                completed={t[i]?.completed}
+                unlock={condition(i, !locked, t)}
+                watched_progress={t[i]?.watched_progress}
+              />
+            );
           })}
         </Accordion>
       </section>
@@ -17,24 +46,43 @@ const Modules = () => {
 
 export default Modules;
 
-import { BsDot } from "react-icons/bs";
-import { Modal } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { BiLockAlt, BiLockOpenAlt, BiTime } from "react-icons/bi";
-
-import { BsPlayCircle, BsCloudUpload } from "react-icons/bs";
-
-const Module = ({ title, unlock }: any) => {
+const Module = ({
+  id,
+  name,
+  desc,
+  unlock,
+  courseId,
+  explorationTime,
+  watched_progress,
+}: any) => {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const isActivityModule = title == "Activity Time!";
+  const handlePlay = async () => {
+    // open();
+    // if (!watched_progress) {
+    //   console.log("ceate");
+    //   strapi.create("watcheds", {
+    //     user_id: "4",
+    //     content_id: id, // module id
+    //     watched_date: new Date().toISOString(),
+    //     type: "course",
+    //     watch_progress: 0,
+    //     course_id: courseId,
+    //   });
+    // }
+
+    strapi.update("watcheds", "3", { watched_progress: 100 });
+  };
 
   return (
     <>
       <Modal fullScreen opened={opened} onClose={close}>
-        <ModuleScreenPPT />
+        <ModuleScreenPPT
+          id={id}
+          watched_progress={watched_progress ?? undefined}
+        />
       </Modal>
-      <Accordion.Item value={title}>
+      <Accordion.Item value={name} className="!font-heading">
         <Accordion.Control
           icon={
             unlock ? (
@@ -45,37 +93,47 @@ const Module = ({ title, unlock }: any) => {
           }
         >
           <div className="">
-            <h3 className="font-heading text-lg font-semibold text-gray-800  ">
-              {title}
+            <h3 className="font-heading text-lg font-semibold text-gray-800 capitalize  ">
+              {id} + {name}
             </h3>
-            {unlock && <Progress />}
+
+            {watched_progress && (
+              <Pro
+                percentage={(watched_progress / explorationTime) * 100}
+                watched_progress={convertSecondsToTime(
+                  parseInt(watched_progress)
+                )}
+                explorationTime={convertSecondsToTime(
+                  parseInt(explorationTime)
+                )}
+              />
+            )}
           </div>
         </Accordion.Control>
         <Accordion.Panel>
           <p className="text-sm text-gray-700 flex items-center mb-3 ">
-            <BiTime size={16} className="mr-1" /> Exploration Time <BsDot />
-            <span className="text-gray-700 font-medium">3 Minutes</span>
+            <BiTime size={16} className="mr-1" />
+            <span className="uppercase">Exploration Time</span> <BsDot />
+            <span className="text-gray-700 font-medium">
+              {convertSecondsToTime(parseInt(explorationTime))}
+            </span>
           </p>
-          <p className=" text-gray-600 mb-3">
-            a. Learn the surface features. <br />
-            b. Understand the atmosphere. <br />
-            c. Life possibility on these planets
-          </p>
+          <pre className=" text-gray-600 mb-3 font-fun text-sm">{desc}</pre>
 
           <div className="flex gap-5">
             <button
               disabled={!unlock}
-              onClick={open}
+              onClick={handlePlay}
               className="font-heading border  px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40"
             >
-              <BsPlayCircle /> {isActivityModule ? "Preview Activity" : "Play"}
+              <BsPlayCircle /> Play
             </button>
 
-            {isActivityModule && (
+            {/* {isActivityModule && (
               <button className="font-heading border px-10 py-2.5 rounded-full flex items-center gap-2 disabled:opacity-40">
                 <BsCloudUpload /> Upload Activity
               </button>
-            )}
+            )} */}
           </div>
         </Accordion.Panel>
       </Accordion.Item>
@@ -83,87 +141,106 @@ const Module = ({ title, unlock }: any) => {
   );
 };
 
-const modules = [
-  {
-    title: "The inner planets",
-    unlock: true,
-    img: "/sun.jpg",
-  },
-  {
-    title: "The outer planets",
-    unlock: false,
-    img: "/sun.jpg",
-  },
+import { useEffect, useRef } from "react";
+import useCourse from "@/hooks/useCourse";
+const ModuleScreenPPT = ({
+  watched_progress,
+  id,
+}: {
+  id: string;
+  watched_progress: number;
+}) => {
+  const counter = useRef<number>(0);
 
-  {
-    title: "The Life in the Solar Systems",
-    unlock: false,
-    img: "/sun.jpg",
-  },
-  {
-    title: "Activity Time!",
-    unlock: true,
-    img: "/build.jpg",
-  },
-  {
-    title: "Quiz Time! (Earn more Rewards)",
-    unlock: false,
-    img: "/quiz.jpg",
-  },
-];
+  const caller = () => {
+    if (counter.current % 10 === 0) {
+      console.log("call");
+    }
+  };
 
-const Progress = () => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      counter.current = counter.current + 1;
+      caller();
+    }, 1000); // 10000 milliseconds = 10 seconds
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <div>
-      <div className="flex gap-2">
-        <p className="text-sm font-heading">
-          5 Minutes Spent, 10 Minutes Required
-        </p>
-      </div>
-      <div className="grid  gap-1 mt-1 w-full bg-gray-100 rounded-full">
-        <div className="h-[3px] bg-green-500 rounded-full w-[50%] "></div>
+    <div className=" bg-white z-50">
+      <div className="h-[100%]">
+        <iframe
+          allowFullScreen={true}
+          scrolling="no"
+          className="h-[calc(100vh-100px)]"
+          src="https://cosmickidsclub.aflip.in/1fcc274278.html"
+          style={{
+            width: "100%",
+            border: "1px solid lightgray",
+          }}
+        ></iframe>
       </div>
     </div>
   );
 };
 
-import { Carousel } from "@mantine/carousel";
-import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
+function convertSecondsToTime(seconds: number): string {
+  if (typeof seconds !== "number" || seconds < 0) {
+    return "Invalid input";
+  }
 
-const ppt = ["/pp-1.jpg", "/ppt-2.png", "/ppt-3.png"];
-const ModuleScreenPPT = () => {
+  const minutes: number = Math.floor(seconds / 60);
+  const remainingSeconds: number = seconds % 60;
+
+  const formattedTime: string = `${minutes}:${
+    remainingSeconds < 10 ? "0" : ""
+  }${remainingSeconds}`;
+
+  return formattedTime;
+}
+
+function calculateOverallPercentage(
+  weight: number,
+  percentage: number
+): number {
+  return (percentage / 100) * weight;
+}
+
+import { BsDot } from "react-icons/bs";
+import { Modal } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { BiLockAlt, BiLockOpenAlt, BiTime } from "react-icons/bi";
+
+import { BsPlayCircle, BsCloudUpload } from "react-icons/bs";
+import useSWR from "swr";
+import { strapi } from "@/libs/strapi";
+
+const Pro = ({ percentage, watched_progress, explorationTime }: any) => {
   return (
-    <div className=" bg-white z-50">
-      <div className="h-[100%]">
-        <Carousel
-          withIndicators
-          height={"100%"}
-          previousControlIcon={
-            <button className="w-[50px] h-[50px] bg-white rounded-full center">
-              <HiMiniChevronLeft size={22} />
-            </button>
-          }
-          nextControlIcon={
-            <button className="w-[50px] h-[50px] bg-white rounded-full center">
-              <HiMiniChevronRight size={22} />
-            </button>
-          }
-        >
-          {ppt.map((src) => {
-            return (
-              <Carousel.Slide key={src}>
-                <div>
-                  <img
-                    src={src}
-                    className="w-full object-contain max-h-[calc(100vh-10vh)] border-red-500"
-                    alt="any"
-                  />
-                </div>
-              </Carousel.Slide>
-            );
-          })}
-        </Carousel>
+    <div className="mt-2">
+      <div className="w-full h-[3px] overflow-hidden rounded-full bg-gray-100 ">
+        <div
+          style={{
+            width: `${percentage}%`,
+          }}
+          className="h-full bg-blue-500 rounded-full "
+        ></div>
       </div>
+      <span className="text-xs">
+        {watched_progress}/ {explorationTime}
+      </span>
     </div>
   );
+};
+
+const condition = (index: number, unlocked: boolean, obj: any) => {
+  if (index == 0 && unlocked) {
+    return true;
+  } else {
+    if (obj[index]?.watch_progress || obj[index - 1]?.completed) {
+      return true;
+    }
+  }
 };

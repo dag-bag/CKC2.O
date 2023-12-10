@@ -1,7 +1,6 @@
 // useVideoPlayer.tsx
 import useSWR, { useSWRConfig } from "swr";
 import { strapi } from "@/libs/strapi";
-import toast from "react-hot-toast";
 
 interface VideoPlayerProps {
   userId: string;
@@ -27,6 +26,10 @@ type VideoPlayerResult = {
   isLoading: boolean;
   watchRecords: any;
   create: () => Promise<void>;
+  updateWatchRecord: (
+    watchProgress: number,
+    moduleId: string
+  ) => Promise<void>
 };
 
 const useCourse = ({
@@ -52,6 +55,7 @@ const useCourse = ({
   };
 
   const createWatchRecord = async (): Promise<void> => {
+    console.log("creating...")
     await strapi.create("watcheds", {
       user_id: userId,
       content_id: contentId, // module id
@@ -78,7 +82,7 @@ const useCourse = ({
   };
 
   const { data: watchRecords, isLoading } = useSWR<WatchRecord[]>(
-    `watched/courrse/${contentId}`,
+    `watched/course/${contentId}`,
     getWatchedRecords
   );
 
@@ -102,6 +106,7 @@ const useCourse = ({
     trackProgress,
     watchRecords: watchRecords,
     create: createWatchRecord,
+    updateWatchRecord
   };
 };
 
