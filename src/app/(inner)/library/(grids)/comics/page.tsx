@@ -6,11 +6,21 @@ export default async function page() {
     Comics({ type: "GET" }),
     getTransactions("comic"),
   ]);
+  const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
 
   return (
     <section className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3">
       {data.map((item) => {
-        return <Content type="comics" data={item} key={item.name} />;
+        return (
+          <Content
+            type="comics"
+            data={{
+              ...item,
+              isUnlocked: listOfPurchagesIds?.includes(`${item.id}`),
+            }}
+            key={item.name}
+          />
+        );
       })}
     </section>
   );

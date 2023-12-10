@@ -11,6 +11,7 @@ type ComicBook = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  isUnlocked: boolean;
 };
 interface Purchase {
   id: number;
