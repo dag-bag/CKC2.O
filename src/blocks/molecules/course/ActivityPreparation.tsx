@@ -1,41 +1,43 @@
 import Card from "@/blocks/UI/Card";
 const ListItem = ({
-  type,
+  // type,
+  product_link,
+  print,
   title,
-  quantity,
-  products,
-}: (typeof supplies)[0]) => {
+  qty,
+}: // products,
+any) => {
   return (
     <div className=" even:border-y border-gray-100 px-5 py-2 mb-1 flex items-center justify-between font-heading">
       <div className="flex items-center gap-5">
         <h3 className="text-sm">{title}</h3>
         <div className="flex gap-2">
-          {products?.length !== 0 && (
+          {product_link && (
             <button className="text-xs px-3 py-1 bg-gray-100 rounded-full border">
               Buy
             </button>
           )}
 
-          {type == "printout" && (
+          {print && (
             <button className="text-xs  px-3 py-1 bg-gray-100 rounded-full border">
               Download
             </button>
           )}
         </div>
       </div>
-      <h5 className="text-sm text-gray-600">{quantity}</h5>
+      <h5 className="text-sm text-gray-600">{qty}</h5>
     </div>
   );
 };
 
-const ActivityPreparation = () => {
+const ActivityPreparation = ({ prepration_materials }: any) => {
   return (
     <div className="my-5">
       <Card
         title="Activity Preparation"
         description="If you buy from the marketplace, you will receive a kit for the activity."
       >
-        {supplies.map((item) => (
+        {prepration_materials.map((item: any) => (
           <ListItem key={item.title} {...item} />
         ))}
       </Card>

@@ -2,13 +2,18 @@
 import Module from "./Module";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
-
-const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
+import ActivityModule from "./ActivityModule";
+const Modules = ({
+  modules,
+  locked,
+  courseId,
+  historyOfModules,
+  activity_modules,
+}: any) => {
   const moduleMap = generateModuleHistoryMapping(modules, historyOfModules);
   return (
     <Card title="Modules" className="mt-5">
       <section className="space-y-5">
-        {/* {JSON.stringify(moduleMap)} */}
         <Accordion>
           {modules.map((item: any, i: any) => (
             <Module
@@ -21,6 +26,14 @@ const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
               watched_progress={moduleMap[i]?.watched_progress}
             />
           ))}
+
+          {activity_modules && (
+            <ActivityModule
+              unlock={!locked}
+              courseId={courseId}
+              {...activity_modules}
+            />
+          )}
         </Accordion>
       </section>
     </Card>

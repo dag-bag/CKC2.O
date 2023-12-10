@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { LuAlignRight } from "react-icons/lu";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/searchbar";
 import MyBalance, { MobileMyBalance } from "./balance";
-
 const Header = () => {
   return (
     <>
@@ -28,19 +28,25 @@ import { RiStoreFill, RiBarChart2Fill } from "react-icons/ri";
 
 const LeaderboardButton = () => {
   return (
-    <button className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md">
+    <Link
+      href="/leader"
+      className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md"
+    >
       <RiBarChart2Fill size={20} />
       {/* Leaderboard */}
-    </button>
+    </Link>
   );
 };
 
 const MarketplaceButton = () => {
   return (
-    <button className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md">
+    <Link
+      href="/shop"
+      className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md"
+    >
       <RiStoreFill size={20} />
       {/* Marketplace */}
-    </button>
+    </Link>
   );
 };
 

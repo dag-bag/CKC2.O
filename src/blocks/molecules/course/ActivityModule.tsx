@@ -1,8 +1,7 @@
-import { strapi } from "@/libs/strapi";
-import HeyzinePopup from "./HeyzinePopup";
+import ActivitysHeyzinePopup from "./ActivityHeyzinePopup";
 import { useDisclosure } from "@mantine/hooks";
 import { Accordion, Modal } from "@mantine/core";
-import { BsDot, BsPlayCircle } from "react-icons/bs";
+import { BsDot, BsPlayCircle, BsUpload } from "react-icons/bs";
 import { convertSecondsToTime } from "@/libs/convertors";
 import {
   BiCheckCircle,
@@ -11,42 +10,40 @@ import {
   BiLockAlt,
 } from "react-icons/bi";
 
-const Module = ({
-  id,
+const ActivityModule = ({
+  //   id,
   name,
   desc,
   unlock,
   courseId,
-  watch_id,
+  //   watch_id,
   completed,
-  watched_progress,
+  //   watched_progress,
   explorationTime,
 }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
     open();
-    if (!watched_progress) {
-      console.log("ceate");
-      strapi.create("watcheds", {
-        user_id: "4",
-        content_id: id.toString(), // module id
-        watched_date: new Date().toISOString(),
-        type: "course",
-        watch_progress: 0,
-        course_id: courseId.toString(),
-      });
-    }
+    // if (!watched_progress) {
+    //   console.log("ceate");
+    //   strapi.create("watcheds", {
+    //     user_id: "4",
+    //     content_id: id.toString(), // module id
+    //     watched_date: new Date().toISOString(),
+    //     type: "course",
+    //     watch_progress: 0,
+    //     course_id: courseId.toString(),
+    //   });
+    // }
   };
 
   return (
     <>
       <Modal fullScreen opened={opened} onClose={close}>
-        <HeyzinePopup
-          {...{ id, watch_id, explorationTime, watched_progress }}
-        />
+        <ActivitysHeyzinePopup />
       </Modal>
-      <Accordion.Item value={name} className="!font-heading">
-        <Accordion.Control>
+      <Accordion.Item value={name} className="!font-heading ">
+        <Accordion.Control className="bg-green-50">
           <div>
             <div className="flex items-center gap-2">
               <span className="bg-blue-500 p-3 rounded-xl text-white">
@@ -59,14 +56,14 @@ const Module = ({
                 <h3 className="font-heading  font-semibold text-gray-800 capitalize leading-3">
                   {name}
                 </h3>
-                <span className="text-xs text-gray-600 min-w-[200px]">
+                {/* <span className="text-xs text-gray-600 min-w-[200px]">
                   {convertSecondsToTime(parseInt(watched_progress ?? 0))}
                   {" / "}
                   {convertSecondsToTime(parseInt(explorationTime))}
-                </span>
+                </span> */}
               </div>
             </div>
-            {watched_progress && (
+            {/* {watched_progress && (
               <Pro
                 percentage={(watched_progress / explorationTime) * 100}
                 watched_progress={convertSecondsToTime(
@@ -76,7 +73,7 @@ const Module = ({
                   parseInt(explorationTime)
                 )}
               />
-            )}
+            )} */}
           </div>
         </Accordion.Control>
         <Accordion.Panel>
@@ -89,13 +86,17 @@ const Module = ({
           </p>
           <p className=" text-gray-600 mb-3 font-fun text-sm">{desc}</p>
 
-          <div className="flex gap-5">
+          <div className="flex gap-3">
             <button
               disabled={!unlock}
               onClick={handlePlay}
               className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
             >
               <BsPlayCircle /> Play
+            </button>
+
+            <button className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40">
+              <BsUpload /> Upload
             </button>
           </div>
         </Accordion.Panel>
@@ -104,7 +105,7 @@ const Module = ({
   );
 };
 
-export default Module;
+export default ActivityModule;
 
 const Pro = ({ percentage }: any) => {
   return (

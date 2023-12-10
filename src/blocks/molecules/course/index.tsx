@@ -3,6 +3,7 @@
 import Image from "next/image";
 import VideoInfo from "../video/Info";
 import ActionQuizBlock from "../course/ActionQuizBlock";
+import ActivityPreparation from "./ActivityPreparation";
 import {
   secondsToHoursMinutes,
   numbersStringToOrdinals,
@@ -29,6 +30,7 @@ const Header = ({
   modules,
   historyOfModules,
   locked,
+  activity_modules,
 }: any) => {
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
@@ -57,11 +59,18 @@ const Header = ({
           <p className=" font-heading text-gray-600">{desc}</p>
         </div>
 
+        {activity_modules?.prepration_materials && (
+          <ActivityPreparation
+            prepration_materials={activity_modules.prepration_materials}
+          />
+        )}
+
         <Modules
           courseId={id}
           locked={locked}
           modules={modules}
           historyOfModules={historyOfModules}
+          activity_modules={activity_modules}
         />
       </main>
       <aside>
@@ -102,6 +111,7 @@ const Infor = ({ title, value }: any) => {
 import ReactPlayer from "react-player";
 import { useState } from "react";
 import PlayerLoader from "../player/loader";
+import ActionRewardBlock from "./ActionRewardBlock";
 
 const MyPlayer = ({ mediaURL, thumbnail }: any) => {
   const [isLoading, setLoading] = useState(true);
