@@ -16,7 +16,6 @@ const DashboardPage = async () => {
   return (
     <>
       <BannerCarousel />
-      {/* {JSON.stringify(session)} */}
       {recent?.recentWatched && (
         <Grider title="Continue Watching">
           {recent?.recentWatched?.map((watched: any, index: number) => (

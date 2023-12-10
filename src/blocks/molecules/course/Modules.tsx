@@ -11,6 +11,7 @@ const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
         obj[index] = {
           watched_progress: f.length == 0 ? undefined : f.at(0).watch_progress,
           completed: f.length == 0 ? undefined : f.at(0).completed,
+          id: f.length == 0 ? undefined : f.at(0).id,
         };
       } else {
         obj[index] = undefined;
@@ -25,6 +26,7 @@ const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
   return (
     <Card title="Modules" className="mt-5">
       <section className="space-y-5">
+        {JSON.stringify(t)}
         <Accordion>
           {modules.map((item: any, i: any) => {
             return (
@@ -35,6 +37,7 @@ const Modules = ({ modules, locked, historyOfModules, courseId }: any) => {
                 completed={t[i]?.completed}
                 unlock={condition(i, !locked, t)}
                 watched_progress={t[i]?.watched_progress}
+                watch_id={t[i]?.id}
               />
             );
           })}
@@ -54,24 +57,24 @@ const Module = ({
   courseId,
   explorationTime,
   watched_progress,
+  watch_id,
 }: any) => {
+  const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
 
   const handlePlay = async () => {
-    // open();
-    // if (!watched_progress) {
-    //   console.log("ceate");
-    //   strapi.create("watcheds", {
-    //     user_id: "4",
-    //     content_id: id, // module id
-    //     watched_date: new Date().toISOString(),
-    //     type: "course",
-    //     watch_progress: 0,
-    //     course_id: courseId,
-    //   });
-    // }
-
-    strapi.update("watcheds", "3", { watched_progress: 100 });
+    open();
+    if (!watched_progress) {
+      console.log("ceate");
+      strapi.create("watcheds", {
+        user_id: "4",
+        content_id: id.toString(), // module id
+        watched_date: new Date().toISOString(),
+        type: "course",
+        watch_progress: 0,
+        course_id: courseId.toString(),
+      });
+    }
   };
 
   return (
@@ -80,6 +83,8 @@ const Module = ({
         <ModuleScreenPPT
           id={id}
           watched_progress={watched_progress ?? undefined}
+          explorationTime={explorationTime}
+          watch_id={watch_id}
         />
       </Modal>
       <Accordion.Item value={name} className="!font-heading">
@@ -146,14 +151,34 @@ import useCourse from "@/hooks/useCourse";
 const ModuleScreenPPT = ({
   watched_progress,
   id,
+  explorationTime,
+  watch_id,
 }: {
   id: string;
   watched_progress: number;
+  explorationTime: number;
+  watch_id: string;
 }) => {
+  const router = useRouter();
   const counter = useRef<number>(0);
 
-  const caller = () => {
+  const caller = async () => {
+    console.log(watch_id);
+    if (counter.current >= explorationTime) {
+      await strapi
+        .update("watcheds", watch_id, {
+          watch_progress: explorationTime,
+          completed: true,
+        })
+        .then(() => {
+          alert("complete");
+        });
+      return null;
+    }
     if (counter.current % 10 === 0) {
+      await strapi.update("watcheds", watch_id, {
+        watch_progress: counter.current,
+      });
       console.log("call");
     }
   };
@@ -216,6 +241,7 @@ import { BiLockAlt, BiLockOpenAlt, BiTime } from "react-icons/bi";
 import { BsPlayCircle, BsCloudUpload } from "react-icons/bs";
 import useSWR from "swr";
 import { strapi } from "@/libs/strapi";
+import { useRouter } from "next/navigation";
 
 const Pro = ({ percentage, watched_progress, explorationTime }: any) => {
   return (
