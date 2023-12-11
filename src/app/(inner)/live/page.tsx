@@ -1,17 +1,10 @@
 import Categorizer from "@/blocks/molecules/categorizer";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import Content from "@/blocks/molecules/content-grid/content";
-import { Live } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
+import LiveCard from "@/blocks/molecules/cards/Live";
+import { Live } from "@/strapi/services/api";
 
 const DashboardPage = async () => {
-  // Live({
-  //   type: "GET",
-  //   filter: {
-  //     type: "upcoming",
-  //   },
-  // }),
-
   const [live, unlocked] = await Promise.all([
     Live({
       type: "GET",
@@ -25,15 +18,13 @@ const DashboardPage = async () => {
         <BannerCarousel />
       </div>
 
+      {JSON.stringify(recorded)}
+
       <main>
         <Categorizer title="Live" right={<Button />} className="my-2">
           <div className="grid grid-cols-4 gap-5">
             {liveNow.map((event) => (
-              <Content
-                key={event.id}
-                type={event.premium ? "live_now_premium" : "live_now"}
-                data={event}
-              />
+              <LiveCard key={event.id} {...event} />
             ))}
           </div>
         </Categorizer>
@@ -41,11 +32,7 @@ const DashboardPage = async () => {
         <Categorizer title="Upcoming Live" className="my-2" right={<Button />}>
           <div className="grid grid-cols-4 gap-2">
             {upcoming.map((event) => (
-              <Content
-                key={event.id}
-                type={event.premium ? "live_upcoming_premium" : "live_upcoming"}
-                data={event}
-              />
+              <LiveCard key={event.id} {...event} />
             ))}
           </div>
         </Categorizer>
@@ -57,11 +44,7 @@ const DashboardPage = async () => {
         >
           <div className="grid grid-cols-4 gap-2">
             {recorded.map((event) => (
-              <Content
-                key={event.id}
-                type={event.premium ? "live_past_premium" : "live_past"}
-                data={event}
-              />
+              <LiveCard key={event.id} {...event} />
             ))}
           </div>
         </Categorizer>

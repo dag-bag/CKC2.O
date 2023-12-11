@@ -15,7 +15,7 @@ export function secondsToHoursMinutes(seconds: number): string {
 
 
 export function numbersStringToOrdinals(numbersString: string): string {
-    const numbers: number[] = numbersString.split(",").map(Number);
+    const numbers: number[] = numbersString?.split(",").map(Number);
 
     function numberToOrdinal(number: number): string {
         if (number >= 11 && number <= 13) {

@@ -45,17 +45,3 @@ const validateRewarded = (achievements: any[], rewards: any[]): boolean => {
 
   return list_of_user_rewards.has([...(list_of_rewards as any)][0]);
 };
-
-// version history
-
-// const validateRewarded: any = (achivements: any[], rewards: any[]) => {
-//   const list_of_rewards = (rewards as any)?.map((b: any) => b.id.toString()); // ["1"]
-//   const list_of_user_rewards = (achivements as any)?.map(
-//     (a: any) => a.reward_id
-//   ); // ["1"]
-//   const t = list_of_user_rewards.map((rewardId: string) =>
-//     list_of_rewards.includes(rewardId)
-//   );
-
-//   return t.at(0) ?? false;
-// };
