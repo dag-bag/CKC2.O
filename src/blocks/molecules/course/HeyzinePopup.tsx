@@ -8,12 +8,14 @@ const HeyzinePopup = ({
   watched_progress,
 }: {
   id: string;
+  watch_id: string;
   watched_progress: number;
   explorationTime: number;
-  watch_id: string;
 }) => {
   const router = useRouter();
-  const counter = useRef<number>(watched_progress ?? 0);
+  const counter = useRef<number>(
+    watched_progress ? parseInt(watched_progress?.toString()) : 0
+  );
 
   const caller = async () => {
     console.log(counter.current, explorationTime);

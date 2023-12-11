@@ -13,6 +13,7 @@ const Modules = ({
   const moduleMap = generateModuleHistoryMapping(modules, historyOfModules);
   return (
     <Card title="Modules" className="mt-5">
+      {JSON.stringify(moduleMap)}
       <section className="space-y-5">
         <Accordion>
           {modules.map((item: any, i: any) => (
