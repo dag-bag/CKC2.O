@@ -49,6 +49,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
             <div className="grid grid-cols-2 gap-5">
               {help_media.map((media: any) => (
                 <img
+                  key={media}
                   src={media}
                   width={500}
                   height={300}
