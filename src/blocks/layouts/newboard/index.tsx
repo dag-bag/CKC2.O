@@ -175,7 +175,7 @@ const Input = ({ placeholder, type, name, value, ...props }: any) => {
         value={value}
         placeholder={placeholder}
         {...props}
-        className="border-none outline-none bg-transparent md:placeholder:text-lg"
+        className="border-none md:text-[28px] outline-none bg-transparent md:placeholder:text-[28px]"
       />
     </div>
   );

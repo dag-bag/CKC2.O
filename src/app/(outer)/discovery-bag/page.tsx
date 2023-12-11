@@ -2,6 +2,7 @@ import Categorizer from "@/blocks/molecules/categorizer";
 import { DiscoveryJarsConfig } from "@/strapi/services/api";
 import DiscoveryCard from "@/blocks/molecules/cards/Discovery";
 import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
+import Image from "next/image";
 
 const DiscoveryJarPage = async () => {
   const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -19,6 +20,14 @@ const DiscoveryJarPage = async () => {
         <div className="px-20">
           <div className="-mt-[5rem] mb-5 grid grid-cols-1 gap-2 px-20 py-5 bg-[whitesmoke] rounded-2xl  outline outline-offset-4 outline-white ">
             <div>
+              <Image
+                width={80}
+                height={80}
+                className="mx-auto"
+                src={"/premium.png"}
+                alt="alternative"
+              />
+
               <h3 className="text-xl font-heading mb-2 text-center font-semibold">
                 Discovery Bag
               </h3>
