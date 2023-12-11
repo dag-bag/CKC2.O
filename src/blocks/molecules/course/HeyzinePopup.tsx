@@ -2,20 +2,21 @@ import { strapi } from "@/libs/strapi";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
+// ... (other imports)
+
 const HeyzinePopup = ({
   watch_id,
   explorationTime,
   watched_progress,
 }: {
   id: string;
+  watched_progress: string;
   watch_id: string;
   watched_progress: number;
   explorationTime: number;
 }) => {
   const router = useRouter();
-  const counter = useRef<number>(
-    watched_progress ? parseInt(watched_progress?.toString()) : 0
-  );
+  const counter = useRef<number>(watched_progress ?? 0);
 
   const caller = async () => {
     console.log(counter.current, explorationTime);
@@ -33,7 +34,7 @@ const HeyzinePopup = ({
       return null;
     }
 
-    if (counter.current >= watched_progress) {
+    if (counter.current >= watch_progress_n) {
       if (counter.current % 10 === 0) {
         await strapi.update("watcheds", watch_id, {
           watch_progress: counter.current,
