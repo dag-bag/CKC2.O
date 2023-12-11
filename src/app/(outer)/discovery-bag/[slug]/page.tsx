@@ -1,4 +1,5 @@
 import Header from "@/blocks/molecules/answers";
+import { DISCONVER_JAR_CONFIG_P } from "@/strapi/populations";
 import { DiscoveryJarsConfig } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 
@@ -13,12 +14,17 @@ const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
     DiscoveryJarsConfig({
       type: "GET_ONE",
       payload: parseInt(slug),
+      populate: [
+        ...DISCONVER_JAR_CONFIG_P,
+        "discovery_jar_questions",
+        "discovery_jar_questions.user",
+      ],
     }),
     getTransactions("jar"),
   ]);
   return (
     <div>
-      {/* {JSON.stringify(t)} */}
+      {JSON.stringify(data)}
       <Header {...{ purchases, ...data.discovery_jar_answers.at(0) }} />
     </div>
   );

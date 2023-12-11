@@ -22,9 +22,8 @@ const DiscoveryJarPopup = () => {
   const [loading, setLoading] = useState(false);
   const onClose = () => {
     setLoading(true); // Set loading to true when starting the request
-
     CreateQuestion({
-      user_id: session.user.id,
+      user: session.user.id,
       question: formData.question,
       discovery_jar_config: 1,
     })
