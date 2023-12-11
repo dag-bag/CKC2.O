@@ -1,5 +1,6 @@
 import Header from "@/blocks/molecules/answers";
 import { DiscoveryJarsConfig } from "@/strapi/services/api";
+import { getTransactions } from "@/strapi/services/me";
 
 interface Props {
   params: {
@@ -8,14 +9,17 @@ interface Props {
 }
 
 const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
-  const data = await DiscoveryJarsConfig({
-    type: "GET_ONE",
-    payload: parseInt(slug),
-  });
+  const [data, purchases] = await Promise.all([
+    DiscoveryJarsConfig({
+      type: "GET_ONE",
+      payload: parseInt(slug),
+    }),
+    getTransactions("jar"),
+  ]);
   return (
     <div>
       {/* {JSON.stringify(t)} */}
-      <Header {...data.discovery_jar_answers.at(0)} />
+      <Header {...{ purchases, ...data.discovery_jar_answers.at(0) }} />
     </div>
   );
 };

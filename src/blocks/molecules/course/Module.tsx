@@ -21,20 +21,26 @@ const Module = ({
   completed,
   watched_progress,
   explorationTime,
+  mutate,
 }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
     open();
     if (!watched_progress) {
       console.log("ceate");
-      strapi.create("watcheds", {
-        user_id: "4",
-        content_id: id.toString(), // module id
-        watched_date: new Date().toISOString(),
-        type: "course",
-        watch_progress: 0,
-        course_id: courseId.toString(),
-      });
+      strapi
+        .create("watcheds", {
+          user_id: "4",
+          content_id: id.toString(), // module id
+          watched_date: new Date().toISOString(),
+          type: "course",
+          watch_progress: 0,
+          course_id: courseId.toString(),
+        })
+        .then((res) => {
+          console.log(res);
+          mutate();
+        });
     }
   };
 

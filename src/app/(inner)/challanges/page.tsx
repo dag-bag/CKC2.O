@@ -16,20 +16,19 @@ const BedgesPage = async () => {
 
       <Categorizer title="Ongoing Challanges" right={<Button />}>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 px-2">
-          <ChallangeCard type="Join" />
-          <ChallangeCard type="Join" />
-          <ChallangeCard premium type="Join" />
-          <ChallangeCard type="Join" />
+          {data.map((challange: any) => (
+            <ChallangeCard key={challange.id} {...challange} />
+          ))}
         </div>
       </Categorizer>
 
-      <Categorizer title="Completed Challanges" className="mt-5">
+      {/* <Categorizer title="Completed Challanges" className="mt-5">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 px-2">
           <ChallangeCard type="Join" />
           <ChallangeCard type="Join" />
           <ChallangeCard type="Join" />
         </div>
-      </Categorizer>
+      </Categorizer> */}
     </Container>
   );
 };

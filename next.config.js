@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { hostname: "cdn.marvel.com" },
       { hostname: "cosmickids.club" },
+      { hostname: "ckc-two.vercel.app" },
     ],
   },
 };

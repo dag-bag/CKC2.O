@@ -11,7 +11,14 @@ const Header = ({
   desc,
   mentor,
   duration,
+  price,
+  purchases,
+  id,
 }: any) => {
+  const locked =
+    price !== 0
+      ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
+      : false;
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
@@ -41,19 +48,21 @@ const Header = ({
         </div>
       </main>
       <div className="flex flex-col gap-5">
-        <VideoInfo
-          {...({
-            duration,
-            title,
-            price: 0,
-            reward: 0,
-            slug: "hello",
-            type: "video",
-            shareableURL: "deepak",
-            isLocked: false,
-            id: 1,
-          } as any)}
-        />
+        {locked && (
+          <VideoInfo
+            {...({
+              duration,
+              title,
+              price,
+              reward: 0,
+              slug: "hello",
+              type: "jar",
+              shareableURL: "deepak",
+              isLocked: false,
+              id: 1,
+            } as any)}
+          />
+        )}
       </div>
     </div>
   );
