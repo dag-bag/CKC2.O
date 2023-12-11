@@ -18,36 +18,44 @@ const DashboardPage = async () => {
         <BannerCarousel />
       </div>
 
-      {JSON.stringify(recorded)}
-
       <main>
-        <Categorizer title="Live" right={<Button />} className="my-2">
-          <div className="grid grid-cols-4 gap-5">
-            {liveNow.map((event) => (
-              <LiveCard key={event.id} {...event} />
-            ))}
-          </div>
-        </Categorizer>
+        {liveNow.length !== 0 && (
+          <Categorizer title="Live" right={<Button />} className="my-2">
+            <div className="grid grid-cols-4 gap-5">
+              {liveNow.map((event) => (
+                <LiveCard key={event.id} {...event} />
+              ))}
+            </div>
+          </Categorizer>
+        )}
 
-        <Categorizer title="Upcoming Live" className="my-2" right={<Button />}>
-          <div className="grid grid-cols-4 gap-2">
-            {upcoming.map((event) => (
-              <LiveCard key={event.id} {...event} />
-            ))}
-          </div>
-        </Categorizer>
+        {upcoming.length !== 0 && (
+          <Categorizer
+            title="Upcoming Live"
+            className="my-2"
+            right={<Button />}
+          >
+            <div className="grid grid-cols-4 gap-2">
+              {upcoming.map((event) => (
+                <LiveCard key={event.id} {...event} />
+              ))}
+            </div>
+          </Categorizer>
+        )}
 
-        <Categorizer
-          className="my-2"
-          right={<Button />}
-          title="Recorded Live Sessions"
-        >
-          <div className="grid grid-cols-4 gap-2">
-            {recorded.map((event) => (
-              <LiveCard key={event.id} {...event} />
-            ))}
-          </div>
-        </Categorizer>
+        {recorded.length !== 0 && (
+          <Categorizer
+            className="my-2"
+            right={<Button />}
+            title="Recorded Live Sessions"
+          >
+            <div className="grid grid-cols-4 gap-2">
+              {recorded.map((event) => (
+                <LiveCard key={event.id} {...event} />
+              ))}
+            </div>
+          </Categorizer>
+        )}
       </main>
     </div>
   );

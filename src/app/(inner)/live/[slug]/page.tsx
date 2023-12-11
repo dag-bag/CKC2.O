@@ -1,7 +1,7 @@
 // please keep single reward in video section
 
-import { Live, Videos } from "@/strapi/services/api";
-import Header from "@/blocks/molecules/video/header";
+import { Live } from "@/strapi/services/api";
+import Header from "@/blocks/molecules/live/header";
 import Reward from "@/blocks/molecules/video/reward";
 import { getUserRewards } from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
@@ -22,7 +22,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div className="bg-gray-100 rounded-xl">
-      {/* {JSON.stringify({ ...{ purchases, ...data, ...user, achivements } })} */}
       <Header
         isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
         {...{ purchases, ...data, ...user }}
