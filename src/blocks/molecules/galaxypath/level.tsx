@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Tooltip } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { BiSolidLockAlt } from "react-icons/bi";
+import clsx from "clsx";
 
 const tooltip: any = {
   16: "Name",
@@ -65,13 +66,15 @@ const Level = ({
         {...Properties}
         className="rounded-full cursor-pointer absolute z-50 w-[50px] h-[50px] md:w-[60px] md:h-[60px] border p-1 border-green-300"
       >
-        <div className="w-full lg:text-xl h-full shadow-xl text-white border bg-white rounded-full center gap-0.5 font-semibold bg-gradient-to-t from-green-800 to-green-500 ">
-          {number}
-          {!condition && (
-            <span className="text-[12px] text-white">
-              <BiSolidLockAlt />
-            </span>
+        <div
+          className={clsx(
+            "w-full lg:text-xl h-full shadow-xl text-white border bg-white rounded-full center gap-0.5 font-semibold bg-gradient-to-t ",
+            !condition
+              ? "from-yellow-800 to-yellow-300"
+              : "from-green-800 to-green-500"
           )}
+        >
+          {number}
         </div>
       </motion.div>
     </Tooltip>

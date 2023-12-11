@@ -26,13 +26,13 @@ export default function NewboardCanvas({ progress }: Props) {
       </div>
 
       {/* clouds layer */}
-      <div
+      {/* <div
         style={{
           backgroundSize: "1000px 100px",
-          backgroundImage: "url('/no-shadow-cloud.png')",
+          backgroundImage: "url('/onboard/clouds-2.png')",
         }}
-        className="absolute bottom-0 w-full h-[100px] bg-bottom"
-      />
+        className="absolute bg-repeat-x bottom-0 w-full h-[100px] bg-bottom "
+      /> */}
     </div>
   );
 }

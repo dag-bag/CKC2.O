@@ -160,7 +160,7 @@ const Model = ({ src }: any) => {
 
 const Logo = () => {
   return (
-    <div className="absolute  md:left-0 md:top-3  top-2 md:h-[70px] md:w-[95px] h-[40px] w-[55px]  z-50">
+    <div className="absolute  md:left-5 md:top-5  top-2 md:h-[70px] md:w-[70px] h-[40px] w-[55px]  z-50">
       <Image alt="running" src={"/logo.png"} fill />
     </div>
   );
