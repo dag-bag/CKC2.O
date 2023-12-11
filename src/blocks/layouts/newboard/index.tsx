@@ -306,9 +306,9 @@ export const LocationAction = () => {
 
 export const AvatarSelectionAction = () => {
   const avatars = [
-    "/avatars/asian-man.png",
-    "/avatars/black-man.png",
-    "/avatars/punjabi.png",
+    "/onboard/avatar-1.png",
+    "/onboard/avatar-2.png",
+    "/onboard/avatar-3.png",
   ];
 
   const { setter, storage } = useOnboard();
@@ -322,10 +322,10 @@ export const AvatarSelectionAction = () => {
             setter("avatar", avatarURL);
           }}
           className={clsx(
-            "rounded-full border-b-[3px] border-blue-500 drop-shadow-xl overflow-hidden",
+            "rounded-full w-[100px] h-[100px] border-b-[3px] border-blue-500 shadow-xl overflow-hidden",
             storage?.avatar == avatarURL
               ? "border-blue-400 border-2 text-white duration-300 scale-95 shadow-lg"
-              : " border-transparent border-2"
+              : "  border-2 border-gray-200"
           )}
         >
           <Image
