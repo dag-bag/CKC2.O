@@ -10,7 +10,6 @@ const HeyzinePopup = ({
   watched_progress,
 }: {
   id: string;
-  watched_progress: string;
   watch_id: string;
   watched_progress: number;
   explorationTime: number;
@@ -34,7 +33,7 @@ const HeyzinePopup = ({
       return null;
     }
 
-    if (counter.current >= watch_progress_n) {
+    if (counter.current >= watched_progress) {
       if (counter.current % 10 === 0) {
         await strapi.update("watcheds", watch_id, {
           watch_progress: counter.current,
