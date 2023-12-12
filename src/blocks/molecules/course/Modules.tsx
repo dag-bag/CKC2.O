@@ -5,39 +5,13 @@ import { Accordion } from "@mantine/core";
 import ActivityModule from "./ActivityModule";
 import useCourse from "@/hooks/useCourse";
 import Loading from "@/blocks/atoms/loading";
-const Modules = ({
-  modules,
-  locked,
-  courseId,
-  historyOfModules,
-  activity_modules,
-}: any) => {
-  const { watchRecords, isLoading, mutate } = useCourse({
-    userId: "4",
-    courseId: courseId as string,
-  });
-  if (isLoading) return <Loading />;
-  const moduleMap = generateModuleHistoryMapping(modules, watchRecords);
-  console.log({
-    watchRecords,
-    historyOfModules,
-  });
+const Modules = ({ modules, locked, courseId, activity_modules }: any) => {
   return (
     <Card title="Modules" className="mt-5">
-      {JSON.stringify(moduleMap)}
       <section className="space-y-5">
         <Accordion>
           {modules.map((item: any, i: any) => (
-            <Module
-              key={i}
-              {...item}
-              mutate={mutate}
-              courseId={courseId}
-              watch_id={moduleMap[i]?.id}
-              completed={moduleMap[i]?.completed}
-              unlock={condition(i, !locked, moduleMap)}
-              watched_progress={moduleMap[i]?.watched_progress}
-            />
+            <Module key={i} {...item} courseId={courseId} unlock={true} />
           ))}
 
           {activity_modules && (

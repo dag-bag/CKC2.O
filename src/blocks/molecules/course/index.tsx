@@ -28,7 +28,6 @@ const Header = ({
   isAlreadyRewarded,
   trailer,
   modules,
-  historyOfModules,
   locked,
   activity_modules,
 }: any) => {
@@ -69,7 +68,6 @@ const Header = ({
           courseId={id}
           locked={locked}
           modules={modules}
-          historyOfModules={historyOfModules}
           activity_modules={activity_modules}
         />
       </main>

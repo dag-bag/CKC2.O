@@ -43,6 +43,9 @@ const Header = ({
             />
           ) : (
             <Player
+              desc={desc}
+              title={title}
+              grade={grade}
               rewards={rewards}
               contentId={`${id}`}
               duration={duration}
@@ -73,7 +76,7 @@ const Header = ({
               <VideoInfo
                 id={id}
                 slug={slug}
-                type="live"
+                type="video"
                 title={title}
                 price={price}
                 isLocked={locked}

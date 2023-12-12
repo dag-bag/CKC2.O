@@ -15,13 +15,13 @@ const hrefs: any = {
   live: "/live/",
 };
 
-const WatchedCard = ({ thumbnail, title, desc, type, id }: any) => {
-  const conditionalPath = hrefs[type] + id;
+const WatchedCard = ({ imgUrl, title, desc, type, id }: any) => {
+  const conditionalPath = hrefs[type] + id.toString();
   return (
     <Link href={conditionalPath}>
       <div className=" bg-white shadow-xl">
         <div className="relative aspect-w-10 aspect-h-6">
-          <Image src={thumbnail} alt="image" fill />
+          <Image src={imgUrl} alt="image" fill />
         </div>
         <div className="md:p-5 p-2">
           <p className="uppercase font-heading text-xs tracking-wider font-semibold">

@@ -11,11 +11,10 @@ import Header from "@/blocks/molecules/course";
 
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
-  const [data, purchases, achievements, watched] = await Promise.all([
+  const [data, purchases, achievements] = await Promise.all([
     Courses({ type: "GET_ONE", payload: parseInt(slug) }),
     getTransactions("course"),
     getUserRewards(user.user.id),
-    Watched({ type: "GET" }),
   ]);
 
   const locked =
@@ -25,14 +24,11 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
           .includes(data.id.toString())
       : false;
 
-  const historyOfModules = watched.filter((t: any) => t.course_id == slug);
-
   return (
     <div>
       {/* {JSON.stringify(data.activity_modules)} */}
       <Header
         isAlreadyRewarded={false}
-        historyOfModules={historyOfModules}
         {...{ purchases, ...data, ...user, locked }}
       />
     </div>

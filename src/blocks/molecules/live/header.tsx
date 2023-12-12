@@ -43,11 +43,14 @@ const Header = ({
             />
           ) : (
             <Player
+              desc={desc}
+              grade={grade}
+              title={title}
               rewards={rewards}
               contentId={`${id}`}
               duration={duration}
               mediaURL={mediaUrl}
-              contentType="video"
+              contentType="live"
               thumbnail={thumbnail}
               userId={user.id.toString()}
               isAlreadyRewarded={isAlreadyRewarded}
