@@ -24,7 +24,7 @@ const useRecentlyWatched = (): RecentlyWatchedHook => {
   });
 
   const addToRecentlyWatched = (item: RecentlyWatchedItem) => {
-    const already = recentlyWatched.some(
+    const already = recentlyWatched?.some(
       (x) => x.id === item.id && x.type === item.type
     );
     if (!already) {
