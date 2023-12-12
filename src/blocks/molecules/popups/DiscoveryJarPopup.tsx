@@ -20,18 +20,23 @@ const DiscoveryJarPopup = () => {
   const handleTextareaChange = (event: any) => {
     setFormData({ ...formData, question: event.target.value });
   };
-
+  const [loading, setLoading] = useState(false);
   const onClose = () => {
+    setLoading(true); // Set loading to true when starting the request
     CreateQuestion({
-      user_id: session.user.id,
+      user: session.user.id,
       question: formData.question,
       discovery_jar_config: 1,
-    }).then(() => {
-      setFormData(initialState);
-      close();
-    });
+    })
+      .then(() => {
+        setFormData({ question: "" });
+        setFiles(null);
+        close();
+      })
+      .finally(() => {
+        setLoading(false); // Reset loading state after request completion (success or error)
+      });
   };
-
   return (
     <>
       <button
@@ -155,8 +160,9 @@ const DiscoveryJarPopup = () => {
             type="button"
             className="ml-auto inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             onClick={onClose}
+            disabled={loading} // Disable the button when loading is true
           >
-            Submit
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div> */}
       </Modal>

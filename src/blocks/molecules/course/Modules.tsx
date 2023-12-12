@@ -3,6 +3,8 @@ import Module from "./Module";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
 import ActivityModule from "./ActivityModule";
+import useCourse from "@/hooks/useCourse";
+import Loading from "@/blocks/atoms/loading";
 const Modules = ({
   modules,
   locked,
@@ -10,7 +12,16 @@ const Modules = ({
   historyOfModules,
   activity_modules,
 }: any) => {
-  const moduleMap = generateModuleHistoryMapping(modules, historyOfModules);
+  const { watchRecords, isLoading, mutate } = useCourse({
+    userId: "4",
+    courseId: courseId as string,
+  });
+  if (isLoading) return <Loading />;
+  const moduleMap = generateModuleHistoryMapping(modules, watchRecords);
+  console.log({
+    watchRecords,
+    historyOfModules,
+  });
   return (
     <Card title="Modules" className="mt-5">
       {JSON.stringify(moduleMap)}
@@ -20,6 +31,7 @@ const Modules = ({
             <Module
               key={i}
               {...item}
+              mutate={mutate}
               courseId={courseId}
               watch_id={moduleMap[i]?.id}
               completed={moduleMap[i]?.completed}

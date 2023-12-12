@@ -19,6 +19,7 @@ import {
 } from "../constant";
 import {
   CAROUSEL_P,
+  CHALLANGE_P,
   CHALLANGE_REQ_P,
   DISCONVER_JAR_CONFIG_P,
 } from "../populations";
@@ -70,7 +71,7 @@ const Live = async (action: Action) => {
   return data;
 };
 const Challange = async (action: Action) => {
-  return fetchData(CHALLENGES_ENTITY, action);
+  return fetchData(CHALLENGES_ENTITY, action, CHALLANGE_P);
 };
 
 const Carousel = async (action: Action) => {

@@ -22,7 +22,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div className="bg-gray-100 rounded-xl">
-      {JSON.stringify(purchases)}
       {/* {JSON.stringify({ ...{ purchases, ...data, ...user, achivements } })} */}
 
       <Header

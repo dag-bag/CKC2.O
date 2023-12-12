@@ -4,77 +4,91 @@ import { BsDot } from "react-icons/bs";
 import { BiTime, BiGlobe } from "react-icons/bi";
 import { getSession, getTransactions } from "@/strapi/services/me";
 import { Challange, ChallangeReq } from "@/strapi/services/api";
+import { formatTimestamp } from "@/utils/time";
+interface Props {
+  params: {
+    slug: string;
+  };
+}
 
-export default async function ChallangeInnerPage() {
-  const user = await getSession();
+const Page: React.FC<Props> = async ({ params: { slug } }) => {
+  const session = await getSession();
   const [challange, challangeReq] = await Promise.all([
-    Challange({ type: "GET_ONE", payload: 1 }),
+    Challange({ type: "GET_ONE", payload: parseInt(slug) }),
     ChallangeReq({
       type: "GET",
       filter: { challenge_id: 1 },
     }),
   ]);
-
+  const winners = challangeReq.filter(
+    (participant: any) => participant.winner === true
+  );
+  const {
+    desc,
+    help_media,
+    title,
+    grade,
+    credits,
+    difficult,
+    start_timestamp,
+    end_timestamp,
+    result_timestamp,
+  } = challange;
+  const im_submitted = challangeReq.find(
+    (participant: any) => participant.user.id === session?.user?.id
+  );
   return (
     <div>
       <div className="grid grid-cols-[auto_350px] gap-5">
         <section>
           <Banner />
-          {JSON.stringify(challangeReq)}
           <Card title="Description" className="mt-5">
-            <p>
-              Lorem ipsu,m dolor sit amet consectetur adipisicing elit.
-              Repellat, nam quo consequatur vel quia iusto ipsum a inventore,
-              temporibus ducimus sunt rerum officiis recusandae natus illo
-              voluptas modi. Reprehenderit, ad. <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-              similique error esse, non optio enim fugiat, veniam numquam
-              excepturi exercitationem commodi sapiente distinctio, dolor rem
-              possimus molestias officiis porro. Vel.
-            </p>
+            <p>{desc}</p>
           </Card>
-
           <Card title="Video & Images" className="mt-5">
             <div className="grid grid-cols-2 gap-5">
-              <Image
-                src="/challange.png"
-                width={500}
-                height={300}
-                alt="price"
-                className="rounded-md"
-              />{" "}
-              <Image
-                src="/challange.png"
-                width={500}
-                height={300}
-                alt="price"
-                className="rounded-md"
-              />{" "}
-              <Image
-                src="/challange.png"
-                width={500}
-                height={300}
-                alt="price"
-                className="rounded-md"
-              />
+              {help_media.map((media: any) => (
+                <img
+                  key={media}
+                  src={media}
+                  width={500}
+                  height={300}
+                  alt="price"
+                  className="rounded-md"
+                />
+              ))}
             </div>
           </Card>
 
           <Upload />
           <Reward />
-          <Winners />
-          <Participants />
+          {winners.length !== 0 && <Winners winners={winners} />}
+
+          <Participants participants={challangeReq} />
         </section>
         <section className=" p-1">
-          <Info />
-          <UploadRightBox />
+          <Info
+            title={title}
+            desc={desc}
+            help_media={help_media}
+            grade={grade}
+            enrolled={challangeReq.length}
+            credits={credits}
+            difficulty={difficult}
+            duration={`${formatTimestamp(start_timestamp)} to ${formatTimestamp(
+              end_timestamp
+            )}`}
+            winnerAnnouncement={formatTimestamp(result_timestamp)}
+          />
+          <Submitted im_submitted={im_submitted} />
+
           <ActionRewardBlock />
         </section>
       </div>
     </div>
   );
-}
-
+};
+export default Page;
 const Banner = () => (
   <div
     style={{
@@ -84,56 +98,61 @@ const Banner = () => (
   ></div>
 );
 
-const Info = () => (
-  <div className="p-5 bg-white rounded-xl border border-gray-200 ">
+const Info = ({
+  title,
+  description,
+  grade,
+  enrolled,
+  credits,
+  difficulty,
+  duration,
+  winnerAnnouncement,
+}: any) => (
+  <div className="p-5 bg-white rounded-xl border border-gray-200">
     <div>
-      <h1 className="text-2xl font-heading font-semibold">
-        Mars Drawing Challange
-      </h1>
-      <p className="text-sm text-gray-600">
-        Create mars drawing on pan and paper
-      </p>
+      <h1 className="text-2xl font-heading font-semibold">{title}</h1>
+      <p className="text-sm text-gray-600">{description}</p>
     </div>
     <section className="mt-5 space-y-1">
       <div className="flex gap-2 font-100">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
           <BiGlobe size={18} /> Grade <BsDot />
         </p>
-        <p>6th</p>
+        <p>{grade}</p>
       </div>
 
       <div className="flex gap-2 font-100">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
           <BiGlobe size={18} /> Enrolled <BsDot />
         </p>
-        <p>10,000</p>
+        <p>{enrolled}</p>
       </div>
 
       <div className="flex gap-2 font-100">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
           <BiGlobe size={18} /> Credits <BsDot />
         </p>
-        <p>100 CRDs</p>
+        <p>{credits} CRDs</p>
       </div>
       <div className="flex gap-2 font-100">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
           <BiGlobe size={18} /> Difficulty Level <BsDot />
         </p>
-        <p>Medium</p>
+        <p>{difficulty}</p>
       </div>
 
       <div className="flex gap-2 font-100">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
           <BiTime size={18} /> Duration <BsDot />
         </p>
-        <p>12 Nov to 30 Nov</p>
+        <p>{duration}</p>
       </div>
 
       <div className="flex gap-2 font-100 items-center">
         <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium font-heading">
-          <BiTime size={18} /> Winner <br /> Announcement <BsDot />
+          <BiTime size={18} /> Winner <br /> Announ <BsDot />
         </p>
-        <p>30 Nov</p>
+        <p>{winnerAnnouncement}</p>
       </div>
 
       <div className="grid gap-2 pt-2">
@@ -186,11 +205,11 @@ const Reward = () => {
   );
 };
 
-const Winner = () => {
+const Winner = ({ avatar, firstname, grade }: any) => {
   return (
     <div className="font-heading">
       <Image
-        src="/ed.png"
+        src={avatar}
         width={300}
         height={300}
         alt="price"
@@ -198,16 +217,16 @@ const Winner = () => {
       />
       <div className="flex items-center gap-2 mt-2">
         <Image
-          src="/ed.png"
+          src={avatar}
           width={40}
           height={40}
           alt="price"
           className="rounded-full"
         />
         <div>
-          <h5 className=" leading-3 text-sm">Chris Hamsworth</h5>
+          <h5 className=" leading-3 text-sm">{firstname}</h5>
           <p className="flex items-center text-xs">
-            Grade <BsDot /> 6th
+            Grade <BsDot /> {grade}
           </p>
         </div>
       </div>
@@ -215,42 +234,57 @@ const Winner = () => {
   );
 };
 
-const Winners = () => (
+const Winners = ({ winners }: any) => (
   <div>
     <Card title="Winners" className="mt-5">
       <div className="grid grid-cols-3 gap-5">
-        <Winner />
-        <Winner />
-        <Winner />
+        {winners.map((winner: any) => (
+          <Winner key={winner.id} {...winner.user} />
+        ))}
       </div>
     </Card>
   </div>
 );
 
-const Participants = () => (
+const Participants = ({ participants }: any) => (
   <div>
     <Card title="Participants" className="mt-5">
       <div className="grid grid-cols-4 gap-3">
-        <Winner />
-        <Winner />
-        <Winner />
-
-        <Winner />
-        <Winner />
-        <Winner />
-
-        <Winner />
-        <Winner />
-        <Winner />
-
-        <Winner />
-        <Winner />
-        <Winner />
+        {participants.map((participant: any) => (
+          <Winner key={participant.id} {...participant.user} />
+        ))}
       </div>
     </Card>
   </div>
 );
-
+const Submitted = ({ im_submitted }: any) =>
+  !im_submitted ? (
+    <UploadRightBox />
+  ) : (
+    <div className="text-center bg-white rounded-xl py-2 mt-2">
+      <p className="font-bold text-lg">Your Challenge Status:</p>
+      <div className="mt-2">
+        {im_submitted.status === "pending" && (
+          <button className="bg-orange-500 text-white px-4 py-2 rounded-md">
+            Pending
+          </button>
+        )}
+        {im_submitted.status === "approved" && (
+          <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+            Approved
+          </button>
+        )}
+        {im_submitted.status === "rejected" && (
+          <button className="bg-red-500 text-white px-4 py-2 rounded-md">
+            Rejected
+          </button>
+        )}
+      </div>
+      <p className="mt-2 text-sm">
+        {/* Add extra text or details here based on the status */}
+      </p>
+    </div>
+  );
 const Upload = () => {
   return (
     <Card title="Upload" className="hidden">
