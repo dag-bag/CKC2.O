@@ -24,7 +24,7 @@ const useRecentlyWatched = (): RecentlyWatchedHook => {
   });
 
   const addToRecentlyWatched = (item: RecentlyWatchedItem) => {
-    // Check if recentlyWatched is defined or provide a default value (empty array)
+    // Ensure recentlyWatched is defined or provide a default value (empty array)
     const already = recentlyWatched?.some(
       (x) => x.id === item.id && x.type === item.type
     );
@@ -36,7 +36,7 @@ const useRecentlyWatched = (): RecentlyWatchedHook => {
     }
   };
 
-  return { recentlyWatched, addToRecentlyWatched };
+  return { recentlyWatched: recentlyWatched ?? [], addToRecentlyWatched };
 };
 
 export default useRecentlyWatched;
