@@ -14,7 +14,6 @@ const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
   });
   return (
     <div>
-      {/* {JSON.stringify(t)} */}
       <Header {...data.discovery_jar_answers.at(0)} />
     </div>
   );

@@ -2,7 +2,6 @@ import Categorizer from "@/blocks/molecules/categorizer";
 import { DiscoveryJarsConfig } from "@/strapi/services/api";
 import DiscoveryCard from "@/blocks/molecules/cards/Discovery";
 import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
-import Image from "next/image";
 
 const DiscoveryJarPage = async () => {
   const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -16,9 +15,30 @@ const DiscoveryJarPage = async () => {
   return (
     <div className="px-5">
       <section>
-        <Banner backgroundURL={theme.background_url} />
+        <div
+          style={{
+            backgroundImage: `url(/we.png)`,
+          }}
+          className="h-[350px] rounded-xl bg-center bg-no-repeat bg-cover mb-5  p-5 center"
+        >
+          <div className="text-center">
+            <h3 className="text-4xl font-one text-white">Discovery Jar</h3>
+            <h1
+              style={{
+                textShadow: "2px 2px 5px black",
+              }}
+              className="text-5xl font-medium font-amar text-white mt-2 "
+            >
+              What if Jupiter is never existed in <br />
+              our solar system?
+            </h1>
+
+            <DiscoveryJarPopup />
+          </div>
+        </div>
+
         <div className="px-20">
-          <div className="-mt-[5rem] mb-5 grid grid-cols-1 gap-2 px-20 py-5 bg-[whitesmoke] rounded-2xl  outline outline-offset-4 outline-white ">
+          {/* <div className="-mt-[5rem] mb-5 grid grid-cols-1 gap-2 px-20 py-5 bg-[whitesmoke] rounded-2xl  outline outline-offset-4 outline-white ">
             <div>
               <Image
                 width={80}
@@ -42,7 +62,7 @@ const DiscoveryJarPage = async () => {
             <div className="center mt-2">
               <DiscoveryJarPopup />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div>
@@ -63,13 +83,25 @@ const Banner = ({ backgroundURL }: any) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${backgroundURL})`,
+        backgroundImage: `url(/we.png)`,
       }}
-      className="h-[300px] rounded-xl bg-center bg-no-repeat bg-cover mb-5 flex items-start justify-end p-5"
+      className="h-[350px] rounded-xl bg-center bg-no-repeat bg-cover mb-5  p-5 center"
     >
-      <h1 className=" text-white font-heading text-center px-5 py-2 rounded-xl bg-black">
-        4 Days Left
-      </h1>
+      <div className="text-center">
+        <h3 className="text-4xl font-one text-white">Discovery Jar</h3>
+        <h1
+          style={{
+            textShadow: "2px 2px 5px black",
+          }}
+          className="text-5xl font-medium font-amar text-white mt-2 "
+        >
+          What if Jupiter is never existed in <br />
+          our solar system?
+        </h1>
+        <button className="bg-blue-500 text-white text-xl px-20 py-3 rounded-full font-heading mt-4">
+          Ask Question
+        </button>
+      </div>
     </div>
   );
 };

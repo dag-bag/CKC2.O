@@ -12,9 +12,6 @@ const DiscoveryCard = ({ thumbnail, title, desc, id }: any) => {
           <h3 className="font-medium font-amar md:text-xl text-sm line-clamp-2 leading-4 mt-1  text-black">
             {title}
           </h3>
-          <p className="font-heading text-sm text-gray-600 leading-4 mt-1 line-clamp-2">
-            {desc}
-          </p>
         </div>
       </div>
     </Link>

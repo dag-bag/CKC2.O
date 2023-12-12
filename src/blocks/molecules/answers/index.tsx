@@ -54,41 +54,66 @@ const Header = ({
             id: 1,
           } as any)}
         />
+        <Users />
       </div>
+    </div>
+  );
+};
+
+const Users = () => {
+  return (
+    <div className="bg-white p-5 font-heading rounded-xl">
+      <h1 className="text-xl font-amar mb-5">Participants</h1>
+      <div className="grid grid-cols-4 gap-3">
+        <User />
+        <User />
+        <User />
+        <User />
+        <User />
+        <User />
+      </div>
+    </div>
+  );
+};
+
+const User = () => {
+  return (
+    <div className="center flex-col">
+      <Image
+        src={"/avatars/punjabi.png"}
+        alt="user"
+        className="rounded-full border-2"
+        width={80}
+        height={80}
+      />
+      <p className="text-center mt-1">Deepak</p>
     </div>
   );
 };
 
 const Chapters = ({ time_stamps, onClick, seconds }: any) => {
   return (
-    <div className="p-5 pt-2 rounded-xl mt-5 bg-white">
-      <h3 className="font-heading text-xl mb-2">Chapters</h3>
-      <div className="flex gap-5">
-        {time_stamps.map((time: any) => (
+    <div className="p-5  rounded-xl mt-5 bg-white">
+      <h3 className=" text-2xl mb-5 font-amar font-semibold">
+        Asked Questions
+      </h3>
+      <div className="grid gap-3">
+        {time_stamps.map((time: any, index: number) => (
           <div
             onClick={() => {
               onClick(time.start_timestamp);
             }}
-            style={
-              seconds < time.end_stamp && seconds >= time.start_timestamp
-                ? { border: "2px red solid" }
-                : undefined
-            }
+            // style={
+            //   seconds < time.end_stamp && seconds >= time.start_timestamp
+            //     ? { border: "2px red solid" }
+            //     : undefined
+            // }
             key={time.title}
-            className=" w-[200px] p-3 rounded-xl bg-blue-50 font-heading cursor-pointer"
+            className=" w-full p-4 rounded-xl border font-heading cursor-pointer flex justify-between gap-5 hover:bg-gray-100"
           >
-            <h1 className="text-sm leading-5 mb-2 font-amar">{time.title}</h1>
-            <div className="relative h-[30px] center">
-              <div className="w-full h-[3px] bg-indigo-100 rounded-full"></div>
-              <div className="flex items-center justify-between absolute top-1 left-0 w-full ">
-                <span className="bg-indigo-200 p-1 px-2 text-xs rounded-sm ">
-                  {formatSeconds(time.start_timestamp)}
-                </span>
-                <span className="bg-indigo-200 p-1 px-2 text-xs rounded-sm ">
-                  {formatSeconds(time.end_stamp)}
-                </span>
-              </div>
-            </div>
+            <span className="mr-3 text-xl font-amar">{index + 1}.</span>
+            <h1 className="text-xl leading-7  font-amar">{time.title}</h1>
+            <div className="text-lg">{formatSeconds(time.start_timestamp)}</div>
           </div>
         ))}
       </div>

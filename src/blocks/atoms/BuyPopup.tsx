@@ -97,7 +97,7 @@ export default function BuyPopup({ price, type, title, id }: Props) {
 
       <button
         onClick={open}
-        className=" py-3 px-20 flex items-center justify-center text-white  bg-black rounded-full font-heading  gap-2"
+        className=" py-3 px-20 flex items-center justify-center text-white  bg-[#00B3FF] rounded-full font-heading  gap-2"
       >
         <BiLockAlt /> Unlock
       </button>
