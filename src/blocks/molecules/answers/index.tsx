@@ -17,7 +17,7 @@ const Header = ({
 }: any) => {
   const locked =
     price !== 0
-      ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
+      ? !purchases?.map((pur: any) => pur.content_id).includes(id.toString())
       : false;
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
