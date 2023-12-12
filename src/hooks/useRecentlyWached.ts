@@ -28,7 +28,7 @@ const useRecentlyWatched = (): RecentlyWatchedHook => {
       (x) => x.id === item.id && x.type === item.type
     );
     if (!already) {
-      const updatedList = [...recentlyWatched.slice(0, 4), item];
+      const updatedList = [...recentlyWatched?.slice(0, 4), item];
       setRecentlyWatched(updatedList);
     }
   };
