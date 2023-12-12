@@ -24,11 +24,14 @@ const useRecentlyWatched = (): RecentlyWatchedHook => {
   });
 
   const addToRecentlyWatched = (item: RecentlyWatchedItem) => {
+    // Check if recentlyWatched is defined or provide a default value (empty array)
     const already = recentlyWatched?.some(
       (x) => x.id === item.id && x.type === item.type
     );
+
     if (!already) {
-      const updatedList = [...recentlyWatched.slice(0, 4), item];
+      // Use optional chaining to ensure recentlyWatched is defined
+      const updatedList = [...(recentlyWatched ?? []).slice(0, 4), item];
       setRecentlyWatched(updatedList);
     }
   };
