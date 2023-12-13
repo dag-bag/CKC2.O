@@ -1,6 +1,7 @@
 // useVideoPlayer.tsx
 import useSWR, { useSWRConfig } from "swr";
 import { strapi } from "@/libs/strapi";
+import { useQuery } from "@tanstack/react-query";
 
 interface VideoPlayerProps {
   userId: string;
@@ -54,15 +55,18 @@ const useCourse = ({
   const {
     data: watchRecords,
     isLoading,
-    mutate,
-  } = useSWR<WatchRecord[]>(`watched/course/${courseId}`, getWatchedRecords);
+    refetch,
+  } = useQuery<WatchRecord[]>({
+    queryKey: [`watched/${courseId}`],
+    queryFn: getWatchedRecords,
+  });
 
   return {
     isLoading,
     watchRecords: watchRecords,
     create: createWatchRecord,
     updateWatchRecord,
-    mutate,
+    mutate: refetch,
   };
 };
 
