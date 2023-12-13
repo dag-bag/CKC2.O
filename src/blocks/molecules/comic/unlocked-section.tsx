@@ -1,10 +1,23 @@
 "use client";
 
+import useRecentlyWatched from "@/hooks/useRecentlyWached";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-const Unlocked = ({ id, price }: any) => {
+const Unlocked = ({ id, title, content, thumbnail, grade }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const { addToRecentlyWatched } = useRecentlyWatched();
+  const handleRead = () => {
+    addToRecentlyWatched({
+      title,
+      desc: content,
+      imgUrl: thumbnail,
+      grade,
+      id: id,
+      type: "comic",
+    });
+    open();
+  };
   return (
     <div className="bg-white mt-5 flex gap-5 p-10 rounded-xl items-cener justify-between">
       <div>
@@ -23,7 +36,7 @@ const Unlocked = ({ id, price }: any) => {
         </div>
       </Modal>
       <button
-        onClick={open}
+        onClick={handleRead}
         className="py-3 px-10 flex items-center justify-center text-white bg-black rounded-full font-heading gap-2"
       >
         Read Now

@@ -7,6 +7,7 @@ import useVideoPlayer from "@/hooks/useVideo";
 import { createReward } from "@/strapi/services/custom";
 import RewardPopup from "../popups/reward";
 import { useDisclosure } from "@mantine/hooks";
+import useRecentlyWatched from "@/hooks/useRecentlyWached";
 
 interface Props {
   rewards: any[];
@@ -17,6 +18,9 @@ interface Props {
   contentId: string;
   contentType: string;
   isAlreadyRewarded: boolean;
+  title: string;
+  desc: string;
+  grade: number;
 }
 
 const Player: React.FC<Props> = ({
@@ -28,7 +32,11 @@ const Player: React.FC<Props> = ({
   contentId,
   contentType,
   isAlreadyRewarded,
+  title,
+  desc,
+  grade,
 }) => {
+  const { addToRecentlyWatched, recentlyWatched } = useRecentlyWatched();
   const router = useRouter();
   const seconds = useRef<any>([]);
   const playerRef = useRef<any>(null);
@@ -46,15 +54,17 @@ const Player: React.FC<Props> = ({
   };
 
   // handling records
-  const { trackProgress, lastPlayed } = useVideoPlayer({
-    userId,
-    contentId,
-    contentType,
-  });
 
   const handleReadyToWatch = () => {
+    addToRecentlyWatched({
+      title: title,
+      desc: desc,
+      imgUrl: thumbnail,
+      grade: grade,
+      id: parseInt(contentId),
+      type: contentType,
+    });
     setLoading(false);
-    forceUpdate(lastPlayed);
   };
 
   const progress = (state: { playedSeconds: number }) => {
@@ -64,7 +74,6 @@ const Player: React.FC<Props> = ({
     // sending user completion of video
     if (!isAlreadyRewarded) {
       // [tracking user watched]
-      trackProgress(state);
       // [end of video]
       if (parseInt(duration) === playedSeconds) {
         popupHandler.open();

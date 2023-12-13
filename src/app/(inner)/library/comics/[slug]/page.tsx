@@ -54,11 +54,12 @@ const Hero = (props: any) => {
     creator,
     page_count,
     grade,
-    description,
+    desc,
     thumbnail,
     price,
     purchases,
     id,
+    content,
   } = props;
   const locked =
     price !== 0
@@ -82,7 +83,7 @@ const Hero = (props: any) => {
             <Infor title="Grade:" value={grade} />
           </div>
 
-          <p>{description}</p>
+          <p>{content}</p>
 
           <div className="mt-10 bg-white p-5 rounded-xl">
             <section className="flex gap-5 items-center ">
@@ -94,7 +95,9 @@ const Hero = (props: any) => {
             </section>
           </div>
 
-          <div>{locked ? <Quiz price={price} id={id} /> : <Unlocked />}</div>
+          <div>
+            {locked ? <Quiz price={price} id={id} /> : <Unlocked {...props} />}
+          </div>
         </div>
       </div>
     </div>
