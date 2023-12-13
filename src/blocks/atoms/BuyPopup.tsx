@@ -7,6 +7,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton, Button } from "@mantine/core";
 import useSession from "@/hooks/use-session";
 import { FaSpinner } from "react-icons/fa6";
+import useUnlock from "@/hooks/useUnlock";
 interface Props {
   price: number;
   type: string;
@@ -15,27 +16,12 @@ interface Props {
 }
 
 export default function BuyPopup({ price, type, title, id }: Props) {
-  const { update } = useSession();
-  const router = useRouter();
-  const [opened, { open, close }] = useDisclosure(false);
-  const [loading, loaderHandler] = useDisclosure(false);
-
-  const unlock = async () => {
-    loaderHandler.open();
-    await axios
-      .post("/api/user/unlock", {
-        coins: price,
-        content_id: id,
-        label: title,
-        type: type,
-      })
-      .then(() => {
-        update({ coins: price, type: "remove" } as any);
-        close();
-        loaderHandler.close();
-        router.refresh();
-      });
-  };
+  const { loading, unlock, open, opened, close } = useUnlock({
+    coins: price,
+    content_id: id,
+    label: title,
+    type: type,
+  });
 
   return (
     <>
