@@ -24,7 +24,7 @@ const theme: any = {
   },
   "/library/videos": {
     background:
-      "linear-gradient(to bottom, rgba(0, 174, 239, 0.9), rgba(34, 46, 120, 0.92))",
+      "linear-gradient(to bottom, rgba(133, 188, 61, 0.92), rgba(30, 120, 60, 0.91))",
   },
 
   "/library/comics": {

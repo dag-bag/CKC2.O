@@ -1,9 +1,9 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
+import { COLOR } from "../../../tailwind.config";
 import { usePathname } from "next/navigation";
 import { RiBook2Fill, RiLiveFill } from "react-icons/ri";
-
 const VideoAndComicsFilter = () => {
   const path = usePathname();
   const isVideos = path === "/library/videos";
@@ -13,7 +13,7 @@ const VideoAndComicsFilter = () => {
     <div className="py-5">
       <div className="inline-flex gap-5 bg-white p-1 rounded-full">
         <Button
-          color="#F6AC3B"
+          color={COLOR.darkgold}
           active={isComics}
           href={"/library/comics"}
           Icon={RiBook2Fill}
@@ -21,7 +21,7 @@ const VideoAndComicsFilter = () => {
           Comics
         </Button>
         <Button
-          color="#1F95D4"
+          color={COLOR.darkgreen}
           active={isVideos}
           href={"/library/videos"}
           Icon={RiLiveFill}

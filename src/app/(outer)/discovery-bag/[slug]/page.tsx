@@ -25,8 +25,6 @@ const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
   return (
     <div>
       <Header {...data.discovery_jar_answers.at(0)} />
-      {JSON.stringify(data)}
-      <Header {...{ purchases, ...data.discovery_jar_answers.at(0) }} />
     </div>
   );
 };

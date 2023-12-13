@@ -85,7 +85,7 @@ const Header = ({
 const Users = () => {
   return (
     <div className="bg-white p-5 font-heading rounded-xl">
-      <h1 className="text-xl font-amar mb-5">Participants</h1>
+      <h1 className="text-xl font-amar mb-5">Congratulation Discoverers!</h1>
       <div className="grid grid-cols-4 gap-3">
         <User />
         <User />
@@ -117,7 +117,7 @@ const Chapters = ({ time_stamps, onClick, seconds }: any) => {
   return (
     <div className="p-5  rounded-xl mt-5 bg-white">
       <h3 className=" text-2xl mb-5 font-amar font-semibold">
-        Asked Questions
+        Featured Questions
       </h3>
       <div className="grid gap-3">
         {time_stamps.map((time: any, index: number) => (

@@ -66,7 +66,7 @@ const DiscoveryJarPage = async () => {
         </div>
 
         <div>
-          <Categorizer title="Question & Answers">
+          <Categorizer title="Discover the Answers">
             <div className="grid grid-cols-4 gap-5 px-2">
               {theme.discovery_jar_answers.map((item: any) => (
                 <DiscoveryCard key={item.id} {...item} />
