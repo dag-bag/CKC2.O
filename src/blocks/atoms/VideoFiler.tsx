@@ -21,7 +21,7 @@ const VideoAndComicsFilter = () => {
           Comics
         </Button>
         <Button
-          color="#1F95D4"
+          color="#22C55E"
           active={isVideos}
           href={"/library/videos"}
           Icon={RiLiveFill}

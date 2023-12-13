@@ -17,9 +17,12 @@ const VideoCard = ({
   const href = `/library/video/${id}`;
   return (
     <>
-      <Link href={href} className="overflow-hidden relative grid">
-        <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
-          <div className="relative aspect-w-10 aspect-h-6 overflow-hidden">
+      <Link
+        href={href}
+        className="overflow-hidden relative grid group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md"
+      >
+        <div className="bg-white font-heading  ">
+          <div className="relative aspect-w-10 aspect-h-6">
             <Image src={thumbnail} alt={title} fill />
             <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
               <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
@@ -29,15 +32,20 @@ const VideoCard = ({
 
             {premium && (
               <div className="w-full h-full">
-                <button className=" bg-black  border-blue-500 border md:text-sm]  tracking-wide px-5 py-1.5 text-sm center gap-1 rounded-full text-white absolute bottom-3 left-3 shadow-xl">
-                  Premium
-                </button>
+                <div className="absolute top-0 right-2">
+                  <Image
+                    src="/leader.png"
+                    alt="leader"
+                    width={80}
+                    height={80}
+                  />
+                </div>
               </div>
             )}
           </div>
 
           <div className="md:p-5 p-2  bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 ">
-            <h3 className="font-medium !font-amar md:text-xl text-sm leading-6 md:mt-1 line-clamp-1 md:line-clamp-none">
+            <h3 className="font-medium !font-amar md:text-xl text-sm leading-6 md:mt-1 line-clamp-2 ">
               {title}
             </h3>
 
@@ -49,17 +57,17 @@ const VideoCard = ({
               {/* Grade Specific  */}
               <p className="md:text-sm text-xs text-[#4D4D4D] flex items-center">
                 Grade <BsDot />
-                <span>{grade}</span>
+                <span className="text-md">4 to 9</span>
               </p>
               {/* Credits Required */}
               {isUnlocked ? (
-                <p className="text-sm  border-2  shadow-md md:p-1.5 p-1  md:px-5 px-2 rounded-full center md:gap-2 gap-1">
-                  <span className="text-gray-500 font-medium md:text-[15px] tracking-wider text-xs py-1">
+                <p className="text-sm  bg-green-400 shadow-md md:p-1.5 p-1  md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                  <span className="text-white font-medium md:text-[15px] tracking-wider text-xs py-1">
                     Unlocked
                   </span>
                 </p>
               ) : (
-                <p className="text-sm  bg-blue-400 shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                <p className="text-sm  bg-green-500 shadow-md md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
                   <Image width={25} height={25} alt="123" src={"/coin3.png"} />
                   <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
                     {price}
