@@ -4,42 +4,69 @@ import useSession from "./use-session";
 import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import useCoins from "./useCoins";
 
 interface VideoPlayerProps {
   coins: number;
   content_id: number | string;
   label: string;
+  type: string;
 }
 
 type UnlockR = {
-  isLoading: boolean;
+  loading: boolean;
   unlock: () => void;
+  loaderHandler: {
+    readonly open: () => void;
+    readonly close: () => void;
+    readonly toggle: () => void;
+  };
+  opened: boolean;
+  open: () => void;
+  close: () => void;
 };
 
-const useUnlock = ({ coins, content_id, label }: VideoPlayerProps): UnlockR => {
+const useUnlock = ({
+  coins,
+  content_id,
+  label,
+  type,
+}: VideoPlayerProps): UnlockR => {
   const router = useRouter();
   const [loading, loaderHandler] = useDisclosure(false);
-  const { update } = useSession();
+  const [opened, { open, close }] = useDisclosure(false);
 
+  const { updateCoins } = useCoins();
   const unlock = async () => {
     try {
       loaderHandler.open();
-      await axios.post("/api/user/unlock", {
-        coins,
-        content_id,
-        label,
-      });
-      update({ coins } as any);
-      loaderHandler.close();
-      router.refresh();
+      await axios
+        .post("/api/user/unlock", {
+          coins,
+          content_id,
+          label,
+          type,
+        })
+        .then(() => {
+          console.log(coins);
+          updateCoins({ type: "remove", newData: coins });
+          loaderHandler.close();
+          router.refresh();
+        });
     } catch (error) {
+      loaderHandler.close();
+      alert("something  went wrong");
       // handle error
     }
   };
 
   return {
-    isLoading: loading,
+    loading,
     unlock: unlock,
+    open,
+    opened,
+    close,
+    loaderHandler,
   };
 };
 

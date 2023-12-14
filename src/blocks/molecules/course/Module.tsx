@@ -10,6 +10,7 @@ import {
   BiTime,
   BiLockAlt,
 } from "react-icons/bi";
+import { useState } from "react";
 
 const Module = ({
   id,
@@ -26,21 +27,38 @@ const Module = ({
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
     open();
+    if (!watched_progress) {
+      console.log("ceate");
+      strapi
+        .create("watcheds", {
+          user_id: "4",
+          content_id: id.toString(), // module id
+          watched_date: new Date().toISOString(),
+          type: "course",
+          watch_progress: 0,
+          course_id: courseId.toString(),
+        })
+        .then((res) => {
+          mutate();
+        });
+    }
   };
 
   return (
     <>
       <Modal fullScreen opened={opened} onClose={close}>
-        <HeyzinePopup />
+        <HeyzinePopup
+          {...{ id, watch_id, explorationTime, watched_progress }}
+        />
       </Modal>
       <Accordion.Item value={name} className="!font-heading">
         <Accordion.Control>
           <div>
             <div className="flex items-center gap-2">
               <span className="bg-blue-500 p-3 rounded-xl text-white">
-                <BiCheckCircle size={20} />
-                {/* {unlock && !completed && <BiLockOpenAlt size={18} />}
-                {!unlock && !completed && <BiLockAlt size={18} />} */}
+                {completed && <BiCheckCircle size={20} />}
+                {unlock && !completed && <BiLockOpenAlt size={18} />}
+                {!unlock && !completed && <BiLockAlt size={18} />}
               </span>
 
               <div>
@@ -48,6 +66,8 @@ const Module = ({
                   {name}
                 </h3>
                 <span className="text-xs text-gray-600 min-w-[200px]">
+                  {convertSecondsToTime(parseInt(watched_progress ?? 0))}
+                  {" / "}
                   {convertSecondsToTime(parseInt(explorationTime))}
                 </span>
               </div>
@@ -77,7 +97,7 @@ const Module = ({
 
           <div className="flex gap-5">
             <button
-              disabled={!unlock}
+              // disabled={!unlock}
               onClick={handlePlay}
               className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
             >

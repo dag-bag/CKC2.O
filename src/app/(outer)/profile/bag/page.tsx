@@ -1,5 +1,5 @@
 import Grid from "@/blocks/temporary/Grid";
-const ProfileVaultPage = () => {
+const ProfileVaultPage = async () => {
   return (
     <div>
       <Grid />
