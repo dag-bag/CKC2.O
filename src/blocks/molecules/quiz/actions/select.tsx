@@ -1,19 +1,21 @@
 import useQuizSession from "@/hooks/use-quiz-session";
 import { Slide } from "../../../../../quiz";
 import { Button } from "../main";
+import toast from "react-hot-toast";
 
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
+  isLastQuestion: boolean;
 }
 
-const Select = ({ action, answer }: SelectProps) => {
+const Select = ({ action, answer, isLastQuestion }: SelectProps) => {
   const { saveResponse } = useQuizSession();
   const validateClickInteraction = (value: string | string[]) => {
     if (value !== answer) {
-      alert("you idiot!");
+      toast.error("Wrong Answer!", { duration: 100 });
     }
-    saveResponse(value);
+    saveResponse(value,isLastQuestion);
   };
   return (
     <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">

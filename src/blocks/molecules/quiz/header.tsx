@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 const QuizHeader = ({
   text,
+  timeout,
   duration,
   totalQuestions,
   attempedQuestions,
@@ -17,13 +19,39 @@ const QuizHeader = ({
           {text}
         </h1>
       </div>
-      <div className="center">
-        <div className="w-[80px] h-[80px] text-xl bg-darkblue text-white font-heading center rounded-xl">
-          {duration}
-        </div>
-      </div>
+      <Timer duration={parseInt(duration)} timeout={timeout} />
     </section>
   );
 };
 
 export default QuizHeader;
+
+const Timer = ({ duration, timeout }: { duration: number; timeout: any }) => {
+  const [counter, setCounter] = useState(duration);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prevCounter) => {
+        const newCounter = prevCounter - 1;
+        if (newCounter === 0) {
+          timeout(); // its running several times
+          clearInterval(interval);
+          return duration;
+        } else {
+          return newCounter;
+        }
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timeout, duration]);
+
+  return (
+    <div className="center">
+      <div className="w-[80px] h-[80px] text-xl bg-darkblue text-white font-heading center rounded-xl">
+        {counter}
+      </div>
+    </div>
+  );
+};

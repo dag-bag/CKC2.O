@@ -2,20 +2,21 @@ import { Button } from "../main";
 import { useState } from "react";
 import { Slide } from "../../../../../quiz";
 import useQuizSession from "@/hooks/use-quiz-session";
-
+import toast from "react-hot-toast";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
+  isLastQuestion: boolean;
 }
 
-const Multi = ({ action, answer }: SelectProps) => {
+const Multi = ({ action, answer, isLastQuestion }: SelectProps) => {
   const [selected, setSelected] = useState<string[]>([]);
   const { saveResponse } = useQuizSession();
   const validateClickInteraction = (value: string | string[]) => {
     if (!validateArrays(answer as string[], selected)) {
-      alert("you idiot!");
+      toast.error("Wrong Answer!", { duration: 100 });
     }
-    saveResponse(value);
+    saveResponse(value, isLastQuestion);
   };
   return (
     <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">
@@ -46,7 +47,7 @@ const Multi = ({ action, answer }: SelectProps) => {
 
 export default Multi;
 
-function validateArrays(arr1: string[], arr2: string[]): boolean {
+export function validateArrays(arr1: string[], arr2: string[]): boolean {
   // Check if the arrays have the same length
   if (arr1.length !== arr2.length) {
     return false;

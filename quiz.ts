@@ -9,7 +9,7 @@ interface Options {
     value: string,
 }
 
-interface Action {
+export interface Action {
     type: "select" | "multiselect" | "boolean" | "textinput" | "order"
     options?: Options[],
     input?: {
@@ -27,7 +27,7 @@ export interface Slide {
 
 
 
-interface Quiz {
+export interface Quiz {
     id: string,
     title: string,
     slides: Slide[]
@@ -40,7 +40,7 @@ export const basicQuiz: Quiz = {
     title: 'basic quiz',
     slides: [
         {
-            duration: 30,
+            duration: 10,
             answer: "moon",
             question: {
                 imageUrl: "/tile.png",
@@ -72,7 +72,7 @@ export const basicQuiz: Quiz = {
 
 
         {
-            duration: 20,
+            duration: 10,
             answer: "true",
             question: {
                 imageUrl: "/tile.png",
@@ -92,7 +92,7 @@ export const basicQuiz: Quiz = {
 
         },
         {
-            duration: 50,
+            duration: 10,
             answer: "anju",
             question: {
                 text: "name your teacher."
@@ -106,7 +106,7 @@ export const basicQuiz: Quiz = {
 
         },
         {
-            duration: 60,
+            duration: 10,
             answer: ["Mercury", "Venus", "Earth", "Mars"],
             question: {
                 imageUrl: "/tile.png",
@@ -136,7 +136,7 @@ export const basicQuiz: Quiz = {
         },
 
         {
-            duration: 30,
+            duration: 10,
             answer: ["sun", "earth", "stars"],
             question: {
                 imageUrl: "/tile.png",

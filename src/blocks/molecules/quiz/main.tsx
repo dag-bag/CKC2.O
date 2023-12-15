@@ -5,7 +5,12 @@ import Select from "./actions/select";
 import Input from "./actions/input";
 import Order from "./actions/order";
 import Multi from "./actions/multi";
-const Main = ({ question, action, answer }: Slide) => {
+
+interface Props extends Slide {
+  isLastQuestion: boolean;
+}
+
+const Main = ({ question, action, answer, isLastQuestion }: Props) => {
   return (
     <>
       {action.type !== "order" && (
@@ -20,14 +25,41 @@ const Main = ({ question, action, answer }: Slide) => {
         </section>
       )}
 
-      {action.type == "select" && <Select answer={answer} action={action} />}
-      {action.type == "multiselect" && (
-        <Multi answer={answer} action={action} />
+      {action.type == "select" && (
+        <Select
+          isLastQuestion={isLastQuestion}
+          answer={answer}
+          action={action}
+        />
       )}
-      {action.type == "boolean" && <Select answer={answer} action={action} />}
-      {action.type == "textinput" && <Input answer={answer} action={action} />}
+      {action.type == "multiselect" && (
+        <Multi
+          isLastQuestion={isLastQuestion}
+          answer={answer}
+          action={action}
+        />
+      )}
+      {action.type == "boolean" && (
+        <Select
+          isLastQuestion={isLastQuestion}
+          answer={answer}
+          action={action}
+        />
+      )}
+      {action.type == "textinput" && (
+        <Input
+          isLastQuestion={isLastQuestion}
+          answer={answer}
+          action={action}
+        />
+      )}
       {action.type == "order" && (
-        <Order imageUrl={question.imageUrl} answer={answer} action={action} />
+        <Order
+          isLastQuestion={isLastQuestion}
+          imageUrl={question.imageUrl}
+          answer={answer}
+          action={action}
+        />
       )}
     </>
   );

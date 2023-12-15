@@ -4,23 +4,24 @@ import { useState } from "react";
 import { Reorder } from "framer-motion";
 import { Slide } from "../../../../../quiz";
 import useQuizSession from "@/hooks/use-quiz-session";
-
+import toast from "react-hot-toast";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
   imageUrl?: string;
+  isLastQuestion: boolean;
 }
 
-const Order = ({ action, answer, imageUrl }: SelectProps) => {
+const Order = ({ action, answer, imageUrl, isLastQuestion }: SelectProps) => {
   const [items, setItems] = useState(
     action.options?.map((opt) => opt.name) as any
   );
   const { saveResponse } = useQuizSession();
   const validateClickInteraction = (value: string | string[]) => {
     if (!compareArrays(answer as string[], value as string[])) {
-      alert("you idiot!");
+      toast.error("Wrong Answer!", { duration: 100 });
     }
-    saveResponse(value);
+    saveResponse(value, isLastQuestion);
   };
   return (
     <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">

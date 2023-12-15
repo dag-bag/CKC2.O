@@ -24,11 +24,14 @@ const useQuizSession = () => {
     return {
         session,
         setSession,
-        saveResponse: (response: string | string[]) => {
+        clearSession: () => {
+            setSession(defaultValue)
+        },
+        saveResponse: (response: string | string[], isLastQuestion: boolean) => {
             setSession((prev) => {
                 return {
                     state: {
-                        index: prev.state.index + 1
+                        index: isLastQuestion ? prev.state.index : prev.state.index + 1
                     },
                     responses: {
                         ...prev.responses,
@@ -37,11 +40,6 @@ const useQuizSession = () => {
 
                 }
             })
-
-
-
-
-
         }
     }
 }
