@@ -31,7 +31,7 @@ const Input = ({ action, answer, isLastQuestion }: SelectProps) => {
           />
           <button
             onClick={() => validateClickInteraction(textRef.current.value)}
-            className="bg-darkblue text-white w-full py-5 mt-4 rounded-full text-xl font-amar"
+            className="bg-darkblue text-white w-full py-4  border-2 mt-4 rounded-full text-xl font-amar"
           >
             Submit
           </button>

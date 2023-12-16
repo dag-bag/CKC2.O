@@ -37,9 +37,9 @@ const Order = ({ action, answer, imageUrl, isLastQuestion }: SelectProps) => {
               />
             )}
           </section>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="center">
             <Reorder.Group
-              className="grid w-full"
+              className="flex gap-3 flex-col w-full"
               axis="y"
               values={items as any}
               onReorder={setItems}
@@ -54,7 +54,7 @@ const Order = ({ action, answer, imageUrl, isLastQuestion }: SelectProps) => {
         </div>
         <button
           onClick={() => validateClickInteraction(items)}
-          className="bg-darkblue text-white w-full py-5 mt-4 rounded-full text-xl font-amar"
+          className="bg-darkblue text-white w-full py-4  border-2 mt-4 rounded-full text-xl font-amar"
         >
           Submit
         </button>

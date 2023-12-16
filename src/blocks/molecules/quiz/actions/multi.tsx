@@ -1,8 +1,8 @@
-import { SelectiveButton } from "../main";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { SelectiveButton } from "../main";
 import { Slide } from "../../../../../quiz";
 import useQuizSession from "@/hooks/use-quiz-session";
-import toast from "react-hot-toast";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
@@ -41,7 +41,7 @@ const Multi = ({ action, answer, isLastQuestion }: SelectProps) => {
         </div>
         <button
           onClick={() => validateClickInteraction(selected)}
-          className="bg-darkblue text-white w-full py-5 mt-4 rounded-full text-xl font-amar"
+          className="bg-darkblue text-white w-full py-4  border-2 mt-4 rounded-full text-xl font-amar"
         >
           Submit
         </button>

@@ -7,7 +7,7 @@ const QuizHeader = ({
   attempedQuestions,
 }: any) => {
   return (
-    <section className="grid grid-cols-[1fr_2fr_1fr] bg-white/70 backdrop-blur-sm min-h-[150px]">
+    <section className="grid grid-cols-[1fr_2fr_1fr] bg-white/90 backdrop-blur-sm min-h-[150px]">
       <div className="center">
         <div className="w-[100px] h-[100px] text-3xl bg-darkblue text-white font-heading font-semibold center rounded-full ">
           {attempedQuestions} <span className="px-.5 text-gray-300">/</span>
