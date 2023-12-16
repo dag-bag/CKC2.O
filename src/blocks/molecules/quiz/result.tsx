@@ -32,17 +32,16 @@ const QuizResultPreviewer = ({ result }: any) => {
             <div
               key={res.question}
               className={clsx(
-                "border p-5 rounded-xl",
+                "border p-4 rounded-xl",
                 getResponseClass(res.responseType)
               )}
             >
-              <span className="uppercase text-xs font-semibold text-gray-500">
+              {/* <span className="uppercase text-xs font-semibold text-gray-500">
                 {res.actionType}
-              </span>
-              <h3 className="font-heading text-lg leading-5 first-letter:capitalize">
+              </span> */}
+              <h3 className="font-amar text-lg leading-5 first-letter:capitalize">
                 {res.question}
               </h3>
-              <hr className="mt-3" />
               {typeof res.userResponse === "string" ? (
                 <p className="mt-2">"{res.userResponse}"</p>
               ) : (

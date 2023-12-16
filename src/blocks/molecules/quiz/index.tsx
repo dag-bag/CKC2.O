@@ -4,7 +4,7 @@ import { type Quiz } from "../../../../quiz";
 import { BsArrowRight } from "react-icons/bs";
 import { useDisclosure } from "@mantine/hooks";
 import useQuizSession from "@/hooks/use-quiz-session";
-
+import QuizAudioPlayer from "./audio-player";
 interface Props {
   meta: Quiz;
 }
@@ -28,6 +28,7 @@ const QuizPlayer: React.FC<Props> = ({ meta }) => {
         >
           Play <BsArrowRight />
         </button>
+        <QuizAudioPlayer />
       </div>
       <QuizSlider meta={meta} opened={opened} close={close} />
     </div>

@@ -5,7 +5,7 @@ import { Quiz } from "../../../../quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
 import useQuizSession from "@/hooks/use-quiz-session";
-
+import QuizAudioPlayer from "./audio-player";
 interface Props {
   meta: Quiz;
   opened: boolean;
