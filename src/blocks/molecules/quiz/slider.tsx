@@ -38,38 +38,41 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
       }}
     >
       {!isAllQuestionAttemped ? (
-        <div
-          style={{
-            backgroundImage: "url('/tile.png')",
-          }}
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        >
-          {slideInfo?.action.type !== "order" && (
-            <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2fr_1fr] gap-1">
-              <QuizHeader
-                timeout={timeout}
-                duration={slideInfo?.duration}
-                text={slideInfo?.question.text}
-                attempedQuestions={slideIndex + 1}
-                totalQuestions={totalNumberOfQuestions}
-              />
-              <Main {...(slideInfo as any)} isLastQuestion={isLastQuestion} />
-            </div>
-          )}
+        <>
+          <QuizAudioPlayer />
+          <div
+            style={{
+              backgroundImage: "url('/tile.png')",
+            }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          >
+            {slideInfo?.action.type !== "order" && (
+              <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2fr_1fr] gap-1">
+                <QuizHeader
+                  timeout={timeout}
+                  duration={slideInfo?.duration}
+                  text={slideInfo?.question.text}
+                  attempedQuestions={slideIndex + 1}
+                  totalQuestions={totalNumberOfQuestions}
+                />
+                <Main {...(slideInfo as any)} isLastQuestion={isLastQuestion} />
+              </div>
+            )}
 
-          {slideInfo?.action.type == "order" && (
-            <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2.5fr] gap-1">
-              <QuizHeader
-                timeout={timeout}
-                duration={slideInfo?.duration}
-                text={slideInfo?.question.text}
-                attempedQuestions={slideIndex + 1}
-                totalQuestions={totalNumberOfQuestions}
-              />
-              <Main {...(slideInfo as any)} isLastQuestion={isLastQuestion} />
-            </div>
-          )}
-        </div>
+            {slideInfo?.action.type == "order" && (
+              <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2.5fr] gap-1">
+                <QuizHeader
+                  timeout={timeout}
+                  duration={slideInfo?.duration}
+                  text={slideInfo?.question.text}
+                  attempedQuestions={slideIndex + 1}
+                  totalQuestions={totalNumberOfQuestions}
+                />
+                <Main {...(slideInfo as any)} isLastQuestion={isLastQuestion} />
+              </div>
+            )}
+          </div>
+        </>
       ) : (
         <QuizResultPreviewer
           result={QuizResultMaker(meta, session?.responses as any)}
