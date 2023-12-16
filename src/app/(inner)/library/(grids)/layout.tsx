@@ -11,7 +11,7 @@ export default async function Layout({ children }: any) {
   });
   return (
     <div>
-      {JSON.stringify(Banner)}
+      {/* {JSON.stringify(Banner)} */}
       <BannerCarousel />
       <Filter />
       {children}
