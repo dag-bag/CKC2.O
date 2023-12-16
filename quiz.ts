@@ -33,8 +33,6 @@ export interface Quiz {
     slides: Slide[]
 }
 
-
-
 export const basicQuiz: Quiz = {
     id: '1',
     title: 'basic quiz',

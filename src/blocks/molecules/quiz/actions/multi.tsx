@@ -1,4 +1,4 @@
-import { Button } from "../main";
+import { SelectiveButton } from "../main";
 import { useState } from "react";
 import { Slide } from "../../../../../quiz";
 import useQuizSession from "@/hooks/use-quiz-session";
@@ -24,15 +24,21 @@ const Multi = ({ action, answer, isLastQuestion }: SelectProps) => {
       <div className="my-auto">
         <div className="grid grid-cols-2 gap-4">
           {action.options?.map((option, index) => (
-            <Button
+            <SelectiveButton
+              isSelected={selected.includes(option.value)}
               {...option}
               index={index}
               key={option.name}
-              onClick={() => setSelected([...selected, option.name])}
+              onClick={() => {
+                if (selected.includes(option.value)) {
+                  setSelected(selected.filter((prev) => prev !== option.value));
+                } else {
+                  setSelected([...selected, option.name]);
+                }
+              }}
             />
           ))}
         </div>
-        <p className="text-white">{JSON.stringify(selected)}</p>
         <button
           onClick={() => validateClickInteraction(selected)}
           className="bg-darkblue text-white w-full py-5 mt-4 rounded-full text-xl font-amar"

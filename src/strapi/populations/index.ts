@@ -8,4 +8,4 @@ export const DISCONVER_JAR_CONFIG_P = [
 export const COMIC_P = ["rewards"];
 export const CHALLANGE_P = ["rewards"];
 
-export const QUIZ_P = ["slides", "slides.action"];
+export const QUIZ_P = ["slides", "slides.action", "slides.question"];
