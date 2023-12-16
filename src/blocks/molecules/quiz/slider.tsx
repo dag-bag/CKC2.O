@@ -26,8 +26,6 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
     saveResponse("#", isLastQuestion);
   };
 
-  console.log(meta.slides);
-
   return (
     <Modal
       fullScreen
