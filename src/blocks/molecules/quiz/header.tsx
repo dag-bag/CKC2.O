@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import Timer from "./timer";
 const QuizHeader = ({
   text,
   timeout,
@@ -7,7 +7,7 @@ const QuizHeader = ({
   attempedQuestions,
 }: any) => {
   return (
-    <section className="grid grid-cols-[1fr_2fr_1fr] bg-white/70 backdrop-blur-sm min-h-[150px] ">
+    <section className="grid grid-cols-[1fr_2fr_1fr] bg-white/70 backdrop-blur-sm min-h-[150px]">
       <div className="center">
         <div className="w-[100px] h-[100px] text-3xl bg-darkblue text-white font-heading font-semibold center rounded-full ">
           {attempedQuestions} <span className="px-.5 text-gray-300">/</span>
@@ -25,33 +25,3 @@ const QuizHeader = ({
 };
 
 export default QuizHeader;
-
-const Timer = ({ duration, timeout }: { duration: number; timeout: any }) => {
-  const [counter, setCounter] = useState(duration);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((prevCounter) => {
-        const newCounter = prevCounter - 1;
-        if (newCounter === 0) {
-          timeout(); // its running several times
-          clearInterval(interval);
-          return duration;
-        } else {
-          return newCounter;
-        }
-      });
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [timeout, duration]);
-
-  return (
-    <div className="center">
-      <div className="w-[80px] h-[80px] text-xl bg-darkblue text-white font-heading center rounded-xl">
-        {counter}
-      </div>
-    </div>
-  );
-};
