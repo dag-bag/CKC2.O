@@ -4,8 +4,9 @@ import { Modal } from "@mantine/core";
 import { Quiz } from "../../../../quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
-import useQuizSession from "@/hooks/use-quiz-session";
 import QuizAudioPlayer from "./audio-player";
+import useQuizSession from "@/hooks/use-quiz-session";
+
 interface Props {
   meta: Quiz;
   opened: boolean;
@@ -34,7 +35,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
       withCloseButton={false}
       classNames={{
         content: "",
-        body: "!p-0 ",
+        body: "!p-0",
       }}
     >
       {!isAllQuestionAttemped ? (
@@ -44,7 +45,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
             style={{
               backgroundImage: "url('/tile.png')",
             }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200"
           >
             {slideInfo?.action.type !== "order" && (
               <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2fr_1fr] gap-1">
