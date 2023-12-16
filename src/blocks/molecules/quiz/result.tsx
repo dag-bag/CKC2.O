@@ -74,7 +74,7 @@ const QuizResultPreviewer = ({
           </div>
         </div>
 
-        <div className="grid gap-2 hidden">
+        {/* <div className="grid gap-2 hidden">
           {list.map((res: Response) => (
             <div
               key={res.question}
@@ -83,9 +83,7 @@ const QuizResultPreviewer = ({
                 getResponseClass(res.responseType)
               )}
             >
-              {/* <span className="uppercase text-xs font-semibold text-gray-500">
-                {res.actionType}
-              </span> */}
+       
               <h3 className="font-amar text-lg leading-5 first-letter:capitalize">
                 {res.question}
               </h3>
@@ -105,7 +103,7 @@ const QuizResultPreviewer = ({
               )}
             </div>
           ))}
-        </div>
+        </div> */}
 
         <button
           onClick={reloadPage}

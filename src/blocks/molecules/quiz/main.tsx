@@ -21,7 +21,7 @@ const Main = ({ question, action, answer, isLastQuestion }: Props) => {
             <img
               alt="image-map"
               src={question.imageUrl}
-              className="rounded-xl h-[250px] xl:h-[400px]"
+              className="rounded-xl md:h-[250px] h-[180px] xl:h-[400px]"
             />
           )}
         </section>
@@ -72,15 +72,15 @@ export const Button = ({ name, index, onClick }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-5 px-5 rounded-xl text-xl capitalize font-amar flex gap-4 items-center w-full",
+        " text-white text-left md:p-3 xl:p-4 p-3 px-5 rounded-xl md:text-xl capitalize font-amar flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
         index == 2 && "bg-yellow-600",
-        index == 3 && "bg-purple-500"
+        index == 3 && "bg-purple-600"
       )}
     >
       {index == 0 && <IoTriangle />}
-      {index == 1 && <IoEllipse size={30} />}
+      {index == 1 && <IoEllipse />}
       {index == 2 && <IoSquareSharp />}
       {index == 3 && <FaDiamond />}
       {name}
@@ -93,7 +93,7 @@ export const SelectiveButton = ({ name, index, onClick, isSelected }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-5 px-5 rounded-xl text-xl capitalize font-amar flex gap-4 items-center w-full",
+        " text-white text-left md:p-3 xl:p-4 p-3 px-5 rounded-xl md:text-xl capitalize font-amar flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
         index == 2 && "bg-yellow-600",

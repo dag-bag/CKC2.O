@@ -15,13 +15,13 @@ const Select = ({ action, answer, isLastQuestion }: SelectProps) => {
     if (value !== answer) {
       toast.error("Wrong Answer!", { duration: 100 });
     }
-    saveResponse(value,isLastQuestion);
+    saveResponse(value, isLastQuestion);
   };
   return (
-    <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">
-      <div />
-      <div className="my-auto">
-        <div className="grid grid-cols-2 gap-4">
+    <section className="grid md:grid-cols-[1fr_2fr_1fr] md:p-2 p-5 md:pb-5">
+      <div className="hidden md:block" />
+      <div className="md:my-auto my-auto">
+        <div className="grid md:grid-cols-2 md:gap-4 gap-2">
           {action.options?.map((option, index) => (
             <Button
               {...option}
@@ -32,7 +32,7 @@ const Select = ({ action, answer, isLastQuestion }: SelectProps) => {
           ))}
         </div>
       </div>
-      <div />
+      <div className="hidden md:block" />
     </section>
   );
 };

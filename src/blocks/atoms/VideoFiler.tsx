@@ -45,18 +45,18 @@ const Button = ({ active, href, Icon, children, color }: any) => {
             : undefined
         }
         className={clsx(
-          "px-10 py-2.5 rounded-full flex justify-between gap-5 text-black font-amar",
+          "md:px-10 px-5 py-2.5 rounded-full flex justify-between gap-5 text-black font-amar",
           active && "shadow-xl"
         )}
       >
-        <div className="flex gap-2">
+        <div className="flex gap-1 pr-3">
           <div className="px-3 center rounded-lg">
             <Icon color={active ? "white" : "black"} size={22} />
           </div>
           <div>
             <h3
               className={clsx(
-                "text-lg text-black",
+                "md:text-lg text-black",
                 active && "text-white drop-shadow-2xl"
               )}
             >

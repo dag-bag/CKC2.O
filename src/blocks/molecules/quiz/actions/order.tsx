@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
 import { Button } from "../main";
 import { useState } from "react";
@@ -24,22 +25,26 @@ const Order = ({ action, answer, imageUrl, isLastQuestion }: SelectProps) => {
     saveResponse(value, isLastQuestion);
   };
   return (
-    <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">
-      <div />
+    <section className="md:grid md:grid-cols-[1fr_2fr_1fr] p-2 pb-5">
+      <div className="hidden md:block" />
       <div className="my-auto">
-        <div className={clsx(imageUrl && "grid grid-cols-2 gap-5")}>
-          <section>
+        <div
+          className={clsx(
+            imageUrl && "md:grid md:grid-cols-2 flex flex-col gap-5"
+          )}
+        >
+          <section className="center">
             {imageUrl && (
               <img
                 alt="image-map"
                 src={imageUrl}
-                className="rounded-xl h-[250px] xl:h-[400px]"
+                className="rounded-xl md:h-[250px] h-[180px] xl:h-[400px]"
               />
             )}
           </section>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="center">
             <Reorder.Group
-              className="grid w-full"
+              className="flex gap-3 flex-col w-full"
               axis="y"
               values={items as any}
               onReorder={setItems}
@@ -54,12 +59,12 @@ const Order = ({ action, answer, imageUrl, isLastQuestion }: SelectProps) => {
         </div>
         <button
           onClick={() => validateClickInteraction(items)}
-          className="bg-darkblue text-white w-full py-5 mt-4 rounded-full text-xl font-amar"
+          className="bg-darkblue text-white w-full py-4  border-2 mt-4 rounded-full text-xl font-amar"
         >
           Submit
         </button>
       </div>
-      <div />
+      <div className="hidden md:block" />
     </section>
   );
 };

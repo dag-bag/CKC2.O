@@ -44,16 +44,16 @@ const VideoCard = ({
             )}
           </div>
 
-          <div className="md:p-5 p-2  bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 ">
-            <h3 className="font-medium !font-amar md:text-xl text-sm leading-6 md:mt-1 line-clamp-2 ">
+          <div className="md:p-5 p-4  bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 ">
+            <h3 className="font-medium !font-amar md:text-xl text-md leading-6 md:mt-1 line-clamp-2 ">
               {title}
             </h3>
 
-            <h3 className="font-medium font-amar  text-sm line-clamp-2 leading-5 my-1  text-gray-600">
+            <h3 className="hidden md:line-clamp-2  font-medium font-amar  text-sm  leading-5 my-1  text-gray-600">
               {desc}
             </h3>
 
-            <div className="flex justify-between mt-5">
+            <div className="flex justify-between md:mt-5 mt-2">
               {/* Grade Specific  */}
               <p className="md:text-sm text-xs text-[#4D4D4D] flex items-center">
                 Grade <BsDot />
@@ -61,15 +61,15 @@ const VideoCard = ({
               </p>
               {/* Credits Required */}
               {isUnlocked ? (
-                <p className="text-sm  bg-lightgreen shadow-lg md:p-1.5 p-1  md:px-5 px-2 rounded-full center md:gap-2 gap-1">
-                  <span className="text-white font-medium md:text-[15px] tracking-wider text-xs py-1">
+                <p className="text-sm  bg-lightgreen shadow-lg md:p-1.5 p-1  md:px-5 px-5 rounded-full center md:gap-2 gap-1">
+                  <span className="text-white font-medium md:text-[15px] tracking-wider  py-1">
                     Unlocked
                   </span>
                 </p>
               ) : (
-                <p className="text-sm  bg-lightgreen shadow-lg md:p-1.5 p-1 md:px-5 px-2 rounded-full center md:gap-2 gap-1">
+                <p className="text-sm  bg-lightgreen shadow-lg md:p-1.5 p-1 md:px-5 px-5 rounded-full center md:gap-2 gap-1">
                   <Image width={25} height={25} alt="123" src={"/coin3.png"} />
-                  <span className="text-white font-medium md:text-[15px] tracking-wider text-xs">
+                  <span className="text-white font-medium md:text-[15px] tracking-wider ">
                     {price}
                   </span>
                 </p>
