@@ -12,12 +12,15 @@ const QuizAudioPlayer = () => {
   const audioFilePath = "/music.mp3";
 
   return (
-    <div className="absolute bottom-5 right-5 z-50">
+    <>
       <ReactAudioPlayer muted={isMuted} src={audioFilePath} autoPlay />
-      <button onClick={toggleMute} className="bg-white p-5  rounded-full">
+      <button
+        onClick={toggleMute}
+        className="bg-white md:p-5 p-3 text-black rounded-full"
+      >
         {isMuted ? <BiVolumeMute size={25} /> : <BiVolumeFull size={25} />}
       </button>
-    </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
     Object.keys(session?.responses as any)?.length == meta.slides.length;
 
   const timeout = () => {
-    saveResponse("#", isLastQuestion);
+    // saveResponse("#", isLastQuestion);
   };
 
   return (
@@ -40,7 +40,10 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
     >
       {!isAllQuestionAttemped ? (
         <>
-          <QuizAudioPlayer />
+          <div className="md:block hidden absolute bottom-5 right-5 z-50">
+            <QuizAudioPlayer />
+          </div>
+
           <div
             style={{
               backgroundImage: "url('/tile.png')",
@@ -48,7 +51,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
             className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200"
           >
             {slideInfo?.action.type !== "order" && (
-              <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2fr_1fr] gap-1">
+              <div className="w-full h-full bg-black/40 grid md:grid-rows-[1fr_2fr_1fr] grid-rows-[1.5fr_1fr_1.5fr]  md:gap-1 gap-5 ">
                 <QuizHeader
                   timeout={timeout}
                   duration={slideInfo?.duration}
@@ -61,7 +64,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
             )}
 
             {slideInfo?.action.type == "order" && (
-              <div className="w-full h-full bg-black/40 grid grid-rows-[1fr_2.5fr] gap-1">
+              <div className="w-full h-full bg-black/40 grid md:grid-rows-[1fr_2fr_1fr] grid-rows-[2fr_2fr_1fr] gap-1">
                 <QuizHeader
                   timeout={timeout}
                   duration={slideInfo?.duration}
