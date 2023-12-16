@@ -6,7 +6,21 @@ import { cookies } from "next/headers";
 
 async function getSession() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-  return session;
+
+  const currentTime = Math.floor(Date.now() / 1000);
+  const premiumStatus =
+    session.user.premium === null
+      ? "inactive"
+      : session.user.premium > currentTime
+      ? "active"
+      : "expired";
+  return {
+    ...session,
+    user: {
+      ...session.user,
+      premiumStatus,
+    },
+  };
 }
 
 export { getSession };
@@ -39,5 +53,10 @@ const getTransactions = async (type: string) => {
 };
 
 // globalSession.js
+const getMyPurchases = async () => {
+  const session = await getSession();
+  const res = await strapi.axios.get(`/mypurchase/${session.user.id}`);
+  return res.data;
+};
 
-export { getProfile, getTransactions };
+export { getProfile, getTransactions, getMyPurchases };
