@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
     username: string;
     email: string;
     coins: number;
+    premium: number | null; // Assuming premium is a timestamp or null
   };
   session.isLoggedIn = true;
   session.user = data;
@@ -25,11 +26,25 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
 
-  if (session.isLoggedIn !== true) {
+  if (!session.isLoggedIn) {
     return Response.json(defaultSession);
   }
 
-  return Response.json(session);
+  const currentTime = Math.floor(Date.now() / 1000);
+  const premiumStatus =
+    session.user.premium === null
+      ? "inactive"
+      : session.user.premium > currentTime
+      ? "active"
+      : "expired";
+
+  return Response.json({
+    ...session,
+    user: {
+      ...session.user,
+      premiumStatus,
+    },
+  });
 }
 
 // logout
