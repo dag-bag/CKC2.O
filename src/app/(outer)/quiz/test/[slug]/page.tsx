@@ -15,7 +15,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   return (
     <div className="w-screen h-screen center bg-white">
       <QuizPlayer meta={data} />
-      {/* {JSON.stringify(data.slides.at(0))} */}
     </div>
   );
 };
