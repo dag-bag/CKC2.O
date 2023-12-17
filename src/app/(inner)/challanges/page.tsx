@@ -1,7 +1,8 @@
 import Container from "@/blocks/UI/PageContainer";
 import { Challange } from "@/strapi/services/api";
 import Categorizer from "@/blocks/molecules/categorizer";
-import ChallangeCard from "@/blocks/molecules/cards/Challange";
+import ContentCard from "@/blocks/molecules/content-card";
+
 const BedgesPage = async () => {
   const data = await Challange({ type: "GET" });
   return (
@@ -13,8 +14,28 @@ const BedgesPage = async () => {
 
       <Categorizer title="Ongoing Challanges" right={<Button />}>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 px-2">
-          {data.map((challange: any) => (
-            <ChallangeCard key={challange.id} {...challange} />
+          {data.map((video: any) => (
+            <ContentCard
+              key={video.id}
+              {...{
+                id: video.id,
+                type: "challange",
+                theme: "green",
+                slug: video.slug,
+                desc: video.desc,
+                title: video.title,
+                price: video.price,
+                grades: video.grade,
+                isPremium: video.premium,
+                thumbnail: video.thumbnail,
+                conclusionDate: `${new Date(
+                  parseInt(video.start_timestamp) * 1000
+                ).toLocaleDateString()} to  ${new Date(
+                  parseInt(video.end_timestamp) * 1000
+                ).toLocaleDateString()}` as any,
+                isUnlocked: false,
+              }}
+            />
           ))}
         </div>
       </Categorizer>

@@ -1,23 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-
-import Image from "next/image";
-import ContentGrid from "@/blocks/molecules/content-grid";
 const Page = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-    },
-  };
-
-  const listItem = {
-    hidden: { opacity: 0, y: -20 },
-    show: {
-      opacity: 1,
-      y: 0,
-    },
-  };
   return (
     <div className="px-5 overflow-y-scroll max-h-[calc(100vh-100px)] hide-scrollbar">
       <div className="grid grid-cols-1 h-full">
@@ -81,52 +64,6 @@ const Counter = () => {
       <Block keyName="hours" value={24} />
       <Block keyName="minutes" value={49} />
       <Block keyName="seconds" value={state} />
-    </div>
-  );
-};
-
-const whatYoutWillLearnData = [
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-  {
-    title: "Learn ABCD",
-    description:
-      "You'll learn the alphabet from A to Z while watching this video.",
-  },
-];
-
-const WhatYourWillLearnGrid = () => {
-  return (
-    <div className="max-w-4xl mx-auto my-5 border-2 p-10 rounded-lg">
-      <h3 className="text-4xl text-center font-bold mb-8">
-        What you&apos;ll learn?
-      </h3>
-      <ul className="grid grid-cols-2 gap-5 ">
-        {whatYoutWillLearnData.map((data, index) => (
-          <li className="" key={index}>
-            <h3 className="text-xl font-medium mb-2 ">{data.title}</h3>
-            <p className="text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-              repellat odit provident voluptas sunt adipisci error explicabo
-              tempore. Nam exercitationem illo excepturi quo rerum, velit vel
-              asperiores unde quis in!
-            </p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
