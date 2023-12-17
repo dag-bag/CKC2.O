@@ -1,7 +1,7 @@
 import { Courses } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
-import BannerCarousel from "@/blocks/molecules/BannerCarousel";
+import BannerCarousel from "@/blocks/atoms/BannerCarousel";
 
 const DashboardPage = async () => {
   const [data, purchases] = await Promise.all([

@@ -1,4 +1,4 @@
-import BannerCarousel from "@/blocks/molecules/BannerCarousel";
+import BannerCarousel from "@/blocks/atoms/BannerCarousel";
 import Filter from "@/blocks/atoms/VideoFiler";
 import { Carousel } from "@/strapi/services/api";
 
