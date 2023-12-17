@@ -5,7 +5,7 @@ interface Props {
 }
 import Card from "@/blocks/UI/Card";
 import { formatTimestamp } from "@/utils/time";
-import { getSession } from "@/strapi/services/me";
+import { getSession, getTransactions } from "@/strapi/services/me";
 import Info from "@/blocks/molecules/challange/info";
 import Banner from "@/blocks/molecules/challange/banner";
 import Upload from "@/blocks/molecules/challange/upload";
@@ -26,9 +26,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     filter: { challenge_id: slug },
   };
 
-  const [challange, challangeReq] = await Promise.all([
+  const [challange, challangeReq, purchases] = await Promise.all([
     Challange(challangePayload as any),
     ChallangeReq(challangeRequestPaylaod as any),
+    getTransactions("challange"),
   ]);
 
   const winners = challangeReq.filter(
@@ -40,7 +41,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     title,
     banner,
     grade,
-    credits,
+    price,
     difficult,
     help_media,
     end_timestamp,
@@ -50,6 +51,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   const isSubmitted = challangeReq.find(
     (participant: any) => participant.user.id === session?.user?.id
+  );
+
+  const isAlreadyPurchased = purchases?.find((pur) =>
+    pur.content_id == slug ? true : false
   );
 
   return (
@@ -70,21 +75,24 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
             <Participants participants={challangeReq} />
           )}
         </section>
-        <section className="p-1">
+        <section className="p-1 flex-col">
           <Info
+            price={price}
+            id={slug}
             desc={desc}
             title={title}
             grade={grade}
-            credits={credits}
+            credits={price}
             difficulty={difficult}
             help_media={help_media}
+            isAlreadyPurchased={isAlreadyPurchased}
             winnerAnnouncement={formatTimestamp(result_timestamp)}
             duration={`${formatTimestamp(start_timestamp)} to ${formatTimestamp(
               end_timestamp
             )}`}
           />
-          <Submission isSubmitted={isSubmitted} />
-          <ActionRewardBlock />
+          {isAlreadyPurchased && <Submission isSubmitted={isSubmitted} />}
+          {/* <ActionRewardBlock /> */}
         </section>
       </div>
     </div>

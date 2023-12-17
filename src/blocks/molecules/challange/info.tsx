@@ -1,6 +1,10 @@
 import { BsDot } from "react-icons/bs";
 import { BiGlobe, BiTime } from "react-icons/bi";
+import BuyPopup from "@/blocks/atoms/BuyPopup";
+import SharePopup from "@/blocks/atoms/SharePopup";
 const Info = ({
+  id,
+  price,
   title,
   grade,
   credits,
@@ -8,6 +12,7 @@ const Info = ({
   difficulty,
   description,
   winnerAnnouncement,
+  isAlreadyPurchased,
 }: any) => (
   <div className="p-5 bg-white rounded-xl border border-gray-200">
     <div>
@@ -50,8 +55,15 @@ const Info = ({
       </div>
 
       <div className="grid gap-2 pt-2">
-        {/* <BuyPopup />
-          <SharePopup /> */}
+        {!isAlreadyPurchased && (
+          <BuyPopup
+            price={price}
+            title={title}
+            type="challange"
+            id={parseInt(id)}
+          />
+        )}
+        <SharePopup shareableURL="hope its good" title={title} />
       </div>
     </section>
   </div>
