@@ -4,9 +4,8 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type Layout } from "@/types/general";
-import Container from "@/blocks/UI/PageContainer";
 const NestedBuyLayout: Layout = ({ children }) => {
-  return <Container gridType="opposite_double">{children}</Container>;
+  return <div>{children}</div>;
 };
 
 export default NestedBuyLayout;

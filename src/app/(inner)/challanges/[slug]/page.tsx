@@ -41,7 +41,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     title,
     banner,
     grade,
-    credits,
+    price,
     difficult,
     help_media,
     end_timestamp,
@@ -51,6 +51,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   const isSubmitted = challangeReq.find(
     (participant: any) => participant.user.id === session?.user?.id
+  );
+
+  const isAlreadyPurchased = purchases?.find((pur) =>
+    pur.content_id == slug ? true : false
   );
 
   return (
@@ -72,21 +76,24 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
             <Participants participants={challangeReq} />
           )}
         </section>
-        <section className="p-1">
+        <section className="p-1 flex-col">
           <Info
+            price={price}
+            id={slug}
             desc={desc}
             title={title}
             grade={grade}
-            credits={credits}
+            credits={price}
             difficulty={difficult}
             help_media={help_media}
+            isAlreadyPurchased={isAlreadyPurchased}
             winnerAnnouncement={formatTimestamp(result_timestamp)}
             duration={`${formatTimestamp(start_timestamp)} to ${formatTimestamp(
               end_timestamp
             )}`}
           />
-          <Submission isSubmitted={isSubmitted} />
-          <ActionRewardBlock />
+          {isAlreadyPurchased && <Submission isSubmitted={isSubmitted} />}
+          {/* <ActionRewardBlock /> */}
         </section>
       </div>
     </div>

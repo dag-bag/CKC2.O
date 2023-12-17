@@ -34,9 +34,11 @@ const UploadRightBox = () => {
   return (
     <div className="font-heading p-5 border border-gray-200 rounded-xl mt-5">
       <h5 className="text-xl font-semibld mb-3">Upload your things here</h5>
-      <button className="btn w-full !bg-blue-500 text-white">Upload</button>
+      <ChallangesPopup />
     </div>
   );
 };
+
+import ChallangesPopup from "../popups/ChallangesPopup";
 
 export default Submission;

@@ -5,6 +5,7 @@ const nextConfig = {
       { hostname: "cdn.marvel.com" },
       { hostname: "cosmickids.club" },
       { hostname: "ckc-two.vercel.app" },
+      { hostname: "cdn.dribbble.com" },
     ],
   },
 };

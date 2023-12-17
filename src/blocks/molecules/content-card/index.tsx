@@ -33,16 +33,6 @@ import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { BiCalendar } from "react-icons/bi";
 
-const generateHref = (type: Props["type"], id: number): string => {
-  if (type === "course") return `/learn/${id}`;
-  if (type.includes("live")) return `/live/${id}`;
-  if (type === "video") return `/library/video/${id}`;
-  if (type === "help") return `/dashboard/tips/${id}`;
-  if (type === "comic") return `/library/comics/${id}`;
-  if (type === "challange") return `/challanges/${id}`;
-  return "";
-};
-
 const ContentCard: React.FC<Props> = ({
   id,
   type,
@@ -58,6 +48,7 @@ const ContentCard: React.FC<Props> = ({
   scheduledDateAndTime,
 }) => {
   const hrefUrl = generateHref(type, id);
+
   return (
     <Link
       href={hrefUrl}
@@ -75,30 +66,15 @@ const ContentCard: React.FC<Props> = ({
           id="main"
           className="md:p-5 p-4 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 "
         >
-          {type == "upcoming:live" && (
-            <div className="min-w-[60px] hidden md:block">
-              <p className="text-sm text-[#4D4D4D] flex items-center mt-2 gap-1 ">
-                <BiCalendar size={17} />
-                <span className="text-[#4D4D4D]">{scheduledDateAndTime}</span>
-              </p>
-            </div>
-          )}
-
-          {type == "challange" && (
-            <div className="min-w-[60px] hidden md:block">
-              <p className="text-sm text-[#4D4D4D] flex items-center mt-2 gap-1 ">
-                <BiCalendar size={17} />
-                <span className="text-[#4D4D4D]">{conclusionDate}</span>
-              </p>
-            </div>
-          )}
+          {conclusionDate && <DateTag value={conclusionDate} />}
+          {scheduledDateAndTime && <DateTag value={scheduledDateAndTime} />}
 
           <h2 className="font-medium !font-amar md:text-xl text-md leading-6 md:mt-1 line-clamp-2">
             {title}
           </h2>
 
           {type !== "discover" && (
-            <h4 className="hidden md:line-clamp-2 font-medium font-amar  text-sm leading-5 my-1 text-gray-600">
+            <h4 className="hidden md:line-clamp-2 font-medium font-amar text-sm leading-5 my-1 text-gray-600">
               {desc}
             </h4>
           )}
@@ -107,7 +83,9 @@ const ContentCard: React.FC<Props> = ({
             <section id="footer">
               <div className="flex justify-between md:mt-5 mt-2">
                 <Grades grades={grades} />
-                <PriceTag {...{ isUnlocked, price, theme }} />
+                {price !== undefined && (
+                  <PriceTag {...{ isUnlocked, price, theme }} />
+                )}
               </div>
             </section>
           )}
@@ -118,6 +96,17 @@ const ContentCard: React.FC<Props> = ({
 };
 
 export default ContentCard;
+
+const DateTag = ({ value }: { value: string | undefined }) => {
+  return (
+    <div className="min-w-[60px] hidden md:block">
+      <p className="text-sm text-[#4D4D4D] flex items-center mt-2 gap-1 ">
+        <BiCalendar size={17} />
+        <span className="text-[#4D4D4D]">{value}</span>
+      </p>
+    </div>
+  );
+};
 
 const Grades = ({ grades }: { grades: Props["grades"] }) => {
   if (!grades) return null;
@@ -203,4 +192,14 @@ const Header: React.FC<HeaderProps> = ({
       )}
     </section>
   );
+};
+
+const generateHref = (type: Props["type"], id: number): string => {
+  if (type === "course") return `/learn/${id}`;
+  if (type.includes("live")) return `/live/${id}`;
+  if (type === "video") return `/library/video/${id}`;
+  if (type === "help") return `/dashboard/tips/${id}`;
+  if (type === "comic") return `/library/comics/${id}`;
+  if (type === "challange") return `/challanges/${id}`;
+  return "";
 };
