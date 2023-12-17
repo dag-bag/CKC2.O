@@ -29,7 +29,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
-      {JSON.stringify(user)}
       <Header
         isAlreadyRewarded={false}
         historyOfModules={historyOfModules}

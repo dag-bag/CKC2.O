@@ -15,7 +15,6 @@ const Modules = ({ modules, locked, courseId, activity_modules }: any) => {
   const moduleMap = generateModuleHistoryMapping(modules, watchRecords);
   return (
     <Card title="Modules" className="mt-5">
-      {JSON.stringify(moduleMap)}
       <section className="space-y-5">
         <Accordion>
           {modules.map((item: any, i: any) => (
