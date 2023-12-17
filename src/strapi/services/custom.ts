@@ -27,6 +27,19 @@ const getUserRewards = async (id: number) => {
     console.log(error);
   }
 };
+const c_user_reward = async () => {
+  try {
+    const res = await strapi.find("achivements", {
+      filters: {
+        user: 4,
+        // quiz_id: "2",
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 const getRecentWatched = async (id: number) => {
   try {
     const res = await strapi.axios.get("/recent-watched?id=" + id);
@@ -36,4 +49,10 @@ const getRecentWatched = async (id: number) => {
   }
 };
 
-export { getCoins, getUserRewards, createReward, getRecentWatched };
+export {
+  getCoins,
+  getUserRewards,
+  createReward,
+  getRecentWatched,
+  c_user_reward,
+};

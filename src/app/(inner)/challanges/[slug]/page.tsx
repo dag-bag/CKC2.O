@@ -5,7 +5,7 @@ interface Props {
 }
 import Card from "@/blocks/UI/Card";
 import { formatTimestamp } from "@/utils/time";
-import { getSession } from "@/strapi/services/me";
+import { getSession, getTransactions } from "@/strapi/services/me";
 import Info from "@/blocks/molecules/challange/info";
 import Banner from "@/blocks/molecules/challange/banner";
 import Upload from "@/blocks/molecules/challange/upload";
@@ -26,9 +26,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     filter: { challenge_id: slug },
   };
 
-  const [challange, challangeReq] = await Promise.all([
+  const [challange, challangeReq, purchases] = await Promise.all([
     Challange(challangePayload as any),
     ChallangeReq(challangeRequestPaylaod as any),
+    getTransactions("challange"),
   ]);
 
   const winners = challangeReq.filter(
@@ -65,6 +66,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
           <Upload />
           <Reward />
+          {JSON.stringify(purchases)}
           {winners.length !== 0 && <Winners winners={winners} />}
           {challangeReq.length !== 0 && (
             <Participants participants={challangeReq} />
