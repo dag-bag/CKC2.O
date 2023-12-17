@@ -14,7 +14,6 @@ const Header = ({
   duration,
   price,
   grade,
-  mentor,
   slug,
   mediaUrl,
   id,
@@ -32,24 +31,35 @@ const Header = ({
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
-        <div className="relative aspect-w-12 aspect-h-7 md:aspect-w-12 md:aspect-h-5  xl:aspect-w-12 xl:aspect-h-7 ">
-          {locked ? (
+        <div className="relative aspect-w-12 aspect-h-7 md:aspect-w-12 md:aspect-h-5 xl:aspect-w-12 xl:aspect-h-7">
+          {locked && (
             <Image
               fill
               src={thumbnail}
               alt="marval-iamge"
               className="rounded-xl w-full"
             />
-          ) : (
+          )}
+
+          {!locked && type == "upcoming" && (
+            <Image
+              fill
+              src={thumbnail}
+              alt="marval-iamge"
+              className="rounded-xl w-full"
+            />
+          )}
+
+          {!locked && type !== "upcoming" && (
             <Player
               desc={desc}
               grade={grade}
               title={title}
               rewards={rewards}
+              contentType="live"
               contentId={`${id}`}
               duration={duration}
               mediaURL={mediaUrl}
-              contentType="live"
               thumbnail={thumbnail}
               userId={user.id.toString()}
               isAlreadyRewarded={isAlreadyRewarded}
@@ -97,7 +107,6 @@ const ActionUpcomingBlock = () => {
   return (
     <div className="w-full p-5 bg-white rounded-xl">
       <h3 className="!font-heading font-semibold text-2xl">Upcoming Live</h3>
-
       <div className="grid grid-cols-3 gap-4 mt-3">
         <div id="days">
           <div className="grid grid-cols-2 gap-1 h-[50px]">
