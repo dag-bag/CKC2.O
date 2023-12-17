@@ -39,12 +39,14 @@ const VideoInfo = ({
           <p>{duration}</p>
         </div>
 
-        <div className="flex gap-2 font-100">
-          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-            <BiTrophy size={18} /> Rewards <BsDot />
-          </p>
-          <p className="leading-5">{reward}</p>
-        </div>
+        {reward && (
+          <div className="flex gap-2 font-100">
+            <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
+              <BiTrophy size={18} /> Rewards <BsDot />
+            </p>
+            <p className="leading-5">{reward}</p>
+          </div>
+        )}
       </section>
 
       <section className="flex gap-2 flex-col mt-5">

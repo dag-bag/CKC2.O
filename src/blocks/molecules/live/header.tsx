@@ -25,7 +25,6 @@ const Header = ({
   type,
   isAlreadyRewarded,
 }: any) => {
-  // const listOfIds = purchases.map((pur: any) => pur.content_id);
   const locked =
     price !== 0
       ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
@@ -62,8 +61,6 @@ const Header = ({
             <h1 className="font-amar font-bold text-3xl mb-2">{title}</h1>
           </div>
           <div className="grid md:grid-cols-3 grid-cols-2  my-5">
-            <Infor title="Author" value={mentor} />
-            <Infor title="Credits Required" value={`${price} CRD`} />
             <Infor title="Grade" value={numbersStringToOrdinals(grade)} />
           </div>
           <p className=" font-heading text-gray-600">{desc}</p>
