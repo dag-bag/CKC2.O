@@ -1,4 +1,3 @@
-import Container from "@/blocks/UI/PageContainer";
 import { Challange } from "@/strapi/services/api";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ContentCard from "@/blocks/molecules/content-card";
@@ -13,7 +12,7 @@ const BedgesPage = async () => {
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
 
   return (
-    <Container gridType="single">
+    <div>
       <div className="h-[350px] bg-cyan-50-- md:rounded-xl center flex-col bg-[url(/challanges.png)] bg-cover bg-center bg-no-repeat text-white">
         <h1 className="text-4xl font-amar font-bold">Challanges</h1>
         <p className="text-lg font-heading ">Lorem ipsum dolor sit amet.</p>
@@ -46,7 +45,7 @@ const BedgesPage = async () => {
           ))}
         </div>
       </Categorizer>
-    </Container>
+    </div>
   );
 };
 

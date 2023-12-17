@@ -97,7 +97,6 @@ const LeaderboardData = [
 
 import { BsChevronDown, BsDot } from "react-icons/bs";
 import { RiGlobalLine } from "react-icons/ri";
-import Container from "@/blocks/UI/PageContainer";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 const solutions = [
   {
@@ -120,7 +119,7 @@ const LeaderboardPage = () => {
   >("Leader Legends");
 
   return (
-    <Container gridType="single">
+    <div>
       <div>
         <Popover className="relative">
           {({ open }) => (
@@ -287,7 +286,7 @@ const LeaderboardPage = () => {
           );
         })}
       </div>
-    </Container>
+    </div>
   );
 };
 export default LeaderboardPage;
