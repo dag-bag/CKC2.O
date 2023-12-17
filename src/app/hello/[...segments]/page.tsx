@@ -1,5 +1,5 @@
 import { Quiz } from "@/strapi/services/api";
-import { c_user_reward } from "@/strapi/services/custom";
+import { c_user_reward, createReward } from "@/strapi/services/custom";
 import { getTransactions } from "@/strapi/services/me";
 import React from "react";
 
@@ -10,10 +10,10 @@ interface Props {
 }
 
 const Page: React.FC<Props> = async ({ params: { segments } }) => {
-  const [data, purchases] = await Promise.all([
+  const [data, purchases, history] = await Promise.all([
     Quiz({ type: "GET_ONE", payload: parseInt(segments[2]) }),
     getTransactions(segments[0]),
-    c_user_reward(),
+    c_user_reward(4),
     // getUserRewards(user.user.id),
   ]);
   const id = segments[1];
@@ -21,7 +21,24 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
   const locked = !purchases
     .map((pur: any) => pur.content_id)
     .includes(id.toString());
+  // const addReward = async () => {
+  //   createReward({
+  //     user: 4,
+  //     reward_id: 1,
+  //     coins: 100,
+  //     quiz_id: "2",
+  //     type: "quiz",
+  //   } as any).then(() => {
+  //     alert("rewarded");
+  //     // update({ coins: 100, type: "add" } as any);
+  //   });
+  // };
+  return (
+    <div>
+      {JSON.stringify({ data, locked, history })}
 
-  return <div>{JSON.stringify({ c_user_reward })}</div>;
+      {/* <button onClick={addReward}>Add Reward</button> */}
+    </div>
+  );
 };
 export default Page;

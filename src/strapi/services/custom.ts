@@ -27,12 +27,11 @@ const getUserRewards = async (id: number) => {
     console.log(error);
   }
 };
-const c_user_reward = async () => {
+const c_user_reward = async (id: number) => {
   try {
     const res = await strapi.find("achivements", {
       filters: {
-        user: 4,
-        // quiz_id: "2",
+        user: id,
       },
     });
     return res.data;
