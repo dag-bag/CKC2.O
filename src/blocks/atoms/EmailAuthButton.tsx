@@ -1,6 +1,9 @@
+"use client";
+import useRefrence from "@/hooks/useRefrence";
 import Link from "next/link";
 import { TbMail } from "react-icons/tb";
 const EmailAuthButton = () => {
+  const { create } = useRefrence();
   return (
     <Link
       href={"/onboard/basic-information"}

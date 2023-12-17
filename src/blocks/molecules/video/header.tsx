@@ -7,6 +7,7 @@ import {
   secondsToHoursMinutes,
   numbersStringToOrdinals,
 } from "@/libs/convertors";
+import { isQuizCompleted } from "@/utils/quiz";
 
 const Header = ({
   thumbnail,
@@ -20,16 +21,18 @@ const Header = ({
   mediaUrl,
   id,
   purchases,
-  quiz,
+  isAlreadyRewarded,
   rewards,
   user,
-  isAlreadyRewarded,
+  quiz,
+  achivements,
 }: any) => {
   // const listOfIds = purchases.map((pur: any) => pur.content_id);
   const locked =
     price !== 0
       ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
       : false;
+  const quiz_completed = isQuizCompleted(quiz.id, achivements);
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
@@ -85,7 +88,12 @@ const Header = ({
                 reward={rewards.map((rew: any) => rew.title).join(", ")}
               />
             )}
-            {quiz && <ActionQuizBlock unlocked={isAlreadyRewarded} />}
+            {quiz && (
+              <ActionQuizBlock
+                unlocked={isAlreadyRewarded}
+                isRewarded={quiz_completed}
+              />
+            )}
           </div>
         </div>
       </aside>

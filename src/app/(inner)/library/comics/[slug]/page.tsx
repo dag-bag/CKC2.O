@@ -11,6 +11,8 @@ import Rewards from "@/blocks/molecules/video/reward";
 import { validateRewarded } from "@/utils/reward";
 import { Modal } from "@mantine/core";
 import Unlocked from "@/blocks/molecules/comic/unlocked-section";
+import { isQuizCompleted } from "@/utils/quiz";
+import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 interface Props {
   params: {
     slug: string;
@@ -23,9 +25,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     getTransactions("comic"),
     getUserRewards(user.user.id),
   ]);
+
   return (
     <div>
-      <Hero {...{ purchases, ...data, ...user }} />
+      <Hero {...{ purchases, achivements, ...data, ...user }} />
       {data?.rewards && data?.rewards.length !== 0 && (
         <Rewards
           rewards={data?.rewards}
@@ -60,11 +63,14 @@ const Hero = (props: any) => {
     purchases,
     id,
     content,
+    quiz,
+    achivements,
   } = props;
   const locked =
     price !== 0
       ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
       : false;
+  const quiz_completed = isQuizCompleted(quiz.id, achivements);
   return (
     <div className="grid grid-cols-[400px_auto] gap-5 bg-gray-100 rounded-xl p-5 ">
       <div>
@@ -97,6 +103,14 @@ const Hero = (props: any) => {
 
           <div>
             {locked ? <Quiz price={price} id={id} /> : <Unlocked {...props} />}
+          </div>
+          <div className="mt-10">
+            {quiz && (
+              <ActionQuizBlock
+                // unlocked={isAlreadyRewarded}
+                isRewarded={quiz_completed}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -1,1 +1,1 @@
-export const COMICS_P = ["rewards"];
+export const COMICS_P = ["rewards", "quiz"];

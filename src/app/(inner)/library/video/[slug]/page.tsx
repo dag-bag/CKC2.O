@@ -23,10 +23,9 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   return (
     <div className="bg-gray-100 rounded-xl">
       {/* {JSON.stringify({ ...{ purchases, ...data, ...user, achivements } })} */}
-
       <Header
         isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
-        {...{ purchases, ...data, ...user }}
+        {...{ purchases, achivements, ...data, ...user }}
       />
       {data?.rewards && data?.rewards.length !== 0 && (
         <Reward
