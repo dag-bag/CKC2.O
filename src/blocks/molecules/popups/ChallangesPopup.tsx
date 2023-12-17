@@ -11,6 +11,8 @@ import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
+import { RequestChallange } from "@/services/challange";
+import { useParams, useRouter } from "next/navigation";
 
 // Yup schema for form validation
 const schema = yup.object().shape({
@@ -22,6 +24,8 @@ interface FormData {
 }
 
 const ChallangesPopup = () => {
+  const P = useParams();
+  const router = useRouter();
   const { session } = useSession();
   const [opened, { open, close }] = useDisclosure(false);
   const [files, setFiles] = useState<File | null>(null);
@@ -36,13 +40,14 @@ const ChallangesPopup = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      await CreateQuestion({
-        user: session.user.id,
-        question: data.question,
-        discovery_jar_config: 1,
+      await RequestChallange({
+        file: "www.google.com",
+        id: session.user.id,
+        challenge_id: P.slug,
       });
       reset();
       setFiles(null);
+      router.refresh();
       close();
     } catch (error) {
       console.log(error);

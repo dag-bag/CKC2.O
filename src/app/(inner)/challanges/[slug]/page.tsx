@@ -19,7 +19,6 @@ import Media from "@/blocks/molecules/challange/media";
 
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const session = await getSession();
-
   const challangePayload = { type: "GET_ONE", payload: parseInt(slug) };
   const challangeRequestPaylaod = {
     type: "GET",
