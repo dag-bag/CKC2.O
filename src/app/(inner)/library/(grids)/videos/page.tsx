@@ -1,6 +1,7 @@
 import { Videos } from "@/strapi/services/api";
-import VideoCard from "@/blocks/molecules/cards/Video";
 import { getTransactions } from "@/strapi/services/me";
+import ContentCard from "@/blocks/molecules/content-card";
+
 const VideosPage = async () => {
   const [data, purchases] = await Promise.all([
     Videos({ type: "GET" }),
@@ -11,11 +12,24 @@ const VideosPage = async () => {
   return (
     <section className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 md:gap-x-4 gap-y-6">
       {data.map((video: any) => (
-        <VideoCard
-          {...video}
-          key={video.id}
-          isUnlocked={listOfPurchagesIds?.includes(`${video.id}`)}
-        />
+        <>
+          <ContentCard
+            key={video.id}
+            {...{
+              id: video.id,
+              type: "video",
+              theme: "green",
+              slug: video.slug,
+              desc: video.desc,
+              title: video.title,
+              price: video.price,
+              grades: video.grade,
+              isPremium: video.premium,
+              thumbnail: video.thumbnail,
+              isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
+            }}
+          />
+        </>
       ))}
     </section>
   );

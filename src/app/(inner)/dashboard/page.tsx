@@ -1,20 +1,15 @@
+import { Suspense } from "react";
 import Grider from "@/blocks/molecules/grider";
 import { Courses } from "@/strapi/services/api";
-import { getSession } from "@/strapi/services/me";
 import { HowItWorks } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
-import CourseCard from "@/blocks/molecules/cards/Course";
-import { getRecentWatched } from "@/strapi/services/custom";
+import ContentCard from "@/blocks/molecules/content-card";
 import BannerCarousel from "@/blocks/molecules/BannerCarousel";
-import TipsVideoCard from "@/blocks/molecules/cards/HowItWorks";
 import RecentlyWatched from "@/blocks/molecules/sections/recently-wached";
-import { Suspense } from "react";
 
 const DashboardPage = async () => {
-  const session = await getSession();
-  const [tipsVideos, recent, courses, purchases] = await Promise.all([
+  const [tipsVideos, courses, purchases] = await Promise.all([
     HowItWorks({ type: "GET" }),
-    getRecentWatched(session.user.id),
     Courses({ type: "GET" }),
     getTransactions("course"),
   ]);
@@ -23,23 +18,46 @@ const DashboardPage = async () => {
   return (
     <div className="grid gap-2">
       <BannerCarousel />
+
       <Suspense fallback={<div>loading...</div>}>
         <RecentlyWatched />
       </Suspense>
 
       <Grider title="Start Learning">
-        {courses.map((course: any, index: number) => (
-          <CourseCard
-            {...course}
-            key={index}
-            isUnlocked={listOfPurchagesIds?.includes(`${course.id}`)}
+        {courses.map((video: any) => (
+          <ContentCard
+            key={video.id}
+            {...{
+              id: video.id,
+              type: "course",
+              theme: "blue",
+              slug: video.slug,
+              desc: video.desc,
+              title: video.title,
+              price: video.price,
+              grades: video.grade,
+              isPremium: video.premium,
+              thumbnail: video.thumbnail,
+              isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
+            }}
           />
         ))}
       </Grider>
 
       <Grider title="How it works">
-        {tipsVideos.map((watched: any, index: number) => (
-          <TipsVideoCard {...watched} key={index} />
+        {tipsVideos.map((video: any) => (
+          <ContentCard
+            key={video.id}
+            {...{
+              id: video.id,
+              type: "help",
+              theme: "blue",
+              slug: video.slug,
+              desc: video.desc,
+              title: video.title,
+              thumbnail: video.thumbnail,
+            }}
+          />
         ))}
       </Grider>
     </div>

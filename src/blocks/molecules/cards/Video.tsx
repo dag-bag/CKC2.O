@@ -21,7 +21,7 @@ const VideoCard = ({
         href={href}
         className="overflow-hidden relative grid group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md"
       >
-        <div className="bg-white font-heading  ">
+        <div className="bg-white font-heading">
           <div className="relative aspect-w-10 aspect-h-6">
             <Image src={thumbnail} alt={title} fill />
             <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">

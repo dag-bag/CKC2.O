@@ -18,7 +18,7 @@ const ComicCard: React.FC<any> = ({
         className="overflow-hidden relative grid"
       >
         <div className="bg-white font-heading group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md">
-          <div className="relative aspect-w-10 aspect-h-14   overflow-hidden">
+          <div className="relative aspect-w-10 aspect-h-14 overflow-hidden">
             <Image src={thumbnail} alt={title} fill />
             <div className="w-full h-full opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 duration-200">
               <button className="w-[45px] h-[45px] bg-indigo-500 center rounded-full text-white absolute bottom-3 right-3 shadow-xl">
