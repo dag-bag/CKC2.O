@@ -2,9 +2,16 @@ import Container from "@/blocks/UI/PageContainer";
 import { Challange } from "@/strapi/services/api";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ContentCard from "@/blocks/molecules/content-card";
+import { getTransactions } from "@/strapi/services/me";
 
 const BedgesPage = async () => {
-  const data = await Challange({ type: "GET" });
+  const [data, purchases] = await Promise.all([
+    Challange({ type: "GET" }),
+    getTransactions("challange"),
+  ]);
+
+  const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
+
   return (
     <Container gridType="single">
       <div className="h-[350px] bg-cyan-50-- md:rounded-xl center flex-col bg-[url(/challanges.png)] bg-cover bg-center bg-no-repeat text-white">
@@ -33,7 +40,7 @@ const BedgesPage = async () => {
                 ).toLocaleDateString()} to  ${new Date(
                   parseInt(video.end_timestamp) * 1000
                 ).toLocaleDateString()}` as any,
-                isUnlocked: false,
+                isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
               }}
             />
           ))}
