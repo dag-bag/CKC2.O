@@ -17,7 +17,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     getUserRewards(user.user.id),
     Watched({ type: "GET" }),
   ]);
-
   const locked =
     data.price !== 0
       ? !purchases
@@ -32,7 +31,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
       <Header
         isAlreadyRewarded={false}
         historyOfModules={historyOfModules}
-        {...{ purchases, ...data, ...user, locked }}
+        {...{ purchases, achievements, ...data, ...user, locked }}
       />
     </div>
   );

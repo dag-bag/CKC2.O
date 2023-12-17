@@ -9,9 +9,9 @@ async function getSession() {
 
   const currentTime = Math.floor(Date.now() / 1000);
   const premiumStatus =
-    session.user.premium === null
+    session.user?.premium === null
       ? "inactive"
-      : session.user.premium > currentTime
+      : session.user?.premium > currentTime
       ? "active"
       : "expired";
   return {

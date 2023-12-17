@@ -11,6 +11,7 @@ import {
   BiLockAlt,
 } from "react-icons/bi";
 import { useState } from "react";
+import { createReward } from "@/strapi/services/custom";
 
 const Module = ({
   id,
@@ -23,6 +24,8 @@ const Module = ({
   watched_progress,
   explorationTime,
   mutate,
+  quiz,
+  achievements,
 }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
@@ -43,9 +46,26 @@ const Module = ({
         });
     }
   };
-
+  const isQuizCompleted =
+    quiz &&
+    achievements?.some(
+      (achievement: any) => parseInt(achievement.quiz_id) === parseInt(quiz.id)
+    );
+  const addReward = async () => {
+    createReward({
+      user: 4,
+      reward_id: 1,
+      coins: 100,
+      quiz_id: "2",
+      type: "quiz",
+    } as any).then(() => {
+      alert("rewarded");
+      // update({ coins: 100, type: "add" } as any);
+    });
+  };
   return (
     <>
+      {/* {JSON.stringify(isQuizCompleted)} */}
       <Modal fullScreen opened={opened} onClose={close}>
         <HeyzinePopup
           {...{ id, watch_id, explorationTime, watched_progress }}
@@ -95,13 +115,22 @@ const Module = ({
           </p>
           <p className=" text-gray-600 mb-3 font-fun text-sm">{desc}</p>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 ">
             <button
-              // disabled={!unlock}
+              disabled={!unlock}
               onClick={handlePlay}
               className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
             >
               <BsPlayCircle /> Play
+            </button>
+          </div>
+          <div className="flex gap-5">
+            <button
+              disabled={!unlock}
+              onClick={addReward}
+              className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
+            >
+              <BsPlayCircle /> Quiz
             </button>
           </div>
         </Accordion.Panel>

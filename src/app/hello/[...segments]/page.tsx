@@ -2,7 +2,8 @@ import { Quiz } from "@/strapi/services/api";
 import { c_user_reward, createReward } from "@/strapi/services/custom";
 import { getTransactions } from "@/strapi/services/me";
 import React from "react";
-
+import QuizAudioPlayer from "@/blocks/molecules/quiz/audio-player";
+import QuizPlayer from "@/blocks/molecules/quiz";
 interface Props {
   params: {
     segments: string[];
@@ -35,8 +36,7 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
   // };
   return (
     <div>
-      {JSON.stringify({ data, locked, history })}
-
+      <QuizPlayer meta={data} />
       {/* <button onClick={addReward}>Add Reward</button> */}
     </div>
   );

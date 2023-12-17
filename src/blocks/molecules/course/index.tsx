@@ -31,6 +31,7 @@ const Header = ({
   historyOfModules,
   locked,
   activity_modules,
+  achievements,
 }: any) => {
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
@@ -71,6 +72,7 @@ const Header = ({
           modules={modules}
           historyOfModules={historyOfModules}
           activity_modules={activity_modules}
+          achievements={achievements}
         />
       </main>
       <aside>
@@ -89,7 +91,6 @@ const Header = ({
                 reward={rewards?.map((rew: any) => rew.title).join(", ")}
               />
             )}
-            {quiz && <ActionQuizBlock unlocked={!locked} />}
           </div>
         </div>
       </aside>
