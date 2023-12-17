@@ -1,10 +1,7 @@
-import clsx from "clsx";
-import Link from "next/link";
-import { BiSearchAlt } from "react-icons/bi";
 import Container from "@/blocks/UI/PageContainer";
+import { Challange } from "@/strapi/services/api";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ChallangeCard from "@/blocks/molecules/cards/Challange";
-import { Challange } from "@/strapi/services/api";
 const BedgesPage = async () => {
   const data = await Challange({ type: "GET" });
   return (

@@ -59,7 +59,7 @@ const ChallangeCard = ({
             {title}
           </h3>
 
-          <p className="text-sm text-[#4D4D4D] font-amer mt-2 mb-1.5 tracking-[-2%] leading-4 hidden md:block font-light !line-clamp-3">
+          <p className="text-sm text-[#4D4D4D] font-amer mt-2 mb-2 tracking-[-2%] leading-4 hidden md:line-clamp-2 font-light ">
             {desc}
           </p>
 
@@ -75,10 +75,6 @@ const ChallangeCard = ({
               </span>
             </p>
           </div>
-
-          <button className="w-full bg-blue-500 py-2.5 rounded-md text-white mt-5">
-            Join
-          </button>
         </div>
       </div>
     </Link>
