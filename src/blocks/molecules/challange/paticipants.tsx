@@ -1,12 +1,18 @@
 import Card from "@/blocks/UI/Card";
-import { Winner } from "./winners";
+import BigAvatar from "@/blocks/atoms/BigAvatar";
 const Participants = ({ participants }: any) => (
   <div>
     <Card title="Participants" className="mt-5">
-      <div className="grid grid-cols-4 gap-3">
-        {participants.map((participant: any) => (
-          <Winner key={participant.id} {...participant.user} />
-        ))}
+      <div className="flex flex-wrap gap-5">
+        {[...participants, ...participants, ...participants].map(
+          (participant: any, index: any) => (
+            <BigAvatar
+              key={index}
+              username={participant.user.username}
+              src={participant.user.avatar}
+            />
+          )
+        )}
       </div>
     </Card>
   </div>
