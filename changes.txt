@@ -1,0 +1,9 @@
++ change colors & icons 
++ question ke according size na badhe 
++ 1,2,3,4
++ every question have next(it can we wrok as skip), and last have submit
++ challanges: as like disc. participan.
++ Winners : wall of fame.
++ stamps on winner for (indexation)
++ avatars should be centered
+
