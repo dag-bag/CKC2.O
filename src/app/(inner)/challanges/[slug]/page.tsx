@@ -69,19 +69,15 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
           <Upload />
           <Reward />
-          {JSON.stringify(purchases)}
           {winners.length !== 0 && <Winners winners={winners} />}
-          {challangeReq.length !== 0 && (
-            <Participants participants={challangeReq} />
-          )}
         </section>
         <section className="p-1 flex-col">
           <Info
-            price={price}
             id={slug}
             desc={desc}
             title={title}
             grade={grade}
+            price={price}
             credits={price}
             difficulty={difficult}
             help_media={help_media}
@@ -93,6 +89,9 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
           />
           {isAlreadyPurchased && <Submission isSubmitted={isSubmitted} />}
           {/* <ActionRewardBlock /> */}
+          {challangeReq.length !== 0 && (
+            <Participants participants={challangeReq} />
+          )}
         </section>
       </div>
     </div>

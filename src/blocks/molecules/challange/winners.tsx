@@ -20,7 +20,7 @@ export const Winner = ({ avatar, firstname, grade }: any) => {
   return (
     <div className="font-heading">
       <Image
-        src={avatar}
+        src={"/banner1.png"}
         width={300}
         height={300}
         alt="price"
