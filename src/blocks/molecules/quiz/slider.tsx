@@ -11,14 +11,15 @@ import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import useQuizSession from "@/hooks/use-quiz-session";
-
+import { type RewardConfig } from ".";
 interface Props {
   meta: Quiz;
   opened: boolean;
   close: () => void;
+  RewardConfig: RewardConfig;
 }
 
-const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
+const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
   const { session, saveResponse } = useQuizSession();
   const [value, setValue] = useState<string | string[] | null>(null);
   const slideIndex = session?.state.index ?? 0;
@@ -112,6 +113,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta }) => {
         </>
       ) : (
         <QuizResultPreviewer
+          RewardConfig={RewardConfig}
           result={QuizResultMaker(meta, session?.responses as any)}
         />
       )}

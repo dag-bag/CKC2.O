@@ -5,11 +5,23 @@ import { BsArrowRight } from "react-icons/bs";
 import { useDisclosure } from "@mantine/hooks";
 import useQuizSession from "@/hooks/use-quiz-session";
 
-interface Props {
-  meta: Quiz;
+import { BiLock } from "react-icons/bi";
+
+export interface RewardConfig {
+  userId: number;
+  quizId: number;
+  rewardId: number;
+  totalCoins: number;
+  totalRewardedPoints: number;
 }
 
-const QuizPlayer: React.FC<Props> = ({ meta }) => {
+interface Props {
+  meta: Quiz;
+  isLocked: boolean;
+  rewardConfig: RewardConfig;
+}
+
+const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
   const { clearSession } = useQuizSession();
   const [opened, { open, close }] = useDisclosure(false);
   const handleStartQuiz = () => {
@@ -17,17 +29,29 @@ const QuizPlayer: React.FC<Props> = ({ meta }) => {
     open();
   };
   return (
-    <div>
-      <p className="font-amar text-center mb-5 text-2xl">{meta.title}</p>
+    <div className="flex flex-col gap-2">
+      {/* {JSON.stringify(rewardConfig)} */}
+      <p className="font-amar text-center text-2xl">{meta.title}</p>
+      {isLocked && (
+        <p className="text-center">
+          this quiz is locked because you are not purchases items yet!
+        </p>
+      )}
       <div className="center">
         <button
+          disabled={isLocked}
           onClick={handleStartQuiz}
-          className="bg-lightblue px-20 text-white py-3 rounded-full mx-auto center gap-2"
+          className="bg-lightblue px-20 text-white py-3 rounded-full mx-auto center gap-2 disabled:opacity-50"
         >
-          Play <BsArrowRight />
+          Play {isLocked ? <BiLock /> : <BsArrowRight />}
         </button>
       </div>
-      <QuizSlider meta={meta} opened={opened} close={close} />
+      <QuizSlider
+        meta={meta}
+        close={close}
+        opened={opened}
+        RewardConfig={rewardConfig}
+      />
     </div>
   );
 };

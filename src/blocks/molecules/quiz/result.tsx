@@ -1,9 +1,10 @@
-import clsx from "clsx";
 import React from "react";
+import { type RewardConfig } from ".";
 import { FaCheck } from "react-icons/fa";
 import { FaCoins } from "react-icons/fa6";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
+import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
 
 const Progress = ({ percentage }: any) => {
@@ -24,24 +25,45 @@ const Progress = ({ percentage }: any) => {
   );
 };
 
+interface Props {
+  result: any;
+  RewardConfig: RewardConfig;
+}
+
 const QuizResultPreviewer = ({
-  result: { list, rightAnswers, totalAnswers },
-}: any) => {
+  result: { rightAnswers, totalAnswers },
+  RewardConfig: { userId, rewardId, quizId, totalCoins, totalRewardedPoints },
+}: Props) => {
   const reloadPage = () => {
     window.location.reload();
   };
 
-  const getResponseClass = (responseType: string) => {
-    switch (responseType) {
-      case "W":
-        return "border-red-500 bg-red-50";
-      case "R":
-        return "border-green-500 bg-green-50";
-      case "S":
-        return "border-orange-500 bg-orange-50";
-      default:
-        return "";
-    }
+  // const collectReward = async () => {
+  //   await createReward({
+  //     coins: 100,
+  //     user: userId,
+  //     type: "quiz",
+  //     quiz_id: quizId.toString(),
+  //     reward_id: 1,
+  //   });
+  // };
+
+  const collectReward = async () => {
+    // Calculate the percentage of quiz completion
+    const completionPercentage = (rightAnswers / totalAnswers) * 100;
+    // Calculate the reward based on the completion percentage
+    const calculatedReward = Math.floor(
+      (completionPercentage / 100) * totalCoins
+    );
+
+    // Issue the reward
+    console.log({
+      coins: calculatedReward,
+      user: userId,
+      reward_id: 1,
+      type: "quiz",
+      quiz_id: quizId.toString(),
+    });
   };
 
   return (
@@ -66,7 +88,7 @@ const QuizResultPreviewer = ({
           <div className="bg-gray-100 p-5 rounded-xl grid grid-cols-[2fr_1fr]">
             <div>
               <p className="text-sm mb-1">Score</p>
-              <h5 className="text-xl font-semibold">1000</h5>
+              <h5 className="text-xl font-semibold">{totalCoins}</h5>
             </div>
             <div className="center text-yellow-600">
               <FaCoins size={25} />
@@ -74,36 +96,12 @@ const QuizResultPreviewer = ({
           </div>
         </div>
 
-        {/* <div className="grid gap-2 hidden">
-          {list.map((res: Response) => (
-            <div
-              key={res.question}
-              className={clsx(
-                "border p-4 rounded-xl",
-                getResponseClass(res.responseType)
-              )}
-            >
-       
-              <h3 className="font-amar text-lg leading-5 first-letter:capitalize">
-                {res.question}
-              </h3>
-              {typeof res.userResponse === "string" ? (
-                <p className="mt-2">"{res.userResponse}"</p>
-              ) : (
-                <p className="flex gap-2 mt-2 flex-wrap">
-                  {(res.userResponse as any).map((res2: any, index: number) => (
-                    <span
-                      key={res2}
-                      className="bg-darkblue text-white px-5 py-0.5 rounded-full flex capitalize"
-                    >
-                      {res.actionType === "order" && `${index + 1}.`} {res2}
-                    </span>
-                  ))}
-                </p>
-              )}
-            </div>
-          ))}
-        </div> */}
+        <button
+          onClick={collectReward}
+          className="w-full py-4 bg-lightblue rounded-xl mt-5 font-semibold text-lg text-white center gap-3"
+        >
+          Collect Reward
+        </button>
 
         <button
           onClick={reloadPage}

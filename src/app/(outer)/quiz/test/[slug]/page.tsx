@@ -14,7 +14,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   });
   return (
     <div className="w-screen h-screen center bg-white">
-      <QuizPlayer meta={data} />
+      {/* <QuizPlayer meta={data} /> */}
     </div>
   );
 };
