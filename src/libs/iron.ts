@@ -8,6 +8,7 @@ export interface SessionData {
     email: string;
     coins: number;
     premium: number | null;
+    setup?: boolean;
   };
 }
 

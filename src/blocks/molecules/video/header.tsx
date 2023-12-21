@@ -32,7 +32,7 @@ const Header = ({
     price !== 0
       ? !purchases.map((pur: any) => pur.content_id).includes(id.toString())
       : false;
-  const quiz_completed = isQuizCompleted(quiz.id, achivements);
+  const quiz_completed = quiz && isQuizCompleted(quiz?.id, achivements);
   return (
     <div className="grid xl:grid-cols-[auto_350px] gap-5 rounded-xl">
       <main>
