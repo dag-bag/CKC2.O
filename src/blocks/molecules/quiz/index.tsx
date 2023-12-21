@@ -4,6 +4,7 @@ import { type Quiz } from "../../../../quiz";
 import { BsArrowRight } from "react-icons/bs";
 import { useDisclosure } from "@mantine/hooks";
 import useQuizSession from "@/hooks/use-quiz-session";
+
 interface Props {
   meta: Quiz;
 }

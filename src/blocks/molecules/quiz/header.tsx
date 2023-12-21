@@ -1,33 +1,40 @@
+/* eslint-disable @next/next/no-img-element */
+
 import Timer from "./timer";
 import QuizAudioPlayer from "./audio-player";
 const QuizHeader = ({
   text,
-  timeout,
   duration,
   totalQuestions,
   attempedQuestions,
+  imageUrl,
+  audioUrl,
 }: any) => {
   return (
     <>
       {/* --- Bigger Screen ---  */}
-      <section className=" hidden md:grid grid-cols-[1fr_2fr_1fr] bg-white/90 backdrop-blur-sm min-h-[150px]">
-        <div className="center">
-          <div className="w-[100px] h-[100px] text-3xl bg-darkblue text-white font-heading font-semibold center rounded-full ">
-            {attempedQuestions} <span className="px-.5 text-gray-300">/</span>
-            {totalQuestions}
+      <section className="p-5 flex rounded-xl bg-black/30 backdrop-blur-sm center">
+        <div className="max-w-6xl flex gap-10">
+          <section className="h-full center">
+            {imageUrl && (
+              <img
+                alt="image-map"
+                src={imageUrl}
+                className="rounded-xl max-w-[400px] h-full"
+              />
+            )}
+          </section>
+          <div className="center">
+            <h1 className="xl:text-4xl  text-3xl font-amar first-letter:uppercase font-semibold text-white">
+              {text}
+            </h1>
           </div>
         </div>
-        <div className="flex items-center">
-          <h1 className="xl:text-4xl text-3xl font-amar first-letter:uppercase font-semibold text-slate-800">
-            {text}
-          </h1>
-        </div>
-        <Timer duration={parseInt(duration)} timeout={timeout} />
       </section>
 
       {/* --- Small Screen ---  */}
 
-      <section className="flex md:hidden flex-col bg-white/20 backdrop-blur-sm p-5 gap-5">
+      {/* <section className="flex md:hidden flex-col bg-white/20 backdrop-blur-sm p-5 gap-5">
         <div className="flex justify-between text-white">
           <div className="text-2xl heading font-semibold center rounded-full">
             {attempedQuestions} <span className="px-.5 text-gray-500">/</span>
@@ -43,9 +50,20 @@ const QuizHeader = ({
             {text}
           </h1>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
 
 export default QuizHeader;
+
+// <div className="center">
+// <div className="w-[100px] h-[100px] text-3xl bg-darkblue text-white font-heading font-semibold center rounded-full ">
+//   {attempedQuestions} <span className="px-.5 text-gray-300">/</span>
+//   {totalQuestions}
+// </div>
+// </div>
+
+{
+  /* <Timer duration={parseInt(duration)} timeout={timeout} />; */
+}

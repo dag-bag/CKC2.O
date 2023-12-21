@@ -5,30 +5,28 @@ import Input from "./actions/input";
 import Multi from "./actions/multi";
 import Select from "./actions/select";
 import { Slide } from "../../../../quiz";
-import { FaDiamond } from "react-icons/fa6";
-import { IoTriangle, IoEllipse, IoSquareSharp } from "react-icons/io5";
 
 interface Props extends Slide {
   isLastQuestion: boolean;
+  setValue: any;
+  value: any;
+  wrongAnswerAlert: any;
 }
 
-const Main = ({ question, action, answer, isLastQuestion }: Props) => {
+const Main = ({
+  question,
+  action,
+  answer,
+  isLastQuestion,
+  setValue,
+  value,
+  wrongAnswerAlert,
+}: Props) => {
   return (
     <>
-      {action.type !== "order" && (
-        <section className="h-full center">
-          {question.imageUrl && (
-            <img
-              alt="image-map"
-              src={question.imageUrl}
-              className="rounded-xl md:h-[250px] h-[180px] xl:h-[400px]"
-            />
-          )}
-        </section>
-      )}
-
       {action.type == "select" && (
         <Select
+          wrongAnswerAlert={wrongAnswerAlert}
           isLastQuestion={isLastQuestion}
           answer={answer}
           action={action}
@@ -36,6 +34,8 @@ const Main = ({ question, action, answer, isLastQuestion }: Props) => {
       )}
       {action.type == "multiselect" && (
         <Multi
+          setValue={setValue}
+          value={value}
           isLastQuestion={isLastQuestion}
           answer={answer}
           action={action}
@@ -43,6 +43,7 @@ const Main = ({ question, action, answer, isLastQuestion }: Props) => {
       )}
       {action.type == "boolean" && (
         <Select
+          wrongAnswerAlert={wrongAnswerAlert}
           isLastQuestion={isLastQuestion}
           answer={answer}
           action={action}
@@ -53,10 +54,14 @@ const Main = ({ question, action, answer, isLastQuestion }: Props) => {
           isLastQuestion={isLastQuestion}
           answer={answer}
           action={action}
+          setValue={setValue}
+          value={value}
         />
       )}
       {action.type == "order" && (
         <Order
+          setValue={setValue}
+          value={value}
           isLastQuestion={isLastQuestion}
           imageUrl={question.imageUrl}
           answer={answer}
@@ -75,14 +80,10 @@ export const Button = ({ name, index, onClick }: any) => {
         " text-white text-left md:p-3 xl:p-4 p-3 px-5 rounded-xl md:text-xl capitalize font-amar flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
-        index == 2 && "bg-yellow-600",
-        index == 3 && "bg-purple-600"
+        index == 2 && "bg-lightgold",
+        index == 3 && "bg-red-500"
       )}
     >
-      {index == 0 && <IoTriangle />}
-      {index == 1 && <IoEllipse />}
-      {index == 2 && <IoSquareSharp />}
-      {index == 3 && <FaDiamond />}
       {name}
     </button>
   );
@@ -101,11 +102,6 @@ export const SelectiveButton = ({ name, index, onClick, isSelected }: any) => {
         isSelected && "border-2 border-white border-dashed"
       )}
     >
-      {index == 0 && <IoTriangle />}
-      {index == 1 && <IoEllipse size={30} />}
-      {index == 2 && <IoSquareSharp />}
-      {index == 3 && <FaDiamond />}
-
       {name}
     </button>
   );

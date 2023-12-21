@@ -39,6 +39,35 @@ export const basicQuiz: Quiz = {
     slides: [
         {
             duration: 10,
+            answer: ["sun", "earth", "stars"],
+            question: {
+                imageUrl: "/tile.png",
+                text: "Select all of those which are not our moon"
+            },
+            action: {
+                type: "multiselect",
+                options: [{
+                    name: "moon",
+                    value: "moon"
+                },
+                {
+                    name: "sun",
+                    value: "sun"
+                },
+                {
+                    name: "earth",
+                    value: "earth"
+                },
+                {
+                    name: "stars",
+                    value: "stars"
+                },
+                ]
+            },
+
+        },
+        {
+            duration: 10,
             answer: "moon",
             question: {
                 imageUrl: "/tile.png",
@@ -70,7 +99,7 @@ export const basicQuiz: Quiz = {
 
 
         {
-            duration: 10,
+            duration: 0,
             answer: "true",
             question: {
                 imageUrl: "/tile.png",
@@ -133,35 +162,7 @@ export const basicQuiz: Quiz = {
 
         },
 
-        {
-            duration: 10,
-            answer: ["sun", "earth", "stars"],
-            question: {
-                imageUrl: "/tile.png",
-                text: "Select all of those which are not our moon"
-            },
-            action: {
-                type: "multiselect",
-                options: [{
-                    name: "moon",
-                    value: "moon"
-                },
-                {
-                    name: "sun",
-                    value: "sun"
-                },
-                {
-                    name: "earth",
-                    value: "earth"
-                },
-                {
-                    name: "stars",
-                    value: "stars"
-                },
-                ]
-            },
 
-        },
     ]
 
 }
