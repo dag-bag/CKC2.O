@@ -23,7 +23,16 @@ import React from "react";
 
 export default async function page({ searchParams }: any) {
   const [data, purchases] = await Promise.all([
-    strapi.find<any>(searchParams.type).then((response) => response.data),
+    strapi
+      .find<any>(
+        searchParams.type,
+        searchParams.t && {
+          filters: {
+            type: searchParams.t,
+          },
+        }
+      )
+      .then((response) => response.data),
     getTransactions(getTypeForCard(searchParams.type as string)),
   ]);
 
