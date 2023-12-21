@@ -12,12 +12,10 @@ interface Props {
 const QuizPlayer: React.FC<Props> = ({ meta }) => {
   const { clearSession } = useQuizSession();
   const [opened, { open, close }] = useDisclosure(false);
-
   const handleStartQuiz = () => {
     clearSession();
     open();
   };
-
   return (
     <div>
       <p className="font-amar text-center mb-5 text-2xl">{meta.title}</p>

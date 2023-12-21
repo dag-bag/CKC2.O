@@ -3,14 +3,11 @@ import ReactAudioPlayer from "react-audio-player";
 import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 
 const QuizAudioPlayer = () => {
-  const [isMuted, setIsMuted] = useState(false);
-
+  const audioFilePath = "/music.mp3";
+  const [isMuted, setIsMuted] = useState(true);
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
-
-  const audioFilePath = "/music.mp3";
-
   return (
     <>
       <ReactAudioPlayer loop muted={isMuted} src={audioFilePath} autoPlay />

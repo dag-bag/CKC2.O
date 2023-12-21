@@ -28,7 +28,7 @@ const Input = ({
         placeholder={action.input?.pleaceholder}
         type="text"
         ref={textRef}
-        className="w-[500px] md:p-5 p-4 text-center md:text-xl rounded-full capitalize"
+        className="md:w-[500px] w-[90%] md:p-5 p-4 text-center md:text-xl rounded-full capitalize"
       />
     </section>
   );

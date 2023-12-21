@@ -135,14 +135,13 @@ const Footer = ({
   defaultOrderValues,
 }: any) => {
   const { saveResponse } = useQuizSession();
-
   const saveWithCleanUp = (response: any, isLastQuestion: any) => {
     saveResponse(response, isLastQuestion);
     setValue(null);
   };
 
   const handleTimeoutSkip = () => {
-    saveResponse("#", isLastQuestion);
+    // saveResponse("#", isLastQuestion);
   };
 
   const onSubmitHandler = () => {
@@ -182,9 +181,9 @@ const Footer = ({
   };
 
   return (
-    <div className="bg-black h-[100px] rounded-xl grid grid-cols-2 px-5">
+    <div className="bg-black md:h-[100px] h-[70px] rounded-xl md:grid md:grid-cols-2 flex px-5 gap-5 ">
       <div className="flex items-center gap-5">
-        <p className="text-black text-xl w-[65px] h-[65px] bg-white rounded-xl center font-semibold">
+        <p className="text-black text-xl md:w-[65px] md:h-[65px] w-[50px] h-[50px] bg-white rounded-xl center font-semibold">
           {attempedQuestions}/{totalQuestions}
         </p>
         <QuizAudioPlayer />
@@ -195,9 +194,9 @@ const Footer = ({
       <div className="flex items-center justify-end">
         <button
           onClick={onSubmitHandler}
-          className="bg-white px-20 h-[65px] rounded-xl text-xl center gap-3"
+          className="bg-white md:px-20 md:h-[65px] h-[50px] text-md px-8 rounded-full md:text-xl center gap-3 font-semibold font-heading"
         >
-          Next <BsArrowRight />
+          <span className="hidden md:inline-block">Next</span> <BsArrowRight />
         </button>
       </div>
     </div>

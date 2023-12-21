@@ -35,10 +35,27 @@ const Order = ({
   return (
     <section className="grid items-center p-5 rounded-xl  bg-black/50">
       {/* <p className="text-white">{JSON.stringify(value)}</p> */}
-
       <Reorder.Group
-        className="flex md:gap-4 gap-2"
+        className="md:flex md:gap-4 gap-2 hidden"
         axis="x"
+        values={items as any}
+        onReorder={(p) => {
+          if (!value) {
+            setValue(items);
+          } else {
+            setValue(p);
+          }
+        }}
+      >
+        {items.map((item: any, index: number) => (
+          <Reorder.Item className="w-full" key={item} value={item}>
+            <Button name={item} index={index} />
+          </Reorder.Item>
+        ))}
+      </Reorder.Group>
+      <Reorder.Group
+        className="md:hidden md:gap-4 gap-2 flex flex-col"
+        axis="y"
         values={items as any}
         onReorder={(p) => {
           if (!value) {

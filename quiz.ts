@@ -68,7 +68,7 @@ export const basicQuiz: Quiz = {
         },
         {
             duration: 10,
-            answer: "moon",
+            answer: "Dark matter constitutes approximately 50% ",
             question: {
                 imageUrl: "/tile.png",
                 text: "Dark matter constitutes approximately 50% of the total matter in the universe."
@@ -76,20 +76,20 @@ export const basicQuiz: Quiz = {
             action: {
                 type: "select",
                 options: [{
-                    name: "moon",
-                    value: "moon"
+                    name: "Dark matter constitutes approximately 50% ",
+                    value: "Dark matter constitutes approximately 50% "
                 },
                 {
-                    name: "sun",
-                    value: "sun"
+                    name: "Dark matter constitutes approximately 50% ",
+                    value: "Dark matter constitutes approximately 50% "
                 },
                 {
-                    name: "earth",
-                    value: "earth"
+                    name: "Dark matter constitutes approximately 50% ",
+                    value: "Dark matter constitutes approximately 50% "
                 },
                 {
-                    name: "stars",
-                    value: "stars"
+                    name: "Dark matter constitutes approximately 50% ",
+                    value: "Dark matter constitutes approximately 50% "
                 },
                 ]
             },

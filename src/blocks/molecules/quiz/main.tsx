@@ -77,10 +77,10 @@ export const Button = ({ name, index, onClick }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-4 p-3 px-5 rounded-xl md:text-xl capitalize font-amar flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
+        " text-white text-left md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-xl capitalize font-heading flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
-        index == 2 && "bg-lightgold",
+        index == 2 && "bg-darkgold",
         index == 3 && "bg-red-500"
       )}
     >
@@ -94,11 +94,11 @@ export const SelectiveButton = ({ name, index, onClick, isSelected }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-4 p-3 px-5 rounded-xl md:text-xl capitalize font-amar flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
+        " text-white text-left md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-xl capitalize font-heading flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
-        index == 2 && "bg-yellow-600",
-        index == 3 && "bg-purple-500",
+        index == 2 && "bg-darkgold",
+        index == 3 && "bg-red-500",
         isSelected && "border-2 border-white border-dashed"
       )}
     >
