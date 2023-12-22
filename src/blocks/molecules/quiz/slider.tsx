@@ -92,8 +92,8 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
                 value={value}
                 setValue={setValue}
                 {...(slideInfo as any)}
-                wrongAnswerAlert={wrongAnswerAlert}
                 isLastQuestion={isLastQuestion}
+                wrongAnswerAlert={wrongAnswerAlert}
               />
               <Footer
                 //  for type:order;
@@ -157,7 +157,6 @@ const Footer = ({
       actionType == "order"
     ) {
       if (actionType == "textinput") {
-        // wrong answer
         if (value !== answer) {
           wrongAnswerAlert(value?.toLowerCase() ?? "", isLastQuestion);
         } else {
@@ -166,19 +165,26 @@ const Footer = ({
       }
 
       if (actionType == "multiselect") {
-        // wrong answer
-        if (!validateArrays(answer as string[], value as string[])) {
-          wrongAnswerAlert(value, isLastQuestion);
+        if (value == null || value.length == 0) {
+          saveWithCleanUp("#", isLastQuestion);
         } else {
-          saveWithCleanUp(value, isLastQuestion);
+          if (!validateArrays(answer as string[], value as string[])) {
+            wrongAnswerAlert(value, isLastQuestion);
+          } else {
+            saveWithCleanUp(value, isLastQuestion);
+          }
         }
       }
 
       if (actionType == "order") {
-        if (!compareArrays(answer as string[], value as string[])) {
-          wrongAnswerAlert(value ?? defaultOrderValues, isLastQuestion);
+        if (value == null || value.length == 0) {
+          saveWithCleanUp("#", isLastQuestion);
         } else {
-          saveWithCleanUp(value ?? defaultOrderValues, isLastQuestion);
+          if (!compareArrays(answer as string[], value as string[])) {
+            wrongAnswerAlert(value ?? defaultOrderValues, isLastQuestion);
+          } else {
+            saveWithCleanUp(value ?? defaultOrderValues, isLastQuestion);
+          }
         }
       }
     } else {

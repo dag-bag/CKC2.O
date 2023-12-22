@@ -1,4 +1,4 @@
-import { basicQuiz } from "../../../../../quiz";
+import { basicQuiz, astronomyQuiz } from "../../../../../quiz";
 import QuizPlayer from "@/blocks/molecules/quiz";
 export default function Page() {
   return (

@@ -23,9 +23,9 @@ const Multi = ({ action, answer, value, setValue }: SelectProps) => {
                 setValue(value.filter((prev: any) => prev !== option.value));
               } else {
                 if (value) {
-                  setValue([...value, option.name]);
+                  setValue([...value, option.value]);
                 } else {
-                  setValue([option.name]);
+                  setValue([option.value]);
                 }
               }
             }}
