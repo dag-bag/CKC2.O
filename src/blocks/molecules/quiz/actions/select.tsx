@@ -25,7 +25,7 @@ const Select = ({
   };
   return (
     <section className="grid max-h-full overflow-y-scroll  p-5 rounded-xl bg-black/50---">
-      <div className="grid grid-cols-4 md:flex-row md:gap-4 gap-2">
+      <div className="grid md:grid-cols-4 md:flex-row md:gap-4 gap-2">
         {action.options?.map((option, index) => (
           <Button
             {...option}

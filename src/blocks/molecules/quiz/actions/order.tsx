@@ -1,19 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
-import clsx from "clsx";
 import { Button } from "../main";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
 import { Slide } from "../../../../../quiz";
-import useQuizSession from "@/hooks/use-quiz-session";
 
 interface SelectProps {
+  value: any;
+  setValue: any;
   imageUrl?: string;
   action: Slide["action"];
   answer: Slide["answer"];
   isLastQuestion: boolean;
-  value: any;
-  setValue: any;
 }
 
 const Order = ({
@@ -25,18 +20,11 @@ const Order = ({
   setValue,
 }: SelectProps) => {
   const items = value ? value : (action.options?.map((opt) => opt.name) as any);
-  // const { saveResponse } = useQuizSession();
-  // const validateClickInteraction = (value: string | string[]) => {
-  //   if (!compareArrays(answer as string[], value as string[])) {
-  //     toast.error("Wrong Answer!", { duration: 100 });
-  //   }
-  //   saveResponse(value, isLastQuestion);
-  // };
+
   return (
     <section className="grid  p-5 rounded-xl ">
-      {/* <p className="text-white">{JSON.stringify(value)}</p> */}
       <Reorder.Group
-        className="grid grid-cols-4 md:gap-4 gap-2"
+        className="hidden md:block md:grid-cols-4 md:gap-4 gap-2"
         axis="x"
         values={items as any}
         onReorder={(p) => {

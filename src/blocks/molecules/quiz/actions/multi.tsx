@@ -10,8 +10,8 @@ interface SelectProps {
 
 const Multi = ({ action, answer, value, setValue }: SelectProps) => {
   return (
-    <section className="grid max-h-full overflow-y-scroll p-5 rounded-xl bg-black/50---">
-      <div className="grid grid-cols-4 md:gap-4 gap-2 ">
+    <section className="grid max-h-full overflow-y-scroll p-5 rounded-xl">
+      <div className="grid md:grid-cols-4 md:gap-4 gap-2 ">
         {action.options?.map((option, index) => (
           <SelectiveButton
             isSelected={value?.includes(option.value) ?? false}

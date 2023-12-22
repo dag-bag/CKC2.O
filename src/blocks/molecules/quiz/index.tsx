@@ -25,6 +25,7 @@ const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
   const { clearSession } = useQuizSession();
   const [opened, { open, close }] = useDisclosure(false);
   const handleStartQuiz = () => {
+    console.log("hey");
     clearSession();
     open();
   };
