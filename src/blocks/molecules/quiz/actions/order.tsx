@@ -22,9 +22,9 @@ const Order = ({
   const items = value ? value : (action.options?.map((opt) => opt.name) as any);
 
   return (
-    <section className="grid  p-5 rounded-xl ">
+    <section className="grid p-5 rounded-xl">
       <Reorder.Group
-        className="hidden md:block md:grid-cols-4 md:gap-4 gap-2"
+        className="hidden md:grid md:grid-cols-4 md:gap-4 gap-2"
         axis="x"
         values={items as any}
         onReorder={(p) => {
