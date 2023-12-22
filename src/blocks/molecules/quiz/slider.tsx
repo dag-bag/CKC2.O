@@ -147,7 +147,7 @@ const Footer = ({
   };
 
   const handleTimeoutSkip = () => {
-    // saveResponse("#", isLastQuestion);
+    saveResponse("#", isLastQuestion);
   };
 
   const onSubmitHandler = () => {
@@ -157,10 +157,14 @@ const Footer = ({
       actionType == "order"
     ) {
       if (actionType == "textinput") {
-        if (value !== answer) {
-          wrongAnswerAlert(value?.toLowerCase() ?? "", isLastQuestion);
+        if (value == null || value == "") {
+          saveWithCleanUp("#", isLastQuestion);
         } else {
-          saveWithCleanUp(value?.toLowerCase() ?? "", isLastQuestion);
+          if (value !== answer) {
+            wrongAnswerAlert(value?.toLowerCase() ?? "", isLastQuestion);
+          } else {
+            saveWithCleanUp(value?.toLowerCase() ?? "", isLastQuestion);
+          }
         }
       }
 
