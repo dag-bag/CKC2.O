@@ -9,7 +9,7 @@ const QuizHeader = ({
 }: any) => {
   return (
     <>
-      <section className="p-5 flex rounded-xl bg-black/30 backdrop-blur-sm center">
+      <section className="p-5 flex rounded-xl bg-black/50 backdrop-blur-sm center">
         <div className="max-w-6xl flex flex-col md:flex-row md:gap-10 gap-3">
           <section className="h-full center">
             {imageUrl && (

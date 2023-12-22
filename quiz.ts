@@ -47,16 +47,16 @@ export const basicQuiz: Quiz = {
             action: {
                 type: "multiselect",
                 options: [{
-                    name: "moon",
-                    value: "moon"
+                    name: " select all of those which ar not out moon",
+                    value: " select all of those which ar not out moon1"
                 },
                 {
-                    name: "sun",
-                    value: "sun"
+                    name: " select all of those which ar not out moon",
+                    value: " select all of those which ar not out moon1"
                 },
                 {
-                    name: "earth",
-                    value: "earth"
+                    name: " select all of those which ar not out moon",
+                    value: " select all of those which ar not out moon1"
                 },
                 {
                     name: "stars",

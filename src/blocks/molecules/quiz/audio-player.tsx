@@ -13,7 +13,7 @@ const QuizAudioPlayer = () => {
       <ReactAudioPlayer loop muted={isMuted} src={audioFilePath} autoPlay />
       <button
         onClick={toggleMute}
-        className="bg-white md:p-5 p-3 text-black rounded-full"
+        className="bg-black md:p-5 p-3 text-white rounded-full"
       >
         {isMuted ? <BiVolumeMute size={25} /> : <BiVolumeFull size={25} />}
       </button>

@@ -1,8 +1,5 @@
 import { SelectiveButton } from "../main";
-import { useState } from "react";
 import { Slide } from "../../../../../quiz";
-import useQuizSession from "@/hooks/use-quiz-session";
-import toast from "react-hot-toast";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
@@ -13,8 +10,8 @@ interface SelectProps {
 
 const Multi = ({ action, answer, value, setValue }: SelectProps) => {
   return (
-    <section className="grid max-h-full overflow-y-scroll items-center p-5 rounded-xl bg-black/50">
-      <div className="flex flex-col md:flex-row md:gap-4 gap-2 ">
+    <section className="grid max-h-full overflow-y-scroll p-5 rounded-xl bg-black/50---">
+      <div className="grid grid-cols-4 md:gap-4 gap-2 ">
         {action.options?.map((option, index) => (
           <SelectiveButton
             isSelected={value?.includes(option.value) ?? false}

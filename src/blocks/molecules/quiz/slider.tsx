@@ -2,6 +2,7 @@ import Main from "./main";
 import { useState } from "react";
 import QuizHeader from "./header";
 import { Modal } from "@mantine/core";
+import { type RewardConfig } from ".";
 import { Quiz } from "../../../../quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
@@ -11,7 +12,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import useQuizSession from "@/hooks/use-quiz-session";
-import { type RewardConfig } from ".";
+
 interface Props {
   meta: Quiz;
   opened: boolean;
@@ -56,13 +57,16 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
       {!isAllQuestionAttemped ? (
         <>
           <div
-            style={{
-              backgroundImage: "url('/tile.png')",
-            }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200"
+            // style={{
+            //   backgroundImage: "url('/bg-123.jpg')",
+            // }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200 "
           >
-            <div className="w-full h-full bg-black/40 grid grid-rows-2 gap-5 p-3 ">
+            <div className="w-full h-full bg-black/40--- grid grid-rows-2 gap-5 p-3 ">
               <Modal
+                classNames={{
+                  body: "!bg-red-50 !border-2 !border-red-500",
+                }}
                 centered
                 opened={opened2}
                 onClose={handlers.close}
@@ -70,8 +74,8 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
                 transitionProps={{ transition: "rotate-left" }}
               >
                 <div>
-                  <h1 className="text-3xl text-center text-red-500">
-                    Wrong Answers
+                  <h1 className="text-3xl text-center text-red-500 font-fun font-semibold">
+                    Wrong Answer
                   </h1>
                 </div>
               </Modal>
@@ -183,9 +187,9 @@ const Footer = ({
   };
 
   return (
-    <div className="bg-black md:h-[100px] h-[70px] rounded-xl md:grid md:grid-cols-2 flex px-5 gap-5 ">
+    <div className="bg-black-- md:h-[100px] h-[70px] rounded-xl md:grid md:grid-cols-2 flex px-5 gap-5 ">
       <div className="flex items-center gap-5">
-        <p className="text-black text-xl md:w-[65px] md:h-[65px] w-[50px] h-[50px] bg-white rounded-xl center font-semibold">
+        <p className="text-black text-xl md:w-[65px] md:h-[65px] w-[50px] h-[50px]  rounded-xl center font-semibold">
           {attempedQuestions}/{totalQuestions}
         </p>
         <QuizAudioPlayer />
@@ -196,7 +200,7 @@ const Footer = ({
       <div className="flex items-center justify-end">
         <button
           onClick={onSubmitHandler}
-          className="bg-white md:px-20 md:h-[65px] h-[50px] text-md px-8 rounded-full md:text-xl center gap-3 font-semibold font-heading"
+          className="bg-black text-white md:px-20 md:h-[65px] h-[50px] text-md px-8 rounded-full md:text-xl center gap-3 font-semibold font-heading"
         >
           <span className="hidden md:inline-block">Next</span> <BsArrowRight />
         </button>

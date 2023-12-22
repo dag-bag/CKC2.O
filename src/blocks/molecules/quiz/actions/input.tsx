@@ -20,7 +20,7 @@ const Input = ({
 }: SelectProps) => {
   const textRef = useRef<any>(null);
   return (
-    <section className="center p-5 rounded-xl  bg-black/50">
+    <section className="center p-5 rounded-xl  bg-black/50---">
       <input
         onChange={(evnt) => {
           setValue(evnt.target.value);
@@ -28,7 +28,7 @@ const Input = ({
         placeholder={action.input?.pleaceholder}
         type="text"
         ref={textRef}
-        className="md:w-[500px] w-[90%] md:p-5 p-4 text-center md:text-xl rounded-full capitalize"
+        className="md:w-[500px] bg-gray-200 w-[90%] md:p-5 p-4 text-center md:text-xl rounded-full capitalize"
       />
     </section>
   );

@@ -33,10 +33,10 @@ const Order = ({
   //   saveResponse(value, isLastQuestion);
   // };
   return (
-    <section className="grid items-center p-5 rounded-xl  bg-black/50">
+    <section className="grid  p-5 rounded-xl ">
       {/* <p className="text-white">{JSON.stringify(value)}</p> */}
       <Reorder.Group
-        className="md:flex md:gap-4 gap-2 hidden"
+        className="grid grid-cols-4 md:gap-4 gap-2"
         axis="x"
         values={items as any}
         onReorder={(p) => {
@@ -48,7 +48,7 @@ const Order = ({
         }}
       >
         {items.map((item: any, index: number) => (
-          <Reorder.Item className="w-full" key={item} value={item}>
+          <Reorder.Item className="grid" key={item} value={item}>
             <Button name={item} index={index} />
           </Reorder.Item>
         ))}

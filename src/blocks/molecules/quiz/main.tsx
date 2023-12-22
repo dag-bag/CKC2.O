@@ -77,7 +77,7 @@ export const Button = ({ name, index, onClick }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-xl capitalize font-heading flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
+        " text-white center text-center md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-[30px] capitalize font-heading flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
         index == 2 && "bg-darkgold",
@@ -94,7 +94,7 @@ export const SelectiveButton = ({ name, index, onClick, isSelected }: any) => {
     <button
       onClick={onClick}
       className={clsx(
-        " text-white text-left md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-xl capitalize font-heading flex gap-4 items-center w-full border-b-[2px]  md:border-b-[5px]",
+        " text-white center  md:p-3 xl:p-4 p-3 px-8 rounded-xl md:text-[30px] capitalize font-heading flex gap-4 w-full border-b-[2px] text-center  md:border-b-[5px]",
         index == 0 && "bg-lightblue",
         index == 1 && "bg-lightgreen",
         index == 2 && "bg-darkgold",
