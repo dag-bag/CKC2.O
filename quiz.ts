@@ -219,10 +219,10 @@ export const astronomyQuiz: Quiz = {
             action: {
                 type: 'order',
                 options: [
-                    { name: 'Mercury', value: 'Mercury' },
-                    { name: 'Venus', value: 'Venus' },
-                    { name: 'Earth', value: 'Earth' },
                     { name: 'Mars', value: 'Mars' },
+                    { name: 'Mercury', value: 'Mercury' },
+                    { name: 'Earth', value: 'Earth' },
+                    { name: 'Venus', value: 'Venus' },
                 ],
             },
         },

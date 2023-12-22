@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <div className="w-screen h-screen center bg-white">
       <QuizPlayer
-        meta={basicQuiz}
+        meta={astronomyQuiz}
         isLocked={false}
         rewardConfig={{
           quizId: 1,
