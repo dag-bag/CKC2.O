@@ -88,12 +88,12 @@ const Header = ({
                 reward={rewards.map((rew: any) => rew.title).join(", ")}
               />
             )}
-            {quiz && (
+            {/* {quiz && (
               <ActionQuizBlock
                 unlocked={isAlreadyRewarded}
                 isRewarded={quiz_completed}
               />
-            )}
+            )} */}
           </div>
         </div>
       </aside>
