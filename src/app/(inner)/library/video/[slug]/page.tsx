@@ -4,10 +4,10 @@ interface Props {
   };
 }
 import { Videos } from "@/strapi/services/api";
-import Header from "@/blocks/molecules/video/header";
+// import Header from "@/blocks/molecules/video/header";
 import { getUserRewards } from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
-
+import Template from "@/blocks/template/content";
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const {
     user: { id },
@@ -19,10 +19,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
     getUserRewards(id),
   ]);
 
-  const isAlreadyRewarded = validateRewarded(achivements as any, data.rewards);
+  // const isAlreadyRewarded = validateRewarded(achivements as any, data.rewards);
   return (
     <div>
-      <Header {...{ purchases, achivements, ...data, isAlreadyRewarded }} />
+      <Template type="video" data={data} purchases={purchases as any[]} />
     </div>
   );
 };

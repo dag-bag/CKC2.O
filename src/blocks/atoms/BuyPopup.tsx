@@ -14,7 +14,7 @@ interface Props {
 
 export default function BuyPopup({ price, type, title, id }: Props) {
   const { loading, unlock, open, opened, close } = useUnlock({
-    type,
+    type: type.includes("live") ? "live" : type,
     label: title,
     coins: price,
     content_id: id,

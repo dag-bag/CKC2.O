@@ -7,12 +7,11 @@ import BuyPopup from "@/blocks/atoms/BuyPopup";
 import { Comics } from "@/strapi/services/api";
 import { getQuizCompletionStatus } from "@/utils/quiz";
 import { validateRewarded } from "@/utils/reward";
-import Rewards from "@/blocks/molecules/video/reward";
 import { getUserRewards } from "@/strapi/services/custom";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
 import { getSession, getTransactions } from "@/strapi/services/me";
 import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
-
+import Template from "@/blocks/template/content";
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
@@ -23,15 +22,16 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
-      {JSON.stringify(data)}
-      <Hero {...{ purchases, achivements, ...data, ...user }} />
+      <Template type="comic" data={data} purchases={purchases as any[]} />
 
-      {data?.rewards && data?.rewards.length !== 0 && (
+      {/* <Hero {...{ purchases, achivements, ...data, ...user }} /> */}
+
+      {/* {data?.rewards && data?.rewards.length !== 0 && (
         <Rewards
           rewards={data?.rewards}
           isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
         />
-      )}
+      )} */}
     </div>
   );
 };
