@@ -1,23 +1,19 @@
-/* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-import Card from "@/blocks/UI/Card";
-import { BiLockAlt } from "react-icons/bi";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
-import SharePopup from "@/blocks/atoms/SharePopup";
-import { getSession, getTransactions } from "@/strapi/services/me";
-import { getUserRewards } from "@/strapi/services/custom";
-import { Comics } from "@/strapi/services/api";
-import Rewards from "@/blocks/molecules/video/reward";
-import { validateRewarded } from "@/utils/reward";
-import { Modal } from "@mantine/core";
-import Unlocked from "@/blocks/molecules/comic/unlocked-section";
-import { isQuizCompleted } from "@/utils/quiz";
-import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
 interface Props {
   params: {
     slug: string;
   };
 }
+/* eslint-disable @next/next/no-img-element */
+import BuyPopup from "@/blocks/atoms/BuyPopup";
+import { Comics } from "@/strapi/services/api";
+import { isQuizCompleted } from "@/utils/quiz";
+import { validateRewarded } from "@/utils/reward";
+import Rewards from "@/blocks/molecules/video/reward";
+import { getUserRewards } from "@/strapi/services/custom";
+import Unlocked from "@/blocks/molecules/comic/unlocked-section";
+import { getSession, getTransactions } from "@/strapi/services/me";
+import ActionQuizBlock from "@/blocks/molecules/course/ActionQuizBlock";
+
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const user = await getSession();
   const [data, purchases, achivements] = await Promise.all([
@@ -28,7 +24,10 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
+      {JSON.stringify({ data, purchases, achivements })}
       <Hero {...{ purchases, achivements, ...data, ...user }} />
+      {JSON.stringify({ data, purchases, achivements })}
+
       {data?.rewards && data?.rewards.length !== 0 && (
         <Rewards
           rewards={data?.rewards}
@@ -75,8 +74,23 @@ const Hero = (props: any) => {
     <div className="grid grid-cols-[400px_auto] gap-5 bg-gray-100 rounded-xl p-5 ">
       <div>
         <img src={thumbnail} alt={title} />
+        {JSON.stringify({
+          title,
+          published,
+          creator,
+          page_count,
+          grade,
+          desc,
+          thumbnail,
+          price,
+          purchases,
+          id,
+          content,
+          quiz,
+          achivements,
+        })}
       </div>
-      <div>
+      <div className="border-2 border-red-500">
         <div className="max-w-xl py-5">
           <h1 className="font-heading font-bold text-3xl mb-2">{title}</h1>
           <div className="grid grid-cols-3 my-5">
