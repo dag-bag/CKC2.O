@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
-
+import Heading from "@/blocks/atoms/Heading";
 interface Props {
   title: string;
   children: ReactNode;
@@ -23,14 +23,9 @@ const Categorizer: React.FC<Props> = ({
         )}
       >
         <div>
-          <h3
-            style={{
-              textShadow: "2px 2px 2px #18007ac6",
-            }}
-            className="md:text-3xl text-lg font-semibold tracking-medium font-amar tracking-wide text-white"
-          >
+          <Heading size="medium" varient="white_with_shadow">
             {title}
-          </h3>
+          </Heading>
         </div>
         {right && <div>{right}</div>}
       </div>
