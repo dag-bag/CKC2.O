@@ -41,13 +41,14 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
 
   return (
     <div className="h-screen w-screen center bg-gray-50">
+      {JSON.stringify(history)}
       <QuizPlayer
         rewardConfig={{
           quizId: data.id,
           userId: session.user.id,
           totalRewardedPoints: calculateTotalCoins(history as any),
-          rewardId: data.reward.id,
-          totalCoins: data.reward.value,
+          rewardId: data?.reward?.id,
+          totalCoins: data.reward?.value,
         }}
         meta={data}
         isLocked={locked}

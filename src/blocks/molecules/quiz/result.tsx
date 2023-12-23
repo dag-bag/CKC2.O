@@ -37,6 +37,7 @@ const QuizResultPreviewer = ({
   const reloadPage = () => {
     window.location.reload();
   };
+  console.log(totalCoins, totalRewardedPoints);
 
   // const collectReward = async () => {
   //   await createReward({
@@ -49,21 +50,41 @@ const QuizResultPreviewer = ({
   // };
 
   const collectReward = async () => {
-    // Calculate the percentage of quiz completion
-    const completionPercentage = (rightAnswers / totalAnswers) * 100;
-    // Calculate the reward based on the completion percentage
+    const percentageCompleted = (rightAnswers / totalAnswers) * 100;
     const calculatedReward = Math.floor(
-      (completionPercentage / 100) * totalCoins
+      (percentageCompleted / 100) * totalCoins
     );
 
-    // Issue the reward
-    console.log({
-      coins: calculatedReward,
-      user: userId,
-      reward_id: 1,
-      type: "quiz",
-      quiz_id: quizId.toString(),
-    });
+    const totalPoints = totalCoins + totalRewardedPoints;
+
+    if (totalPoints >= parseInt(totalCoins)) {
+      alert("Congratulations! You have already collected the maximum points.");
+      return;
+    }
+
+    const adjustedReward = Math.max(calculatedReward - totalRewardedPoints, 0);
+
+    try {
+      await createReward({
+        coins: adjustedReward || calculatedReward,
+        user: userId,
+        type: "quiz",
+        quizId: quizId.toString(),
+        rewardId,
+      });
+
+      alert("Reward successfully issued");
+
+      console.log({
+        coins: adjustedReward || calculatedReward,
+        user: userId,
+        rewardId,
+        type: "quiz",
+        quizId: quizId.toString(),
+      });
+    } catch (error) {
+      console.error("Error issuing reward:", error);
+    }
   };
 
   return (
