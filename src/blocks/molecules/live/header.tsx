@@ -86,7 +86,7 @@ const Header = ({
                 type="live"
                 price={price}
                 title={title}
-                isLocked={locked}
+                isUnlocked={!locked}
                 shareableURL={"something"}
                 duration={secondsToHoursMinutes(duration)}
                 reward={rewards.map((rew: any) => rew.title).join(", ")}

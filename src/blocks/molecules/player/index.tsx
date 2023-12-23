@@ -20,7 +20,7 @@ interface Props {
   isAlreadyRewarded: boolean;
   title: string;
   desc: string;
-  grade: number;
+  grade: string;
 }
 
 const Player: React.FC<Props> = ({

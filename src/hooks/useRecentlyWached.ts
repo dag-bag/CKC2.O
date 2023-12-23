@@ -5,7 +5,7 @@ interface RecentlyWatchedItem {
   title: string;
   desc: string;
   imgUrl: string;
-  grade: number;
+  grade: string;
   id: number;
   type: string;
 }

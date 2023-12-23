@@ -5,7 +5,7 @@ interface Props {
 }
 import BuyPopup from "@/blocks/atoms/BuyPopup";
 import { Comics } from "@/strapi/services/api";
-import { isQuizCompleted } from "@/utils/quiz";
+import { getQuizCompletionStatus } from "@/utils/quiz";
 import { validateRewarded } from "@/utils/reward";
 import Rewards from "@/blocks/molecules/video/reward";
 import { getUserRewards } from "@/strapi/services/custom";
@@ -71,7 +71,10 @@ const Hero = (props: any) => {
 
   // validate logic if there is no quiz
 
-  const quiz_completed = isQuizCompleted(quiz.id, achivements);
+  const quiz_completed = getQuizCompletionStatus(
+    quiz.id.toString(),
+    achivements
+  );
 
   return (
     <div className="grid grid-cols-[400px_auto] gap-5 bg-gray-100 rounded-xl p-5 ">

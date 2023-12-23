@@ -12,7 +12,7 @@ interface Props {
   type: string;
   price: number;
   shareableURL: string;
-  isLocked: boolean;
+  isUnlocked: boolean;
 }
 
 const VideoInfo = ({
@@ -23,7 +23,7 @@ const VideoInfo = ({
   type,
   price,
   shareableURL,
-  isLocked,
+  isUnlocked,
   id,
 }: Props) => {
   return (

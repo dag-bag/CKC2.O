@@ -4,7 +4,7 @@ interface Achievement {
 }
 
 // Global utility function to check if a quiz is completed
-export const isQuizCompleted = (
+export const getQuizCompletionStatus = (
   quizId: string,
   achievements: Achievement[] | undefined
 ): boolean => {
