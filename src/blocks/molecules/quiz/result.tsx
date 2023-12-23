@@ -6,6 +6,7 @@ import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
+import { useRouter } from "next/navigation";
 
 const Progress = ({ percentage }: any) => {
   return (
@@ -34,6 +35,7 @@ const QuizResultPreviewer = ({
   result: { rightAnswers, totalAnswers },
   RewardConfig: { userId, rewardId, quizId, totalCoins, totalRewardedPoints },
 }: Props) => {
+  const router = useRouter();
   const reloadPage = () => {
     window.location.reload();
   };
@@ -55,9 +57,7 @@ const QuizResultPreviewer = ({
       (percentageCompleted / 100) * totalCoins
     );
 
-    const totalPoints = totalCoins + totalRewardedPoints;
-
-    if (totalPoints >= parseInt(totalCoins)) {
+    if (totalRewardedPoints >= parseInt(totalCoins)) {
       alert("Congratulations! You have already collected the maximum points.");
       return;
     }
@@ -71,6 +71,8 @@ const QuizResultPreviewer = ({
         type: "quiz",
         quizId: quizId.toString(),
         rewardId,
+      }).then(() => {
+        router.refresh();
       });
 
       alert("Reward successfully issued");
@@ -89,6 +91,13 @@ const QuizResultPreviewer = ({
 
   return (
     <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat center bg-blue-100">
+      {JSON.stringify({
+        // coins: adjustedReward || calculatedReward,
+        user: userId,
+        rewardId,
+        type: "quiz",
+        quizId: quizId.toString(),
+      })}
       <div className="p-5 bg-white w-[500px] rounded-xl">
         <h1 className="text-3xl font-amar text-center mb-5">Quiz Result</h1>
 
