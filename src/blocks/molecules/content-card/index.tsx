@@ -32,7 +32,7 @@ import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { BiCalendar } from "react-icons/bi";
-
+import Heading from "@/blocks/atoms/Heading";
 const ContentCard: React.FC<Props> = ({
   id,
   type,
@@ -69,9 +69,12 @@ const ContentCard: React.FC<Props> = ({
           {conclusionDate && <DateTag value={conclusionDate} />}
           {scheduledDateAndTime && <DateTag value={scheduledDateAndTime} />}
 
-          <h2 className="font-medium !font-amar md:text-xl text-md leading-6 md:mt-1 line-clamp-2">
+          <Heading
+            size="small"
+            className="font-medium !font-amar leading-6 md:mt-1 line-clamp-2"
+          >
             {title}
-          </h2>
+          </Heading>
 
           {type !== "discover" && (
             <h4 className="hidden md:line-clamp-2 font-medium font-amar text-sm leading-5 my-1 text-gray-600">

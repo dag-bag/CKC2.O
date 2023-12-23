@@ -93,7 +93,7 @@ const Header = ({
               />
             )}
             {type === "upcoming" && <ActionUpcomingBlock />}
-            {quiz && <ActionQuizBlock unlocked={isAlreadyRewarded} />}
+            {/* {quiz && <ActionQuizBlock unlocked={isAlreadyRewarded} />} */}
           </div>
         </div>
       </aside>

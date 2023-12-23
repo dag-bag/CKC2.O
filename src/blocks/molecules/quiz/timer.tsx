@@ -28,7 +28,7 @@ const Timer = ({ duration, timeout }: Props) => {
 
   return (
     <div className="center">
-      <div className="md:w-[80px] md:h-[80px] w-[50px] h-[50px] text-xl bg-darkblue text-white font-heading center md:rounded-xl rounded-full">
+      <div className="md:w-[65px] md:h-[65px] w-[50px] h-[50px] text-xl bg-darkblue text-white font-heading center md:rounded-xl rounded-full">
         {counter}
       </div>
     </div>

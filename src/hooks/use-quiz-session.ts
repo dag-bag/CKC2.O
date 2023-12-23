@@ -29,10 +29,9 @@ const useQuizSession = () => {
         },
         saveResponse: (response: string | string[], isLastQuestion: boolean) => {
             setSession((prev) => {
+                console.log(prev)
                 return {
-                    state: {
-                        index: isLastQuestion ? prev.state.index : prev.state.index + 1
-                    },
+                    state: isLastQuestion ? { ...prev.state } : { index: (session as any).state.index + 1 },
                     responses: {
                         ...prev.responses,
                         [(session?.state.index.toString() as any)]: response

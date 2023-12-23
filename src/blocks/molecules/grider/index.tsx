@@ -7,7 +7,7 @@ import { ReactNode, useRef, Children } from "react";
 import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { HiMiniChevronLeft, HiMiniChevronRight } from "react-icons/hi2";
-
+import Heading from "@/blocks/atoms/Heading";
 const Grider: React.FC<Props> = ({ title, children }) => {
   // carousel-action-control-refs
   const nextControlRef = useRef<any>(null);
@@ -42,15 +42,10 @@ const Grider: React.FC<Props> = ({ title, children }) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between md:mb-3 mb-2 pl-2 ">
-        <h3
-          style={{
-            textShadow: "2px 2px 2px #18007ac6",
-          }}
-          className="md:text-3xl text-lg font-semibold tracking-medium font-amar tracking-wide text-white"
-        >
+      <div className="flex items-center justify-between md:mb-3 mb-2 pl-2">
+        <Heading size="medium" varient="white_with_shadow">
           {title}
-        </h3>
+        </Heading>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
       </div>
       <Carousel

@@ -7,58 +7,29 @@ interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
   isLastQuestion: boolean;
+  setValue: any;
+  value: any;
 }
 
-const Input = ({ action, answer, isLastQuestion }: SelectProps) => {
+const Input = ({
+  value,
+  answer,
+  action,
+  setValue,
+  isLastQuestion,
+}: SelectProps) => {
   const textRef = useRef<any>(null);
-  const { saveResponse } = useQuizSession();
-  const validateClickInteraction = (value: string) => {
-    if (value.toLowerCase() !== answer) {
-      toast.error("Wrong Answer!", { duration: 100 });
-    }
-    saveResponse(value.toLowerCase(), isLastQuestion);
-  };
   return (
-    // <section className="grid grid-cols-[1fr_2fr_1fr] p-2 pb-5">
-    //   <div />
-    //   <div className="my-auto">
-    //     <div className="grid ">
-    //       <input
-    //         placeholder={action.input?.pleaceholder}
-    //         type="text"
-    //         ref={textRef}
-    //         className="w-full p-5 text-center text-xl"
-    //       />
-    //       <button
-    //         onClick={() => validateClickInteraction(textRef.current.value)}
-    //         className="bg-darkblue text-white w-full py-4  border-2 mt-4 rounded-full text-xl font-amar"
-    //       >
-    //         Submit
-    //       </button>
-    //     </div>
-    //   </div>
-    //   <div />
-    // </section>
-
-    <section className="grid md:grid-cols-[1fr_2fr_1fr] md:p-2 p-5 md:pb-5">
-      <div className="hidden md:block" />
-      <div className="md:my-auto my-auto">
-        <div className="grid">
-          <input
-            placeholder={action.input?.pleaceholder}
-            type="text"
-            ref={textRef}
-            className="w-full md:p-5 p-4 text-center md:text-xl rounded-xl capitalize"
-          />
-          <button
-            onClick={() => validateClickInteraction(textRef.current.value)}
-            className="bg-darkblue text-white w-full md:py-4 py-3  border-2 mt-4 rounded-full text-xl font-amar"
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-      <div className="hidden md:block" />
+    <section className="center p-5 rounded-xl  bg-black/50---">
+      <input
+        onChange={(evnt) => {
+          setValue(evnt.target.value);
+        }}
+        placeholder={action.input?.pleaceholder}
+        type="text"
+        ref={textRef}
+        className="md:w-[500px] bg-gray-200 w-[90%] md:p-5 p-4 text-center md:text-xl rounded-full capitalize"
+      />
     </section>
   );
 };
