@@ -1,3 +1,4 @@
+import MarkDownviwer from "@/blocks/atoms/markdown/viewier";
 import Image from "next/image";
 import { BiCheck } from "react-icons/bi";
 const SubscriptionPlan = ({ d }: any) => {
@@ -9,25 +10,13 @@ const SubscriptionPlan = ({ d }: any) => {
         </div>
       </div>
       <div className="center flex-col mt-5">
-        <h1 className="text-xl font-amar">{d.name}</h1>
-        <p className="text-center font-fun text-sm text-slate-800">
-          {d.description}
-        </p>
+        <h1 className="text-xl font-amar">{d.title}</h1>
+        <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
 
       <div className="px-5 font-heading">
         <ul className="mt-5 border-2-- pl-5">
-          {d.features.map((f: any, index: any) => (
-            <li
-              key={index}
-              className="flex gap-2 items-center text-sm  text-slate-800"
-            >
-              <div className="px-2 py-1 bg-slate-200-- rounded-full">
-                <BiCheck size={20} className="text-slate-800" />
-              </div>
-              <span>{f.title}</span>
-            </li>
-          ))}
+          <MarkDownviwer d={d.content} />
         </ul>
       </div>
 
