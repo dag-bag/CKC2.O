@@ -37,24 +37,18 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
   // };
 
   return (
-    <div>
-      {/* <button onClick={addReward}>Add Reward</button> */}
-      {/* {JSON.stringify(calculateTotalCoins(history as any))} */}
-      <div className="h-screen w-screen center">
-        <QuizPlayer
-          rewardConfig={{
-            quizId: data.id,
-            userId: session.user.id,
-            totalRewardedPoints: calculateTotalCoins(history as any),
-            rewardId: data.reward.id,
-            totalCoins: data.reward.value,
-          }}
-          meta={data}
-          isLocked={locked}
-        />
-      </div>
-
-      {/* <button onClick={azddReward}>Add Reward</button> */}
+    <div className="h-screen w-screen center bg-gray-50">
+      <QuizPlayer
+        rewardConfig={{
+          quizId: data.id,
+          userId: session.user.id,
+          totalRewardedPoints: calculateTotalCoins(history as any),
+          rewardId: data.reward.id,
+          totalCoins: data.reward.value,
+        }}
+        meta={data}
+        isLocked={locked}
+      />
     </div>
   );
 };
