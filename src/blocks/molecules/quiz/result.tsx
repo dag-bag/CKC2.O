@@ -6,6 +6,7 @@ import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
+import { useRouter } from "next/navigation";
 
 const Progress = ({ percentage }: any) => {
   return (
@@ -34,9 +35,11 @@ const QuizResultPreviewer = ({
   result: { rightAnswers, totalAnswers },
   RewardConfig: { userId, rewardId, quizId, totalCoins, totalRewardedPoints },
 }: Props) => {
+  const router = useRouter();
   const reloadPage = () => {
     window.location.reload();
   };
+  console.log(totalCoins, totalRewardedPoints);
 
   // const collectReward = async () => {
   //   await createReward({
@@ -49,25 +52,52 @@ const QuizResultPreviewer = ({
   // };
 
   const collectReward = async () => {
-    // Calculate the percentage of quiz completion
-    const completionPercentage = (rightAnswers / totalAnswers) * 100;
-    // Calculate the reward based on the completion percentage
+    const percentageCompleted = (rightAnswers / totalAnswers) * 100;
     const calculatedReward = Math.floor(
-      (completionPercentage / 100) * totalCoins
+      (percentageCompleted / 100) * totalCoins
     );
 
-    // Issue the reward
-    console.log({
-      coins: calculatedReward,
-      user: userId,
-      reward_id: 1,
-      type: "quiz",
-      quiz_id: quizId.toString(),
-    });
+    if (totalRewardedPoints >= parseInt(totalCoins)) {
+      alert("Congratulations! You have already collected the maximum points.");
+      return;
+    }
+
+    const adjustedReward = Math.max(calculatedReward - totalRewardedPoints, 0);
+
+    try {
+      await createReward({
+        coins: adjustedReward || calculatedReward,
+        user: userId,
+        type: "quiz",
+        quizId: quizId.toString(),
+        rewardId,
+      }).then(() => {
+        router.refresh();
+      });
+
+      alert("Reward successfully issued");
+
+      console.log({
+        coins: adjustedReward || calculatedReward,
+        user: userId,
+        rewardId,
+        type: "quiz",
+        quizId: quizId.toString(),
+      });
+    } catch (error) {
+      console.error("Error issuing reward:", error);
+    }
   };
 
   return (
     <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat center bg-blue-100">
+      {JSON.stringify({
+        // coins: adjustedReward || calculatedReward,
+        user: userId,
+        rewardId,
+        type: "quiz",
+        quizId: quizId.toString(),
+      })}
       <div className="p-5 bg-white w-[500px] rounded-xl">
         <h1 className="text-3xl font-amar text-center mb-5">Quiz Result</h1>
 
