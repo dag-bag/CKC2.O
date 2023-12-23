@@ -1,6 +1,10 @@
 import React from "react";
 import { Quiz } from "@/strapi/services/api";
-import { c_user_reward, createReward } from "@/strapi/services/custom";
+import {
+  c_user_reward,
+  createReward,
+  getUserRewards,
+} from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
 import QuizPlayer from "@/blocks/molecules/quiz";
 
@@ -16,7 +20,6 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
     Quiz({ type: "GET_ONE", payload: parseInt(segments[2]) }),
     getTransactions(segments[0]),
     c_user_reward(session.user.id),
-    // getUserRewards(user.user.id),
   ]);
   const id = segments[1];
   // @ts-ignore
@@ -40,6 +43,7 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
     <div>
       {/* <button onClick={addReward}>Add Reward</button> */}
       {/* {JSON.stringify(calculateTotalCoins(history as any))} */}
+      {JSON.stringify(history)}
       <div className="h-screen w-screen center">
         <QuizPlayer
           rewardConfig={{

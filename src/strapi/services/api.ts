@@ -14,6 +14,7 @@ import {
   DISCOVERY_JARS_QUESTION_ENTITY,
   HOW_IT_WORKS_ENTITY,
   LIVES_ENTITY,
+  PLAN_ENTITY,
   QUIZ_ENTITY,
   VIDEOS_ENTITY,
   WATCHED_ENTITY,
@@ -42,6 +43,7 @@ export {
   ChallangeReq,
   DiscoveryJarsConfig,
   Quiz,
+  Plans,
 };
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
@@ -98,4 +100,8 @@ const DiscoveryJarsConfig = async (action: Action) => {
 };
 const Quiz = async (action: Action) => {
   return fetchData(QUIZ_ENTITY, action, QUIZ_P);
+};
+
+const Plans = async (action: Action) => {
+  return fetchData(PLAN_ENTITY, action);
 };
