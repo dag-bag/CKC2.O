@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
     plan: data.plan,
     userId: session.user.id,
     title: data.title,
+    days: parseInt(data.days),
   });
   session.user.premium = res.data.end_stamp;
   await session.save();

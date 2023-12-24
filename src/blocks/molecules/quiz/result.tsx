@@ -59,8 +59,8 @@ const QuizResultPreviewer = ({
         coins: adjustedReward || calculatedReward,
         user: userId,
         type: "quiz",
-        quizId: quizId.toString(),
-        rewardId,
+        quiz_id: quizId.toString(),
+        reward_id: rewardId,
       }).then(() => {
         router.refresh();
       });

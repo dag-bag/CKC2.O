@@ -4,9 +4,8 @@ const PurchasesPage = async () => {
   const data = await TOP_UP({ type: "GET" });
   return (
     <div>
-      {JSON.stringify(data)}
       <div className="grid grid-cols-4 gap-5">
-        {CreditPlans.map((d, index) => (
+        {data.map((d: any, index: number) => (
           <CreditPlanCard key={index} d={d} />
         ))}
       </div>

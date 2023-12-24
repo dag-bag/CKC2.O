@@ -1,6 +1,14 @@
+"use client";
+import useRazorpay from "@/hooks/useRazorpay";
+import { buyCredit } from "@/strapi/services/custom";
 import Image from "next/image";
 
 const CreditPlanCard = ({ d }: any) => {
+  const c = async () => {
+    await buyCredit(d.credits);
+    alert("Success");
+  };
+  const { handlePayment } = useRazorpay(c, d.price);
   return (
     <div className="bg-white rounded-md overflow-hidden flex flex-col p-5 pb-5 font-heading">
       <div className="center">
@@ -20,13 +28,14 @@ const CreditPlanCard = ({ d }: any) => {
         </div>
       </div>
       <div className="center flex-col mt-5">
-        <h1 className="text-xl font-amar">{d.name}</h1>
-        <p className="text-center font-fun text-sm text-slate-800">
-          {d.description}
-        </p>
+        <h1 className="text-xl font-amar">{d.title}</h1>
+        <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
       <div className="center mt-5">
-        <button className=" font-amar px-20 py-3 bg-lightblue text-xl  rounded-full text-white">
+        <button
+          className=" font-amar px-20 py-3 bg-lightblue text-xl  rounded-full text-white"
+          onClick={handlePayment}
+        >
           ₹ {d.price}
         </button>
       </div>

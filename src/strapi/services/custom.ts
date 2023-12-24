@@ -69,6 +69,15 @@ const userSuscription = async (data: any) => {
     console.error(error);
   }
 };
+
+const buyCredit = async (data: any) => {
+  try {
+    const res = await axios.post("/api/user/credit", data);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 export {
   getCoins,
   getUserRewards,
@@ -77,4 +86,5 @@ export {
   c_user_reward,
   getLeaderBoardData,
   userSuscription,
+  buyCredit,
 };

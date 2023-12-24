@@ -18,8 +18,8 @@ export async function POST(request: Request) {
 
   try {
     const razorpay = new Razorpay({
-      key_id: "rzp_test_pRflE2YIW49fNA",
-      key_secret: "UwafZgSduQTBhJc7SgJfHaPT",
+      key_id: "rzp_test_3AGDRLyf7EUWVw",
+      key_secret: "zj1SGaD1H6BI9x64wkjGjJWZ",
     });
     const response = await razorpay.orders.create(options);
     console.log(response);
