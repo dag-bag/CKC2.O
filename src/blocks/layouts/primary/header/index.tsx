@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MobileHeader from "./mobile-header";
 import { LuAlignRight } from "react-icons/lu";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/searchbar";
@@ -47,23 +48,6 @@ const MarketplaceButton = () => {
       <RiStoreFill size={20} />
       {/* Marketplace */}
     </Link>
-  );
-};
-
-const MobileHeader = () => {
-  return (
-    <header
-      id="mobile-header"
-      className="h-[80px] flex md:hidden items-center justify-between fixed top-0 left-0 w-full bg-white bg-opacity-80 backdrop-blur-sm z-50 pl-3 pr-5"
-    >
-      <Profile />
-      <div className="flex items-center gap-2">
-        <MobileMyBalance />
-        <button className="w-[45px] h-[45px] bg-gray-50 center rounded-xl">
-          <LuAlignRight size={22} />
-        </button>
-      </div>
-    </header>
   );
 };
 
