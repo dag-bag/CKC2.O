@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
     const res = await strapi.axios.post("/credit", {
       userId: session.user.id,
       coins: parseInt(data.coins),
+      label: "Credit Purchased",
+      type: "credits",
     });
     console.log(res.data);
     return Response.json(res.data);

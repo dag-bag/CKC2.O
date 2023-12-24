@@ -72,7 +72,7 @@ const userSuscription = async (data: any) => {
 
 const buyCredit = async (data: any) => {
   try {
-    const res = await axios.post("/api/user/credit", data);
+    const res = await axios.post("/api/user/credit", { coins: data });
     return res.data;
   } catch (error) {
     console.error(error);

@@ -18,7 +18,14 @@ export default function useCoins() {
       await queryClient.cancelQueries({ queryKey: ["inventory"] });
       const prev = queryClient.getQueryData(["inventory"]);
       queryClient.setQueryData(["coins"], (prev: any) => {
-        return { coins: parseInt(prev.coins) - newData };
+        return {
+          coins:
+            type === "remove"
+              ? parseInt(prev.coins) - newData
+              : type === "add"
+              ? parseInt(prev.coins) + newData
+              : parseInt(prev.coins),
+        };
       });
       return { prev };
     },

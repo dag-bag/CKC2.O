@@ -1,12 +1,14 @@
 "use client";
+import useCoins from "@/hooks/useCoins";
 import useRazorpay from "@/hooks/useRazorpay";
 import { buyCredit } from "@/strapi/services/custom";
 import Image from "next/image";
 
 const CreditPlanCard = ({ d }: any) => {
+  const { updateCoins } = useCoins();
   const c = async () => {
+    updateCoins({ type: "add", newData: parseInt(d.credits) });
     await buyCredit(d.credits);
-    alert("Success");
   };
   const { handlePayment } = useRazorpay(c, d.price);
   return (
