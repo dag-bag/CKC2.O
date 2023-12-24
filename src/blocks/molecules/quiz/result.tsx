@@ -41,23 +41,13 @@ const QuizResultPreviewer = ({
   };
   console.log(totalCoins, totalRewardedPoints);
 
-  // const collectReward = async () => {
-  //   await createReward({
-  //     coins: 100,
-  //     user: userId,
-  //     type: "quiz",
-  //     quiz_id: quizId.toString(),
-  //     reward_id: 1,
-  //   });
-  // };
-
   const collectReward = async () => {
     const percentageCompleted = (rightAnswers / totalAnswers) * 100;
     const calculatedReward = Math.floor(
       (percentageCompleted / 100) * totalCoins
     );
 
-    if (totalRewardedPoints >= parseInt(totalCoins)) {
+    if (totalRewardedPoints >= parseInt(totalCoins as any)) {
       alert("Congratulations! You have already collected the maximum points.");
       return;
     }
