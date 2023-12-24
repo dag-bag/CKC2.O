@@ -46,6 +46,10 @@ const QuizResultPreviewer = ({
     const calculatedReward = Math.floor(
       (percentageCompleted / 100) * totalCoins
     );
+    if (totalRewardedPoints >= calculatedReward) {
+      alert("No reward points to collect");
+      return;
+    }
 
     if (totalRewardedPoints >= parseInt(totalCoins as any)) {
       alert("Congratulations! You have already collected the maximum points.");
