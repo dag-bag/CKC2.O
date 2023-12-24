@@ -30,9 +30,9 @@ const getSizes = (size: Props["size"]) => {
     case "small":
       return "text-xl";
     case "medium":
-      return "text-3xl";
+      return "xl:text-3xl lg:text-3xl md:text-2xl text-xl";
     case "large":
-      return "text-4xl";
+      return "xl:text-4xl lg:text-4xl md:text-3xl text-2xl";
     default:
       return "text-md";
   }
