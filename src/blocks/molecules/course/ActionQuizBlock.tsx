@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { BsCheckCircle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
@@ -20,7 +19,7 @@ const ActionQuizBlock: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   const handlePlay = () => {
-    const segmentRoute = `/hello/${contentType}/${contentId}/${quizId}`;
+    const segmentRoute = `/quizes/${contentType}/${contentId}/${quizId}`;
     router.push(segmentRoute);
   };
   return (
