@@ -41,23 +41,13 @@ const QuizResultPreviewer = ({
   };
   console.log(totalCoins, totalRewardedPoints);
 
-  // const collectReward = async () => {
-  //   await createReward({
-  //     coins: 100,
-  //     user: userId,
-  //     type: "quiz",
-  //     quiz_id: quizId.toString(),
-  //     reward_id: 1,
-  //   });
-  // };
-
   const collectReward = async () => {
     const percentageCompleted = (rightAnswers / totalAnswers) * 100;
     const calculatedReward = Math.floor(
       (percentageCompleted / 100) * totalCoins
     );
 
-    if (totalRewardedPoints >= parseInt(totalCoins)) {
+    if (totalRewardedPoints >= parseInt(totalCoins as any)) {
       alert("Congratulations! You have already collected the maximum points.");
       return;
     }
@@ -91,18 +81,9 @@ const QuizResultPreviewer = ({
 
   return (
     <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat center bg-blue-100">
-      {JSON.stringify({
-        // coins: adjustedReward || calculatedReward,
-        user: userId,
-        rewardId,
-        type: "quiz",
-        quizId: quizId.toString(),
-      })}
       <div className="p-5 bg-white w-[500px] rounded-xl">
         <h1 className="text-3xl font-amar text-center mb-5">Quiz Result</h1>
-
         <Progress percentage={(rightAnswers / totalAnswers) * 100} />
-
         <div className="grid grid-cols-2 gap-5 mt-5">
           <div className="bg-gray-100 p-5 rounded-xl grid grid-cols-[2fr_1fr]">
             <div>

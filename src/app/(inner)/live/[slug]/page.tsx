@@ -1,9 +1,6 @@
 import { Live } from "@/strapi/services/api";
-import Header from "@/blocks/molecules/live/header";
-import Reward from "@/blocks/molecules/video/reward";
-import { getUserRewards } from "@/strapi/services/custom";
-import { getSession, getTransactions } from "@/strapi/services/me";
-
+import Template from "@/blocks/template/content";
+import { getTransactions } from "@/strapi/services/me";
 interface Props {
   params: {
     slug: string;
@@ -11,34 +8,25 @@ interface Props {
 }
 
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
-  const user = await getSession();
-  const [data, purchases, achivements] = await Promise.all([
+  const [data, purchases] = await Promise.all([
     Live({ type: "GET_ONE", payload: parseInt(slug) }),
     getTransactions("live"),
-    getUserRewards(user.user.id),
   ]);
-
-  return (
-    <div className="bg-gray-100 rounded-xl">
-      <Header
-        {...{ purchases, ...data, ...user }}
-        isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
-      />
-      {data?.rewards && data?.rewards.length !== 0 && (
-        <Reward
-          rewards={data?.rewards}
-          isAlreadyRewarded={validateRewarded(achivements as any, data.rewards)}
-        />
-      )}
-    </div>
-  );
+  const type = getLiveType(data.type);
+  return <Template type={type} data={data} purchases={purchases as any[]} />;
 };
 
 export default Page;
 
-const validateRewarded = (achievements: any[], rewards: any[]): boolean => {
-  const list_of_rewards = new Set(rewards.map((b) => b.id.toString()));
-  const list_of_user_rewards = new Set(achievements.map((a) => a.reward_id));
-
-  return list_of_user_rewards.has([...(list_of_rewards as any)][0]);
+const getLiveType = (type: string) => {
+  switch (type) {
+    case "current":
+      return "live:current";
+    case "upcoming":
+      return "live:upcoming";
+    case "recorded":
+      return "live:recorded";
+    default:
+      return "live:current";
+  }
 };
