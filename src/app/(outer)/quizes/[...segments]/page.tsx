@@ -1,7 +1,7 @@
 import React from "react";
 import { Quiz } from "@/strapi/services/api";
 import QuizPlayer from "@/blocks/molecules/quiz";
-import {c_user_reward,} from "@/strapi/services/custom";
+import { c_user_reward } from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
 
 interface Props {

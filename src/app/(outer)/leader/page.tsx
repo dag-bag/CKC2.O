@@ -186,12 +186,17 @@ const Winners = () => {
 };
 
 const LeaderboardPage = () => {
+  const { data } = useQuery({
+    queryKey: ["leaderboardData"],
+    queryFn: getLeaderBoardData,
+  });
   const [leaderboardType, setLeaderboardType] = useState<
     "Leader Legends" | "monthly warrior"
   >("Leader Legends");
 
   return (
     <div>
+      {JSON.stringify(data)}
       <div
         id="header"
         className="bg-black/30  pt-5 pb-20 rounded-xl flex flex-col "
@@ -237,6 +242,8 @@ import { BiSolidVideos } from "react-icons/bi";
 import { GiProgression } from "react-icons/gi";
 import clsx from "clsx";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { getLeaderBoardData } from "@/strapi/services/custom";
 
 const DataHeader = () => {
   return (
