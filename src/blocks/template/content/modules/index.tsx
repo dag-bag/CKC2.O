@@ -1,32 +1,43 @@
 "use client";
-// import Module from "./Module";
 import Module from "./module";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
-// import ActivityModule from "./ActivityModule";
 import useCourse from "@/hooks/useCourse";
 import Loading from "@/blocks/atoms/loading";
-const Modules = ({
+import ActivityModule from "@/blocks/molecules/course/ActivityModule";
+
+interface Props {
+  modules: any;
+  locked: boolean;
+  courseId: string;
+  userId: string;
+  achievements: any[];
+  activity_modules?: any;
+}
+
+const Modules: React.FC<Props> = ({
   modules,
   locked,
   courseId,
-  activity_modules,
+  userId,
   achievements,
-}: any) => {
+  activity_modules,
+}) => {
   const { watchRecords, isLoading, mutate } = useCourse({
-    userId: "4",
+    userId: userId.toString(),
     courseId: courseId as string,
   });
+
   if (isLoading) return <Loading />;
   const moduleMap = generateModuleHistoryMapping(
     modules,
     watchRecords,
     achievements
   );
-  // console.log(moduleMap);
 
   return (
     <Card title="Modules" className="mt-5">
+      {JSON.stringify(achievements)}
       <section className="space-y-5">
         <Accordion>
           {modules.map((item: any, i: any) => (
@@ -36,20 +47,20 @@ const Modules = ({
               mutate={mutate}
               courseId={courseId}
               watch_id={moduleMap[i]?.id}
+              achievements={achievements}
               completed={moduleMap[i]?.completed}
               unlock={condition(i, !locked, moduleMap)}
               watched_progress={moduleMap[i]?.watched_progress}
-              achievements={achievements}
             />
           ))}
 
-          {/* {activity_modules && (
+          {activity_modules && (
             <ActivityModule
               unlock={!locked}
               courseId={courseId}
               {...activity_modules}
             />
-          )} */}
+          )}
         </Accordion>
       </section>
     </Card>
@@ -80,14 +91,12 @@ const generateModuleHistoryMapping = (
 ) => {
   const obj: any = {};
   modules.forEach((mod: any, index: number) => {
-    // console.log(mod?.quiz?.id);
     const f = historyOfModules.filter((his: any) => his.content_id == mod.id);
-
     if (f) {
       obj[index] = {
-        watched_progress: f.length == 0 ? 0 : f.at(0).watch_progress,
-        completed: f.length == 0 ? undefined : f.at(0).completed,
         id: f.length == 0 ? undefined : f.at(0).id,
+        completed: f.length == 0 ? undefined : f.at(0).completed,
+        watched_progress: f.length == 0 ? 0 : f.at(0).watch_progress,
         quiz_completed: achievements?.some(
           (achievement: any) =>
             parseInt(achievement.quiz_id) === parseInt(mod?.quiz?.id)

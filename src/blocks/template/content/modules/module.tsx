@@ -1,70 +1,52 @@
+import {
+  BiTime,
+  BiLockAlt,
+  BiLockOpenAlt,
+  BiCheckCircle,
+} from "react-icons/bi";
 import { strapi } from "@/libs/strapi";
-import HeyzinePopup from "@/blocks/molecules/course/HeyzinePopup";
 import { useDisclosure } from "@mantine/hooks";
 import { Accordion, Modal } from "@mantine/core";
 import { BsDot, BsPlayCircle } from "react-icons/bs";
-import { convertSecondsToTime } from "@/libs/convertors";
-import {
-  BiCheckCircle,
-  BiLockOpenAlt,
-  BiTime,
-  BiLockAlt,
-} from "react-icons/bi";
 import { createReward } from "@/strapi/services/custom";
-
+import { convertSecondsToTime } from "@/libs/convertors";
+import HeyzinePopup from "@/blocks/molecules/course/HeyzinePopup";
+import ActionQuizBlock from "../quiz";
 const Module = ({
   id,
   name,
   desc,
+  quiz,
   unlock,
+  mutate,
   courseId,
   watch_id,
   completed,
-  watched_progress,
-  explorationTime,
-  mutate,
-  quiz,
   achievements,
+  explorationTime,
+  watched_progress,
 }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
     open();
     if (!watched_progress) {
-      console.log("ceate");
+      console.log("module-watched-created");
       strapi
         .create("watcheds", {
           user_id: "4",
-          content_id: id.toString(), // module id
-          watched_date: new Date().toISOString(),
           type: "course",
           watch_progress: 0,
+          content_id: id.toString(), // module id
           course_id: courseId.toString(),
+          watched_date: new Date().toISOString(),
         })
-        .then((res) => {
+        .then(() => {
           mutate();
         });
     }
   };
-  const isQuizCompleted =
-    quiz &&
-    achievements?.some(
-      (achievement: any) => parseInt(achievement.quiz_id) === parseInt(quiz.id)
-    );
-  const addReward = async () => {
-    createReward({
-      user: 4,
-      reward_id: 1,
-      coins: 100,
-      quiz_id: "2",
-      type: "quiz",
-    } as any).then(() => {
-      alert("rewarded");
-      // update({ coins: 100, type: "add" } as any);
-    });
-  };
   return (
     <>
-      {/* {JSON.stringify(isQuizCompleted)} */}
       <Modal fullScreen opened={opened} onClose={close}>
         <HeyzinePopup
           {...{ id, watch_id, explorationTime, watched_progress }}
@@ -125,14 +107,18 @@ const Module = ({
             </button>
           </div>
           <div className="flex gap-5">
-            <button
-              disabled={!unlock}
-              onClick={addReward}
-              className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
-            >
-              <BsPlayCircle /> Quiz
-            </button>
+            {quiz && (
+              <ActionQuizBlock
+                title={quiz.title}
+                modeModule
+                contentId={id}
+                locked={!unlock}
+                quizId={quiz.id}
+                contentType="course"
+              />
+            )}
           </div>
+          {JSON.stringify(quiz)}
         </Accordion.Panel>
       </Accordion.Item>
     </>
@@ -155,3 +141,5 @@ const Pro = ({ percentage }: any) => {
     </div>
   );
 };
+
+// id ,

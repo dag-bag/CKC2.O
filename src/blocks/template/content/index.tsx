@@ -10,6 +10,7 @@ import { numbersStringToOrdinals } from "@/libs/convertors";
 import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
 import ActivityPreparation from "./modules/activity-prep";
+import { getSession } from "@/strapi/services/me";
 type ContentType =
   | "comic"
   | "video"
@@ -26,7 +27,7 @@ interface Props {
   achievements?: any[]; // this only reqeired for course
 }
 
-const ContentTemplate: React.FC<Props> = ({
+const ContentTemplate: React.FC<Props> = async ({
   type,
   data,
   watched,
@@ -45,6 +46,7 @@ const ContentTemplate: React.FC<Props> = ({
     mentor,
     duration,
   } = data;
+  const session = await getSession();
   const isTypeComic = type === "comic";
   const isTypeCourse = type === "course";
   const shareableURL = "this is shareable URL";
@@ -52,8 +54,6 @@ const ContentTemplate: React.FC<Props> = ({
   const isUnlocked = getUnlockedStatus(purchases, id);
   const isConditiontoShowVideoPlayer =
     type === "video" || type.includes("live");
-  const modules_watched_history =
-    watched && generateHistoryOfModules(watched, id);
 
   return (
     <>
@@ -138,9 +138,9 @@ const ContentTemplate: React.FC<Props> = ({
                     courseId={id}
                     locked={!isUnlocked}
                     modules={data?.modules}
-                    achievements={achievements}
+                    userId={session?.user.id.toString()}
+                    achievements={achievements as any[]}
                     activity_modules={data?.activity_modules}
-                    historyOfModules={modules_watched_history}
                   />
                 </>
               )}
@@ -228,10 +228,6 @@ const getUnlockedStatus = (purchases: any[], id: any) => {
         : pur.content_id
     )
     .includes(parseInt(id));
-};
-
-const generateHistoryOfModules = (watched: any[], id: any) => {
-  return watched.filter((t: any) => t.course_id == id);
 };
 
 const Infor = ({ title, value }: any) => {
