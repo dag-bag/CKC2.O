@@ -1,8 +1,9 @@
 "use client";
-import Module from "./Module";
+// import Module from "./Module";
+import Module from "./module";
 import Card from "@/blocks/UI/Card";
 import { Accordion } from "@mantine/core";
-import ActivityModule from "./ActivityModule";
+// import ActivityModule from "./ActivityModule";
 import useCourse from "@/hooks/useCourse";
 import Loading from "@/blocks/atoms/loading";
 const Modules = ({
@@ -22,7 +23,7 @@ const Modules = ({
     watchRecords,
     achievements
   );
-  console.log(moduleMap);
+  // console.log(moduleMap);
 
   return (
     <Card title="Modules" className="mt-5">
@@ -42,13 +43,13 @@ const Modules = ({
             />
           ))}
 
-          {activity_modules && (
+          {/* {activity_modules && (
             <ActivityModule
               unlock={!locked}
               courseId={courseId}
               {...activity_modules}
             />
-          )}
+          )} */}
         </Accordion>
       </section>
     </Card>
@@ -89,7 +90,7 @@ const generateModuleHistoryMapping = (
         id: f.length == 0 ? undefined : f.at(0).id,
         quiz_completed: achievements?.some(
           (achievement: any) =>
-            parseInt(achievement.quiz_id) === parseInt(mod.quiz.id)
+            parseInt(achievement.quiz_id) === parseInt(mod?.quiz?.id)
         ),
       };
     } else {

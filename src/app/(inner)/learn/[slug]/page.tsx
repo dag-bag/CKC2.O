@@ -1,7 +1,7 @@
 import { Courses, Watched } from "@/strapi/services/api";
 import { getUserRewards } from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
-
+import Template from "@/blocks/template/content";
 interface Props {
   params: {
     slug: string;
@@ -28,11 +28,18 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
-      <Header
+      <Template
+        data={data}
+        type="course"
+        watched={watched as any[]}
+        achievements={achievements as any[]}
+        purchases={purchases as any[]}
+      />
+      {/* <Header
         isAlreadyRewarded={false}
         historyOfModules={historyOfModules}
         {...{ purchases, achievements, ...data, ...user, locked }}
-      />
+      /> */}
     </div>
   );
 };
