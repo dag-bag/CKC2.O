@@ -14,5 +14,5 @@ export const HOW_IT_WORKS_ENTITY = "how-it-works";
 export const CHALLANGE_REQ_ENTITY = "challenge-requests";
 export const DISCOVERY_JARS_CONFIG_ENTITY = "disconvery-jar-configs";
 export const QUIZ_ENTITY = "quizzes";
-
+export const TOP_UPS_ENTITY = "top-ups";
 export const PLAN_ENTITY = "plans";

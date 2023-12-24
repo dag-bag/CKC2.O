@@ -16,6 +16,7 @@ import {
   LIVES_ENTITY,
   PLAN_ENTITY,
   QUIZ_ENTITY,
+  TOP_UPS_ENTITY,
   VIDEOS_ENTITY,
   WATCHED_ENTITY,
 } from "../constant";
@@ -44,6 +45,7 @@ export {
   DiscoveryJarsConfig,
   Quiz,
   Plans,
+  TOP_UP,
 };
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
@@ -104,4 +106,8 @@ const Quiz = async (action: Action) => {
 
 const Plans = async (action: Action) => {
   return fetchData(PLAN_ENTITY, action);
+};
+
+const TOP_UP = async (action: Action) => {
+  return fetchData(TOP_UPS_ENTITY, action);
 };

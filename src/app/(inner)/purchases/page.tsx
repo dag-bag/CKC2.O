@@ -1,7 +1,10 @@
 import CreditPlanCard from "@/blocks/molecules/cards/CreditPlan";
-const PurchasesPage = () => {
+import { TOP_UP } from "@/strapi/services/api";
+const PurchasesPage = async () => {
+  const data = await TOP_UP({ type: "GET" });
   return (
     <div>
+      {JSON.stringify(data)}
       <div className="grid grid-cols-4 gap-5">
         {CreditPlans.map((d, index) => (
           <CreditPlanCard key={index} d={d} />

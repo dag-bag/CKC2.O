@@ -46,7 +46,7 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
         rewardConfig={{
           quizId: data.id,
           userId: session.user.id,
-          totalRewardedPoints: calculateTotalCoins(history as any),
+          totalRewardedPoints: calculateTotalRewardedPoints(history as []),
           rewardId: data?.reward?.id,
           totalCoins: data.reward?.value,
         }}
@@ -58,9 +58,16 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
 };
 export default Page;
 
-function calculateTotalCoins(rewardEntries: any[]): number {
-  return rewardEntries.reduce((totalCoins, entry) => {
-    // Convert the 'coins' property to a number and add it to the total
-    return totalCoins + parseInt(entry.coins, 10);
-  }, 0);
-}
+// function calculateTotalCoins(rewardEntries: any[]): number {
+//   return rewardEntries.reduce((totalCoins, entry) => {
+//     // Convert the 'coins' property to a number and add it to the total
+//     return totalCoins + parseInt(entry.coins, 10);
+//   }, 0);
+// }
+const calculateTotalRewardedPoints = (history: any) => {
+  if (history && history.length > 0) {
+    return history[0].value;
+  } else {
+    return null;
+  }
+};

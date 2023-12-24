@@ -48,10 +48,33 @@ const getRecentWatched = async (id: number) => {
   }
 };
 
+const getLeaderBoardData = async () => {
+  try {
+    const res = await strapi.axios.get("/leaderboard");
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const userSuscription = async (data: any) => {
+  try {
+    const res = await strapi.find("subscriptions", {
+      filters: {
+        user_id: data.id,
+      },
+      sort: "created_at",
+    });
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 export {
   getCoins,
   getUserRewards,
   createReward,
   getRecentWatched,
   c_user_reward,
+  getLeaderBoardData,
+  userSuscription,
 };
