@@ -41,7 +41,7 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
 
   return (
     <div className="h-screen w-screen center bg-gray-50">
-      {JSON.stringify(history)}
+      {/* {JSON.stringify(history)} */}
       <QuizPlayer
         rewardConfig={{
           quizId: data.id,
