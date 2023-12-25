@@ -48,7 +48,7 @@ export default function useAuth() {
           },
         }
       );
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
       return { user, jwt };
     } catch (error) {
       alert("something went wrong");

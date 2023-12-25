@@ -26,6 +26,7 @@ const Header = () => {
 };
 
 import { RiStoreFill, RiBarChart2Fill } from "react-icons/ri";
+import { getSession } from "@/strapi/services/me";
 
 const LeaderboardButton = () => {
   return (

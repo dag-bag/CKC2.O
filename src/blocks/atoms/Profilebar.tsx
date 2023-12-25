@@ -2,7 +2,7 @@
 
 import { Menu } from "@mantine/core";
 import { FiChevronDown } from "react-icons/fi";
-
+import MyAvatar from "./Avatar";
 import {
   RiSettings4Fill,
   RiHomeSmile2Fill,
@@ -18,64 +18,80 @@ import {
   RiUser2Line,
   RiShareForwardBoxFill,
 } from "react-icons/ri";
+import Image from "next/image";
 
 const Profilebar = () => {
-  const router = useRouter();
-  const { logout } = useSession();
+  const { logout, session } = useSession();
   const handleLogout = () => {
     logout();
-    router.replace("/auth/login");
+    window.location.href = "/auth/login";
   };
   return (
-    <Menu
-      shadow="md"
-      offset={12}
-      width={200}
-      trigger="hover"
-      openDelay={100}
-      closeDelay={400}
-      position="bottom-end"
-    >
-      <Menu.Target>
-        <div className="h-[50px] flex items-center rounded-lg px-2 gap-1 ">
-          <div className="relative w-[45px] h-[45px] border rounded-full overflow-hidden bg-gray-400 mr-1 bg-[url('/avatars/asian-man.png')] bg-cover bg-center ">
-            &nbsp;
+    <>
+      <Menu
+        shadow="md"
+        offset={12}
+        width={200}
+        trigger="hover"
+        openDelay={100}
+        closeDelay={400}
+        position="bottom-end"
+      >
+        <Menu.Target>
+          <div className="flex items-center rounded-lg px-2 gap-1 relative">
+            <Image
+              height={50}
+              alt="user-profile"
+              width={50}
+              className="border-2 rounded-full"
+              src={"/avatars/asian-man.png"}
+            />
+
+            {session.user.premium && (
+              <Image
+                width={20}
+                height={20}
+                alt="premium"
+                src={"/assets/premium.png"}
+                className="absolute top-0 right-0"
+              />
+            )}
           </div>
-        </div>
-      </Menu.Target>
+        </Menu.Target>
 
-      <Menu.Dropdown>
-        <Menu.Item>
-          <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
-        </Menu.Item>
+        <Menu.Dropdown>
+          <Menu.Item>
+            <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
+          </Menu.Item>
 
-        <Menu.Item>
-          <Button title={"Cart"} href={"/settings"} Icon={LuShoppingCart} />
-        </Menu.Item>
+          <Menu.Item>
+            <Button title={"Cart"} href={"/settings"} Icon={LuShoppingCart} />
+          </Menu.Item>
 
-        <Menu.Item>
-          <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
-        </Menu.Item>
-        <Menu.Item>
-          <Button title={"Settings"} href={"/settings"} Icon={LuSettings} />
-        </Menu.Item>
-        <Menu.Item>
-          <Button
-            title={"Referrals"}
-            href={"/referral"}
-            Icon={RiShareForwardBoxFill}
-          />
-        </Menu.Item>
+          <Menu.Item>
+            <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
+          </Menu.Item>
+          <Menu.Item>
+            <Button title={"Settings"} href={"/settings"} Icon={LuSettings} />
+          </Menu.Item>
+          <Menu.Item>
+            <Button
+              title={"Referrals"}
+              href={"/referral"}
+              Icon={RiShareForwardBoxFill}
+            />
+          </Menu.Item>
 
-        <Menu.Divider />
+          <Menu.Divider />
 
-        <Menu.Item>
-          <button className="capitalize" onClick={handleLogout}>
-            logout
-          </button>
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+          <Menu.Item>
+            <button className="capitalize" onClick={handleLogout}>
+              logout
+            </button>
+          </Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
+    </>
   );
 };
 
