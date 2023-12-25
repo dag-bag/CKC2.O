@@ -5,6 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import useCoins from "./useCoins";
+import toast from "react-hot-toast";
 
 interface VideoPlayerProps {
   coins: number;
@@ -43,13 +44,13 @@ const useUnlock = ({
       await axios
         .post("/api/user/unlock", {
           coins,
-          content_id,
-          label,
           type,
+          label,
+          content_id,
         })
         .then(() => {
-          console.log(coins);
           updateCoins({ type: "remove", newData: coins });
+          toast.success("Unlocked successfully!")
           loaderHandler.close();
           router.refresh();
         });
