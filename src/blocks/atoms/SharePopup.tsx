@@ -16,9 +16,9 @@ import {
   FacebookShareButton,
 } from "react-share";
 
+import Button from "./Button";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, CloseButton } from "@mantine/core";
-
 interface Props {
   shareableURL: string;
   title: string;
@@ -83,12 +83,13 @@ export default function SharePopup({ shareableURL, title }: Props) {
         </div>
       </Modal>
 
-      <button
+      <Button
+        animation="scale"
         onClick={open}
-        className=" py-2.5 px-10 flex items-center justify-center  border-gray-500 border rounded-full font-heading gap-2"
+        className=" py-2.5 px-10 flex items-center justify-center  border-gray-500 border rounded-full font-heading gap-2 !bg-transparent !text-black !shadow-none"
       >
         <BiShare /> Share
-      </button>
+      </Button>
     </>
   );
 }

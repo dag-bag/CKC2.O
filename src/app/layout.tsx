@@ -28,9 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div>
-          <Toaster position="top-left" />
-        </div>
+        <Toaster position="bottom-center" />
         <MantineProvider theme={MantineTheme}>
           <ReactQueryProvider>{children}</ReactQueryProvider>
         </MantineProvider>

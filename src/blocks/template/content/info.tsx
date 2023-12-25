@@ -1,8 +1,7 @@
 import { BsDot } from "react-icons/bs";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
+import { BiTime } from "react-icons/bi";
 import SharePopup from "@/blocks/atoms/SharePopup";
-import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
-
+import UnlockPopup from "@/blocks/popups/unlock-popup";
 interface Props {
   id: number;
   slug: string;
@@ -49,8 +48,7 @@ const InfoBlock = ({
       </section>
 
       <section className="flex gap-2 flex-col mt-5">
-        <BuyPopup price={price} title={title} type={type} id={id} />
-
+        <UnlockPopup coins={price} title={title} type={type} contentId={id} />
         <SharePopup shareableURL={shareableURL} title={title} />
       </section>
     </div>

@@ -1,7 +1,57 @@
-import clsx from "clsx";
+"use client";
 
-const Button = ({ children }: any) => {
-  return <div className="game-2 !px-20 font-fun">{children}</div>;
+import clsx from "clsx";
+import Link from "next/link";
+import { motion } from "framer-motion";
+interface Props {
+  variant?: "default";
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+  disebled?: boolean;
+  animation?: "none" | "scale" | "opacity";
+}
+
+const Button: React.FC<Props> = ({ children, className, ...rest }) => {
+  const variantClasses = getVariant(rest.variant ?? "default");
+  const animationProps = getAnimationProps(rest.animation ?? "none");
+
+  return (
+    <motion.button
+      {...rest}
+      {...animationProps}
+      className={clsx(variantClasses, className)}
+    >
+      {children}
+    </motion.button>
+  );
 };
 
 export default Button;
+
+const getVariant = (variant: Props["variant"]) => {
+  switch (variant) {
+    case "default":
+      return "bg-darkblue h-[45px] px-10 text-white rounded-full shadow-xl";
+    default:
+      return "bg-darkblue text-white";
+  }
+};
+
+const getAnimationProps = (animation: Props["animation"]) => {
+  switch (animation) {
+    case "scale":
+      return {
+        whileHover: { scale: 1.05 },
+        whileTap: { scale: 0.95 },
+      };
+    case "opacity":
+      return {
+        whileHover: { opacity: 0.8 },
+        whileTap: { opacity: 0.5 },
+      };
+    default:
+      return {};
+  }
+};
