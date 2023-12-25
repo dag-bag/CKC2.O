@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import useCoins from "./useCoins";
 import toast from "react-hot-toast";
+import useCredits from "./useCredits";
 
 interface VideoPlayerProps {
   coins: number;
@@ -37,7 +38,7 @@ const useUnlock = ({
   const [loading, loaderHandler] = useDisclosure(false);
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { updateCoins } = useCoins();
+  const { updateCoins } = useCredits();
   const unlock = async () => {
     try {
       loaderHandler.open();
@@ -50,7 +51,7 @@ const useUnlock = ({
         })
         .then(() => {
           updateCoins({ type: "remove", newData: coins });
-          toast.success("Unlocked successfully!")
+          toast.success("Unlocked successfully!");
           loaderHandler.close();
           router.refresh();
         });

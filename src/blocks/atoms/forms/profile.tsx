@@ -30,7 +30,7 @@ export default function ProfileForm({ data }: any) {
       <div className=" grid grid-cols-3 gap-3">
         <Input
           disabled
-          value={data.name}
+          value={data.firstname}
           label="First Name"
           placeholder="Your Name"
           type="text"

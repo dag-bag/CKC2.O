@@ -4,11 +4,13 @@ import Image from "next/image";
 import useCoins from "@/hooks/useCoins";
 import Loading from "@/blocks/atoms/loading";
 import useSession from "@/hooks/use-session";
+import useCredits from "@/hooks/useCredits";
 const MyBalance = () => {
   const {
     data: { isLoading, data },
-  } = useCoins();
-  if (isLoading) return <Loading />;
+  } = useCredits();
+  const { data: coins } = useCoins();
+  if (isLoading || coins.isLoading) return <Loading />;
   return (
     <Link
       href="/purchases"
@@ -17,11 +19,11 @@ const MyBalance = () => {
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-heading">
           <Image width={23} height={23} alt="coin" src={"/assets/credit.png"} />
-          <span className=" font-semibold">{data.coins}</span>
+          <span className=" font-semibold">{data.credits}</span>
         </button>
         <button className="flex items-center gap-2 font-heading">
           <Image width={23} height={23} alt="coin" src={"/assets/coins.png"} />
-          <span className="font-semibold">1,000</span>
+          <span className="font-semibold">{coins.data.coins}</span>
         </button>
       </div>
     </Link>

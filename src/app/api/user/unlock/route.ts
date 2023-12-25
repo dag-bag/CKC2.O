@@ -14,5 +14,6 @@ export async function POST(req: NextRequest) {
     label: data.label,
     type: data.type,
   });
+  console.log(res.data);
   return Response.json(res.data);
 }
