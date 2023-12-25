@@ -1,10 +1,12 @@
 "use client";
 import useSession from "@/hooks/use-session";
+import useCredits from "@/hooks/useCredits";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function Page() {
+  const { data } = useCredits();
   const router = useRouter();
   const { session } = useSession();
   const buyPremium = async () => {
@@ -17,9 +19,10 @@ export default function Page() {
     console.log(data);
   };
   return (
-    <div onClick={buyPremium}>
+    <div>
       <button>Buy Premium</button>
-      {JSON.stringify(session)}
+      {JSON.stringify(data)}
+      {/* {JSON.stringify(session)} */}
     </div>
   );
 }

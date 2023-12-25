@@ -15,7 +15,30 @@ export default function useGoogle() {
   });
   if (isSuccess) {
     if (data?.user?.setup === false || data?.user?.setup === null) {
-      router.push("/newBoard/basic-information");
+      login(
+        {
+          id: data?.user.id,
+          email: data?.user.email,
+          username: data?.user.username,
+          coins: data?.user.coins,
+          premium: data?.user.premium,
+          jwt: data?.jwt,
+        } as any,
+        {
+          optimisticData: {
+            isLoggedIn: true,
+            user: {
+              id: data?.user.id,
+              email: data?.user.email,
+              username: data?.user.username,
+              coins: data?.user.coins,
+              premium: data?.user.premium,
+              jwt: data?.jwt,
+            },
+          },
+        }
+      );
+      router.push("/newBoard/name");
     } else {
       login(
         {

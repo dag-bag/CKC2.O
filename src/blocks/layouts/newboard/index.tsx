@@ -67,7 +67,7 @@ export default function Newboard() {
 
   const onboardCompletion = async () => {
     // api calling goes here - after an successfull response call [69 - line code]
-    const res = await updateUser(storage);
+    const res = await updateUser({ ...storage, setup: true });
     console.log(res);
     popupHanders.open();
   };

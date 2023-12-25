@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
     username: string;
     email: string;
     coins: number;
+    avatar: string;
     premium: number | null; // Assuming premium is a timestamp or null
   };
   session.isLoggedIn = true;

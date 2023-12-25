@@ -6,6 +6,10 @@ const getCoins = async () => {
   const res = await axios.get("/api/user/coins");
   return res.data;
 };
+const getCredits = async () => {
+  const res = await axios.get("/api/user/credit");
+  return res.data;
+};
 
 const createReward = async (data: any) => {
   try {
@@ -87,4 +91,5 @@ export {
   getLeaderBoardData,
   userSuscription,
   buyCredit,
+  getCredits,
 };
