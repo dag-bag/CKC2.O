@@ -9,7 +9,7 @@ const SubscriptionPlan = ({ d }: any) => {
     const data = await axios
       .post("/api/user/unlock/premium", {
         plan: 1,
-        title: "Super Premium",
+        title: d.title,
         days: parseInt(d.duration_days),
       })
       .then((res) => console.log(res));
