@@ -3,8 +3,7 @@ import useGoogle from "@/hooks/useGoogle";
 import React from "react";
 
 export default function page() {
-  // const { data, isLoading } = useGoogle();
-  // if (isLoading) return <div>Loading...</div>;
+  const { data, isLoading } = useGoogle();
   return (
     <>
       <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-6 sm:py-12 bg-white">
@@ -24,7 +23,7 @@ export default function page() {
             href="/login"
             className="mt-3 inline-block w-96 rounded bg-indigo-600 px-5 py-3 font-medium text-white shadow-md shadow-indigo-500/20 hover:bg-indigo-700"
           >
-            Loading...
+            {isLoading ? "Loading..." : "Verified SucessFully"}
           </a>
         </div>
       </div>

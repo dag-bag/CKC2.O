@@ -8,6 +8,7 @@ export interface SessionData {
     email: string;
     coins: number;
     premium: number | null;
+    avatar: string;
     setup?: boolean;
   };
 }
@@ -20,6 +21,7 @@ export const defaultSession: SessionData = {
     email: "",
     coins: 0,
     premium: null,
+    avatar: "",
   },
 };
 

@@ -17,8 +17,8 @@ export default function useAuth() {
   const { login: setSession } = useSession();
   const loginWithGoogle = (): void => {
     const url = strapi.getProviderAuthenticationUrl("google");
-    const Fakeurl = `http://localhost:1337/api/connect/google`;
-    router.push(Fakeurl);
+    // const Fakeurl = `http://localhost:1337/api/connect/google`;
+    router.push(url);
   };
   const loginWithCred = async (
     data: StrapiAuthenticationData
@@ -32,6 +32,7 @@ export default function useAuth() {
           username: user.username,
           coins: user.coins,
           premium: user.premium,
+          avatar: user.avatar,
           jwt,
         } as any,
         {
@@ -43,6 +44,7 @@ export default function useAuth() {
               username: user.username,
               coins: user.coins,
               premium: user.premium,
+              avatar: user.avatar,
               jwt,
             },
           },
