@@ -6,8 +6,7 @@ import { TbLayoutGrid } from "react-icons/tb";
 
 const profile_links = [
   { label: "my gallary", href: "/profile" },
-  { label: "my bag", href: "/profile/bag" },
-  { label: "my vault", href: "/profile/vault" },
+  { label: "my shelf", href: "/profile/vault" },
   { label: "my achievement", href: "/profile/achievements" },
   { label: "recently watched", href: "/profile/watched-history" },
 ];
