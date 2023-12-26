@@ -5,7 +5,7 @@ const PurchasesPage = async () => {
   const data = await Plans({ type: "GET" });
   return (
     <div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {data.map((d: any, index: number) => (
           <SubscriptionPlan key={index} d={d} />
         ))}
@@ -15,5 +15,3 @@ const PurchasesPage = async () => {
 };
 
 export default PurchasesPage;
-
-export const revalidate = 100000;

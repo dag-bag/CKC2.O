@@ -44,6 +44,11 @@ const theme: any = {
     background:
       "linear-gradient(to bottom, rgba(0, 174, 239, 0.9), rgba(34, 46, 120, 0.92))",
   },
+
+  "/shop/virtual": {
+    background:
+      "linear-gradient(to bottom, rgba(0, 174, 239, 0.9), rgba(34, 46, 120, 0.92))",
+  },
 };
 
 const PrimaryLayout: React.FC<Props> = ({ children }) => {

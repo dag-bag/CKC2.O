@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Textinput from "../TextInput";
 import Link from "next/link";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -31,27 +30,6 @@ const Form = () => {
   };
   return (
     <form className="space-y-4 font-heading" onSubmit={handleSubmit(onSubmit)}>
-      {/* <Textinput
-        register={register}
-        name="identifier"
-        classLabel="font-medium text-gray-500 font-heading"
-        label="Email"
-        type="text"
-        placeholder="astronaut@gmail.com"
-        className="px-5 w-full bg-gray-100 rounded-md mt-1 py-3.5"
-        error={errors.identifier}
-      />
-      <Textinput
-        register={register}
-        name="password"
-        classLabel="font-medium text-gray-500 font-heading"
-        label="Password"
-        type="password"
-        placeholder="******"
-        className="px-5 w-full bg-gray-100 rounded-md mt-1 py-3.5"
-        error={errors.password}
-      /> */}
-
       <TextInput
         size="lg"
         type="email"

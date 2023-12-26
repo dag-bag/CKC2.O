@@ -121,7 +121,7 @@ const Grades = ({ grades }: { grades: Props["grades"] }) => {
   );
 };
 
-const PriceTag = ({
+export const PriceTag = ({
   price,
   isUnlocked,
   theme,

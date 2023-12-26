@@ -10,14 +10,7 @@ const Heading: React.FC<Props> = ({ children, size, className, varient }) => {
   const variantClasses = getVariant(varient ?? "default");
   const sizesClasses = getSizes(size);
   return (
-    <h3
-      className={clsx(
-        " drop-shadow-md",
-        className,
-        variantClasses,
-        sizesClasses
-      )}
-    >
+    <h3 className={clsx(" ", className, variantClasses, sizesClasses)}>
       {children}
     </h3>
   );
@@ -28,9 +21,9 @@ export default Heading;
 const getSizes = (size: Props["size"]) => {
   switch (size) {
     case "small":
-      return "text-xl";
+      return "md:text-xl text-md font-semibold font-heading ";
     case "medium":
-      return "xl:text-3xl lg:text-3xl md:text-2xl text-xl";
+      return "xl:text-3xl lg:text-3xl md:text-2xl text-2xl";
     case "large":
       return "xl:text-4xl lg:text-4xl md:text-3xl text-2xl";
     default:
@@ -41,7 +34,7 @@ const getSizes = (size: Props["size"]) => {
 const getVariant = (varient: Props["varient"]) => {
   switch (varient) {
     case "default":
-      return "";
+      return "text-slate-70";
     case "white_with_shadow":
       return "font-semibold tracking-medium font-amar tracking-wide text-white drop-shadow-[2px_2px_2px_#18007ac6]";
     default:

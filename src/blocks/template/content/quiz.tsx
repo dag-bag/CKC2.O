@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Tooltip } from "@mantine/core";
 import { useRouter } from "next/navigation";
+import Button from "@/blocks/atoms/Button";
 interface Props {
   quizId: number;
   title?: string;
@@ -30,13 +31,14 @@ const ActionQuizBlock: React.FC<Props> = ({
   if (modeModule) {
     return (
       <Tooltip label={`Play : ${title}`}>
-        <button
-          disabled={locked}
+        <Button
+          animation="scale"
+          disebled={locked}
           onClick={locked ? undefined : handlePlay}
-          className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
+          className="!bg-white !border-darkblue !border !text-darkblue !shadow-md !w-full"
         >
-          Play Quiz
-        </button>
+          Attemp Quiz
+        </Button>
       </Tooltip>
     );
   }

@@ -115,7 +115,7 @@ const ContentTemplate: React.FC<Props> = async ({
                 {title}
               </Heading>
             </section>
-            <section className="grid md:grid-cols-3 grid-cols-2 my-5">
+            <section className="grid md:grid-cols-3 grid-cols-2 gap-3 md:my-5 my-3">
               <Infor title="Author" value={mentor} />
               <Infor title="Credits Required" value={`${price} CRD`} />
               <Infor title="Grade" value={numbersStringToOrdinals(grade)} />
@@ -233,8 +233,8 @@ const getUnlockedStatus = (purchases: any[], id: any) => {
 const Infor = ({ title, value }: any) => {
   return (
     <div>
-      <h5 className="text-lg font-amar font-semibold text-gray-800">{title}</h5>
-      <p className="text-gray-700 font-heading">{value}</p>
+      <Heading size="small">{title}</Heading>
+      <p className="text-slate-600 font-heading md:text-md text-sm">{value}</p>
     </div>
   );
 };

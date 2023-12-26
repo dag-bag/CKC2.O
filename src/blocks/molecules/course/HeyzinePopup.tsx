@@ -1,35 +1,37 @@
 import { strapi } from "@/libs/strapi";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
-
-// ... (other imports)
-
+import { useEffect, useRef, useState } from "react";
 const HeyzinePopup = ({
   watch_id,
+  completed,
   explorationTime,
   watched_progress,
 }: {
   watch_id: string;
+  completed: boolean;
   explorationTime: string;
   watched_progress: string;
 }) => {
   const router = useRouter();
+  const [isCompleted, setIsCompleted] = useState<boolean>(completed); // [TODO
   const counter = useRef<number>(parseInt(watched_progress) || 0);
 
   const caller = async () => {
-    console.log(counter.current, explorationTime, watched_progress);
-
     if (counter.current >= parseInt(explorationTime)) {
-      await strapi
-        .update("watcheds", watch_id, {
-          watch_progress: explorationTime,
-          completed: true,
-        })
-        .then(() => {
-          alert("complete");
-          router.refresh();
-        });
-      return null;
+      if (!isCompleted) {
+        await strapi
+          .update("watcheds", watch_id, {
+            watch_progress: explorationTime,
+            completed: true,
+          })
+          .then(() => {
+            setIsCompleted(true);
+            toast.success("Module Unlocked!");
+            router.refresh();
+          });
+        return null;
+      }
     }
 
     if (counter.current >= parseInt(watched_progress)) {
@@ -37,7 +39,7 @@ const HeyzinePopup = ({
         await strapi.update("watcheds", watch_id, {
           watch_progress: counter.current,
         });
-        console.log("record api fetched:", counter.current);
+        console.log(">>>>> record api fetched:", counter.current);
       }
     }
   };
@@ -49,7 +51,7 @@ const HeyzinePopup = ({
       caller();
     }, 1000);
     return () => clearInterval(intervalId);
-  }, [watch_id]);
+  }, [watch_id, isCompleted]);
 
   return (
     <div className="bg-white z-50">

@@ -3,11 +3,15 @@ import Card from "@/blocks/UI/Card";
 const ProfileCertificatesPage = () => {
   return (
     <div>
-      <Card title="Virtual Purchases" className="mt-5">
+      <Card title="Learn and Library" className="mt-5">
         <Grid />
       </Card>
 
-      <Card title="Kit Purchases" className="mt-5">
+      <Card title="Avatars and Banners" className="mt-5">
+        <Grid />
+      </Card>
+
+      <Card title="Kit and Material" className="mt-5">
         <Grid />
       </Card>
     </div>

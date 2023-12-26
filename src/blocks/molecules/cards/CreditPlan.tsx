@@ -1,10 +1,9 @@
 "use client";
-import useCoins from "@/hooks/useCoins";
 import useCredits from "@/hooks/useCredits";
 import useRazorpay from "@/hooks/useRazorpay";
 import { buyCredit } from "@/strapi/services/custom";
 import Image from "next/image";
-
+import Button from "@/blocks/atoms/Button";
 const CreditPlanCard = ({ d }: any) => {
   const { updateCoins } = useCredits();
   const c = async () => {
@@ -35,12 +34,9 @@ const CreditPlanCard = ({ d }: any) => {
         <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
       <div className="center mt-5">
-        <button
-          className=" font-amar px-20 py-3 bg-lightblue text-xl  rounded-full text-white"
-          onClick={handlePayment}
-        >
-          ₹ {d.price}
-        </button>
+        <Button animation="scale" onClick={handlePayment}>
+          ₹ {d.price.toLocaleString()}
+        </Button>
       </div>
     </div>
   );

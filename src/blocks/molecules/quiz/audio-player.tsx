@@ -4,7 +4,7 @@ import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 
 const QuizAudioPlayer = () => {
   const audioFilePath = "/music.mp3";
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const toggleMute = () => {
     setIsMuted(!isMuted);
   };
