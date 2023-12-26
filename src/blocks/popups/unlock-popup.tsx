@@ -14,7 +14,7 @@ interface Props {
 }
 
 const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
-  const { data } = useCoins();
+  const { data }: any = useCoins();
   const isBalanceIsNotSufficient = parseInt(data?.data?.coins) < coins;
   const { loading, unlock, open, opened, close } = useUnlock({
     label: title,

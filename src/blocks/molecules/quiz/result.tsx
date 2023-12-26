@@ -1,30 +1,15 @@
-import React from "react";
+"use client";
+import toast from "react-hot-toast";
 import { type RewardConfig } from ".";
 import { FaCheck } from "react-icons/fa";
 import { FaCoins } from "react-icons/fa6";
+import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
-import { useRouter } from "next/navigation";
-
-const Progress = ({ percentage }: any) => {
-  return (
-    <div className="p-5 bg-gray-100 rounded-xl">
-      <h5 className="text-sm mb-1">Accuracy</h5>
-      <div className="w-full bg-red-500 h-[15px] rounded-full overflow-hidden">
-        <div
-          className="h-full bg-green-500"
-          style={{ width: `${percentage}%` }}
-        ></div>
-      </div>
-      <div className="w-full flex justify-between mt-1">
-        <p className="text-sm text-green-800">Correct</p>
-        <p className="text-sm text-red-800">Incorrect</p>
-      </div>
-    </div>
-  );
-};
+import React, { useEffect, useState, useRef } from "react";
+import QuizRewardPopup from "@/blocks/popups/quiz-reward-popup";
 
 interface Props {
   result: any;
@@ -35,56 +20,61 @@ const QuizResultPreviewer = ({
   result: { rightAnswers, totalAnswers },
   RewardConfig: { userId, rewardId, quizId, totalCoins, totalRewardedPoints },
 }: Props) => {
-  const router = useRouter();
+  const runned = useRef(false);
+  const [coins, setCoins] = useState(0);
+  const [opened, { open, close }] = useDisclosure(false);
+
   const reloadPage = () => {
     window.location.reload();
   };
-  console.log(totalCoins, totalRewardedPoints);
 
   const collectReward = async () => {
+    runned.current = true;
     const percentageCompleted = (rightAnswers / totalAnswers) * 100;
     const calculatedReward = Math.floor(
       (percentageCompleted / 100) * totalCoins
     );
+    const adjustedReward = Math.max(calculatedReward - totalRewardedPoints, 0);
+    const COINS = adjustedReward || calculatedReward;
+
     if (totalRewardedPoints >= calculatedReward) {
-      alert("No reward points to collect");
+      toast.error("No reward points to collect");
       return;
     }
 
     if (totalRewardedPoints >= parseInt(totalCoins as any)) {
-      alert("Congratulations! You have already collected the maximum points.");
+      toast.error(
+        "Congratulations! You have already collected the maximum points."
+      );
       return;
     }
 
-    const adjustedReward = Math.max(calculatedReward - totalRewardedPoints, 0);
-
     try {
       await createReward({
-        coins: adjustedReward || calculatedReward,
-        user: userId,
         type: "quiz",
-        quiz_id: quizId.toString(),
+        coins: COINS,
+        user: userId,
         reward_id: rewardId,
+        quiz_id: quizId.toString(),
       }).then(() => {
-        router.refresh();
-      });
-
-      alert("Reward successfully issued");
-
-      console.log({
-        coins: adjustedReward || calculatedReward,
-        user: userId,
-        rewardId,
-        type: "quiz",
-        quizId: quizId.toString(),
+        toast.success("Reward issued successfully");
+        setCoins(COINS);
+        open();
       });
     } catch (error) {
-      console.error("Error issuing reward:", error);
+      toast.error("Error issuing reward");
     }
   };
 
+  useEffect(() => {
+    if (!runned.current) {
+      collectReward();
+    }
+  }, []);
+
   return (
     <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat center bg-blue-100">
+      <QuizRewardPopup opened={opened} onClose={close} coins={coins} />
       <div className="p-5 bg-white w-[500px] rounded-xl">
         <h1 className="text-3xl font-amar text-center mb-5">Quiz Result</h1>
         <Progress percentage={(rightAnswers / totalAnswers) * 100} />
@@ -102,21 +92,14 @@ const QuizResultPreviewer = ({
           </div>
           <div className="bg-gray-100 p-5 rounded-xl grid grid-cols-[2fr_1fr]">
             <div>
-              <p className="text-sm mb-1">Score</p>
-              <h5 className="text-xl font-semibold">{totalCoins}</h5>
+              <p className="text-sm mb-1">Current Score</p>
+              <h5 className="text-xl font-semibold">{coins}</h5>
             </div>
             <div className="center text-yellow-600">
               <FaCoins size={25} />
             </div>
           </div>
         </div>
-
-        <button
-          onClick={collectReward}
-          className="w-full py-4 bg-lightblue rounded-xl mt-5 font-semibold text-lg text-white center gap-3"
-        >
-          Collect Reward
-        </button>
 
         <button
           onClick={reloadPage}
@@ -196,4 +179,22 @@ export const QuizResultMaker = (
     rightAnswers,
     totalAnswers: keys.length,
   };
+};
+
+const Progress = ({ percentage }: any) => {
+  return (
+    <div className="p-5 bg-gray-100 rounded-xl">
+      <h5 className="text-sm mb-1">Accuracy</h5>
+      <div className="w-full bg-red-500 h-[15px] rounded-full overflow-hidden">
+        <div
+          className="h-full bg-green-500"
+          style={{ width: `${percentage}%` }}
+        ></div>
+      </div>
+      <div className="w-full flex justify-between mt-1">
+        <p className="text-sm text-green-800">Correct</p>
+        <p className="text-sm text-red-800">Incorrect</p>
+      </div>
+    </div>
+  );
 };
