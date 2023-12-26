@@ -51,7 +51,7 @@ const Module = ({
     <>
       <Modal fullScreen opened={opened} onClose={close}>
         <HeyzinePopup
-          {...{ id, watch_id, explorationTime, watched_progress }}
+          {...{ id, watch_id, explorationTime, watched_progress, completed }}
         />
       </Modal>
       <Accordion.Item value={name} className="!font-heading">
