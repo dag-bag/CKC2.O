@@ -9,8 +9,10 @@ const Tabs = () => {
         className="p-10 bg-blue-50 rounded-lg flex items-center justify-between border border-blue-500"
       >
         <div>
-          <h2 className="font-heading text-xl font-semibold">Virtual Shop</h2>
-          <p>Lorem ipsum dolor sit amet.</p>
+          <h2 className="font-heading text-xl font-semibold">
+            Avatar and Banner
+          </h2>
+          <p>Purchase Avatar & Banners</p>
         </div>
         <div>
           <BiRightArrowAlt size={22} />

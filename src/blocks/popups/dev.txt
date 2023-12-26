@@ -1,7 +1,0 @@
-types of popups 
-
-1. Reward
-2. Unlocked  / dont have sufficient balance please purchase more credits
-3. Payment Sucessfull
-4. Buy Premium 
-5. Premium Unlocked
