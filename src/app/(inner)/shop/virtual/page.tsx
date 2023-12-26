@@ -1,5 +1,6 @@
 // import { Product } from "../page";
 import Card from "@/blocks/UI/Card";
+import Categorizer from "@/blocks/molecules/categorizer";
 import { VIRTUAL_PRODUCTS } from "@/strapi/services/api";
 const VirtualShopPage = async () => {
   const data = await VIRTUAL_PRODUCTS({ type: "GET" });
@@ -75,6 +76,7 @@ const avts = [
 const bns = ["/bnr.png", "/bnr.png", "/bnr.png", "/bnr.png"];
 
 import Image from "next/image";
+import Link from "next/link";
 
 const sample = [
   {
