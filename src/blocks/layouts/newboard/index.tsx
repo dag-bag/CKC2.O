@@ -6,12 +6,12 @@ import Image from "next/image";
 import { Modal } from "@mantine/core";
 import useOnboard from "@/hooks/useOnboard";
 import { useRouter } from "next/navigation";
-import { FaBackward } from "react-icons/fa6";
 import { updateUser } from "@/services/user";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { Free, Premium } from "@/blocks/molecules/cards/plan";
-
+import Button from "@/blocks/atoms/Button";
+import OnboardPopup from "@/blocks/popups/onboard-popup";
 export default function Newboard() {
   const router = useRouter();
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export default function Newboard() {
   // handlers
 
   const Alert = () => {
-    alert("You are forgetting to fill some inputs.");
+    toast.error("Please fill all the fields");
   };
 
   const onBackHandler = () => {
@@ -66,10 +66,9 @@ export default function Newboard() {
   };
 
   const onboardCompletion = async () => {
+    popupHanders.open();
     // api calling goes here - after an successfull response call [69 - line code]
     const res = await updateUser({ ...storage, setup: true });
-    console.log(res);
-    popupHanders.open();
   };
 
   // Renders
@@ -88,7 +87,7 @@ export default function Newboard() {
   return (
     <div>
       <Logo />
-      <CompletionModal opened={opened} onClose={popupHanders.close} />
+      <OnboardPopup opened={opened} onClose={popupHanders.close} />
       <Canvas progress={configuration?.progress} />
       <div>
         <div className="max-w-6xl mx-auto px-5 pt-8 xl:mt-5 grid md:gap-2">
@@ -98,19 +97,17 @@ export default function Newboard() {
           <div className="py-3">{RenderedComponent}</div>
           <div className="flex gap-2">
             {configuration?.backPath && (
-              <button
-                onClick={onBackHandler}
-                className="bg-gray-400 w-[50px] center  h-[45px] rounded-xl text-white md:text-lg shadow-lg"
-              >
-                <FaBackward />
-              </button>
+              <Button animation="scale" onClick={onBackHandler}>
+                Back
+              </Button>
             )}
-            <button
+            <Button
+              animation="scale"
               onClick={onNextHandler}
-              className="bg-blue-500 w-[120px] center  h-[45px] rounded-full text-white md:text-lg shadow-lg"
+              className="!bg-lightblue"
             >
               {pathname == "/newboard/avatar" ? "Complete" : "Next"}
-            </button>
+            </Button>
           </div>
         </div>
         <Model src={configuration?.imagePath} />
@@ -253,6 +250,9 @@ export const BirthdateAction = () => {
   );
 };
 
+import { PatternFormat } from "react-number-format";
+import toast from "react-hot-toast";
+
 export const MobileAction = () => {
   const { setter, storage } = useOnboard();
   const onChangeHandler = (event: any) => {
@@ -260,13 +260,18 @@ export const MobileAction = () => {
   };
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <Input
-        name="phone"
-        type="number"
-        value={storage?.phone}
-        onChange={onChangeHandler}
-        placeholder="Mobile Number"
-      />
+      <div className="md:h-[50px] h-[50px] inline-flex items-center md:px-8 px-5 border-b-2 border-blue-500 bg-blue-50">
+        <PatternFormat
+          name="phone"
+          type="tel"
+          className="border-none md:text-[28px] outline-none bg-transparent md:placeholder:text-[28px]"
+          onChange={onChangeHandler}
+          placeholder="Mobile Input"
+          value={storage?.phone}
+          valueIsNumericString
+          format="## ##########"
+        />
+      </div>
     </div>
   );
 };
