@@ -1,9 +1,8 @@
 "use client";
-import MarkDownviwer from "@/blocks/atoms/markdown/viewier";
-import useRazorpay from "@/hooks/useRazorpay";
 import axios from "axios";
 import Image from "next/image";
-import { BiCheck } from "react-icons/bi";
+import useRazorpay from "@/hooks/useRazorpay";
+import Button from "@/blocks/atoms/Button";
 const SubscriptionPlan = ({ d }: any) => {
   const buyPremium = async () => {
     const data = await axios
@@ -26,22 +25,26 @@ const SubscriptionPlan = ({ d }: any) => {
       </div>
       <div className="center flex-col mt-5">
         <h1 className="text-xl font-amar">{d.title}</h1>
-        <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
+        <p className=" font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
 
       <div className="px-5 font-heading">
-        <ul className="mt-5 border-2-- pl-5">
-          <MarkDownviwer d={d.content} />
+        <ul className="mt-5 center">
+          <pre
+            className="text-sm !font-josefin"
+            dangerouslySetInnerHTML={{ __html: d.content }}
+          ></pre>
         </ul>
       </div>
 
       <div className="center mt-5">
-        <button
-          className=" font-amar px-20 py-3 bg-lightblue text-xl  rounded-full text-white"
+        <Button
+          animation="scale"
+          className="!px-14 tracking-wide"
           onClick={handlePayment}
         >
           ₹ {d.price}
-        </button>
+        </Button>
       </div>
     </div>
   );
