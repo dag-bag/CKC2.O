@@ -1,3 +1,4 @@
+"use client";
 import {
   BiShare,
   BiLogoGmail,
@@ -6,12 +7,14 @@ import {
   BiLogoFacebook,
   BiLink,
 } from "react-icons/bi";
+
 import {
   EmailShareButton,
   TwitterShareButton,
   WhatsappShareButton,
   FacebookShareButton,
 } from "react-share";
+
 import toast from "react-hot-toast";
 import RootModal from "./popup-root";
 import Button from "../atoms/Button";
@@ -21,30 +24,6 @@ interface Props {
   title: string;
   shareableURL: string;
 }
-
-interface ShareButton {
-  Component: React.ComponentType<any>;
-  Icon: React.ComponentType<any>;
-}
-
-const shareButtons: ShareButton[] = [
-  {
-    Component: EmailShareButton,
-    Icon: BiLogoGmail,
-  },
-  {
-    Component: WhatsappShareButton,
-    Icon: BiLogoWhatsapp,
-  },
-  {
-    Component: FacebookShareButton,
-    Icon: BiLogoFacebook,
-  },
-  {
-    Component: TwitterShareButton,
-    Icon: BiLogoTwitter,
-  },
-];
 
 const SharePopup: React.FC<Props> = ({ title, shareableURL }) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -68,13 +47,30 @@ const SharePopup: React.FC<Props> = ({ title, shareableURL }) => {
         <h1 className="text-center text-2xl font-amar">Share</h1>
         <p className="text-center">Share the knowledge and joy.</p>
         <div className="flex gap-2 center mt-3">
-          {shareButtons.map(({ Component, Icon }, index) => (
-            <Component key={index} url={shareableURL} title={title}>
-              <div className="p-3 bg-gray-100 rounded-full">
-                <Icon size={25} />
-              </div>
-            </Component>
-          ))}
+          <EmailShareButton url={shareableURL} title={title} separator="::">
+            <div className="p-3 bg-gray-100 rounded-full">
+              <BiLogoGmail size={25} />
+            </div>
+          </EmailShareButton>
+
+          <WhatsappShareButton url={shareableURL} title={title} separator="::">
+            <div className="p-3 bg-gray-100 rounded-full">
+              <BiLogoWhatsapp size={25} />
+            </div>
+          </WhatsappShareButton>
+
+          <FacebookShareButton url={shareableURL} title={title}>
+            <div className="p-3 bg-gray-100 rounded-full">
+              <BiLogoFacebook size={25} />
+            </div>
+          </FacebookShareButton>
+
+          <TwitterShareButton url={shareableURL} title={title}>
+            <div className="p-3 bg-gray-100 rounded-full">
+              <BiLogoTwitter size={25} />
+            </div>
+          </TwitterShareButton>
+
           <button
             onClick={copyLinkHandler}
             className="w-[49px] h-[49px] bg-gray-100 center rounded-full"
