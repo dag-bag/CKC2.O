@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
 import { motion } from "framer-motion";
 interface Props {
   variant?: "default";
@@ -15,13 +14,16 @@ interface Props {
 
 const Button: React.FC<Props> = ({ children, className, ...rest }) => {
   const variantClasses = getVariant(rest.variant ?? "default");
-  const animationProps = getAnimationProps(rest.animation ?? "none");
+  const animationProps = !rest.disebled
+    ? getAnimationProps(rest.animation ?? "none")
+    : {};
 
   return (
     <motion.button
       {...rest}
       {...animationProps}
-      className={clsx(variantClasses, className)}
+      disabled={rest.disebled}
+      className={clsx(variantClasses, className, "disabled:bg-opacity-80")}
     >
       {children}
     </motion.button>
@@ -33,7 +35,7 @@ export default Button;
 const getVariant = (variant: Props["variant"]) => {
   switch (variant) {
     case "default":
-      return "bg-darkblue h-[45px] px-10 text-white rounded-full shadow-xl";
+      return "bg-darkblue h-[45px] px-10 text-white rounded-full shadow-xl ";
     default:
       return "bg-darkblue text-white";
   }

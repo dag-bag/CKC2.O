@@ -12,6 +12,8 @@ import { createReward } from "@/strapi/services/custom";
 import { convertSecondsToTime } from "@/libs/convertors";
 import HeyzinePopup from "@/blocks/molecules/course/HeyzinePopup";
 import ActionQuizBlock from "../quiz";
+import Button from "@/blocks/atoms/Button";
+import clsx from "clsx";
 const Module = ({
   id,
   name,
@@ -55,15 +57,20 @@ const Module = ({
       <Accordion.Item value={name} className="!font-heading">
         <Accordion.Control>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="bg-blue-500 p-3 rounded-xl text-white">
+            <div className="flex items-center gap-4">
+              <span
+                className={clsx(
+                  " p-4 rounded-xl text-white",
+                  completed ? "bg-darkgreen" : "bg-lightblue"
+                )}
+              >
                 {completed && <BiCheckCircle size={20} />}
-                {unlock && !completed && <BiLockOpenAlt size={18} />}
-                {!unlock && !completed && <BiLockAlt size={18} />}
+                {unlock && !completed && <BiLockOpenAlt size={22} />}
+                {!unlock && !completed && <BiLockAlt size={22} />}
               </span>
 
               <div>
-                <h3 className="font-heading  font-semibold text-gray-800 capitalize leading-3">
+                <h3 className="font-amar text-lg  font-semibold text-gray-800 capitalize leading-5">
                   {name}
                 </h3>
                 <span className="text-xs text-gray-600 min-w-[200px]">
@@ -97,28 +104,29 @@ const Module = ({
           </p>
           <p className=" text-gray-600 mb-3 font-fun text-sm">{desc}</p>
 
-          <div className="flex gap-5 ">
-            <button
-              disabled={!unlock}
+          <div className="md:flex grid md:gap-5 gap-2 ">
+            <Button
+              animation="scale"
+              disebled={!unlock}
               onClick={handlePlay}
-              className="font-heading border bg-blue-500 text-white px-10 py-2 rounded-full flex items-center gap-2 disabled:opacity-40"
+              className=""
             >
-              <BsPlayCircle /> Play
-            </button>
+              Start Playing
+            </Button>
+
+            <div className="flex gap-5">
+              {quiz && (
+                <ActionQuizBlock
+                  title={quiz.title}
+                  modeModule
+                  contentId={id}
+                  locked={!unlock}
+                  quizId={quiz.id}
+                  contentType="course"
+                />
+              )}
+            </div>
           </div>
-          <div className="flex gap-5">
-            {quiz && (
-              <ActionQuizBlock
-                title={quiz.title}
-                modeModule
-                contentId={id}
-                locked={!unlock}
-                quizId={quiz.id}
-                contentType="course"
-              />
-            )}
-          </div>
-          {JSON.stringify(quiz)}
         </Accordion.Panel>
       </Accordion.Item>
     </>
@@ -135,11 +143,9 @@ const Pro = ({ percentage }: any) => {
           style={{
             width: `${percentage}%`,
           }}
-          className="h-full bg-blue-500 rounded-full "
+          className="h-full bg-blue-500 rounded-full"
         ></div>
       </div>
     </div>
   );
 };
-
-// id ,

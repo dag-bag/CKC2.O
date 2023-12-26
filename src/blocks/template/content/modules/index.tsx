@@ -37,7 +37,6 @@ const Modules: React.FC<Props> = ({
 
   return (
     <Card title="Modules" className="mt-5">
-      {JSON.stringify(achievements)}
       <section className="space-y-5">
         <Accordion>
           {modules.map((item: any, i: any) => (
