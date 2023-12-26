@@ -35,7 +35,7 @@ export default Button;
 const getVariant = (variant: Props["variant"]) => {
   switch (variant) {
     case "default":
-      return "bg-darkblue h-[45px] px-10 text-white rounded-full shadow-xl ";
+      return "bg-lightblue h-[50px] px-10 text-white rounded-full shadow-xl text-lg ";
     default:
       return "bg-darkblue text-white";
   }
