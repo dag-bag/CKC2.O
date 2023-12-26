@@ -1,10 +1,9 @@
 import { BsDot } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
-import SharePopup from "@/blocks/atoms/SharePopup";
-import UnlockPopup from "@/blocks/popups/unlock-popup";
 import Heading from "@/blocks/atoms/Heading";
+import SharePopup from "@/blocks/popups/share-popup";
+import UnlockPopup from "@/blocks/popups/unlock-popup";
 import { convertSecondsToTime } from "@/libs/convertors";
-import Image from "next/image";
 interface Props {
   id: number;
   slug: string;
