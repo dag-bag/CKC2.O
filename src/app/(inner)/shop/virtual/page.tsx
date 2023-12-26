@@ -1,8 +1,11 @@
 // import { Product } from "../page";
 import Card from "@/blocks/UI/Card";
-const VirtualShopPage = () => {
+import { VIRTUAL_PRODUCTS } from "@/strapi/services/api";
+const VirtualShopPage = async () => {
+  const data = await VIRTUAL_PRODUCTS({ type: "GET" });
   return (
     <div>
+      {JSON.stringify(data)}
       <h1 className="font-heading text-4xl font-semibold my-10 px-5">
         Virtual Shop
       </h1>

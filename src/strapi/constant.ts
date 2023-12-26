@@ -16,3 +16,4 @@ export const DISCOVERY_JARS_CONFIG_ENTITY = "disconvery-jar-configs";
 export const QUIZ_ENTITY = "quizzes";
 export const TOP_UPS_ENTITY = "top-ups";
 export const PLAN_ENTITY = "plans";
+export const VITURAL_PRODUCTS_ENTITY = "products";
