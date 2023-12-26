@@ -43,7 +43,7 @@ const SubscriptionPlan = ({ d }: any) => {
           className="!px-14 tracking-wide"
           onClick={handlePayment}
         >
-          ₹ {d.price}
+          ₹ {d.price.toLocaleString()}
         </Button>
       </div>
     </div>
