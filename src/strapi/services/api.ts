@@ -49,7 +49,7 @@ export {
   Plans,
   TOP_UP,
   VIRTUAL_PRODUCTS,
-  PROMOCODES
+  PROMOCODES,
 };
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
@@ -117,9 +117,9 @@ const TOP_UP = async (action: Action) => {
 };
 
 const VIRTUAL_PRODUCTS = async (action: Action) => {
-  return fetchData(VITURAL_PRODUCTS_ENTITY, action);
+  return fetchData(VITURAL_PRODUCTS_ENTITY, action, ["images"]);
 };
 
 const PROMOCODES = async (action: Action) => {
   return fetchData(PROMOCODE_ENTITY, action);
-}
+};

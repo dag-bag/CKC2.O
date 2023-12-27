@@ -82,6 +82,20 @@ const buyCredit = async (data: any) => {
     console.error(error);
   }
 };
+const promoCode = async (promo: string) => {
+  const res = await strapi.find("promocodes", {
+    filters: {
+      promocode: promo,
+    },
+
+    populate: {
+      users: {
+        select: ["id"],
+      },
+    },
+  });
+  return res.data;
+};
 export {
   getCoins,
   getUserRewards,
@@ -92,4 +106,5 @@ export {
   userSuscription,
   buyCredit,
   getCredits,
+  promoCode,
 };

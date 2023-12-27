@@ -6,6 +6,7 @@ const VirtualShopPage = async () => {
   const banners = data?.filter((item: any) => item.type === "avatar");
   return (
     <div>
+      {JSON.stringify(data)}
       <Categorizer title="Avatars">
         <div className="flex gap-4 flex-wrap  p-5">
           {avatars.map((avt: any) => (

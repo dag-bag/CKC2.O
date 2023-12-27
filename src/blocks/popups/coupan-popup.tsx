@@ -7,7 +7,10 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
   const [coupan, setCoupan] = useState("");
   const [opened, { open, close }] = useDisclosure(false);
 
-  const handleValidatePopup = async () => {};
+  const handleValidatePopup = async () => {
+    const data = await promoCode("DEV");
+    console.log(data);
+  };
 
   return (
     <div>
@@ -52,3 +55,4 @@ export default CoupanPopup;
 
 import { TextInput } from "@mantine/core";
 import { useState } from "react";
+import { promoCode } from "@/strapi/services/custom";
