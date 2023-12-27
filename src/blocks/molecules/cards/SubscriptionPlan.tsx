@@ -3,6 +3,8 @@ import axios from "axios";
 import Image from "next/image";
 import useRazorpay from "@/hooks/useRazorpay";
 import Button from "@/blocks/atoms/Button";
+import CoupanPopup from "@/blocks/popups/coupan-popup";
+import toast from "react-hot-toast";
 const SubscriptionPlan = ({ d }: any) => {
   const buyPremium = async () => {
     const data = await axios
@@ -11,8 +13,7 @@ const SubscriptionPlan = ({ d }: any) => {
         title: d.title,
         days: parseInt(d.duration_days),
       })
-      .then((res) => console.log(res));
-    console.log(data);
+      .then(() => toast.success("Payment is sucessfull"));
   };
   const { handlePayment } = useRazorpay(buyPremium, parseInt(d.price));
 
@@ -38,13 +39,11 @@ const SubscriptionPlan = ({ d }: any) => {
       </div>
 
       <div className="center mt-5">
-        <Button
-          animation="scale"
-          className="!px-14 tracking-wide"
-          onClick={handlePayment}
-        >
-          ₹ {d.price.toLocaleString()}
-        </Button>
+        <CoupanPopup
+          onPay={handlePayment}
+          title="Unlock Premium"
+          price={d.price}
+        />
       </div>
     </div>
   );

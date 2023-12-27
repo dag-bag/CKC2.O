@@ -1,6 +1,5 @@
 import axios from "axios";
-import React from "react";
-
+import toast from "react-hot-toast";
 export default function useRazorpay(
   callback: () => void,
   amount: number | string
@@ -26,7 +25,7 @@ export default function useRazorpay(
         },
         modal: {
           ondismiss: function () {
-            alert("Payment is dismissd!");
+            toast.error("Payment is cancelled!");
           },
         },
       };
