@@ -19,6 +19,7 @@ import {
   TOP_UPS_ENTITY,
   VIDEOS_ENTITY,
   WATCHED_ENTITY,
+  VITURAL_PRODUCTS_ENTITY,
 } from "../constant";
 import {
   CAROUSEL_P,
@@ -46,6 +47,7 @@ export {
   Quiz,
   Plans,
   TOP_UP,
+  VIRTUAL_PRODUCTS,
 };
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
@@ -110,4 +112,8 @@ const Plans = async (action: Action) => {
 
 const TOP_UP = async (action: Action) => {
   return fetchData(TOP_UPS_ENTITY, action);
+};
+
+const VIRTUAL_PRODUCTS = async (action: Action) => {
+  return fetchData(VITURAL_PRODUCTS_ENTITY, action);
 };
