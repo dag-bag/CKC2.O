@@ -14,6 +14,7 @@ const Header = () => {
             <SearchBar />
           </div>
           <div className="flex items-center justify-end ml-auto gap-5">
+            <NACButton />
             <LeaderboardButton />
             <MarketplaceButton />
             <MyBalance />
@@ -35,6 +36,18 @@ const LeaderboardButton = () => {
     >
       <RiBarChart2Fill size={20} />
       {/* Leaderboard */}
+    </Link>
+  );
+  ``;
+};
+
+const NACButton = () => {
+  return (
+    <Link
+      href="/nac"
+      className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-lg text-md font-semibold"
+    >
+      NAC
     </Link>
   );
 };
