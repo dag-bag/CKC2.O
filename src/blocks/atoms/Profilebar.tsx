@@ -30,7 +30,7 @@ const Profilebar = () => {
     <>
       <Menu
         shadow="md"
-        offset={12}
+        offset={20}
         width={200}
         trigger="hover"
         openDelay={100}
@@ -64,9 +64,9 @@ const Profilebar = () => {
             <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
           </Menu.Item>
 
-          <Menu.Item>
+          {/* <Menu.Item>
             <Button title={"Cart"} href={"/settings"} Icon={LuShoppingCart} />
-          </Menu.Item>
+          </Menu.Item> */}
 
           <Menu.Item>
             <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
@@ -85,9 +85,7 @@ const Profilebar = () => {
           <Menu.Divider />
 
           <Menu.Item>
-            <button className="capitalize" onClick={handleLogout}>
-              logout
-            </button>
+            <LogoutButton />
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>
@@ -125,18 +123,18 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
       key={title}
       href={href}
       className={clsx(
-        " rounded-xl flex justify-between gap-5 text-black",
+        " rounded-xl flex justify-between gap-5 text-black font-heading",
         pathname == href && " bg-[#2FB2AB]  drop-shadow-lg"
       )}
     >
       <div className="flex gap-2">
         <div className="px-3 center rounded-lg">
-          <Icon color={pathname == href ? "white" : "gray"} size={20} />
+          <Icon color={pathname == href ? "white" : "black"} size={20} />
         </div>
         <div>
           <h3
             className={clsx(
-              "text-md font-josefin  text-gray-700",
+              "text-md font-heading  text-gray-700",
               pathname == href && "  !text-white"
             )}
           >
@@ -146,5 +144,27 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
       </div>
       <div className="center">{/* <FiChevronRight color="gray" /> */}</div>
     </Link>
+  );
+};
+
+const LogoutButton: React.FC<any> = () => {
+  const pathname = usePathname();
+  return (
+    <button
+      className={clsx(
+        " rounded-xl flex justify-between gap-5 text-black font-heading"
+      )}
+    >
+      <div className="flex gap-2">
+        <div className="px-3 center rounded-lg">
+          <LuLogOut size={20} />
+        </div>
+        <div>
+          <h3 className={clsx("text-md font-heading  text-gray-700")}>
+            Logout
+          </h3>
+        </div>
+      </div>
+    </button>
   );
 };
