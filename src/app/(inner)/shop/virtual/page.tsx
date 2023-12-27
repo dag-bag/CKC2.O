@@ -1,28 +1,32 @@
-// import { Product } from "../page";
-import Card from "@/blocks/UI/Card";
 import Categorizer from "@/blocks/molecules/categorizer";
 import { VIRTUAL_PRODUCTS } from "@/strapi/services/api";
 const VirtualShopPage = async () => {
   const data = await VIRTUAL_PRODUCTS({ type: "GET" });
+  const avatars = data?.filter((item: any) => item.type === "avatar");
+  const banners = data?.filter((item: any) => item.type === "avatar");
   return (
     <div>
       <Categorizer title="Avatars">
         <div className="flex gap-4 flex-wrap  p-5">
-          {avts.map((avt) => (
-            <Link href="/" key={avt} className=" flex-col flex gap-2 bg-white">
+          {avatars.map((avt: any) => (
+            <Link
+              href={`/shop/virtual/${avt.id}`}
+              key={avt}
+              className=" flex-col flex gap-2 bg-white"
+            >
               <div className="w-[250px]  center h-[250px] rounded-xl">
                 <Image
                   className="overflow-hidden rounded-full"
-                  src={avt}
+                  src={"/avatars/asian-man.png"}
                   alt="profile"
                   width={200}
                   height={200}
                 />
               </div>
               <div className="flex items-center justify-between px-3 py-2 border-t border-gray-200">
-                <h4 className="font-amar text-lg">Avatar of Magic</h4>
+                <h4 className="font-amar text-lg">{avt.title}</h4>
                 <div className="flex items-center gap-2 font-heading font-semibold  border-l pl-5 border-gray-200  ">
-                  {50}
+                  {avt.coins}
                   <Image
                     src={"/assets/coins.png"}
                     alt="coins"
@@ -39,15 +43,24 @@ const VirtualShopPage = async () => {
       <br />
       <Categorizer title="Banners">
         <div className="flex gap-4 flex-wrap  p-5">
-          {bns.map((avt) => (
-            <Link href="/" key={avt} className=" flex-col flex gap-2 bg-white">
+          {banners.map((avt: any) => (
+            <Link
+              href={`/shop/virtual/${avt.id}`}
+              key={avt}
+              className=" flex-col flex gap-2 bg-white"
+            >
               <div className="w-[320px] center h-[250px] rounded-xl">
-                <Image src={avt} alt="profile" width={200} height={200} />
+                <Image
+                  src={"/bnr.png"}
+                  alt="profile"
+                  width={200}
+                  height={200}
+                />
               </div>
               <div className="flex items-center justify-between px-3 py-2 border-t border-gray-200">
-                <h4 className="font-amar text-lg">Banner of Magic</h4>
+                <h4 className="font-amar text-lg">{avt.title}</h4>
                 <div className="flex items-center gap-2 font-heading font-semibold  border-l pl-5 border-gray-200  ">
-                  {50}
+                  {avt.coins}
                   <Image
                     src={"/assets/coins.png"}
                     alt="coins"
