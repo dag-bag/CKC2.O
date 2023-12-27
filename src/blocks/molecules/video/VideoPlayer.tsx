@@ -40,7 +40,7 @@ const VideoPlayer: React.FC<Props> = ({
     });
   };
   return (
-    <div className="relative aspect-w-12 aspect-h-7 md:aspect-w-12 md:aspect-h-5 xl:aspect-w-12 xl:aspect-h-7 ">
+    <div className="relative aspect-w-12 aspect-h-7 md:aspect-w-8 md:aspect-h-5 xl:aspect-w-12 xl:aspect-h-7 ">
       {!isUnlocked ? (
         <Image fill src={thumbnail} alt={title} className="rounded-xl w-full" />
       ) : (

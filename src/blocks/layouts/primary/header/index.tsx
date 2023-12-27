@@ -1,9 +1,8 @@
 import Link from "next/link";
+import MyBalance from "./balance";
 import MobileHeader from "./mobile-header";
-import { LuAlignRight } from "react-icons/lu";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/searchbar";
-import MyBalance, { MobileMyBalance } from "./balance";
 const Header = () => {
   return (
     <>

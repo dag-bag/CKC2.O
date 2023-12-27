@@ -19,11 +19,15 @@ const MyBalance = () => {
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-heading">
           <Image width={23} height={23} alt="coin" src={"/assets/credit.png"} />
-          <span className=" font-semibold">{data.credits}</span>
+          <span className=" font-semibold">
+            {data.credits.toLocaleString()}
+          </span>
         </button>
         <button className="flex items-center gap-2 font-heading">
           <Image width={23} height={23} alt="coin" src={"/assets/coins.png"} />
-          <span className="font-semibold">{coins.data.coins}</span>
+          <span className="font-semibold">
+            {coins.data.coins.toLocaleString()}
+          </span>
         </button>
       </div>
     </Link>
