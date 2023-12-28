@@ -12,8 +12,8 @@ async function getSession() {
     session.user?.premium === null
       ? "inactive"
       : session.user?.premium > currentTime
-      ? "active"
-      : "expired";
+        ? "active"
+        : "expired";
   return {
     ...session,
     user: {
