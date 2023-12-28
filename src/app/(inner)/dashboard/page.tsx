@@ -1,11 +1,12 @@
 import { Suspense } from "react";
-import Grider from "@/blocks/molecules/grider";
+import Grider from "@/blocks/molecules/grader-carousel";
 import { Courses } from "@/strapi/services/api";
 import { HowItWorks } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
 import BannerCarousel from "@/blocks/atoms/BannerCarousel";
 import RecentlyWatched from "@/blocks/molecules/sections/recently-wached";
+import Carousel from "@/blocks/molecules/grader-carousel";
 
 const DashboardPage = async () => {
   const [tipsVideos, courses, purchases] = await Promise.all([
@@ -23,7 +24,7 @@ const DashboardPage = async () => {
         <RecentlyWatched />
       </Suspense>
 
-      <Grider title="Start Learning">
+      <Carousel title="Start Learning">
         {courses.map((video: any) => (
           <ContentCard
             key={video.id}
@@ -42,9 +43,9 @@ const DashboardPage = async () => {
             }}
           />
         ))}
-      </Grider>
+      </Carousel>
 
-      <Grider title="How it works">
+      <Carousel title="How it works">
         {tipsVideos.map((video: any) => (
           <ContentCard
             key={video.id}
@@ -59,7 +60,7 @@ const DashboardPage = async () => {
             }}
           />
         ))}
-      </Grider>
+      </Carousel>
     </div>
   );
 };

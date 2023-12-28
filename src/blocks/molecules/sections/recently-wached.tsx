@@ -3,7 +3,7 @@ interface Props {
   no?: boolean;
 }
 import React from "react";
-import Grider from "../grider";
+import Grider from "../grader-carousel";
 import WatchedCard from "../cards/Watched";
 import useRecentlyWatched from "@/hooks/useRecentlyWached";
 
