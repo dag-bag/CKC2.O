@@ -8,7 +8,7 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleValidatePopup = async () => {
-    const data = await promoCode("DEV");
+    const data = await promoCode(coupan);
     console.log(data);
   };
 
@@ -21,6 +21,8 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
         <h1 className="text-center text-2xl font-amar">{title}</h1>
         <div className=" grid  my-8">
           <TextInput
+            value={coupan}
+            onChange={(e) => setCoupan(e.target.value)}
             classNames={{ input: "uppercase" }}
             placeholder="Coupan Code"
             size="md"

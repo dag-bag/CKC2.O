@@ -18,3 +18,4 @@ export const TOP_UPS_ENTITY = "top-ups";
 export const PLAN_ENTITY = "plans";
 export const VITURAL_PRODUCTS_ENTITY = "products";
 export const PROMOCODE_ENTITY = "promocodes";
+export const NAC_ENTITY = "nacs";

@@ -21,6 +21,7 @@ import {
   WATCHED_ENTITY,
   VITURAL_PRODUCTS_ENTITY,
   PROMOCODE_ENTITY,
+  NAC_ENTITY,
 } from "../constant";
 import {
   CAROUSEL_P,
@@ -50,6 +51,7 @@ export {
   TOP_UP,
   VIRTUAL_PRODUCTS,
   PROMOCODES,
+  Nac,
 };
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
@@ -122,4 +124,8 @@ const VIRTUAL_PRODUCTS = async (action: Action) => {
 
 const PROMOCODES = async (action: Action) => {
   return fetchData(PROMOCODE_ENTITY, action);
+};
+
+const Nac = async (action: Action) => {
+  return fetchData(NAC_ENTITY, action, COURSES_P);
 };
