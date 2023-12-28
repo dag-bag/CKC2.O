@@ -3,8 +3,9 @@
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
-const ProfileDashboard = () => {
+const ProfileDashboard = ({ data }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <div className="bg-gray-50-- rounded-xl">
       <Avatars opened={opened} onClose={close} />
@@ -23,11 +24,32 @@ const ProfileDashboard = () => {
               Deepak Vishwakarma
             </h1>
             <p className="text-gray-600">I wanna be developer</p>
+            <p>
+              Profile Completion Status : {getProfileCompletionPercentage(data)}
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+const getProfileCompletionPercentage = (data: any) => {
+  const { banner, bio, dob, grade, lastname, firstname, mobile, parentname } =
+    data;
+  const profile = [
+    banner,
+    bio,
+    dob,
+    grade,
+    lastname,
+    firstname,
+    mobile,
+    parentname,
+  ];
+  const total = profile.length;
+  const filled = profile.filter((item: any) => item).length;
+  return (filled / total) * 100;
 };
 
 export default ProfileDashboard;
