@@ -96,9 +96,9 @@ const promoCode = async (promo: string) => {
   });
   return res.data;
 };
-const virtualPurchase = async (data: any) => {
+const virtualPurchase = async () => {
   try {
-    const res = await strapi.axios.post("/coins/virtual-purchase", data);
+    const res = await axios.get("http://localhost:3000/api/user/assets");
     return res.data;
   } catch (error) {
     console.error(error);

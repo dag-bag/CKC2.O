@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Checkbox } from "@mantine/core";
 import UnlockVirtualPopup from "@/blocks/popups/unlock-virtual-popup";
+import useVirtual from "@/hooks/useVirtual";
 const ShopSlugPage = (props: any) => {
   const [currency, setCurrency] = useState("crd");
   console.log(props);

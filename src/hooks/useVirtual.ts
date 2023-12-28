@@ -16,7 +16,16 @@ interface VideoPlayerProps {
 }
 
 type UnlockR = {
+  loading: boolean;
   unlock: () => void;
+  loaderHandler: {
+    readonly open: () => void;
+    readonly close: () => void;
+    readonly toggle: () => void;
+  };
+  opened: boolean;
+  open: () => void;
+  close: () => void;
 };
 
 const useVirtual = ({
@@ -26,12 +35,15 @@ const useVirtual = ({
   type,
 }: VideoPlayerProps): UnlockR => {
   const router = useRouter();
+  const [loading, loaderHandler] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const { updateCoins } = useCredits();
   const unlock = async () => {
     try {
+      loaderHandler.open();
       await axios
-        .post("/api/user/unlock", {
+        .post("/api/user/purchase", {
           coins,
           type,
           label,
@@ -40,15 +52,23 @@ const useVirtual = ({
         .then(() => {
           updateCoins({ type: "remove", newData: coins });
           toast.success("Unlocked successfully!");
+          loaderHandler.close();
           router.refresh();
         });
     } catch (error) {
+      loaderHandler.close();
       alert("something  went wrong");
+      // handle error
     }
   };
 
   return {
+    loading,
     unlock: unlock,
+    open,
+    opened,
+    close,
+    loaderHandler,
   };
 };
 

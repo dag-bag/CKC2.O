@@ -6,6 +6,7 @@ import { Loader } from "@mantine/core";
 import useUnlock from "@/hooks/useUnlock";
 import Button from "../atoms/Button";
 import { useRouter } from "next/navigation";
+import useVirtual from "@/hooks/useVirtual";
 interface Props {
   type: string;
   coins: number;
@@ -16,7 +17,7 @@ interface Props {
 const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
   const { data }: any = useCoins();
   const isBalanceIsNotSufficient = parseInt(data?.data?.coins) < coins;
-  const { loading, unlock, open, opened, close } = useUnlock({
+  const { loading, unlock, open, opened, close } = useVirtual({
     label: title,
     coins: coins,
     content_id: contentId,
