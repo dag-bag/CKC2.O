@@ -2,21 +2,27 @@ import { Live } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ContentCard from "@/blocks/molecules/content-card";
-import BannerCarousel from "@/blocks/atoms/BannerCarousel";
+import { Carousel as CarouselApi } from "@/strapi/services/api";
+import InformationCarousel from "@/blocks/molecules/information-carousel";
 
 const DashboardPage = async () => {
-  const [live, unlocked] = await Promise.all([
+  const [live, unlocked, carousel_data] = await Promise.all([
     Live({ type: "GET" }),
     getTransactions("live"),
+    CarouselApi({
+      type: "GET",
+      filter: {
+        href: "dashboard",
+      },
+    }),
   ]);
-
   const [upcoming, liveNow, recorded] = categorizeEvents(live);
   const listOfPurchagesIds = unlocked?.map((pur) => pur.content_id);
   return (
     <div className="page_force_scroll">
-      <div className="grid grid-cols-[auto]">
-        <BannerCarousel />
-      </div>
+      {carousel_data.length !== 0 && (
+        <InformationCarousel slides={carousel_data.at(0)?.slides} />
+      )}
 
       <main>
         {liveNow.length !== 0 && (
@@ -156,7 +162,6 @@ function formatTimestamp(timestamp: number): string {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const ampm = hours >= 12 ? "PM" : "AM";
-
   // Convert hours to 12-hour format
   const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
 
