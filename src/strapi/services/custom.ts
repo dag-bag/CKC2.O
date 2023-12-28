@@ -83,8 +83,26 @@ const buyCredit = async (data: any) => {
   }
 };
 const promoCode = async (promo: string) => {
-  const res = await strapi.find("promocodes");
+  const res = await strapi.find("promocodes", {
+    filters: {
+      promocode: promo,
+    },
+
+    populate: {
+      users: {
+        select: ["id", "avatar"],
+      },
+    },
+  });
   return res.data;
+};
+const virtualPurchase = async (data: any) => {
+  try {
+    const res = await strapi.axios.post("/coins/virtual-purchase", data);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 export {
   getCoins,
@@ -97,4 +115,5 @@ export {
   buyCredit,
   getCredits,
   promoCode,
+  virtualPurchase,
 };

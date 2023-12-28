@@ -1,10 +1,10 @@
-import { Videos } from "@/strapi/services/api";
+import { Nac, Videos } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
 
 const VideosPage = async () => {
   const [data, purchases] = await Promise.all([
-    Videos({ type: "GET" }),
+    Nac({ type: "GET" }),
     getTransactions("video"),
   ]);
 

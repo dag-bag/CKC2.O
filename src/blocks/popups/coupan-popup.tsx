@@ -10,27 +10,8 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleValidatePopup = async () => {
-    setLoading(true);
-    await axios
-      .get("https://ckc-strapi-production-33d2.up.railway.app/api/promocodes")
-      .then((res) => {
-        setLoading(false);
-        const promocodeDetails = res.data.data.find(
-          (promo: any) => promo.promocode === coupan
-        );
-        if (promocodeDetails || promocodeDetails !== undefined) {
-          setDetails(promocodeDetails);
-          toast.success("Promocode applied");
-        } else {
-          toast.error("Promocode not found");
-        }
-
-        console.log(promocodeDetails);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err);
-      });
+    const data = await promoCode(coupan);
+    console.log(data);
   };
 
   return (
@@ -43,9 +24,8 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
         <h1 className="text-center text-2xl font-amar">{title}</h1>
         <div className=" grid  my-8">
           <TextInput
-            disabled={details ? true : false}
             value={coupan}
-            onChange={(e) => setCoupan(e.currentTarget.value)}
+            onChange={(e) => setCoupan(e.target.value)}
             classNames={{ input: "uppercase" }}
             placeholder="Coupan Code"
             size="md"
