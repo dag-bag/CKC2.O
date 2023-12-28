@@ -83,17 +83,7 @@ const buyCredit = async (data: any) => {
   }
 };
 const promoCode = async (promo: string) => {
-  const res = await strapi.find("promocodes", {
-    filters: {
-      promocode: promo,
-    },
-
-    populate: {
-      users: {
-        select: ["id"],
-      },
-    },
-  });
+  const res = await strapi.find("promocodes");
   return res.data;
 };
 export {
