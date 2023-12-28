@@ -1,18 +1,27 @@
 import { Courses } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
-import BannerCarousel from "@/blocks/atoms/BannerCarousel";
+import { Carousel as CarouselApi } from "@/strapi/services/api";
+import InformationCarousel from "@/blocks/molecules/information-carousel";
 
 const DashboardPage = async () => {
-  const [data, purchases] = await Promise.all([
+  const [data, purchases, carousel_data] = await Promise.all([
     Courses({ type: "GET" }),
     getTransactions("course"),
+    CarouselApi({
+      type: "GET",
+      filter: {
+        href: "learn",
+      },
+    }),
   ]);
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
   return (
     <div>
-      <div className="grid gap-5 px-2">
-        <BannerCarousel />
+      <div className="grid gap-5">
+        {carousel_data.length !== 0 && (
+          <InformationCarousel slides={carousel_data.at(0)?.slides} />
+        )}
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-3 py-5">
         {data.map((video: any) => (

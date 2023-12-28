@@ -1,24 +1,32 @@
 import { Suspense } from "react";
-import Grider from "@/blocks/molecules/grader-carousel";
 import { Courses } from "@/strapi/services/api";
 import { HowItWorks } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
-import BannerCarousel from "@/blocks/atoms/BannerCarousel";
-import RecentlyWatched from "@/blocks/molecules/sections/recently-wached";
 import Carousel from "@/blocks/molecules/grader-carousel";
+import { Carousel as CarouselApi } from "@/strapi/services/api";
+import RecentlyWatched from "@/blocks/molecules/sections/recently-wached";
+import InformationCarousel from "@/blocks/molecules/information-carousel";
 
 const DashboardPage = async () => {
-  const [tipsVideos, courses, purchases] = await Promise.all([
+  const [tipsVideos, courses, purchases, carousel_data] = await Promise.all([
     HowItWorks({ type: "GET" }),
     Courses({ type: "GET" }),
     getTransactions("course"),
+    CarouselApi({
+      type: "GET",
+      filter: {
+        href: "dashboard",
+      },
+    }),
   ]);
 
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
   return (
     <div className="grid gap-2">
-      <BannerCarousel />
+      {carousel_data.length !== 0 && (
+        <InformationCarousel slides={carousel_data.at(0)?.slides} />
+      )}
 
       <Suspense fallback={<div>loading...</div>}>
         <RecentlyWatched />

@@ -1,4 +1,4 @@
-import { Videos } from "@/strapi/services/api";
+import { Videos, Carousel } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
 
