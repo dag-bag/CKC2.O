@@ -1,32 +1,39 @@
 "use client";
-
-import { Modal } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 import Image from "next/image";
-const ProfileDashboard = ({ data }: any) => {
+import { Modal } from "@mantine/core";
+import Heading from "@/blocks/atoms/Heading";
+import { useDisclosure } from "@mantine/hooks";
+interface Props {
+  data: any;
+}
+const ProfileDashboard: React.FC<Props> = ({ data }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
-
   return (
-    <div className="bg-gray-50-- rounded-xl">
+    <div className="rounded-xl">
       <Avatars opened={opened} onClose={close} />
-      <div className="h-[330px]  w-full rounded-2xl  flex items-center px-5 bg-[url('/tile.png')] bg-cover bg-center"></div>
-      <div className="h-[150px] px-10">
-        <div className="grid grid-cols-[220px_auto] gap-3">
+      <div className="md:h-[330px] h-[160px] w-full rounded-2xl  flex items-center px-5 bg-[url('/tile.png')] bg-cover bg-center"></div>
+      <div className="md:h-[150px] px-10">
+        <div className="md:grid xl:grid-cols-[220px_auto] lg:grid-cols-[180px_auto] md:grid-cols-[150px_auto] grid-cols-1 md:gap-3 center md:items-start md:justify-start flex-col">
           <div
             onClick={open}
-            className="w-[220px] h-[220px] rounded-full overflow-hidden -mt-[80px]  relative "
+            className="xl:w-[220px]  xl:h-[220px] lg:w-[180px] lg:h-[180px] md:w-[150px] md:h-[150px] w-[120px] h-[120px] rounded-full overflow-hidden xl:-mt-[80px]  lg:-mt-[60px]  md:-mt-[40px] -mt-[50px]  relative bg-white "
           >
-            <Image src={"/avatars/asian-man.png"} alt="profile" fill />
+            <Image src={data.avatar} alt="profile" fill />
           </div>
 
           <div className="pt-5">
-            <h1 className="text-2xl leading-6 font-medium font-heading">
-              Deepak Vishwakarma
-            </h1>
-            <p className="text-gray-600">I wanna be developer</p>
-            <p>
-              Profile Completion Status : {getProfileCompletionPercentage(data)}
+            <Heading
+              size="medium"
+              className="font-heading md:text-left text-center capitalize"
+            >
+              {data?.firstname} {data?.lastname}
+            </Heading>
+            <p className="text-gray-600 md:text-left text-center">
+              {data?.bio}
             </p>
+            {/* <p>
+              Profile Completion Status : {getProfileCompletionPercentage(data)}
+            </p> */}
           </div>
         </div>
       </div>

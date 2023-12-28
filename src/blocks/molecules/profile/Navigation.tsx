@@ -14,20 +14,22 @@ const profile_links = [
 const Navigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex  mt-5 gap-5 mb-0 bg-gray-100 rounded-full p-2 ">
-      {profile_links.map(({ label, href }) => (
-        <Link
-          key={label}
-          href={href}
-          className={clsx(
-            "font-medium px-8 py-3 flex items-center rounded-full gap-2 capitalize font-heading text-gray-800",
-            pathname == href && "bg-[#2FB2AB]  text-white shadow-md"
-          )}
-        >
-          <TbLayoutGrid size={18} />
-          {label}
-        </Link>
-      ))}
+    <div className="mt-5 overflow-scroll">
+      <div className="flex gap-5  bg-gray-100 rounded-full p-2 w-[900px]">
+        {profile_links.map(({ label, href }) => (
+          <Link
+            key={label}
+            href={href}
+            className={clsx(
+              "font-medium md:px-8 px-5 text-sm md:py-3 py-2.5 flex items-center rounded-full gap-2 capitalize font-heading text-gray-800",
+              pathname == href && "bg-lightblue  text-white shadow-md"
+            )}
+          >
+            <TbLayoutGrid size={18} />
+            {label}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
