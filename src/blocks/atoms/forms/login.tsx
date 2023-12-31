@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import Link from "next/link";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordInput, TextInput } from "@mantine/core";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 const schema = yup.object().shape({
   identifier: yup
@@ -17,6 +17,7 @@ const schema = yup.object().shape({
     .required("Password is required")
     .min(6, "Password must have at least 6 characters"),
 });
+
 const resolver = yupResolver(schema);
 const Form = () => {
   const {
@@ -33,8 +34,8 @@ const Form = () => {
       <TextInput
         size="lg"
         type="email"
+        placeholder="email"
         {...register("identifier")}
-        placeholder="astronaut@gmail.com"
         error={(errors as any).identifier?.message}
       />
 
@@ -63,7 +64,7 @@ const Form = () => {
         <div>
           <p>
             Not registered yet? <br className="hidden md:block" />
-            <Link href="#" className="underline font-medium">
+            <Link href="/auth/register" className="underline font-medium">
               Create an account
             </Link>
           </p>
