@@ -23,7 +23,7 @@ export default function Page() {
             href="/login"
             className="mt-3 inline-block w-96 rounded bg-indigo-600 px-5 py-3 font-medium text-white shadow-md shadow-indigo-500/20 hover:bg-indigo-700"
           >
-            {isLoading ? "Loading..." : "Verified SucessFully"}
+            {isLoading ? "Loading..." : "redirecting..."}
           </a>
         </div>
       </div>

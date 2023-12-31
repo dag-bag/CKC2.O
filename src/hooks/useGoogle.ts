@@ -23,6 +23,7 @@ export default function useGoogle() {
           coins: data?.user.coins,
           premium: data?.user.premium,
           jwt: data?.jwt,
+          type: data?.user.type,
         } as any,
         {
           optimisticData: {
@@ -34,6 +35,7 @@ export default function useGoogle() {
               coins: data?.user.coins,
               premium: data?.user.premium,
               jwt: data?.jwt,
+              type: data?.user.type,
             },
           },
         }

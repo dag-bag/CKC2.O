@@ -12,6 +12,8 @@ const SubscriptionPlan = ({ d }: any) => {
         plan: 1,
         title: d.title,
         days: parseInt(d.duration_days),
+        type: "premium",
+        credits: 225,
       })
       .then(() => toast.success("Payment is sucessfull"));
   };

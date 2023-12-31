@@ -84,7 +84,7 @@ const Profilebar = () => {
 
           <Menu.Divider />
 
-          <Menu.Item>
+          <Menu.Item onClick={handleLogout}>
             <LogoutButton />
           </Menu.Item>
         </Menu.Dropdown>
