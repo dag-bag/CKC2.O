@@ -2,7 +2,6 @@
 import axios from "axios";
 import Image from "next/image";
 import useRazorpay from "@/hooks/useRazorpay";
-import Button from "@/blocks/atoms/Button";
 import CoupanPopup from "@/blocks/popups/coupan-popup";
 import toast from "react-hot-toast";
 const SubscriptionPlan = ({ d }: any) => {

@@ -4,29 +4,30 @@ import Heading from "./Heading";
 import { TbMail } from "react-icons/tb";
 import { TextInput } from "@mantine/core";
 import RootModal from "../popups/popup-root";
-import useRefrence from "@/hooks/useRefrence";
 import { useDisclosure } from "@mantine/hooks";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { strapi } from "@/libs/strapi";
 import useSession from "@/hooks/use-session";
+
 const EmailAuthButton = () => {
+  const router = useRouter();
   const { login } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure();
-  const { create } = useRefrence();
 
   const handleDirectLogin = async () => {
     if (!email) return toast.error("Please enter email");
     if (!password) return toast.error("Please enter password");
-    const data = await createUser().then(() =>
-      router.replace("/newboard/name")
-    );
-    console.log(data);
+    await createUser().then((res) => {
+      return res?.jwt
+        ? router.replace("/newboard/name")
+        : toast.error("something went wrong");
+    });
   };
+
   const createUser = async () => {
     try {
       const res = await strapi.register({
@@ -60,6 +61,7 @@ const EmailAuthButton = () => {
       return res;
     } catch (error) {
       console.log(error);
+      toast.error((error as any).error.message);
     }
   };
 
