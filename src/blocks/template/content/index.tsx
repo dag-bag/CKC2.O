@@ -51,7 +51,7 @@ const ContentTemplate: React.FC<Props> = async ({
   const isTypeCourse = type === "course";
   const shareableURL = "this is shareable URL";
   const isTypeUpcomingLive = type === "live:upcoming";
-  const isUnlocked = getUnlockedStatus(purchases, id);
+  const isUnlocked = price == 0 || getUnlockedStatus(purchases, id);
   const isConditiontoShowVideoPlayer =
     type === "video" || type.includes("live");
 
