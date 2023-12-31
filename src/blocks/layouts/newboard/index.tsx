@@ -21,7 +21,6 @@ export default function Newboard() {
   const [opened, popupHanders] = useDisclosure(false);
 
   // handlers
-
   const Alert = () => {
     toast.error("Please fill all the fields");
   };
@@ -68,7 +67,7 @@ export default function Newboard() {
   const onboardCompletion = async () => {
     popupHanders.open();
     // api calling goes here - after an successfull response call [69 - line code]
-    const res = await updateUser({ ...storage, setup: true });
+    await updateUser({ ...storage, setup: true });
   };
 
   // Renders
@@ -115,37 +114,6 @@ export default function Newboard() {
     </div>
   );
 }
-
-const CompletionModal = ({ opened, onClose }: any) => {
-  return (
-    <Modal
-      centered
-      size={500}
-      opened={opened}
-      onClose={onClose}
-      withCloseButton={false}
-    >
-      <Image
-        alt="3d"
-        width={200}
-        height={200}
-        src={"/1515.png"}
-        className="mx-auto"
-      />
-      <h2 className="text-xl text-center font-semibold font-heading">
-        Account Created Sucessfully
-      </h2>
-      <h5 className="text-sm text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </h5>
-
-      <div className="flex gap-2 mt-10 h-[300px]">
-        <Free />
-        <Premium />
-      </div>
-    </Modal>
-  );
-};
 
 const Model = ({ src }: any) => {
   return (
@@ -234,15 +202,23 @@ export const GradeAction = () => {
 };
 export const BirthdateAction = () => {
   const { setter, storage } = useOnboard();
+  const [inputValue, setInputValue] = useState("");
   const onChangeHandler = (event: any) => {
-    setter("dob", event.target.value);
+    if (isDateNotGreaterThanToday(new Date(event.target.value))) {
+      console.log(event.target.value);
+      setter("dob", event.target.value);
+      setInputValue(event.target.value);
+    } else {
+      toast.error("Date of birth cannot be greater than today's date");
+      setInputValue("");
+    }
   };
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
       <Input
         type="date"
         name="date_of_birth"
-        value={storage?.dob}
+        value={storage?.dob ?? inputValue}
         placeholder="Birthdate"
         onChange={onChangeHandler}
       />
@@ -252,6 +228,7 @@ export const BirthdateAction = () => {
 
 import { PatternFormat } from "react-number-format";
 import toast from "react-hot-toast";
+import { useRef, useState } from "react";
 
 export const MobileAction = () => {
   const { setter, storage } = useOnboard();
@@ -352,3 +329,9 @@ export const AvatarSelectionAction = () => {
     </div>
   );
 };
+
+function isDateNotGreaterThanToday(date: Date): boolean {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // set the time to 00:00:00.000
+  return date <= today;
+}
