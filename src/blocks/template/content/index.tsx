@@ -11,6 +11,8 @@ import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
 import ActivityPreparation from "./modules/activity-prep";
 import { getSession } from "@/strapi/services/me";
+import { generateHref } from "@/blocks/molecules/content-card";
+import config from "../../../../__config/index";
 type ContentType =
   | "comic"
   | "video"
@@ -49,7 +51,7 @@ const ContentTemplate: React.FC<Props> = async ({
   const session = await getSession();
   const isTypeComic = type === "comic";
   const isTypeCourse = type === "course";
-  const shareableURL = "this is shareable URL";
+  const shareableURL = config.domain + generateHref(type as any, id);
   const isTypeUpcomingLive = type === "live:upcoming";
   const isUnlocked = price == 0 || getUnlockedStatus(purchases, id);
   const isConditiontoShowVideoPlayer =

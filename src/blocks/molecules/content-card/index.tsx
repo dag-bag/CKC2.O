@@ -197,7 +197,7 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-const generateHref = (type: Props["type"], id: number): string => {
+export const generateHref = (type: Props["type"], id: number): string => {
   if (type === "course") return `/learn/${id}`;
   if (type.includes("live")) return `/live/${id}`;
   if (type === "video") return `/library/video/${id}`;
