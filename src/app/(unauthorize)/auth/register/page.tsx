@@ -37,7 +37,7 @@ const Page = () => {
 
             <p>
               Already have an account?&nbsp;
-              <Link href={"#"} className="underline font-medium">
+              <Link href={"/auth/login"} className="underline font-medium">
                 Login
               </Link>
             </p>
