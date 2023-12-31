@@ -5,6 +5,7 @@ import useSession from "@/hooks/use-session";
 import Form from "@/blocks/atoms/forms/login";
 import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
 import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
+
 const Page = () => {
   const router = useRouter();
   const { session } = useSession();
