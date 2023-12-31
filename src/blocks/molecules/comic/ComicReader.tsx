@@ -2,6 +2,7 @@
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import useRecentlyWatched from "@/hooks/useRecentlyWached";
+import Button from "@/blocks/atoms/Button";
 
 const ComicReader = ({ id, title, thumbnail, grade, content }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -18,7 +19,7 @@ const ComicReader = ({ id, title, thumbnail, grade, content }: any) => {
     open();
   };
   return (
-    <div className="mt-5">
+    <div>
       <Modal fullScreen opened={opened} onClose={close}>
         <div className="bg-white z-50">
           <div className="h-[100%]">
@@ -30,12 +31,13 @@ const ComicReader = ({ id, title, thumbnail, grade, content }: any) => {
           </div>
         </div>
       </Modal>
-      <button
+      <Button
+        animation="scale"
         onClick={handleRead}
-        className="py-3 px-10 flex items-center justify-center text-white bg-lightblue rounded-full font-heading gap-2"
+        className="py-3 px-10 flex items-center justify-center text-white bg-lightblue rounded-full font-heading gap-2 w-full"
       >
         Read Comic
-      </button>
+      </Button>
     </div>
   );
 };

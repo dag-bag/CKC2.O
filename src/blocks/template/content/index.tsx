@@ -147,13 +147,14 @@ const ContentTemplate: React.FC<Props> = async ({
 
               {/* comic reader : specially for comic  */}
               {isTypeComic && (
-                <div className="max-w-md flex flex-col gap-5 mt-5">
+                <div className=" md:flex md:items-center grid md:gap-5 gap-3 mt-5">
                   {isUnlocked && (
                     <ComicReader {...{ id, slug, title, price, duration }} />
                   )}
 
                   {!isUnlocked && (
                     <InfoBlock
+                      comic={isTypeComic}
                       {...{
                         id,
                         slug,
@@ -171,7 +172,7 @@ const ContentTemplate: React.FC<Props> = async ({
                     <Quiz
                       contentId={id}
                       isRewarded={false}
-                      contentType="video"
+                      contentType={type}
                       locked={!isUnlocked}
                       quizId={data?.quiz.id}
                     />

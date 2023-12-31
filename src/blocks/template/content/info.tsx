@@ -5,6 +5,7 @@ import SharePopup from "@/blocks/popups/share-popup";
 import UnlockPopup from "@/blocks/popups/unlock-popup";
 import { convertSecondsToTime } from "@/libs/convertors";
 interface Props {
+  comic?: boolean;
   id: number;
   slug: string;
   duration: string;
@@ -25,30 +26,27 @@ const InfoBlock = ({
   shareableURL,
   isUnlocked,
   id,
+  comic,
 }: Props) => {
+  if (comic) {
+    return (
+      <div className="flex bg-white p-5 rounded-2xl gap-5 ">
+        <Heading size="medium" className="text-3xl font-semibold pl-2">
+          {price} <span className="text-sm">Credits</span>
+        </Heading>
+        <div className="flex gap-5">
+          <SharePopup shareableURL={shareableURL} title={title} />
+          <UnlockPopup coins={price} title={title} type={type} contentId={id} />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-white p-5 rounded-2xl font-heading">
+    <div className="bg-white p-5 rounded-2xl font-heading grid">
       <Heading size="medium" className="text-3xl font-semibold pl-2">
         {price} <span className="text-sm">Credits</span>
       </Heading>
-      <section className="mt-5 space-y-1">
-        <div className="flex gap-2 font-100">
-          <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-            <BiTime size={18} /> Duration <BsDot />
-          </p>
-          <p>{convertSecondsToTime(parseInt(duration))}</p>
-        </div>
-
-        {/* {reward && (
-          <div className="flex gap-2 font-100">
-            <p className="flex items-center gap-3 text-gray-600 capitalize tracking-medium">
-              <BiTrophy size={18} /> Rewards <BsDot />
-            </p>
-            <p className="leading-5">{reward}</p>
-          </div>
-        )} */}
-      </section>
-
       <section className="flex gap-2 flex-col mt-5">
         <SharePopup shareableURL={shareableURL} title={title} />
         <UnlockPopup coins={price} title={title} type={type} contentId={id} />
@@ -58,5 +56,3 @@ const InfoBlock = ({
 };
 
 export default InfoBlock;
-
-convertSecondsToTime;

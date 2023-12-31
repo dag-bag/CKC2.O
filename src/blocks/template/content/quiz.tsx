@@ -35,9 +35,24 @@ const ActionQuizBlock: React.FC<Props> = ({
           animation="scale"
           disebled={locked}
           onClick={locked ? undefined : handlePlay}
-          className="!bg-white !border-darkblue !border !text-darkblue !shadow-md !w-full"
+          className="!bg-white !border-darkblue !border !text-darkblue !shadow-md"
         >
           Attemp Quiz
+        </Button>
+      </Tooltip>
+    );
+  }
+
+  if (!modeModule && contentType === "comic") {
+    return (
+      <Tooltip label={`Play : ${title}`}>
+        <Button
+          animation="scale"
+          disebled={locked}
+          onClick={locked ? undefined : handlePlay}
+          className=" !font-heading md:max-w-[200px] w-full md:w-auto !bg-lightgreen"
+        >
+          {locked ? "Quiz Locked!" : "Play Quiz"}
         </Button>
       </Tooltip>
     );
