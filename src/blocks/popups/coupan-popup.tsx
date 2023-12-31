@@ -4,6 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { strapi } from "@/libs/strapi";
 import { toast } from "react-hot-toast";
 const CoupanPopup = ({ price, title, onPay }: any) => {
+  const { session } = useSession();
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState<any>(undefined);
   const [coupan, setCoupan] = useState("PROMO1");
@@ -11,12 +12,11 @@ const CoupanPopup = ({ price, title, onPay }: any) => {
 
   const handleValidatePopup = async () => {
     const data = await promoCode(coupan);
-    console.log(data);
+    console.log(validatePromocode(session.user.id, data));
   };
 
   return (
     <div>
-      {JSON.stringify(details)}
       <Button animation="scale" className="!px-14 tracking-wide" onClick={open}>
         ₹ {price}
       </Button>
@@ -63,7 +63,10 @@ import { useState } from "react";
 import { promoCode } from "@/strapi/services/custom";
 import axios from "axios";
 import { set } from "react-hook-form";
+import useSession from "@/hooks/use-session";
 
 const getPromocode = (promocodes: any[], input: string) => {
   promocodes.find((promo: any) => promo.promocode === input);
 };
+
+const validatePromocode = (userId: number, details: any) => {};
