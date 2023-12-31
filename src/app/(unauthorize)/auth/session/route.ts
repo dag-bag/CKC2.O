@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     premium: number | null; // Assuming premium is a timestamp or null
   };
   session.isLoggedIn = true;
-  session.user = data;
+  (session as any).user = data;
   await session.save();
   return Response.json(session);
 }
@@ -36,8 +36,8 @@ export async function GET() {
     session.user.premium === null
       ? "inactive"
       : session.user.premium > currentTime
-      ? "active"
-      : "expired";
+        ? "active"
+        : "expired";
 
   return Response.json({
     ...session,
