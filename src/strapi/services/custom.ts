@@ -98,7 +98,7 @@ const promoCode = async (promo: string) => {
 };
 const virtualPurchase = async () => {
   try {
-    const res = await axios.get("http://localhost:3000/api/user/assets");
+    const res = await axios.get("/api/user/assets");
     return res.data;
   } catch (error) {
     console.error(error);

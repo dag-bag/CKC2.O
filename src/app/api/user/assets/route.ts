@@ -10,11 +10,9 @@ export async function GET() {
       cookies(),
       sessionOptions
     );
-    const res = await strapi.find("achivements", {
-      filters: {
-        user: session.user.id,
-      },
-    });
+    const res = await strapi.axios.get(
+      "/virtual-purchase?id=" + session.user.id
+    );
     console.log(res.data);
     return Response.json(res.data);
   } catch (error) {
