@@ -53,7 +53,7 @@ const ShopSlugPage = (props: any) => {
                 type="avatar"
                 coins={10}
                 title="Avatar of Magic"
-                contentId={1}
+                contentId={props.id}
               />
             </div>
           </section>

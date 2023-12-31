@@ -8,9 +8,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Params Missing" });
 
   const paymentCapture = 1;
+  const discountPercentage = parseInt(body.discount || 0);
+
   const [amount, currency] = [parseInt(body.amount), "INR"];
+  const discountedAmount = amount - (amount * discountPercentage) / 100;
+
   const options = {
-    amount: amount * 100,
+    amount: discountedAmount * 100,
     currency,
     receipt: shortid.generate(),
     payment_capture: paymentCapture,

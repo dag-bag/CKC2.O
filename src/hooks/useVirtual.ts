@@ -38,7 +38,7 @@ const useVirtual = ({
   const [loading, loaderHandler] = useDisclosure(false);
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { updateCoins } = useCredits();
+  const { updateCoins } = useCoins();
   const unlock = async () => {
     try {
       loaderHandler.open();

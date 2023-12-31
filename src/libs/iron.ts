@@ -10,6 +10,7 @@ export interface SessionData {
     premium: number | null;
     avatar: string;
     setup?: boolean;
+    type: string;
   };
 }
 
@@ -22,6 +23,7 @@ export const defaultSession: SessionData = {
     coins: 0,
     premium: null,
     avatar: "",
+    type: "free",
   },
 };
 

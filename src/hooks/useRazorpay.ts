@@ -8,6 +8,7 @@ export default function useRazorpay(
     const { data } = await axios.post("/api/payment", {
       mobile: 8766203976,
       amount: parseInt(amount as string),
+      discount: 10,
     });
     return data;
   };

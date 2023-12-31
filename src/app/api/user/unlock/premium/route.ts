@@ -12,8 +12,11 @@ export async function POST(req: NextRequest) {
     userId: session.user.id,
     title: data.title,
     days: parseInt(data.days),
+    type: data.type,
+    credits: data.credits,
   });
   session.user.premium = res.data.end_stamp;
+  session.user.type = data.type;
   await session.save();
   // update session there session.user.premium = res.data.end_stamp
   console.log(res.data);
