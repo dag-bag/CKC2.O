@@ -40,7 +40,7 @@ export default function useGoogle() {
           },
         }
       );
-      router.push("/newBoard/name");
+      router.push("/newboard/name");
     } else {
       login(
         {
