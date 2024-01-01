@@ -85,6 +85,10 @@ export default function Newboard() {
 
   return (
     <div>
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="lazyOnload"
+      />
       <Logo />
       <OnboardPopup opened={opened} onClose={popupHanders.close} />
       <Canvas progress={configuration?.progress} />
@@ -229,6 +233,7 @@ export const BirthdateAction = () => {
 import { PatternFormat } from "react-number-format";
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
+import Script from "next/script";
 
 export const MobileAction = () => {
   const { setter, storage } = useOnboard();
