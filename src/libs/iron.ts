@@ -24,6 +24,7 @@ export const defaultSession: SessionData = {
     premium: null,
     avatar: "",
     type: "free",
+    setup: false,
   },
 };
 

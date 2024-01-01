@@ -35,6 +35,7 @@ export default function useAuth() {
           avatar: user.avatar,
           jwt,
           premiumType: user.type,
+          setup: user.setup,
         } as any,
         {
           optimisticData: {
@@ -47,6 +48,7 @@ export default function useAuth() {
               premium: user.premium,
               avatar: user.avatar,
               premiumType: user.type,
+              setup: user.setup,
               jwt,
             },
           },

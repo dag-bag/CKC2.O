@@ -9,9 +9,10 @@ import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 const Page = () => {
   const router = useRouter();
   const { session } = useSession();
-  if (session.isLoggedIn) {
-    router.replace("/dashboard");
-  }
+  // if (session.isLoggedIn) {
+  //   router.replace("/dashboard");
+  // }
+  console.log(session);
   return (
     <div className="md:h-screen center font-fun bg-gray-100 ">
       <div className=" rounded-lg grid md:grid-cols-2 bg-white max-w-7xl w-full  mx-auto ">

@@ -24,6 +24,7 @@ export default function useGoogle() {
           premium: data?.user.premium,
           jwt: data?.jwt,
           type: data?.user.type,
+          setup: data.user.setup,
         } as any,
         {
           optimisticData: {
@@ -36,6 +37,7 @@ export default function useGoogle() {
               premium: data?.user.premium,
               jwt: data?.jwt,
               type: data?.user.type,
+              setup: data.user.setup,
             },
           },
         }
@@ -50,6 +52,7 @@ export default function useGoogle() {
           coins: data?.user.coins,
           premium: data?.user.premium,
           jwt: data?.jwt,
+          setup: data.user.setup,
         } as any,
         {
           optimisticData: {
@@ -61,6 +64,7 @@ export default function useGoogle() {
               coins: data?.user.coins,
               premium: data?.user.premium,
               jwt: data?.jwt,
+              setup: data.user.setup,
             },
           },
         }

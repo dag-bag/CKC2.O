@@ -8,6 +8,9 @@ export async function middleware(request: NextRequest) {
   if (!session.isLoggedIn) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
+  if (!session.user.setup) {
+    return NextResponse.redirect(new URL("/newboard/name", request.url));
+  }
 }
 
 // See "Matching Paths" below to learn more
