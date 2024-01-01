@@ -16,6 +16,7 @@ export interface Props {
   difficultyLevel?: "ease" | "medium" | "hard";
   type:
     | "help"
+    | "nac"
     | "video"
     | "comic"
     | "course"
@@ -198,6 +199,7 @@ const Header: React.FC<HeaderProps> = ({
 };
 
 export const generateHref = (type: Props["type"], id: number): string => {
+  if (type === "nac") return `/nac/${id}`;
   if (type === "course") return `/learn/${id}`;
   if (type.includes("live")) return `/live/${id}`;
   if (type === "video") return `/library/video/${id}`;

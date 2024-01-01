@@ -35,7 +35,7 @@ export function numbersStringToOrdinals(numbersString: string): string {
         }
     }
 
-    return numbers.map(numberToOrdinal).join(", ");
+    return numbers?.map(numberToOrdinal).join(", ");
 }
 
 export function convertSecondsToTime(seconds: number): string {

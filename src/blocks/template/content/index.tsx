@@ -5,15 +5,17 @@ import InfoBlock from "./info";
 import Modules from "./modules";
 import Counter from "./counter";
 import Heading from "@/blocks/atoms/Heading";
+import config from "../../../../__config/index";
+import { getSession } from "@/strapi/services/me";
 import TrailerPlayer from "./players/trailer-player";
+import ActivityPreparation from "./modules/activity-prep";
 import { numbersStringToOrdinals } from "@/libs/convertors";
 import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
-import ComicReader from "@/blocks/molecules/comic/ComicReader";
-import ActivityPreparation from "./modules/activity-prep";
-import { getSession } from "@/strapi/services/me";
 import { generateHref } from "@/blocks/molecules/content-card";
-import config from "../../../../__config/index";
+import ComicReader from "@/blocks/molecules/comic/ComicReader";
+
 type ContentType =
+  | "nac"
   | "comic"
   | "video"
   | "course"
@@ -55,7 +57,7 @@ const ContentTemplate: React.FC<Props> = async ({
   const isTypeUpcomingLive = type === "live:upcoming";
   const isUnlocked = price == 0 || getUnlockedStatus(purchases, id);
   const isConditiontoShowVideoPlayer =
-    type === "video" || type.includes("live");
+    type === "video" || type.includes("live") || type === "nac";
 
   return (
     <>

@@ -30,9 +30,9 @@ type UnlockR = {
 
 const useUnlock = ({
   coins,
-  content_id,
-  label,
   type,
+  label,
+  content_id,
 }: VideoPlayerProps): UnlockR => {
   const router = useRouter();
   const [loading, loaderHandler] = useDisclosure(false);
@@ -40,6 +40,7 @@ const useUnlock = ({
 
   const { updateCoins } = useCredits();
   const unlock = async () => {
+    console.log(">> unlocking", { coins, type, label, content_id });
     try {
       loaderHandler.open();
       await axios
