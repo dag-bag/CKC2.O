@@ -1,19 +1,19 @@
 "use client";
+import clsx from "clsx";
 import axios from "axios";
-import RootModal from "./popup-root";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import Button from "../atoms/Button";
+import RootModal from "./popup-root";
 import { Checkbox } from "@mantine/core";
 import { useRouter } from "next/navigation";
-import plan_configuations from "../../../__config/plans";
+import useRazorpay from "@/hooks/useRazorpay";
+import plan_configuations from "@config/plans";
+
 interface Props {
   opened: boolean;
   onClose: () => void;
 }
-
-import { useState } from "react";
-import clsx from "clsx";
-import toast from "react-hot-toast";
-import useRazorpay from "@/hooks/useRazorpay";
 
 const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
   const [isloading, setIsLoading] = useState(false);
@@ -37,6 +37,7 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
       .then(() => {
         setIsLoading(false);
         toast.success("Payment is sucessfull");
+        toast.success(`You have unlocked ${selectedPlanDetails?.title} plan`);
         router.replace("/dashboard");
       });
   };
@@ -129,8 +130,6 @@ const Plan = ({ select, setSelect, title, price, features }: any) => {
             <span>Individual configuration</span>
           </li>
         ))}
-
-        {/* ... (additional features) ... */}
       </ul>
     </button>
   );
