@@ -10,7 +10,7 @@ import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
 import React, { useEffect, useState, useRef } from "react";
 import QuizRewardPopup from "@/blocks/popups/quiz-reward-popup";
-
+import Button from "@/blocks/atoms/Button";
 interface Props {
   result: any;
   RewardConfig: RewardConfig;
@@ -101,15 +101,20 @@ const QuizResultPreviewer = ({
           </div>
         </div>
 
-        <button
+        <Button
           onClick={reloadPage}
+          animation="scale"
           className="w-full py-4 bg-lightblue rounded-xl mt-5 font-semibold text-lg text-white center gap-3"
         >
           Play Again
-        </button>
-        <button className="w-full py-4 bg-gray-100 rounded-xl mt-3 font-semibold text-lg text-slate-800 center gap-3">
+        </Button>
+        <Button
+          onClick={reloadPage}
+          animation="scale"
+          className="w-full py-4 bg-gray-100 rounded-xl mt-3 font-semibold text-lg text-slate-800 center gap-3"
+        >
           Back to Home
-        </button>
+        </Button>
       </div>
     </div>
   );
