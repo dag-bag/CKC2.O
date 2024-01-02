@@ -3,14 +3,12 @@ import clsx from "clsx";
 import Canvas from "./canvas";
 import { data } from "./data";
 import Image from "next/image";
-import { Modal } from "@mantine/core";
+import Button from "@/blocks/atoms/Button";
 import useOnboard from "@/hooks/useOnboard";
 import { useRouter } from "next/navigation";
 import { updateUser } from "@/services/user";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
-import { Free, Premium } from "@/blocks/molecules/cards/plan";
-import Button from "@/blocks/atoms/Button";
 import OnboardPopup from "@/blocks/popups/onboard-popup";
 export default function Newboard() {
   const router = useRouter();
@@ -121,7 +119,12 @@ export default function Newboard() {
 
 const Model = ({ src }: any) => {
   return (
-    <div className="absolute bottom-0 right-0 lg:h-[200px] lg:w-[230px] xl:h-[350px] xl:w-[350px]   w-[170px] h-[150px] ">
+    <div
+      style={{
+        pointerEvents: "none",
+      }}
+      className="absolute bottom-0 right-0 lg:h-[200px] lg:w-[230px] xl:h-[350px] xl:w-[350px] w-[170px] h-[150px]"
+    >
       <Image alt="running" src={src} fill />
     </div>
   );

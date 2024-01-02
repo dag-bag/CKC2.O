@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { type RewardConfig } from ".";
 import { FaCheck } from "react-icons/fa";
 import { FaCoins } from "react-icons/fa6";
+import Button from "@/blocks/atoms/Button";
 import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
@@ -10,7 +11,6 @@ import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../../quiz";
 import React, { useEffect, useState, useRef } from "react";
 import QuizRewardPopup from "@/blocks/popups/quiz-reward-popup";
-import Button from "@/blocks/atoms/Button";
 interface Props {
   result: any;
   RewardConfig: RewardConfig;
