@@ -92,7 +92,7 @@ const QuizResultPreviewer = ({
           </div>
           <div className="bg-gray-100 p-5 rounded-xl grid grid-cols-[2fr_1fr]">
             <div>
-              <p className="text-sm mb-1">Current Score</p>
+              <p className="text-sm mb-1">Score</p>
               <h5 className="text-xl font-semibold">{coins}</h5>
             </div>
             <div className="center text-yellow-600">
