@@ -1,7 +1,7 @@
+import useSession from "./use-session";
 import { getUser } from "@/services/user";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import useSession from "./use-session";
 
 export default function useGoogle() {
   const { login } = useSession();
