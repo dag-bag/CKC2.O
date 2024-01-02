@@ -87,5 +87,3 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
 };
 
 export default PrimaryLayout;
-
-//bg-gradient-to-t to-[#00b3ffcd] from-[#18007ac6]

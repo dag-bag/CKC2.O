@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import MyBalance from "./balance";
 import MobileHeader from "./mobile-header";
 import Profile from "@/blocks/atoms/Profilebar";
@@ -16,6 +17,7 @@ const Header = () => {
             <NACButton />
             <LeaderboardButton />
             <MarketplaceButton />
+            <NotificationButton />
             <MyBalance />
             <Profile />
           </div>
@@ -25,19 +27,20 @@ const Header = () => {
   );
 };
 
-import { RiStoreFill, RiBarChart2Fill } from "react-icons/ri";
-
 const LeaderboardButton = () => {
   return (
     <Link
       href="/leader"
-      className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md"
+      className="center gap-2 font-heading bg-white h-[45px]  rounded-xl p-3 text-md"
     >
-      <RiBarChart2Fill size={20} />
-      {/* Leaderboard */}
+      <Image
+        src={"/assets/leaderboard.png"}
+        alt="leaderboard"
+        width={40}
+        height={40}
+      />
     </Link>
   );
-  ``;
 };
 
 const NACButton = () => {
@@ -51,14 +54,34 @@ const NACButton = () => {
   );
 };
 
+const NotificationButton = () => {
+  return (
+    <Link
+      href="/shop"
+      className="center gap-2 font-heading bg-white h-[45px]  rounded-xl p-3 text-md"
+    >
+      <Image
+        src={"/assets/notification.png"}
+        alt="leaderboard"
+        width={35}
+        height={35}
+      />
+    </Link>
+  );
+};
+
 const MarketplaceButton = () => {
   return (
     <Link
       href="/shop"
-      className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-full text-md"
+      className="center gap-2 font-heading bg-white h-[45px]  rounded-xl p-3 text-md"
     >
-      <RiStoreFill size={20} />
-      {/* Marketplace */}
+      <Image
+        src={"/assets/shop.png"}
+        alt="leaderboard"
+        width={40}
+        height={40}
+      />
     </Link>
   );
 };
