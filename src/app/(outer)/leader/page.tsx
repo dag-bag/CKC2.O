@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-import { Popover, Transition } from "@headlessui/react";
 const LeaderboardData = [
   {
     rank: 1,
@@ -92,24 +90,6 @@ const LeaderboardData = [
     watched_videos: 53,
     readed_comics: 28,
     challanges_completed: 44,
-  },
-];
-
-import { BsChevronDown, BsDot } from "react-icons/bs";
-import { RiGlobalLine } from "react-icons/ri";
-import { MdOutlineCalendarMonth } from "react-icons/md";
-const solutions = [
-  {
-    name: "Leader Legends",
-    description: "Measure actions your users take",
-    href: "##",
-    icon: RiGlobalLine,
-  },
-  {
-    name: "October warrior",
-    description: "Create your own targeted content",
-    href: "##",
-    icon: MdOutlineCalendarMonth,
   },
 ];
 
@@ -235,11 +215,6 @@ const LeaderboardPage = () => {
 };
 export default LeaderboardPage;
 
-import { SlBadge } from "react-icons/sl";
-import { FaStar } from "react-icons/fa";
-import { VscBook } from "react-icons/vsc";
-import { BiSolidVideos } from "react-icons/bi";
-import { GiProgression } from "react-icons/gi";
 import clsx from "clsx";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
@@ -277,7 +252,7 @@ const UserGrid = ({ rank, stars, name }: any) => {
       >
         {rank}
       </div>
-      <div className="bg-white  font-heading grid grid-cols-[100px_150px_200px_3fr] gap-5 rounded-xl items-center px-5 py-2">
+      <div className="bg-white  font-heading grid grid-cols-[100px_200px_3fr] gap-5 rounded-xl items-center px-5 py-2">
         <div className="center flex-col">
           <Image
             src="/avatars/black-man.png"
@@ -292,12 +267,7 @@ const UserGrid = ({ rank, stars, name }: any) => {
           <p className="text-sm text-gray-500">POINTS</p>
           <p className="text-xl font-semibold ">{stars}</p>
         </div>
-        <div className="center flex-col space-y-2">
-          <p className="text-sm text-gray-500">LEVEL</p>
-          <div className="w-[65px] h-[65px] center bg-blue-500 rounded-full bg-[url('/pattern-2.jpg')]  text-white text-2xl drop-shadow-lg">
-            12
-          </div>
-        </div>
+
         <div className="flex items-start flex-col space-y-2">
           <p className="text-sm text-gray-500">RECENT BADGES</p>
           <div className="flex gap-5">

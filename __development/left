@@ -8,4 +8,18 @@
     + placement of NAC button (forgetted) 
     + need to add type for backend purchase for strapi ./
     + problem : purchases of nac content for conditional rendering ./
-    + 
+
++ use given assests where it needs (cant find mail)
+
+
+
++ Leaderboard
+    + Responsiveness
+    + Remove Levels ./
+    + add feild of overall earning in user 
+    + seperate structure for lifetime/monthly/weekly
+
+
+
++ Responsive Text and overall structures
+
