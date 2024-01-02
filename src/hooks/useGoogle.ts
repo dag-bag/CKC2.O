@@ -1,8 +1,6 @@
 import { getUser } from "@/services/user";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Router } from "next/router";
-import React from "react";
 import useSession from "./use-session";
 
 export default function useGoogle() {
@@ -52,7 +50,7 @@ export default function useGoogle() {
           coins: data?.user.coins,
           premium: data?.user.premium,
           jwt: data?.jwt,
-          setup: data.user.setup,
+          setup: data?.user.setup,
         } as any,
         {
           optimisticData: {
@@ -64,7 +62,7 @@ export default function useGoogle() {
               coins: data?.user.coins,
               premium: data?.user.premium,
               jwt: data?.jwt,
-              setup: data.user.setup,
+              setup: data?.user.setup,
             },
           },
         }
