@@ -1,7 +1,8 @@
+import toast from "react-hot-toast";
 import { strapi } from "@/libs/strapi";
+import useSession from "./use-session";
 import { useRouter } from "next/navigation";
 import { StrapiAuthenticationData } from "strapi-sdk-js";
-import useSession from "./use-session";
 
 interface GetAction {
   type: "GOOGLE";
@@ -52,8 +53,9 @@ export default function useAuth() {
       window.location.href = "/dashboard";
       return { user, jwt };
     } catch (error) {
-      console.error("Error during login:", error);
-      alert("Something went wrong. Please try again.");
+      console.log("Error during login:", error);
+      toast.error("Invalid credentials!");
+      setTimeout(() => window.location.reload(), 2000);
     }
   };
 

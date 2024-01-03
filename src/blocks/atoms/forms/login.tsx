@@ -2,11 +2,12 @@
 import React from "react";
 import * as yup from "yup";
 import Link from "next/link";
+import Button from "../Button";
 import useAuth from "@/hooks/useAuth";
+import useSession from "@/hooks/use-session";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordInput, TextInput } from "@mantine/core";
 import { useForm, SubmitHandler } from "react-hook-form";
-import useSession from "@/hooks/use-session";
 
 const schema = yup.object().shape({
   identifier: yup
@@ -26,13 +27,13 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver });
+  const [loading, setLoading] = React.useState(false);
   const { login } = useAuth();
   const session = useSession();
-
   const onSubmit: SubmitHandler<any> = (data) => {
+    setLoading(true);
     login({ type: "CRED", ...data });
   };
-
   // this is a hack to prevent the login page from showing up when the user is already logged in
   if (session.session.isLoggedIn) {
     window.location.href = "/dashboard";
@@ -67,9 +68,9 @@ const Form = () => {
       </div>
 
       <div className="grid md:grid-cols-2 items-center gap-5">
-        <button className="bg-blue-500 py-2.5 font-medium rounded-lg text-lg text-white">
+        <Button loading={loading} animation="scale">
           Login
-        </button>
+        </Button>
         <div>
           <p>
             Not registered yet? <br className="hidden md:block" />
