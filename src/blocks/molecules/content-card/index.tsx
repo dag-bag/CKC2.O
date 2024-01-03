@@ -5,7 +5,7 @@ export interface Props {
   desc?: string;
   tag?: string;
   price?: number;
-  grades?: string[];
+  grades?: string;
   thumbnail: string;
   isPremium?: boolean;
   isLiveNow?: boolean;
@@ -117,7 +117,7 @@ const Grades = ({ grades }: { grades: Props["grades"] }) => {
   return (
     <p className="md:text-sm text-xs text-[#4D4D4D] flex items-center">
       Grade <BsDot />
-      <span className="text-md">{grades}</span>
+      <span className="text-md">{whereToWhere(grades)}</span>
     </p>
   );
 };
@@ -207,4 +207,23 @@ export const generateHref = (type: Props["type"], id: number): string => {
   if (type === "comic") return `/library/comics/${id}`;
   if (type === "challange") return `/challanges/${id}`;
   return "";
+};
+
+const whereToWhere = (grades: Props["grades"]) => {
+  const gradeChar: any = {
+    "1": "1st",
+    "2": "2nd",
+    "3": "3rd",
+    "4": "4th",
+    "5": "5th",
+    "6": "6th",
+    "7": "7th",
+    "8": "8th",
+    "9": "9th",
+    "10": "10th",
+    "11": "11th",
+    "12": "12th",
+  };
+  const where: any = grades?.split(",");
+  return `${gradeChar[where[0]]} - ${gradeChar[where[where.length - 1]]}`;
 };

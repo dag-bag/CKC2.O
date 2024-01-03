@@ -73,4 +73,3 @@ const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
 };
 
 export default QuizPlayer;
-``;

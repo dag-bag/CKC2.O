@@ -26,7 +26,7 @@ const MyBalance = () => {
         <button className="flex items-center gap-2 font-heading">
           <Image width={23} height={23} alt="coin" src={"/assets/coins.png"} />
           <span className="font-semibold">
-            {coins.data.coins.toLocaleString()}
+            {coins?.data?.coins?.toLocaleString()}
           </span>
         </button>
       </div>

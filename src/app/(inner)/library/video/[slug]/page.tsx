@@ -21,7 +21,12 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
-      <Template type="video" data={data} purchases={purchases as any[]} />
+      {JSON.stringify({ purchases })}
+      <Template
+        data={data}
+        type="video"
+        purchases={purchases ?? ([] as any[])} // this needs to fix
+      />
     </div>
   );
 };

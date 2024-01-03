@@ -1,10 +1,10 @@
-interface Question {
+export interface Question {
     text: string,
     imageUrl?: string,
     audioUrl?: string
 }
 
-interface Options {
+export interface Options {
     name: string,
     value: string,
 }

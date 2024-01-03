@@ -9,3 +9,8 @@ export const COMIC_P = ["rewards"];
 export const CHALLANGE_P = ["rewards"];
 
 export const QUIZ_P = ["slides", "slides.action", "slides.question", "reward"];
+
+
+export const QUIZ2_P = ["qlides", "qlides.qtions", "slides.question"];
+
+

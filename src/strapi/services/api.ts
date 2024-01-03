@@ -32,27 +32,7 @@ import {
 } from "../populations";
 import { COMICS_P } from "../populations/comics";
 
-export {
-  Comics,
-  Videos,
-  Courses,
-  Watched,
-  Coins,
-  DiscoveryJarsQuestion,
-  Live,
-  DiscoveryJarsAnswer,
-  Challange,
-  Carousel,
-  HowItWorks,
-  ChallangeReq,
-  DiscoveryJarsConfig,
-  Quiz,
-  Plans,
-  TOP_UP,
-  VIRTUAL_PRODUCTS,
-  PROMOCODES,
-  Nac,
-};
+
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
 };
@@ -62,7 +42,7 @@ const Courses = async (action: Action) => {
 };
 
 const Videos = async (action: Action) => {
-  return fetchData(VIDEOS_ENTITY, action, COURSES_P);
+  return fetchData(VIDEOS_ENTITY, action, ["thumbnail", "qlist"]);
 };
 
 const Watched = async (action: Action) => {
@@ -110,6 +90,10 @@ const Quiz = async (action: Action) => {
   return fetchData(QUIZ_ENTITY, action, QUIZ_P);
 };
 
+const Qlist = async (action: Action) => {
+  return fetchData(QUIZ_ENTITY, action, QUIZ_P);
+};
+
 const Plans = async (action: Action) => {
   return fetchData(PLAN_ENTITY, action);
 };
@@ -128,4 +112,29 @@ const PROMOCODES = async (action: Action) => {
 
 const Nac = async (action: Action) => {
   return fetchData(NAC_ENTITY, action, COURSES_P);
+};
+
+
+
+export {
+  Comics,
+  Videos,
+  Courses,
+  Watched,
+  Coins,
+  DiscoveryJarsQuestion,
+  Live,
+  DiscoveryJarsAnswer,
+  Challange,
+  Carousel,
+  HowItWorks,
+  ChallangeReq,
+  DiscoveryJarsConfig,
+  Quiz,
+  Plans,
+  TOP_UP,
+  VIRTUAL_PRODUCTS,
+  PROMOCODES,
+  Nac,
+  Qlist
 };

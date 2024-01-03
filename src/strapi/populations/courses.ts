@@ -8,3 +8,5 @@ export const COURSES_P = [
   "rewards",
   "quiz",
 ];
+
+
