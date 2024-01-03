@@ -6,6 +6,7 @@ import useAuth from "@/hooks/useAuth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordInput, TextInput } from "@mantine/core";
 import { useForm, SubmitHandler } from "react-hook-form";
+import useSession from "@/hooks/use-session";
 
 const schema = yup.object().shape({
   identifier: yup
@@ -26,9 +27,17 @@ const Form = () => {
     formState: { errors },
   } = useForm({ resolver });
   const { login } = useAuth();
+  const session = useSession();
+
   const onSubmit: SubmitHandler<any> = (data) => {
     login({ type: "CRED", ...data });
   };
+
+  // this is a hack to prevent the login page from showing up when the user is already logged in
+  if (session.session.isLoggedIn) {
+    window.location.href = "/dashboard";
+  }
+
   return (
     <form className="space-y-4 font-heading" onSubmit={handleSubmit(onSubmit)}>
       <TextInput
