@@ -68,8 +68,8 @@ const DiscoveryJarPopup = () => {
         centered
         withCloseButton={false}
       >
-        <div className="w-full h-[517px] grid grid-cols-[1.3fr_1fr] bg-[#00B3FF]  ">
-          <div className="center">
+        <div className="sm:w-full lg:h-[517px] grid sm:grid-cols-[1.3fr_1fr] bg-[#00B3FF]  ">
+          <div className="center sm:flex hidden">
             <Image
               src="/onboard/grade.png"
               width={500}
@@ -77,13 +77,13 @@ const DiscoveryJarPopup = () => {
               alt="user"
             />
           </div>
-          <div>
-            <div className="border-2-- p-5 rounded-[30px] bg-white h-full">
-              <h3 className=" text-center font-amar text-3xl mt-3">
+
+            <div className="border-2 sm:p-5 px-2 py-4 rounded-[30px] w-full bg-white h-full">
+              <h3 className="text-center font-amar sm:text-3xl mt-3">
                 Ask Your Question
               </h3>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="mt-8 relative">
+                <div className="sm:mt-8 mt-4 relative">
                   <Textarea
                     autosize
                     size="lg"
@@ -100,13 +100,13 @@ const DiscoveryJarPopup = () => {
                   </div>
                 </div>
 
-                <div className="w-full h-[120px] border-2 border-gray-300 border-dashed rounded-xl center flex-col mt-5">
+                <div className="w-full sm:h-[120px] h-[50px] border-2 border-gray-300 border-dashed rounded-xl center flex-col mt-5">
                   <p className="text-lg text-gray-400 ">Upload Media</p>
                 </div>
 
                 <Button
                   animation="scale"
-                  className="bg-[#00B3FF] text-white text-xl w-[300px] py-3 rounded-full mt-8 mx-auto block font-amar"
+                  className="bg-[#00B3FF] text-white text-xl sm:w-[300px] py-3 rounded-full mt-8 mx-auto block font-amar"
                   type="submit"
                   disebled={isSubmitting}
                 >
@@ -117,7 +117,7 @@ const DiscoveryJarPopup = () => {
                 Best 5 questions will be answered by experts.
               </p>
             </div>
-          </div>
+
         </div>
       </Modal>
     </>
