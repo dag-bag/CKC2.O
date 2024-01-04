@@ -1,7 +1,8 @@
+import extImage from "@/libs/extImage";
 import { Challange } from "@/strapi/services/api";
+import { getTransactions } from "@/strapi/services/me";
 import Categorizer from "@/blocks/molecules/categorizer";
 import ContentCard from "@/blocks/molecules/content-card";
-import { getTransactions } from "@/strapi/services/me";
 
 const BedgesPage = async () => {
   const [data, purchases] = await Promise.all([
@@ -33,7 +34,7 @@ const BedgesPage = async () => {
                 price: video.price,
                 grades: video.grade,
                 isPremium: video.premium,
-                thumbnail: video.thumbnail,
+                thumbnail: extImage(video.thumbnail),
                 conclusionDate: `${new Date(
                   parseInt(video.start_timestamp) * 1000
                 ).toLocaleDateString()} to  ${new Date(
