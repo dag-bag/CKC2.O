@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import OnboardPopup from "@/blocks/popups/onboard-popup";
 export default function Newboard() {
+  const { login } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const { storage } = useOnboard();
@@ -65,7 +66,32 @@ export default function Newboard() {
   const onboardCompletion = async () => {
     popupHanders.open();
     // api calling goes here - after an successfull response call [69 - line code]
-    await updateUser({ ...storage, setup: true });
+    const data = await updateUser({ ...storage, setup: true });
+    login(
+      {
+        id: data?.id,
+        email: data?.email,
+        username: data?.username,
+        coins: data?.coins,
+        premium: data?.premium,
+        jwt: data?.jwt,
+        setup: true,
+      } as any,
+      {
+        optimisticData: {
+          isLoggedIn: true,
+          user: {
+            id: data?.id,
+            email: data?.email,
+            username: data?.username,
+            coins: data?.coins,
+            premium: data?.premium,
+            jwt: data?.jwt,
+            setup: true,
+          },
+        },
+      }
+    );
   };
 
   // Renders
@@ -237,6 +263,8 @@ import { PatternFormat } from "react-number-format";
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
 import Script from "next/script";
+import useAuth from "@/hooks/useAuth";
+import useSession from "@/hooks/use-session";
 
 export const MobileAction = () => {
   const { setter, storage } = useOnboard();

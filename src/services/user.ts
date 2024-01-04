@@ -20,6 +20,7 @@ const getUser = async (
 
 const updateUser = async (data: any) => {
   const res = await axios.put(`/api/user`, data);
+  console.log(res.data);
   return res.data;
 };
 const daleteUser = async (id: number) => {
