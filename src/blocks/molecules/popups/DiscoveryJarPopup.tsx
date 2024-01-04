@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
-import { useDisclosure } from "@mantine/hooks";
-import { BiUpload } from "react-icons/bi";
-import { Textarea, Modal, FileButton, Button } from "@mantine/core";
-import { CreateQuestion } from "@/services/discovery-jar";
-import useSession from "@/hooks/use-session";
-import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-
+import { useState } from "react";
+import useSession from "@/hooks/use-session";
+import { useDisclosure } from "@mantine/hooks";
+import { Textarea, Modal } from "@mantine/core";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CreateQuestion } from "@/services/discovery-jar";
+import { useForm, SubmitHandler, Resolver } from "react-hook-form";
+import Button from "@/blocks/atoms/Button";
 // Yup schema for form validation
 const schema = yup.object().shape({
   question: yup.string().required("Question is required"),
@@ -51,12 +50,13 @@ const DiscoveryJarPopup = () => {
 
   return (
     <>
-      <button
+      <Button
+        animation="scale"
         onClick={open}
         className="bg-blue-500 text-white text-xl px-20 py-3 rounded-full font-heading mt-4"
       >
         Ask Question
-      </button>
+      </Button>
 
       <Modal
         classNames={{
@@ -104,13 +104,14 @@ const DiscoveryJarPopup = () => {
                   <p className="text-lg text-gray-400 ">Upload Media</p>
                 </div>
 
-                <button
+                <Button
+                  animation="scale"
                   className="bg-[#00B3FF] text-white text-xl w-[300px] py-3 rounded-full mt-8 mx-auto block font-amar"
                   type="submit"
-                  disabled={isSubmitting}
+                  disebled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
+                </Button>
               </form>
               <p className="text-center mt-4">
                 Best 5 questions will be answered by experts.

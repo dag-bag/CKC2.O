@@ -14,7 +14,11 @@ interface Props {
   onClick?: () => void;
   disebled?: boolean;
   animation?: "none" | "scale" | "opacity";
+  // others
+  type?: any;
 }
+
+import {} from "react";
 
 const Button: React.FC<Props> = ({ loading, children, className, ...rest }) => {
   const variantClasses = getVariant(rest.variant ?? "default");
