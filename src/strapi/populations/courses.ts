@@ -7,6 +7,7 @@ export const COURSES_P = [
   "activity_modules.prepration_materials",
   "rewards",
   "quiz",
+  "thumbnail"
 ];
 
 

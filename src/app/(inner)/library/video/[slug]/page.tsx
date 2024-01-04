@@ -21,7 +21,6 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
 
   return (
     <div>
-      {JSON.stringify({ purchases })}
       <Template
         data={data}
         type="video"

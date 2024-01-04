@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import extImage from "@/libs/extImage";
 import { Courses } from "@/strapi/services/api";
 import { HowItWorks } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
@@ -7,7 +8,6 @@ import Carousel from "@/blocks/molecules/grader-carousel";
 import { Carousel as CarouselApi } from "@/strapi/services/api";
 import RecentlyWatched from "@/blocks/molecules/sections/recently-wached";
 import InformationCarousel from "@/blocks/molecules/information-carousel";
-
 const DashboardPage = async () => {
   const [tipsVideos, courses, purchases, carousel_data] = await Promise.all([
     HowItWorks({ type: "GET" }),
@@ -46,7 +46,7 @@ const DashboardPage = async () => {
               price: video.price,
               grades: video.grade,
               isPremium: video.premium,
-              thumbnail: video.thumbnail,
+              thumbnail: extImage(video.thumbnail),
               isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
             }}
           />
@@ -64,7 +64,7 @@ const DashboardPage = async () => {
               slug: video.slug,
               desc: video.desc,
               title: video.title,
-              thumbnail: video.thumbnail,
+              thumbnail: extImage(video.thumbnail),
             }}
           />
         ))}

@@ -1,7 +1,7 @@
-import { Videos, Carousel } from "@/strapi/services/api";
+import { Videos } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
-
+import extImage from "@/libs/extImage";
 const VideosPage = async () => {
   const [data, purchases] = await Promise.all([
     Videos({ type: "GET" }),
@@ -26,7 +26,7 @@ const VideosPage = async () => {
                 price: video.price,
                 grades: video.grade,
                 isPremium: video.premium,
-                thumbnail: test_get_img(video.thumbnail.at(0).url),
+                thumbnail: extImage(video.thumbnail),
                 isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
               }}
             />
@@ -37,7 +37,3 @@ const VideosPage = async () => {
   );
 };
 export default VideosPage;
-
-const test_get_img = (url: string) => {
-  return "https://ckc-strapi-production-33d2.up.railway.app" + url;
-};
