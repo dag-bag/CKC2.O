@@ -3,6 +3,7 @@ import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
 import { Carousel as CarouselApi } from "@/strapi/services/api";
 import InformationCarousel from "@/blocks/molecules/information-carousel";
+import extImage from "@/libs/extImage";
 const VideosPage = async () => {
   const [data, purchases, carousel_data] = await Promise.all([
     Nac({ type: "GET" }),
@@ -38,7 +39,7 @@ const VideosPage = async () => {
                 price: video.price,
                 grades: video.grade,
                 isPremium: video.premium,
-                thumbnail: video.thumbnail,
+                thumbnail: extImage(video.thumbnail),
                 isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
               }}
             />
