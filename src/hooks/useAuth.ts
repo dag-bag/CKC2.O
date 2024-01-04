@@ -25,12 +25,12 @@ export default function useAuth() {
     console.log("Redirecting to Google authentication...");
   };
 
-  const loginWithCred = async (data: StrapiAuthenticationData): Promise<any> => {
+  const loginWithCred = async (
+    data: StrapiAuthenticationData
+  ): Promise<any> => {
     try {
       const { user, jwt } = await strapi.login(data);
-      const {
-        id, email, username, coins, premium, avatar, setup
-      } = user
+      const { id, email, username, coins, premium, avatar, setup } = user;
       const payload_data = {
         id,
         jwt,
@@ -41,21 +41,25 @@ export default function useAuth() {
         premium,
         username,
         premiumType: user.type,
-      }
+      };
 
-      setSession(payload_data as any, {
+      await setSession(payload_data as any, {
         optimisticData: {
           isLoggedIn: true,
           user: payload_data,
         },
+      }).then(() => {
+        toast.success("Successfully logged in!");
+        router.push("/dashboard");
       });
-      console.log("Successfully logged in:", user);
-      window.location.href = "/dashboard";
+      // console.log("Successfully logged in:", user);
+      // router.push("/dashboard");
+      // window.location.href = "/dashboard";
       return { user, jwt };
     } catch (error) {
       console.log("Error during login:", error);
       toast.error("Invalid credentials!");
-      setTimeout(() => window.location.reload(), 2000);
+      // setTimeout(() => window.location.reload(), 2000);
     }
   };
 
