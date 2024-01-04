@@ -11,7 +11,7 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
   return (
     <div>
       <section>
-        <div className="grid grid-cols-[260px_auto] gap-5 h-full">
+        <div className="grid lg:grid-cols-[260px_auto] gap-5 h-full">
           <SettingsNavigation />
           <div>{children}</div>
         </div>
@@ -28,7 +28,7 @@ import { FiChevronRight } from "react-icons/fi";
 const SettingsNavigation = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col gap-2   rounded-xl">
+    <div className="hidden lg:flex flex-col gap-2  rounded-xl">
       {settings_link.map(({ label, path, description }) => (
         <Link
           key={label}

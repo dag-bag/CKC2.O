@@ -7,7 +7,7 @@ import { getProfile } from "@/strapi/services/me";
 const SettingsPage = async () => {
   const data: any = await getProfile();
   return (
-    <div className="pr-5">
+    <div className="lg:pr-5">
       <Card title="General Information">
         <div>
           <SettingIntroduction

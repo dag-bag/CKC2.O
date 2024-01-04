@@ -3,7 +3,7 @@ import React from "react";
 import Card from "@/blocks/UI/Card";
 import { updateUser } from "@/services/user";
 import { Switch } from "@mantine/core";
-
+import Button from "@/blocks/atoms/Button";
 export const NotificationSection = ({
   title,
   description,
@@ -70,13 +70,14 @@ export default function Notifications({ data }: any) {
           defaultValue={notificationPreferences.payment_notification}
         />
 
-        <button
+        <Button
           type="button"
-          className="px-5 py-2 bg-blue-500 rounded-xl text-white font-heading mt-5"
+          animation="scale"
+          className="font-heading mt-5"
           onClick={handleUpdateUser}
         >
           Save Preferences
-        </button>
+        </Button>
       </div>
     </Card>
   );

@@ -1,7 +1,8 @@
 "use client";
-import { updateUser } from "@/services/user";
+import Button from "../Button";
+import toast from "react-hot-toast";
 import React, { useState } from "react";
-
+import { updateUser } from "@/services/user";
 export default function ProfileForm({ data }: any) {
   const [editableData, setEditableData] = useState({
     grade: data.grade,
@@ -19,15 +20,15 @@ export default function ProfileForm({ data }: any) {
   const handleSave = async () => {
     try {
       updateUser(editableData);
-      alert("Data saved successfully!");
+      toast.success("Changes saved sucessfully");
     } catch (error) {
       console.error("Error saving data:", error);
     }
   };
 
   return (
-    <div className="grid grid-cols-1 gap-5">
-      <div className=" grid grid-cols-3 gap-3">
+    <div className="grid gap-5">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-3">
         <Input
           disabled
           value={data.firstname}
@@ -78,14 +79,19 @@ export default function ProfileForm({ data }: any) {
           type="text"
           onChange={(value: any) => handleInputChange("bio", value)}
         />
-        <button
+      </div>
+
+      <div>
+        <Button
+          animation="scale"
           type="button"
           onClick={handleSave}
-          className="px-5  bg-blue-500 rounded-xl text-white font-heading mt-7"
+          className="font-heading min-w-[200px]"
         >
-          Save
-        </button>
+          Save Changes
+        </Button>
       </div>
+
       <p className="text-sm text-gray-600">
         Customizing your avatars and banners is a breeze in the
         <b className="underline px-1 font-medium">Profile&apos;s Vault</b>{" "}
