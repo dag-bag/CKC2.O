@@ -95,7 +95,7 @@ const LeaderboardData = [
 
 const Toggler = () => {
   return (
-    <div className="w-full flex justify-center py-5 ">
+    <div className="w-full flex justify-center py-5">
       <div className="grid grid-cols-3 gap-2 w-[600px] px-2 py-2 border rounded-full">
         {["lifetime", "monthly", "weekly"].map((t) => (
           <button
@@ -115,17 +115,18 @@ const Toggler = () => {
 
 const Winners = () => {
   return (
-    <div className=" flex justify-center mt-10">
-      <div className="flex gap-10 items-end">
+    <div className="flex justify-center mt-10">
+      <div className="flex sm:gap-10 gap-3 items-end">
         <section>
           <Image
             src="/avatars/asian-man.png"
             alt="user"
             width={130}
             height={130}
-            className="rounded-full"
+            className="rounded-full sm:w-32 sm:h-32 w-20 h-auto"
           />
-          <p className="text-center text-white font-heading text-md mt-2">
+
+          <p className="text-center text-white font-heading sm:text-md text-sm whitespace-nowrap mt-2">
             Balli Kumar
           </p>
         </section>
@@ -135,16 +136,16 @@ const Winners = () => {
             alt="user"
             width={180}
             height={180}
-            className="rounded-full border-[5px] border-darkgold"
+            className="rounded-full sm:w-40 w-32 sm:h-40 h-auto border-[5px] border-darkgold"
           />
-          <Image
+          {/* <Image
             src="/leader.png"
             alt="user"
             width={100}
             height={100}
             className=" absolute right-0 top-[110px] animate-bounce"
-          />
-          <p className="text-center text-white font-heading text-2xl mt-2">
+          /> */}
+          <p className="text-center whitespace-nowrap text-white font-heading sm:text-2xl mt-2">
             Punjabi Singh
           </p>
         </section>
@@ -154,9 +155,10 @@ const Winners = () => {
             alt="user"
             width={130}
             height={130}
-            className="rounded-full"
+            className="rounded-full sm:w-32 sm:h-32 w-20 h-auto"
           />
-          <p className="text-center text-white font-heading text-md mt-2">
+
+          <p className="text-center text-white font-heading sm:text-md text-sm whitespace-nowrap mt-2">
             Kumar Rawat
           </p>
         </section>
@@ -179,7 +181,7 @@ const LeaderboardPage = () => {
       {JSON.stringify(data)}
       <div
         id="header"
-        className="bg-black/30  pt-5 pb-20 rounded-xl flex flex-col "
+        className="bg-black/30 px-3 pt-5 pb-20 rounded-xl flex flex-col "
       >
         <Toggler />
         <Winners />
@@ -197,7 +199,7 @@ const LeaderboardPage = () => {
         <UserGrid rank={10} />
       </div>
 
-      <div className="mt-10 flex flex-col gap-10 max-w-[1000px] mx-auto">
+      <div className="mt-10 flex flex-col lg:gap-10 gap-7 max-w-[1000px] mx-auto">
         <h3
           style={{
             textShadow: "2px 2px 2px #18007ac6",
@@ -248,37 +250,42 @@ const UserGrid = ({ rank, stars, name }: any) => {
     <div className="relative">
       <div
         id="rank"
-        className="font-heading w-[50px] h-[50px] bg-blue-800 rounded-full border-2 center text-white text-2xl absolute -top-[25px] -left-[25px]"
+        className="font-heading lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] bg-blue-800 rounded-full border-2 center text-white text-2xl absolute lg:-top-[25px] -top-[20px] lg:-left-[25px] -left-[12px]"
       >
         {rank}
       </div>
-      <div className="bg-white  font-heading grid grid-cols-[100px_200px_3fr] gap-5 rounded-xl items-center px-5 py-2">
+      <div className="bg-white font-heading grid grid-cols-[100px_200px_3fr] gap-5 rounded-xl items-center sm:px-5  py-2">
         <div className="center flex-col">
           <Image
             src="/avatars/black-man.png"
             alt="user"
-            width={80}
             height={80}
+            width={80}
             className="rounded-full border-2"
           />
           <p className="text-sm text-center text-gray-600 mt-2">{name}</p>
         </div>
-        <div className="center flex-col space-y-2">
-          <p className="text-sm text-gray-500">POINTS</p>
-          <p className="text-xl font-semibold ">{stars}</p>
-        </div>
 
-        <div className="flex items-start flex-col space-y-2">
-          <p className="text-sm text-gray-500">RECENT BADGES</p>
-          <div className="flex gap-5">
-            <div className="w-[65px] h-[65px] center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
-              a
-            </div>
-            <div className="w-[65px] h-[65px] center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
-              b
-            </div>
-            <div className="w-[65px] h-[65px] center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
-              c
+        <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-52 sm:px-24">
+          <div className="center items-start flex-col lg:space-y-2">
+            <p className="sm:text-sm text-xs text-gray-500">POINTS</p>
+            <p className="sm:text-xl font-semibold ">{stars}</p>
+          </div>
+
+          <div className="flex items-start flex-col space-y-2 mt-1">
+            <p className="sm:text-sm text-xs whitespace-nowrap text-center text-gray-500">
+              RECENT BADGES
+            </p>
+            <div className="flex sm:gap-5 gap-2">
+              <div className="sm:w-[65px] sm:h-[65px] w-[45px] h-[45px] center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
+                a
+              </div>
+              <div className="sm:w-[65px] sm:h-[65px] w-[45px] h-[45px]  center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
+                b
+              </div>
+              <div className="sm:w-[65px] sm:h-[65px] w-[45px] h-[45px]  center bg-[url('/red.png')] bg-center bg-cover rounded-full text-2xl capitalize text-white">
+                c
+              </div>
             </div>
           </div>
         </div>

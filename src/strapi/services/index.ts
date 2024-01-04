@@ -47,8 +47,8 @@ const fetchData = async <T>(
         return [];
     }
   } catch (error) {
-    console.error(`Error fetching ${entity.toLowerCase()}s:`, error);
-    throw new Error("Something Went Wrong");
+    // console.error(`Error fetching ${entity.toLowerCase()}s:`, error);
+    // throw new Error("Something Went Wrong");
   }
 };
 
