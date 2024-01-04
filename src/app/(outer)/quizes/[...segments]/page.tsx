@@ -3,6 +3,7 @@ import { Quiz } from "@/strapi/services/api";
 import QuizPlayer from "@/blocks/molecules/quiz";
 import { c_user_reward } from "@/strapi/services/custom";
 import { getSession, getTransactions } from "@/strapi/services/me";
+import { quizParser } from "../../../../libs/qlist";
 
 interface Props {
   params: {
@@ -32,7 +33,7 @@ const Page: React.FC<Props> = async ({ params: { segments } }) => {
           totalCoins: data.reward?.value,
           totalRewardedPoints: calculateTotalCoins(history as any),
         }}
-        meta={data}
+        meta={quizParser(data)}
         isLocked={locked}
       />
     </div>
