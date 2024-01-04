@@ -1,6 +1,7 @@
 import { Comics } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
+import extImage from "@/libs/extImage";
 
 export default async function page() {
   const [data, purchases] = await Promise.all([
@@ -24,7 +25,7 @@ export default async function page() {
               price: video.price,
               grades: video.grade,
               isPremium: video.premium,
-              thumbnail: video.thumbnail,
+              thumbnail: extImage(video.thumbnail),
               isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
             }}
           />

@@ -1,3 +1,4 @@
+import extImage from "@/libs/extImage";
 import { Live } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import Categorizer from "@/blocks/molecules/categorizer";
@@ -41,7 +42,7 @@ const DashboardPage = async () => {
                     price: video.price,
                     type: "current:live",
                     isPremium: video.premium,
-                    thumbnail: video.thumbnail,
+                    thumbnail: extImage(video.thumbnail),
                     grades: video.grade as any,
                     isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
                   }}
@@ -70,7 +71,7 @@ const DashboardPage = async () => {
                     price: video.price,
                     type: "upcoming:live",
                     isPremium: video.premium,
-                    thumbnail: video.thumbnail,
+                    thumbnail: extImage(video.thumbnail),
                     grades: video.grade as any,
                     scheduledDateAndTime: formatTimestamp(
                       video.start_timestamp as number
@@ -103,7 +104,7 @@ const DashboardPage = async () => {
                     price: video.price,
                     type: "recorded:live",
                     isPremium: video.premium,
-                    thumbnail: video.thumbnail,
+                    thumbnail: extImage(video.thumbnail),
                     grades: video.grade as any,
                     isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
                   }}
