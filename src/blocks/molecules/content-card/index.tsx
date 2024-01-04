@@ -206,6 +206,7 @@ export const generateHref = (type: Props["type"], id: number): string => {
   if (type === "help") return `/dashboard/tips/${id}`;
   if (type === "comic") return `/library/comics/${id}`;
   if (type === "challange") return `/challanges/${id}`;
+  if (type === "discover") return `/discovery-bag/${id}`;
   return "";
 };
 
