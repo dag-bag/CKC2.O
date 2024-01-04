@@ -2,6 +2,7 @@ import Categorizer from "@/blocks/molecules/categorizer";
 import ContentCard from "@/blocks/molecules/content-card";
 import { DiscoveryJarsConfig } from "@/strapi/services/api";
 import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
+import extImage from "@/libs/extImage";
 
 const DiscoveryJarPage = async () => {
   const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -52,7 +53,7 @@ const DiscoveryJarPage = async () => {
                     title: video.title,
                     price: video.price,
                     isPremium: video.premium,
-                    thumbnail: video.thumbnail,
+                    thumbnail: extImage(video.thumbnail),
                     isUnlocked: false,
                   }}
                 />
