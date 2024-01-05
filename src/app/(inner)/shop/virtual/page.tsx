@@ -1,8 +1,8 @@
+import extImage from "@/libs/extImage";
+import { strapi } from "@/libs/strapi";
+import { getSession } from "@/strapi/services/me";
 import Categorizer from "@/blocks/molecules/categorizer";
 import { VIRTUAL_PRODUCTS } from "@/strapi/services/api";
-import { getSession } from "@/strapi/services/me";
-import { strapi } from "@/libs/strapi";
-import extImage from "@/libs/extImage";
 import VirtualProduct from "@/blocks/molecules/cards/VirtualProducts";
 
 const VirtualShopPage = async () => {
@@ -15,7 +15,7 @@ const VirtualShopPage = async () => {
   return (
     <div>
       <Categorizer title="Avatars">
-        <div className="flex gap-4 flex-wrap  p-5">
+        <div className="grid 2xl:grid-cols-5 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 gap-5">
           {avatars.map((avt: any) => (
             <VirtualProduct
               id={avt.id}
@@ -32,7 +32,7 @@ const VirtualShopPage = async () => {
 
       <br />
       <Categorizer title="Banners">
-        <div className="flex gap-4 flex-wrap  p-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 flex-wrap ">
           {banners.map((avt: any) => (
             <VirtualProduct
               id={avt.id}
