@@ -3,18 +3,24 @@ import Image from "next/image";
 import RootModal from "./popup-root";
 import useCoins from "@/hooks/useCoins";
 import { Loader } from "@mantine/core";
-import useUnlock from "@/hooks/useUnlock";
 import Button from "../atoms/Button";
 import { useRouter } from "next/navigation";
 import useVirtual from "@/hooks/useVirtual";
 interface Props {
+  image: string;
   type: string;
   coins: number;
   title: string;
   contentId: number;
 }
 
-const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
+const UnlockPopup: React.FC<Props> = ({
+  type,
+  coins,
+  title,
+  contentId,
+  image,
+}) => {
   const { data }: any = useCoins();
   const isBalanceIsNotSufficient = parseInt(data?.data?.coins) < coins;
   const { loading, unlock, open, opened, close } = useVirtual({
@@ -24,30 +30,26 @@ const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
     type: type.includes("live") ? "live" : type,
   });
 
-  const router = useRouter();
-
-  const handleBuyCredits = () => {
-    router.push("/purchases");
-  };
-  const handleChangeSubscription = () => {
-    router.push("/purchases/subscriptions");
-  };
-
   return (
     <div className="popup-container">
-      <Button onClick={open} animation="scale" className="w-full">
+      <Button
+        onClick={open}
+        animation="scale"
+        className="w-full !rounded-none font-heading"
+      >
         Unlock
       </Button>
 
       <RootModal centered onClose={close} opened={opened}>
         {!isBalanceIsNotSufficient ? (
           <>
+            <p className="uppercase center text-sm">{type}</p>
             <h1 className="text-center text-2xl font-amar">{title}</h1>
             <div className="center my-3">
               <Image
                 alt="price"
-                src="/gallary.jpg"
-                className="rounded-md"
+                src={image}
+                className="rounded"
                 width={200}
                 height={200}
               />
@@ -57,16 +59,12 @@ const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
               <Button
                 onClick={unlock}
                 animation="scale"
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 w-[230px] !px-0 capitalize tracking-wide center gap-1"
+                className="font-heading w-[230px] !px-0 capitalize tracking-wide center gap-1 center"
               >
                 {loading ? (
                   <Loader color="white" size={"xs"} />
                 ) : (
-                  <>
-                    <b>Unlock</b>
-                    <span className="text-sm">using</span>
-                    <b>{coins} CRDs</b>
-                  </>
+                  <>Unlock {coins} Coins</>
                 )}
               </Button>
             </div>
@@ -74,34 +72,9 @@ const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
         ) : (
           <>
             <h1 className="text-center text-2xl font-amar">
-              Your Balance is Insufficient
+              You dont have enough coins
             </h1>
-            <div className="center my-3">
-              <Image
-                alt="price"
-                className="rounded-md"
-                src="/coin.png"
-                width={200}
-                height={200}
-              />
-            </div>
-
-            <div className="center mt-6 flex-col gap-2">
-              <Button
-                animation="scale"
-                onClick={handleBuyCredits}
-                className="bg-lightblue w-[250px] h-[45px] rounded-full text-white center"
-              >
-                Buy Credits
-              </Button>
-              <Button
-                animation="scale"
-                onClick={handleChangeSubscription}
-                className="border border-darkblue w-[250px] h-[45px] rounded-full text-darkblue center !bg-transparent"
-              >
-                Upgrade Plan
-              </Button>
-            </div>
+            <p className="text-center">Start doing activity and earn coins</p>
           </>
         )}
       </RootModal>

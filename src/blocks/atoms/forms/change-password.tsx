@@ -83,7 +83,7 @@ export default function ChangePassword() {
 
   return (
     <form id="password" onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-3">
         <Input
           label="Current Password"
           placeholder="Current Password"
