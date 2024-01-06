@@ -14,7 +14,7 @@ const profile_links = [
 const Navigation = () => {
   const pathname = usePathname();
   return (
-    <div className="mt-5 overflow-scroll">
+    <div className="mt-5 overflow-scroll md:overflow-hidden">
       <div className="flex gap-5  bg-gray-100 rounded-full p-2 w-[900px]">
         {profile_links.map(({ label, href }) => (
           <Link
