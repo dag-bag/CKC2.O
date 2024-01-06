@@ -1,17 +1,19 @@
 "use client";
-
-import useSession from "@/hooks/use-session";
 import Image from "next/image";
-
+import toast from "react-hot-toast";
+import { updateUser } from "@/services/user";
 interface Props {
   images: string;
   title: string;
 }
 
 const BannerBlock: React.FC<Props> = ({ title, images }) => {
-  const session = useSession();
   const handleClickEvent = () => {
-    console.log("change avatar");
+    toast.promise(updateUser({ banner: images }), {
+      loading: "Changing Banner",
+      success: "Banner Sucessfully Changed!",
+      error: "Error",
+    });
   };
   return (
     <div onClick={handleClickEvent} className="border">

@@ -1,8 +1,7 @@
 "use client";
-
-import useSession from "@/hooks/use-session";
-import { updateUser } from "@/services/user";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { updateUser } from "@/services/user";
 
 interface Props {
   images: string;
@@ -10,11 +9,12 @@ interface Props {
 }
 
 const AvatarBlock: React.FC<Props> = ({ title, images }) => {
-  const session = useSession();
-  console.log(session);
   const handleClickEvent = async () => {
-    await updateUser({ avatar: images });
-    console.log("change avatar");
+    toast.promise(updateUser({ avatar: images }), {
+      loading: "Changing Avatar",
+      success: "Avatar Sucessfully Changed!",
+      error: "Error",
+    });
   };
   return (
     <div onClick={handleClickEvent} className="border">
