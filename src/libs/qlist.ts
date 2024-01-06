@@ -1,12 +1,12 @@
-import type TypeQlist from "@/app/(outer)/qlist/type";
 import { Slide, Action, Quiz } from "../../quiz";
-
+import type TypeQlist from "@/app/(outer)/qlist/type";
 
 const answerFormentConvertor = (
     answer: string,
     options: { name: string; value: string }[],
     type: "textinput" | "select" | "multiselect" | "order" | "boolean"
 ) => {
+    console.log(answer)
     if (type == "textinput") return answer;
     if (type == "select") return options[parseInt(answer) - 1]?.value;
     if (type == "multiselect")
@@ -53,6 +53,7 @@ export const quizParser = (qlist: TypeQlist): Quiz => {
                 qlide.type as any
             ) as any,
 
+
             // question
 
             question: {
@@ -69,8 +70,20 @@ export const quizParser = (qlist: TypeQlist): Quiz => {
     });
 
     return {
-        slides,
+        slides: randomizeArrayOrder(slides).slice(0, qlist.visible),
         title: qlist.title,
         id: qlist.id.toString(),
+        visible: qlist.visible
     };
 };
+
+
+function randomizeArrayOrder(array: any) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // Swap array[i] and array[j]
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
