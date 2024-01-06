@@ -18,7 +18,6 @@ const AvatarBlock: React.FC<Props> = ({ title, images }) => {
   };
   return (
     <div onClick={handleClickEvent} className="border">
-      {JSON.stringify(session.session)}
       <div className="relative aspect-w-4 aspect-h-4">
         <Image fill alt={title} src={images} />
       </div>
