@@ -6,6 +6,7 @@ import { Loader } from "@mantine/core";
 import useUnlock from "@/hooks/useUnlock";
 import Button from "../atoms/Button";
 import { useRouter } from "next/navigation";
+import useCredits from "@/hooks/useCredits";
 interface Props {
   type: string;
   coins: number;
@@ -14,8 +15,8 @@ interface Props {
 }
 
 const UnlockPopup: React.FC<Props> = ({ type, coins, title, contentId }) => {
-  const { data }: any = useCoins();
-  const isBalanceIsNotSufficient = parseInt(data?.data?.coins) < coins;
+  const { data }: any = useCredits();
+  const isBalanceIsNotSufficient = parseInt(data?.data?.credits) < coins;
   const { loading, unlock, open, opened, close } = useUnlock({
     label: title,
     coins: coins,
