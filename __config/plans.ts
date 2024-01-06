@@ -13,6 +13,7 @@ const plan_configuations = [
         credits: 0,
         duration: 0,
         type: "free"
+
     },
     {
         id: 2,

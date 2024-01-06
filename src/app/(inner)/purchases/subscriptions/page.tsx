@@ -1,14 +1,16 @@
-import SubscriptionPlan from "@/blocks/molecules/cards/SubscriptionPlan";
-import { Plans } from "@/strapi/services/api";
-
+import plan_configuations from "@config/plans";
+import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
 const PurchasesPage = async () => {
-  const data = await Plans({ type: "GET" });
+  const currentplan = "free";
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {data.map((d: any, index: number) => (
-          <SubscriptionPlan key={index} d={d} />
-        ))}
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
+        {plan_configuations.map((plan) => {
+          const selected = currentplan == plan.title;
+          return (
+            <NewSubscriptionPlan key={plan.id} selected={selected} {...plan} />
+          );
+        })}
       </div>
     </div>
   );

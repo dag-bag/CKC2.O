@@ -5,18 +5,18 @@ import useRazorpay from "@/hooks/useRazorpay";
 import CoupanPopup from "@/blocks/popups/coupan-popup";
 import toast from "react-hot-toast";
 const SubscriptionPlan = ({ d }: any) => {
-  const buyPremium = async () => {
-    const data = await axios
-      .post("/api/user/unlock/premium", {
-        plan: 1,
-        title: d.title,
-        days: parseInt(d.duration_days),
-        type: "premium",
-        credits: 225,
-      })
-      .then(() => toast.success("Payment is sucessfull"));
-  };
-  const { handlePayment } = useRazorpay(buyPremium, parseInt(d.price));
+  // const buyPremium = async () => {
+  //   const data = await axios
+  //     .post("/api/user/unlock/premium", {
+  //       plan: 1,
+  //       title: d.title,
+  //       days: parseInt(d.duration_days),
+  //       type: "premium",
+  //       credits: 225,
+  //     })
+  //     .then(() => toast.success("Payment is sucessfull"));
+  // };
+  // const { handlePayment } = useRazorpay(buyPremium, parseInt(d.price));
 
   return (
     <div className="bg-white rounded-md overflow-hidden flex flex-col  pb-5 font-heading">
@@ -41,7 +41,7 @@ const SubscriptionPlan = ({ d }: any) => {
 
       <div className="center mt-5">
         <CoupanPopup
-          onPay={handlePayment}
+          // onPay={handlePayment}
           title="Unlock Premium"
           price={d.price}
         />
