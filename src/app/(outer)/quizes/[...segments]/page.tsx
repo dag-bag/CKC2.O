@@ -65,10 +65,3 @@ function calculateTotalCoins(rewardEntries: any[]): number {
     return totalCoins + parseInt(entry.coins, 10);
   }, 0);
 }
-
-export const generateMetadata = () => {
-  return {
-    title: "deepak",
-    description: "this is page is existed",
-  };
-};
