@@ -1,6 +1,6 @@
 import { Slide, Action, Quiz } from "../../quiz";
 import type TypeQlist from "@/app/(outer)/qlist/type";
-
+import extImage from "./extImage";
 const answerFormentConvertor = (
     answer: string,
     options: { name: string; value: string }[],
@@ -59,7 +59,7 @@ export const quizParser = (qlist: TypeQlist): Quiz => {
             question: {
                 text: qlide.question,
                 imageUrl: qlide.image
-                    ? getImage(qlide.image.formats.large.url)
+                    ? getImage(qlide.image.url)
                     : undefined,
                 audioUrl: "",
             },

@@ -26,10 +26,10 @@ const Main = ({
     <>
       {action.type == "select" && (
         <Select
-          wrongAnswerAlert={wrongAnswerAlert}
-          isLastQuestion={isLastQuestion}
           answer={answer}
           action={action}
+          isLastQuestion={isLastQuestion}
+          wrongAnswerAlert={wrongAnswerAlert}
         />
       )}
       {action.type == "multiselect" && (

@@ -16,7 +16,7 @@ const QuizHeader = ({
               <img
                 alt="image-map"
                 src={imageUrl}
-                className="rounded-xl xl:max-w-[400px] md:max-w-[200px] h-[150px] xl:h-[300px]"
+                className="rounded-xl xl:max-w-[400px] md:max-w-[200px] h-[150px] xl:h-[300px] border-2"
               />
             )}
           </section>
