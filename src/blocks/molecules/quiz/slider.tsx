@@ -1,8 +1,8 @@
 import Main from "./main";
 import { useState } from "react";
 import QuizHeader from "./header";
+import { RewardConfig } from ".";
 import { Modal } from "@mantine/core";
-import { type RewardConfig } from ".";
 import { Quiz } from "../../../../quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
@@ -56,12 +56,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
     >
       {!isAllQuestionAttemped ? (
         <>
-          <div
-            // style={{
-            //   backgroundImage: "url('/bg-123.jpg')",
-            // }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200 "
-          >
+          <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-200 ">
             <div className="w-full h-full bg-black/40--- grid grid-rows-2 gap-5 p-3 ">
               <Modal
                 classNames={{
@@ -110,7 +105,7 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
                 isLastQuestion={isLastQuestion}
                 attempedQuestions={slideIndex + 1}
                 actionType={slideInfo?.action.type}
-                totalQuestions={totalNumberOfQuestions}
+                totalQuestions={meta.visible}
               />
             </div>
           </div>
@@ -203,7 +198,7 @@ const Footer = ({
           {attempedQuestions}/{totalQuestions}
         </p>
         <QuizAudioPlayer />
-        {duration !== 0 && (
+        {duration !== 0 && duration !== null && (
           <Timer timeout={handleTimeoutSkip} duration={duration} />
         )}
       </div>
