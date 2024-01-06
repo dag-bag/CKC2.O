@@ -53,7 +53,7 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
 
   return (
     <div className="popup-container">
-      <RootModal size={"xl"} centered onClose={onClose} opened={opened}>
+      <RootModal size={"2xl"} centered onClose={onClose} opened={opened}>
         <div>
           <h1 className="text-center text-2xl font-amar  mb-5 leading-10">
             <b className="text-4xl">Congratulation! </b> <br />
@@ -80,6 +80,7 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
                   : handlePayment
               }
               animation="scale"
+              className="min-w-[250px]"
             >
               Next
             </Button>
@@ -127,7 +128,7 @@ const Plan = ({ select, setSelect, title, price, features }: any) => {
                 clipRule="evenodd"
               />
             </svg>
-            <span>Individual configuration</span>
+            <span>{feature}</span>
           </li>
         ))}
       </ul>
