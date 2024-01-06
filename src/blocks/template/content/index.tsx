@@ -2,8 +2,9 @@ import clsx from "clsx";
 import Quiz from "./quiz";
 import Image from "next/image";
 import InfoBlock from "./info";
-import Modules from "./modules";
 import Counter from "./counter";
+import Modules from "./modules";
+import extImage from "@/libs/extImage";
 import Heading from "@/blocks/atoms/Heading";
 import config from "../../../../__config/index";
 import { getSession } from "@/strapi/services/me";
@@ -34,7 +35,6 @@ interface Props {
 const ContentTemplate: React.FC<Props> = async ({
   type,
   data,
-  watched,
   purchases,
   achievements,
 }) => {
@@ -51,6 +51,7 @@ const ContentTemplate: React.FC<Props> = async ({
     duration,
   } = data;
   const session = await getSession();
+  const thumbnailUrl = extImage(thumbnail);
   const isTypeComic = type === "comic";
   const isTypeCourse = type === "course";
   const shareableURL = config.domain + generateHref(type as any, id);
@@ -87,8 +88,8 @@ const ContentTemplate: React.FC<Props> = async ({
                 title,
                 price,
                 mediaUrl,
-                thumbnail,
                 isUnlocked,
+                thumbnail: thumbnailUrl,
               }}
             />
           )}
@@ -99,7 +100,7 @@ const ContentTemplate: React.FC<Props> = async ({
               {...{
                 title,
                 price,
-                thumbnail,
+                thumbnail: thumbnailUrl,
                 trailerUrl: data.trailer,
               }}
             />
@@ -109,7 +110,7 @@ const ContentTemplate: React.FC<Props> = async ({
           {isTypeComic && (
             <div>
               <div className="relative aspect-w-5 aspect-h-7">
-                <Image src={thumbnail} alt={title} fill />
+                <Image src={thumbnailUrl} alt={title} fill />
               </div>
             </div>
           )}
