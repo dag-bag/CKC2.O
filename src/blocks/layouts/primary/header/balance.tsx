@@ -35,28 +35,35 @@ const MyBalance = () => {
 };
 
 export const MobileMyBalance = () => {
-  const { session, isLoading } = useSession();
-  if (isLoading) return <Loading />;
+  const {
+    data: { isLoading, data },
+  } = useCredits();
+  const { data: coins } = useCoins();
+  if (isLoading || coins.isLoading) return <Loading />;
   return (
     <Link
       href="/purchases"
-      className="h-[45px]  flex items-center rounded-full px-5 bg-gray-50 "
+      className="h-[45px]  flex items-center rounded-full px-5 bg-slate-200 "
     >
-      <div className="flex gap-4 text-sm ">
-        <button className="flex items-center gap-1 font-josefin">
-          <Image width={25} height={25} alt="coin" src={"/coin3.png"} />
-          <span className="mt-1 font-semibold">{session.user.coins}</span>
+      <div className="flex gap-4 text-md">
+        <button className="flex items-center gap-2 font-josefin">
+          <Image width={25} height={25} alt="coin" src={"/assets/credit.png"} />
+          <span className="mt-1 font-semibold">
+            {parseInt(data?.credits).toLocaleString()}
+          </span>
         </button>
 
-        <button className="flex items-center gap-1 font-josefin ">
+        <button className="flex items-center gap-2 font-josefin ">
           <Image
-            width={20}
-            height={20}
+            width={25}
+            height={25}
             alt="coin"
-            src={"/diamond.png"}
+            src={"/assets/coins.png"}
             className=" -rotate-12"
           />
-          <span className="mt-1 font-semibold">1,000</span>
+          <span className="mt-1 font-semibold">
+            {parseInt(coins?.data?.coins).toLocaleString()}
+          </span>
         </button>
       </div>
     </Link>
