@@ -1,6 +1,7 @@
 "use client";
 
 import useSession from "@/hooks/use-session";
+import { updateUser } from "@/services/user";
 import Image from "next/image";
 
 interface Props {
@@ -10,7 +11,9 @@ interface Props {
 
 const AvatarBlock: React.FC<Props> = ({ title, images }) => {
   const session = useSession();
-  const handleClickEvent = () => {
+  console.log(session);
+  const handleClickEvent = async () => {
+    await updateUser({ avatar: images });
     console.log("change avatar");
   };
   return (

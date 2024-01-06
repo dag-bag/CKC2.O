@@ -7,13 +7,13 @@ import { strapi } from "@/libs/strapi";
 
 export async function PUT(request: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-  const data = (await request.json()) as {
-    id: number;
-    username: string;
-    email: string;
-  };
+  const data = (await request.json()) as any;
   console.log("🚀 ~ file: route.ts:11 ~ data ~ data:", data);
   const user = await updateUser(data, session.user.id);
+  // if (data.avatar) {
+  //   session.user.avatar = data.avatar;
+  //   session.save();
+  // }
 
   return Response.json(user);
 }
