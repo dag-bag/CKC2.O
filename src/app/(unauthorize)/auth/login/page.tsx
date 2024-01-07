@@ -16,8 +16,8 @@ const LoginPage = () => {
         <div className="bg-blue-100 rounded-lg center hidden md:flex">
           <Image
             width={500}
-            alt="deepak"
             height={500}
+            alt="cosmic-kids-club"
             src={"/onboard/registration.png"}
           />
         </div>
