@@ -157,9 +157,9 @@ const Plans = () => {
           Unlimited access on any device. Cancel anytime.
         </p>
         <div className="grid grid-cols-3 gap-5">
-          {plan_configuations.map((plan) => {
+          {/* {plan_configuations.map((plan) => {
             return <NewSubscriptionPlan key={plan.id} {...plan} />;
-          })}
+          })} */}
         </div>
       </div>
     </div>
