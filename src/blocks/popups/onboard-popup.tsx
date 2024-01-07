@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Button from "../atoms/Button";
 import RootModal from "./popup-root";
+import Heading from "../atoms/Heading";
 import { Checkbox } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import useRazorpay from "@/hooks/useRazorpay";
@@ -16,8 +17,8 @@ interface Props {
 }
 
 const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
-  const [isloading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [isloading, setIsLoading] = useState(false);
   const [select, setSelect] = useState<"free" | "basic" | "premium">("basic");
 
   const selectedPlanDetails = plan_configuations.find(
@@ -38,12 +39,12 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
         setIsLoading(false);
         toast.success("Payment is sucessfull");
         toast.success(`You have unlocked ${selectedPlanDetails?.title} plan`);
-        router.replace("/dashboard");
+        window.location.replace("/dashboard");
       });
   };
 
   const goWithFreePlan = async () => {
-    return router.replace("/dashboard");
+    return window.location.replace("/dashboard");
   };
 
   const { handlePayment } = useRazorpay(
@@ -53,12 +54,15 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
 
   return (
     <div className="popup-container">
-      <RootModal size={"xl"} centered onClose={onClose} opened={opened}>
+      <RootModal size={"2xl"} centered onClose={onClose} opened={opened}>
         <div>
-          <h1 className="text-center text-2xl font-amar  mb-5 leading-10">
-            <b className="text-4xl">Congratulation! </b> <br />
-            Your Account is Live! Pick Your Plan Below
-          </h1>
+          <Heading
+            size="medium"
+            className="text-center text-2xl font-amar mb-5 leading-10"
+          >
+            <b> Congratulation! </b>
+            <br /> Your Account is Live
+          </Heading>
           <div className="grid md:grid-cols-3 gap-5">
             {plan_configuations.map((plan) => (
               <Plan
@@ -80,8 +84,9 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
                   : handlePayment
               }
               animation="scale"
+              className="min-w-[250px] capitalize"
             >
-              Next
+              Go with {select} Plan
             </Button>
           </div>
         </div>
@@ -97,24 +102,26 @@ const Plan = ({ select, setSelect, title, price, features }: any) => {
     <button
       onClick={() => setSelect(title)}
       className={clsx(
-        "flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8 relative",
+        "flex flex-col w-full p-5 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border-2 border-gray-100 shadow xl:p-5 relative",
         select === title && "!bg-blue-50 border-2 border-lightblue"
       )}
     >
       <Checkbox checked={select === title} className="absolute top-5 right-5" />
-      <h3 className="mb-4 text-2xl font-semibold font-amar capitalize">
+      <h3 className="mb-4 text-xl font-semibold font-amar capitalize">
         {title}
       </h3>
       <div className="flex justify-center items-baseline my-3">
-        <span className="mr-2 text-4xl font-extrabold">₹{price}</span>
+        <span className="mr-2 text-3xl font-extrabold text-slate-600">
+          ₹{price}
+        </span>
         <span className="text-gray-500">/month</span>
       </div>
       {/* List */}
-      <ul role="list" className="mb-8 space-y-4 text-left">
+      <ul role="list" className="mt-5 space-y-2 text-left">
         {/* Features */}
 
         {features.map((feature: any, index: any) => (
-          <li key={index} className="flex items-center space-x-3">
+          <li key={index} className="flex items-center space-x-3 font-heading">
             <svg
               className="flex-shrink-0 w-5 h-5 text-green-500"
               fill="currentColor"
@@ -127,7 +134,7 @@ const Plan = ({ select, setSelect, title, price, features }: any) => {
                 clipRule="evenodd"
               />
             </svg>
-            <span>Individual configuration</span>
+            <span>{feature}</span>
           </li>
         ))}
       </ul>

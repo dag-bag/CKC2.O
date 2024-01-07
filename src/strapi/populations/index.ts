@@ -15,7 +15,10 @@ export const QUIZ_P = [
   "slides.question",
   "reward",
   "qlides",
+  "qlides.image",
   "qlides.options",
+  "qlides.options.image",
+
 ];
 
 export const QUIZ2_P = ["qlides", "qlides.qtions", "slides.question"];

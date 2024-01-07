@@ -73,7 +73,7 @@ const NotificationButton = () => {
 const MarketplaceButton = () => {
   return (
     <Link
-      href="/shop"
+      href="/shop/virtual"
       className="center gap-2 font-heading bg-white h-[45px]  rounded-xl p-3 text-md"
     >
       <Image

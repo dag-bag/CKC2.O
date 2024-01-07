@@ -11,6 +11,8 @@ export interface SessionData {
     avatar: string;
     setup?: boolean;
     type: string;
+    premiumType: string
+
   };
 }
 
@@ -25,6 +27,7 @@ export const defaultSession: SessionData = {
     avatar: "",
     type: "free",
     setup: false,
+    premiumType: ""
   },
 };
 

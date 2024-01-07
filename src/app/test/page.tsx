@@ -3,7 +3,7 @@ import AvatarListing from "@/blocks/molecules/profile/avatars";
 import { fuzzy } from "@/services/fuzzy";
 import React, { useState } from "react";
 
-export default function page() {
+export default function Page() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState({});
   const getSeachResults = async () => {

@@ -10,13 +10,14 @@ import { updateUser } from "@/services/user";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import OnboardPopup from "@/blocks/popups/onboard-popup";
+
 export default function Newboard() {
-  const { login } = useSession();
   const router = useRouter();
+  const { login } = useSession();
   const pathname = usePathname();
   const { storage } = useOnboard();
   const configuration = data[pathname];
-  // popup modal
+
   const [opened, popupHanders] = useDisclosure(false);
 
   // handlers

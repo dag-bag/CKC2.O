@@ -1,17 +1,36 @@
-import SubscriptionPlan from "@/blocks/molecules/cards/SubscriptionPlan";
-import { Plans } from "@/strapi/services/api";
+"use client";
+import useSession from "@/hooks/use-session";
+import plan_configuations from "@config/plans";
+import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
 
-const PurchasesPage = async () => {
-  const data = await Plans({ type: "GET" });
+const PurchasesPage = () => {
+  const session = useSession();
+  const currentplan =
+    session?.session?.user?.premiumType ?? session?.session?.user?.type;
+
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {data.map((d: any, index: number) => (
-          <SubscriptionPlan key={index} d={d} />
-        ))}
+      <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
+        {plan_configuations.map((plan) => {
+          const selected = currentplan == plan.type;
+          return (
+            <NewSubscriptionPlan
+              upgradable={showUpgradables(currentplan, plan.type)}
+              key={plan.id}
+              selected={selected}
+              {...plan}
+            />
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default PurchasesPage;
+
+const showUpgradables = (current_plan: string, this_plan: string): any => {
+  if (current_plan == "premium") return false;
+  if (current_plan == "free") return ["basic", "premium"].includes(this_plan);
+  if (current_plan == "basic") return ["premium"].includes(this_plan);
+};
