@@ -5,6 +5,11 @@ import EmailAuthButton from "@/blocks/atoms/EmailAuthButton";
 import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
 import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 
+export const metadata = {
+  title: "Register | Cosmic Kids Club",
+  description: "Registration",
+};
+
 const Page = () => {
   return (
     <div className="md:h-screen center font-fun bg-gray-100 ">

@@ -4,6 +4,11 @@ import Form from "@/blocks/atoms/forms/login";
 import SpaceBreaker from "@/blocks/atoms/SpaceBreakWithText";
 import GoogleAuthentication from "@/blocks/atoms/GoogleAuthButton";
 
+export const metadata = {
+  title: "Login | Cosmic Kids Club",
+  description: "Registration",
+};
+
 const LoginPage = () => {
   return (
     <div className="md:h-screen center font-fun bg-gray-100 ">
