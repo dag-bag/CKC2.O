@@ -39,12 +39,12 @@ const OnboardPopup: React.FC<Props> = ({ opened, onClose }) => {
         setIsLoading(false);
         toast.success("Payment is sucessfull");
         toast.success(`You have unlocked ${selectedPlanDetails?.title} plan`);
-        router.replace("/dashboard");
+        window.location.replace("/dashboard");
       });
   };
 
   const goWithFreePlan = async () => {
-    return router.replace("/dashboard");
+    return window.location.replace("/dashboard");
   };
 
   const { handlePayment } = useRazorpay(
