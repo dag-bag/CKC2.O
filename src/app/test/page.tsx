@@ -1,5 +1,6 @@
 "use client";
 import AvatarListing from "@/blocks/molecules/profile/avatars";
+import { sms } from "@/libs/aws-notifications";
 import { fuzzy } from "@/services/fuzzy";
 import React, { useState } from "react";
 
@@ -19,7 +20,7 @@ export default function Page() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button onClick={getSeachResults}>GET SEARCH RESULTS</button>
+      <button onClick={sms}>GET SEARCH RESULTS</button>
       {JSON.stringify(data)}
     </div>
   );
