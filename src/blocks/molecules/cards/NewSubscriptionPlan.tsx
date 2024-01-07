@@ -8,7 +8,7 @@ interface Props {
   id: number;
   price: number;
   title: string;
-  selected: boolean;
+  selected?: boolean;
   features: string[];
   type: string;
   credits: number;
@@ -49,9 +49,6 @@ const NewSubscriptionPlan: React.FC<Props> = ({
   };
 
   const { handlePayment } = useRazorpay(buyPremiumHandler, price as number);
-
-  const premium = title === "premium";
-
   return (
     <div
       key={id}
