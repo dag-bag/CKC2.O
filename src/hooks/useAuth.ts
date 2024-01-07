@@ -52,23 +52,17 @@ export default function useAuth() {
         toast.success("Successfully logged in!");
         router.push("/dashboard");
       });
-      // console.log("Successfully logged in:", user);
-      // router.push("/dashboard");
-      // window.location.href = "/dashboard";
       return { user, jwt };
     } catch (error) {
       console.log("Error during login:", error);
       toast.error("Invalid credentials!");
-      // setTimeout(() => window.location.reload(), 2000);
     }
   };
 
   const login = (data: Action) => {
     if (data.type === "CRED") {
-      console.log("Logging in with credentials...");
       loginWithCred({ identifier: data.identifier, password: data.password });
     } else {
-      console.log("Logging in with Google...");
       loginWithGoogle();
     }
   };

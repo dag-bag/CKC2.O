@@ -10,7 +10,6 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { strapi } from "@/libs/strapi";
 import useSession from "@/hooks/use-session";
-
 const EmailAuthButton = () => {
   const router = useRouter();
   const { login } = useSession();
@@ -99,12 +98,13 @@ const EmailAuthButton = () => {
           Direct Login (development)
         </Button>
       </RootModal>
-      <button
+      <Button
+        animation="scale"
         onClick={toggle}
-        className="px-5 text-md font-medium py-3 border  center gap-2 font-heading rounded-lg w-full"
+        className=" flex items-center justify-center gap-2 font-heading w-full text-md"
       >
-        <TbMail size={25} /> Continue with email
-      </button>
+        <TbMail size={25} /> Go with Email
+      </Button>
     </>
   );
 };
