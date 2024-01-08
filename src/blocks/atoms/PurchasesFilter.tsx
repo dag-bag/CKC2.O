@@ -1,17 +1,16 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
-import { COLOR } from "../../../tailwind.config";
 import { usePathname } from "next/navigation";
+import { COLOR } from "../../../tailwind.config";
 import { RiBook2Fill, RiLiveFill } from "react-icons/ri";
 const PurchasesFilter = () => {
   const path = usePathname();
-  const isVideos = path === "/purchases/subscriptions";
   const isComics = path === "/purchases";
-
+  const isVideos = path === "/purchases/subscriptions";
   return (
     <div className="py-5">
-      <div className="inline-flex gap-5 bg-white p-1 rounded-full">
+      <div className="inline-flex md:gap-2 lg:gap-5 bg-white p-1 rounded-full">
         <Button
           color={COLOR.darkgold}
           active={isComics}
@@ -49,7 +48,7 @@ const Button = ({ active, href, Icon, children, color }: any) => {
           active && "shadow-xl"
         )}
       >
-        <div className="flex gap-1 pr-3">
+        <div className="flex gap-1 md:pr-3">
           <div className="px-3 center rounded-lg">
             <Icon color={active ? "white" : "black"} size={22} />
           </div>
