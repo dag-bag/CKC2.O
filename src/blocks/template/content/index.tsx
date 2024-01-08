@@ -63,7 +63,7 @@ const ContentTemplate: React.FC<Props> = async ({
 
   return (
     <>
-      {/* {JSON.stringify(data)}  */}
+      {JSON.stringify(data)}
       <div
         id="container"
         className={clsx(
