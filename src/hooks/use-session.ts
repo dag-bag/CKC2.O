@@ -56,3 +56,11 @@ export default function useSession() {
 
   return { session, logout, login, isLoading, update };
 }
+
+
+// what is your account type 
+
+export const useAccountType = () => {
+  const session = useSession()
+  return session.session.user.type ?? "free";
+}
