@@ -40,7 +40,7 @@ export default function useAuth() {
         avatar,
         premium,
         username,
-        premiumType: user.type,
+        type: user.type,
       };
 
       await setSession(payload_data as any, {

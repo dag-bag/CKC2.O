@@ -62,5 +62,6 @@ export default function useSession() {
 
 export const useAccountType = () => {
   const session = useSession()
+  console.log(session)
   return session.session.user.type ?? "free";
 }

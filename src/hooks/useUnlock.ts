@@ -1,13 +1,8 @@
-// useVideoPlayer.tsx
-import useSWR, { useSWRConfig } from "swr";
-import useSession from "./use-session";
-import { useDisclosure } from "@mantine/hooks";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import useCoins from "./useCoins";
 import toast from "react-hot-toast";
 import useCredits from "./useCredits";
-
+import { useRouter } from "next/navigation";
+import { useDisclosure } from "@mantine/hooks";
 interface VideoPlayerProps {
   coins: number;
   content_id: number | string;
@@ -37,10 +32,8 @@ const useUnlock = ({
   const router = useRouter();
   const [loading, loaderHandler] = useDisclosure(false);
   const [opened, { open, close }] = useDisclosure(false);
-
   const { updateCoins } = useCredits();
   const unlock = async () => {
-    console.log(">> unlocking", { coins, type, label, content_id });
     try {
       loaderHandler.open();
       await axios
@@ -54,18 +47,18 @@ const useUnlock = ({
           updateCoins({ type: "remove", newData: coins });
           toast.success("Unlocked successfully!");
           loaderHandler.close();
+          close()
           router.refresh();
         });
     } catch (error) {
       loaderHandler.close();
-      alert("something  went wrong");
-      // handle error
+      toast.error("something went wrong");
     }
   };
 
   return {
     loading,
-    unlock: unlock,
+    unlock,
     open,
     opened,
     close,

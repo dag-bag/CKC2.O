@@ -49,6 +49,7 @@ const ContentTemplate: React.FC<Props> = async ({
     thumbnail,
     mentor,
     duration,
+    premium,
   } = data;
   const session = await getSession();
   const thumbnailUrl = extImage(thumbnail);
@@ -166,6 +167,7 @@ const ContentTemplate: React.FC<Props> = async ({
                         type,
                         title,
                         price,
+                        premium,
                         duration,
                         isUnlocked,
                         shareableURL,
@@ -198,6 +200,7 @@ const ContentTemplate: React.FC<Props> = async ({
                     type,
                     title,
                     price,
+                    premium,
                     duration,
                     isUnlocked,
                     shareableURL,
