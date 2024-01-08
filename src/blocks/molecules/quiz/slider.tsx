@@ -3,7 +3,7 @@ import { useState } from "react";
 import QuizHeader from "./header";
 import { RewardConfig } from ".";
 import { Modal } from "@mantine/core";
-import { Quiz } from "../../../../quiz";
+import { Quiz } from "../../../types/quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
 import QuizAudioPlayer from "./audio-player";

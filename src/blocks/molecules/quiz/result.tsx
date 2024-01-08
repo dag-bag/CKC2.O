@@ -8,7 +8,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
 import { createReward } from "@/strapi/services/custom";
-import { type Action, type Quiz } from "../../../../quiz";
+import { type Action, type Quiz } from "../../../types/quiz";
 import React, { useEffect, useState, useRef } from "react";
 import QuizRewardPopup from "@/blocks/popups/quiz-reward-popup";
 interface Props {

@@ -1,6 +1,6 @@
 import { Button } from "../main";
 import { Reorder } from "framer-motion";
-import { Slide } from "../../../../../quiz";
+import { Slide } from "../../../../types/quiz";
 
 interface SelectProps {
   value: any;

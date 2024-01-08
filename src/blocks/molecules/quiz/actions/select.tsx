@@ -1,5 +1,5 @@
 import useQuizSession from "@/hooks/use-quiz-session";
-import { Slide } from "../../../../../quiz";
+import { Slide } from "../../../../types/quiz";
 import { Button } from "../main";
 
 interface SelectProps {

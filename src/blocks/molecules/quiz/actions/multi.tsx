@@ -1,5 +1,5 @@
 import { SelectiveButton } from "../main";
-import { Slide } from "../../../../../quiz";
+import { Slide } from "../../../../types/quiz";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];

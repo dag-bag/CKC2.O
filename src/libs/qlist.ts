@@ -1,6 +1,5 @@
-import { Slide, Action, Quiz } from "../../quiz";
-import type TypeQlist from "@/app/(outer)/qlist/type";
-import extImage from "./extImage";
+import type TypeQlist from "@/types/qlist";
+import { Slide, Action, Quiz } from "../types/quiz";
 const answerFormentConvertor = (
     answer: string,
     options: { name: string; value: string }[],
