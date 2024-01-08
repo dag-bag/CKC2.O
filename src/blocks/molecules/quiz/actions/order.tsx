@@ -22,7 +22,7 @@ const Order = ({
   const items = value ? value : (action.options?.map((opt) => opt.name) as any);
 
   return (
-    <section className="grid p-5 rounded-xl">
+    <section className="grid rounded-xl">
       <Reorder.Group
         className="hidden md:grid md:grid-cols-4 md:gap-4 gap-2"
         axis="x"

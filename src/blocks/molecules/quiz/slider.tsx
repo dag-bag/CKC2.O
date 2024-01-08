@@ -21,6 +21,7 @@ interface Props {
 }
 
 const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
+  const [opened2, handlers] = useDisclosure(false);
   const { session, saveResponse } = useQuizSession();
   const [value, setValue] = useState<string | string[] | null>(null);
   const slideIndex = session?.state.index ?? 0;
@@ -29,8 +30,6 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
   const isLastQuestion = meta.slides.length - 1 == slideIndex;
   const isAllQuestionAttemped =
     Object.keys(session?.responses as any)?.length == meta.slides.length;
-
-  const [opened2, handlers] = useDisclosure(false);
 
   const wrongAnswerAlert = (value: any, isLastQuestion: any) => {
     handlers.open();
