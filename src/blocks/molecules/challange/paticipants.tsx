@@ -8,8 +8,8 @@ const Participants = ({ participants }: any) => (
           (participant: any, index: any) => (
             <BigAvatar
               key={index}
-              username={participant.user.username}
-              src={participant.user.avatar}
+              src={participant?.user?.avatar}
+              username={participant?.user?.username}
             />
           )
         )}

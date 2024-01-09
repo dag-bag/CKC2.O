@@ -5,17 +5,16 @@ interface Props {
 }
 import Card from "@/blocks/UI/Card";
 import { formatTimestamp } from "@/utils/time";
-import { getSession, getTransactions } from "@/strapi/services/me";
 import Info from "@/blocks/molecules/challange/info";
+import Media from "@/blocks/molecules/challange/media";
 import Banner from "@/blocks/molecules/challange/banner";
 import Upload from "@/blocks/molecules/challange/upload";
 import Winners from "@/blocks/molecules/challange/winners";
 import { Reward } from "@/blocks/molecules/challange/rewards";
 import { Challange, ChallangeReq } from "@/strapi/services/api";
 import Submission from "@/blocks/molecules/challange/submission";
+import { getSession, getTransactions } from "@/strapi/services/me";
 import Participants from "@/blocks/molecules/challange/paticipants";
-import ActionRewardBlock from "@/blocks/molecules/course/ActionRewardBlock";
-import Media from "@/blocks/molecules/challange/media";
 
 const Page: React.FC<Props> = async ({ params: { slug } }) => {
   const session = await getSession();
@@ -49,7 +48,7 @@ const Page: React.FC<Props> = async ({ params: { slug } }) => {
   } = challange;
 
   const isSubmitted = challangeReq.find(
-    (participant: any) => participant.user.id === session?.user?.id
+    (participant: any) => participant?.user?.id === session?.user?.id
   );
 
   const isAlreadyPurchased = purchases?.find((pur) =>

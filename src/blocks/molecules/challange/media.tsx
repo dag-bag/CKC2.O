@@ -3,7 +3,7 @@ const Media = ({ media }: any) => {
   return (
     <Card title="Video & Images" className="mt-5">
       <div className="grid grid-cols-2 gap-5">
-        {media.map((media: any) => (
+        {media?.map((media: any) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={media}
