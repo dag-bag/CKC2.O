@@ -26,14 +26,14 @@ export default function Home() {
 const Header = () => {
   return (
     <div className="fixed top-0 w-full bg-black/30 z-50 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto flex items-center justify-between p-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between sm:p-3 p-1">
         <Image src={"/logo-2.png"} alt="logo" width={80} height={80} />
         <div className="flex gap-5">
-          <button className="border-2 text-white text-xl px-20 py-4 rounded-xl font-heading">
+          <button className="border-2 text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading">
             Login
           </button>
 
-          <button className="bg-lightblue text-white text-xl px-20 py-4 rounded-xl font-heading flex items-center gap-2">
+          <button className="bg-lightblue text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading flex items-center gap-2">
             Explore <BiRightArrowAlt />
           </button>
         </div>
@@ -48,16 +48,16 @@ const HeroSection = () => {
       style={{
         backgroundImage: "url('/bg-main.png')",
       }}
-      className="w-screen h-screen bg-cover"
+      className="w-full h-screen bg-cover"
     >
       <div className="w-full h-full bg-gradient-to-br from-darkblue/90 to-lightblue/50">
         <div className="w-full h-full max-w-7xl mx-auto flex items-center px-5">
           <div className="space-y-5">
-            <h1 className="text-7xl text-white font-amar font-semibold drop-shadow-md uppercase">
+            <h1 className="lg:text-7xl sm:text-4xl text-3xl text-white font-amar font-semibold drop-shadow-md uppercase">
               Family Entertainment <br />
               for a smarter, <br /> kinder world
             </h1>
-            <button className="bg-lightgreen text-white text-xl px-20 py-4 rounded-xl font-heading">
+            <button className="bg-lightgreen text-white md:text-xl md:px-20 md:py-4 px-6 py-2 rounded-xl font-heading">
               Explore Plateform
             </button>
           </div>
@@ -84,11 +84,11 @@ const Collections = () => {
   ];
   return (
     <div>
-      <div className="max-w-7xl mx-auto py-20 ">
-        <h2 className="text-4xl font-amar font-semibold uppercase">
+      <div className="max-w-7xl mx-auto py-20 xl:px-0 px-4">
+        <h2 className="sm:text-4xl text-2xl font-amar font-semibold uppercase">
           Collections
         </h2>
-        <p className="text-xl my-2">
+        <p className="sm:text-xl my-2">
           Award-winning docuseries, uplifting dramas and heartfelt stories
           across a wide variety of key programming categories
         </p>
@@ -128,15 +128,15 @@ const Achievement = () => {
   return (
     <div className="bg-lightblue/10">
       <div className="max-w-7xl mx-auto py-20 ">
-        <div className="grid grid-cols-4 gap-5 mt-5">
+        <div className="grid sm:grid-cols-4 grid-cols-2 gap-5 mt-5 sm:px-0 px-2">
           {collections.map((col) => (
             <div key={col.text} className="items-center flex flex-col">
-              <div className="relative w-16 h-16 rounded-xl overflow-hidden">
+              <div className="relative sm:w-16 sm:h-16 w-10 h-10 rounded-xl overflow-hidden">
                 <Image fill src={col.image} alt={col.text} />
               </div>
               <h5
                 dangerouslySetInnerHTML={{ __html: col.text }}
-                className="text-xl text-center mt-2 font-semibold font-amar"
+                className="sm:text-xl text-center mt-2 font-semibold font-amar"
               ></h5>
             </div>
           ))}
@@ -150,10 +150,10 @@ const Plans = () => {
   return (
     <div className="bg-white py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-amar font-semibold uppercase text-4xl text-center mb-2">
+        <h2 className="font-amar font-semibold uppercase sm:text-4xl text-2xl text-center mb-2">
           Choose the Plan
         </h2>
-        <p className="text-lg text-center mb-10">
+        <p className="sm:text-lg text-center mb-10">
           Unlimited access on any device. Cancel anytime.
         </p>
         <div className="grid grid-cols-3 gap-5">
@@ -201,8 +201,8 @@ const FAQs = () => {
   return (
     <div className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-5">
-        <h2 className="font-amar font-semibold uppercase text-4xl  mb-10">
-          FREQUENTLY ASKED <br /> QUESTIONS
+        <h2 className="font-amar font-semibold uppercase sm:text-4xl text-2xl  mb-10">
+          FREQUENTLY ASKED <br className="sm:flex hidden" /> QUESTIONS
         </h2>
 
         <div>
@@ -218,12 +218,12 @@ const Footer = () => {
     <footer>
       <div className="py-10 bg-darkblue/10">
         <div className="max-w-7xl mx-auto px-5 flex-col flex gap-5">
-          <div className="flex justify-between items-center ">
+          <div className="flex md:flex-row flex-col sm:justify-between items-center">
             <div>
               <Image src={"/logo-2.png"} alt="logo" width={80} height={80} />
             </div>
             <div>
-              <ul className="flex gap-5 font-heading items-center">
+              <ul className="flex sm:flex-row flex-col sm:mt-0 mt-4 sm:gap-5 gap-2 font-heading items-center">
                 <li>
                   <Link href={""}>Home</Link>
                 </li>
@@ -236,18 +236,18 @@ const Footer = () => {
                 <li>
                   <Link href={""}>Privacy Policy</Link>
                 </li>
-                <li className="px-8 py-2 bg-lightblue text-white rounded-full">
+                <li className="px-8 py-2 sm:mt-0 mt-4 bg-lightblue text-white rounded-full">
                   <Link href={""}>Join Now</Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white pt-10 justify-between flex">
+          <div className="border-t border-white pt-10 flex flex-col sm:justify-between">
             <div>
-              <p>Copyright © 2024 Cosmic Kids | All Rights Reserved.</p>
+              <p className="text-center">Copyright © 2024 Cosmic Kids | All Rights Reserved.</p>
             </div>
             <div>
-              <ul className="flex gap-5">
+              <ul className="flex justify-center gap-5 sm:mt-2 mt-4">
                 <li>
                   <Link href={"https://www.facebook.com/cosmickclub"}>
                     <BiLogoFacebook size={22} />
