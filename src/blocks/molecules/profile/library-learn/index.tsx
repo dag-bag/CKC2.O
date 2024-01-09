@@ -17,7 +17,7 @@ const LearnAndLibrary = async () => {
                 <WatchedCard
                   {...item}
                   key={item.title}
-                  imgUrl={item.thumbnail}
+                  imgUrl={item.thumbnail.at(0).url}
                 />
               ))}
             </>

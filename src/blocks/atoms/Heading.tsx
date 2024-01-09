@@ -21,7 +21,7 @@ export default Heading;
 const getSizes = (size: Props["size"]) => {
   switch (size) {
     case "small":
-      return "md:text-xl text-md font-semibold font-heading ";
+      return "md:text-2xl text-lg font-semibold font-heading";
     case "medium":
       return "xl:text-3xl lg:text-3xl md:text-2xl text-2xl";
     case "large":

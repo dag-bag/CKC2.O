@@ -10,7 +10,7 @@ interface Props {
 }
 
 const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
-  const [data, purchases] = await Promise.all([
+  const [data] = await Promise.all([
     DiscoveryJarsConfig({
       type: "GET_ONE",
       payload: parseInt(slug),
@@ -22,11 +22,7 @@ const DiscoveryBagContent: React.FC<Props> = async ({ params: { slug } }) => {
     }),
     getTransactions("jar"),
   ]);
-  return (
-    <div>
-      <Header {...data.discovery_jar_answers.at(0)} />
-    </div>
-  );
+  return <div>{/* <Header {...data?.discovery_jar_answers?.at(0)} /> */}</div>;
 };
 
 export default DiscoveryBagContent;

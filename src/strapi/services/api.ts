@@ -42,7 +42,7 @@ const Courses = async (action: Action) => {
 };
 
 const Videos = async (action: Action) => {
-  return fetchData(VIDEOS_ENTITY, action, ["thumbnail", "qlist"]);
+  return fetchData(VIDEOS_ENTITY, action, ["thumbnail", "quiz"]);
 };
 
 const Watched = async (action: Action) => {

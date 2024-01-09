@@ -1,10 +1,10 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-
+import Button from "@/blocks/atoms/Button";
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { BiUpload } from "react-icons/bi";
-import { Textarea, Modal, FileButton, Button } from "@mantine/core";
+import { Textarea, Modal, FileButton } from "@mantine/core";
 import { CreateQuestion } from "@/services/discovery-jar";
 import useSession from "@/hooks/use-session";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
@@ -56,12 +56,13 @@ const ChallangesPopup = () => {
 
   return (
     <>
-      <button
+      <Button
+        animation="scale"
         onClick={open}
         className="bg-blue-500 text-white text-xl px-20 py-3 rounded-full font-heading mt-4"
       >
         Upload
-      </button>
+      </Button>
 
       <Modal
         classNames={{

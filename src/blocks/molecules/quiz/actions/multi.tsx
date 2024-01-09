@@ -1,5 +1,5 @@
 import { SelectiveButton } from "../main";
-import { Slide } from "../../../../../quiz";
+import { Slide } from "../../../../types/quiz";
 interface SelectProps {
   action: Slide["action"];
   answer: Slide["answer"];
@@ -8,9 +8,9 @@ interface SelectProps {
   value: any;
 }
 
-const Multi = ({ action, answer, value, setValue }: SelectProps) => {
+const Multi = ({ action, value, setValue }: SelectProps) => {
   return (
-    <section className="grid max-h-full overflow-y-scroll p-5 rounded-xl">
+    <section className="grid max-h-full overflow-y-scroll md:overflow-hidden rounded-xl">
       <div className="grid md:grid-cols-4 md:gap-4 gap-2 ">
         {action.options?.map((option, index) => (
           <SelectiveButton

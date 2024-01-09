@@ -1,5 +1,5 @@
 import useQuizSession from "@/hooks/use-quiz-session";
-import { Slide } from "../../../../../quiz";
+import { Slide } from "../../../../types/quiz";
 import { Button } from "../main";
 
 interface SelectProps {
@@ -24,7 +24,7 @@ const Select = ({
     }
   };
   return (
-    <section className="grid max-h-full overflow-y-scroll p-5 rounded-xl">
+    <section className="grid max-h-full overflow-y-scroll md:overflow-hidden rounded-xl">
       <div className="grid md:grid-cols-4 md:flex-row md:gap-4 gap-2">
         {action.options?.map((option, index) => (
           <Button

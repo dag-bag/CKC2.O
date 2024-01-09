@@ -25,29 +25,6 @@ const SettingsPage = async () => {
 export const revalidate = 3600;
 export default SettingsPage;
 
-const Input = ({
-  label,
-  placeholder,
-  type = "text",
-  value,
-  disabled,
-  description,
-}: any) => {
-  return (
-    <div className="p-1 font-heading">
-      <h3 className=" text-gray-500 font-medium text-sm mb-1.5 ">{label}</h3>
-      <input
-        disabled={disabled}
-        value={value}
-        type={type}
-        placeholder={placeholder}
-        className="px-3 py-2.5 w-full border  rounded-lg"
-      />
-      {description && <p className="text-xs text-gray-500">{description}</p>}
-    </div>
-  );
-};
-
 import { Switch } from "@mantine/core";
 export const NotificationSection = ({ title, description }: any) => {
   return (

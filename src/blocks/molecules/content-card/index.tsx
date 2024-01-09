@@ -176,8 +176,9 @@ const Header: React.FC<HeaderProps> = ({
       id="header"
       className={clsx(
         "relative",
-        type !== "comic" && "aspect-w-10 aspect-h-6",
-        type == "comic" && "aspect-w-10 aspect-h-14"
+        true && "aspect-w-10 aspect-h-6"
+        // type !== "comic" && "aspect-w-10 aspect-h-6"
+        // type == "comic" && "aspect-w-10 aspect-h-14"
       )}
     >
       <Image src={thumbnail} alt={title} fill />
@@ -210,7 +211,7 @@ export const generateHref = (type: Props["type"], id: number): string => {
   return "";
 };
 
-const whereToWhere = (grades: Props["grades"]) => {
+export const whereToWhere = (grades: Props["grades"]) => {
   const gradeChar: any = {
     "1": "1st",
     "2": "2nd",

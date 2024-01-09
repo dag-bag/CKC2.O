@@ -1,8 +1,7 @@
-import Grid from "@/blocks/temporary/Grid";
 const Profile = () => {
   return (
-    <div>
-      <Grid />
+    <div className="p-5">
+      <p>No Uploads</p>
     </div>
   );
 };

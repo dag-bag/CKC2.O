@@ -1,24 +1,21 @@
 "use client";
-import useSession from "@/hooks/use-session";
 import plan_configuations from "@config/plans";
+import { useAccountType } from "@/hooks/use-session";
 import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
 
 const PurchasesPage = () => {
-  const session = useSession();
-  const currentplan =
-    session?.session?.user?.premiumType ?? session?.session?.user?.type;
-
+  const type = useAccountType();
   return (
     <div>
       <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10">
         {plan_configuations.map((plan) => {
-          const selected = currentplan == plan.type;
+          const selected = type == plan.type;
           return (
             <NewSubscriptionPlan
-              upgradable={showUpgradables(currentplan, plan.type)}
+              {...plan}
               key={plan.id}
               selected={selected}
-              {...plan}
+              upgradable={showUpgradables(type, plan.type)}
             />
           );
         })}

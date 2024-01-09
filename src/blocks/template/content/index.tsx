@@ -49,6 +49,7 @@ const ContentTemplate: React.FC<Props> = async ({
     thumbnail,
     mentor,
     duration,
+    premium,
   } = data;
   const session = await getSession();
   const thumbnailUrl = extImage(thumbnail);
@@ -62,7 +63,7 @@ const ContentTemplate: React.FC<Props> = async ({
 
   return (
     <>
-      {/* {JSON.stringify(data)}  */}
+      {/* {JSON.stringify(data)} */}
       <div
         id="container"
         className={clsx(
@@ -154,7 +155,16 @@ const ContentTemplate: React.FC<Props> = async ({
               {isTypeComic && (
                 <div className=" md:flex md:items-center grid md:gap-5 gap-3 mt-5">
                   {isUnlocked && (
-                    <ComicReader {...{ id, slug, title, price, duration }} />
+                    <ComicReader
+                      {...{
+                        id,
+                        slug,
+                        title,
+                        price,
+                        duration,
+                        content: data?.content,
+                      }}
+                    />
                   )}
 
                   {!isUnlocked && (
@@ -166,6 +176,7 @@ const ContentTemplate: React.FC<Props> = async ({
                         type,
                         title,
                         price,
+                        premium,
                         duration,
                         isUnlocked,
                         shareableURL,
@@ -198,6 +209,7 @@ const ContentTemplate: React.FC<Props> = async ({
                     type,
                     title,
                     price,
+                    premium,
                     duration,
                     isUnlocked,
                     shareableURL,

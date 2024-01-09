@@ -1,8 +1,10 @@
 "use client";
 import Button from "../Button";
 import toast from "react-hot-toast";
+import { Select } from "@mantine/core";
 import React, { useState } from "react";
 import { updateUser } from "@/services/user";
+import { TextInput as Input } from "@mantine/core";
 export default function ProfileForm({ data }: any) {
   const [editableData, setEditableData] = useState({
     grade: data.grade,
@@ -28,56 +30,87 @@ export default function ProfileForm({ data }: any) {
 
   return (
     <div className="grid gap-5">
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-3">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-5">
         <Input
-          disabled
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          readOnly
+          size="md"
           value={data.firstname}
           label="First Name"
           placeholder="Your Name"
           type="text"
         />
         <Input
-          disabled
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          readOnly
+          size="md"
           value={data.lastname}
           label="Last Name"
           placeholder="Your Name"
           type="text"
         />
         <Input
-          disabled
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          readOnly
+          size="md"
           value={data.email}
           label="Email Address"
           placeholder="Email Address"
           type="email"
-          description="If you want to change your email, please contact support."
+
+          // description="If you want to change your email, please contact support."
         />
-        <Input
+        <Select
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
           value={editableData.grade}
           label="Grade"
           placeholder="Your Grade"
-          type="text"
+          data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
           onChange={(value: any) => handleInputChange("grade", value)}
         />
         <Input
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
           value={editableData.parentname}
           label="Parent Name"
           placeholder="Your Parent Name"
           type="text"
-          onChange={(value: any) => handleInputChange("parentname", value)}
+          onChange={(value: any) =>
+            handleInputChange("parentname", value.target.value)
+          }
         />
         <Input
-          disabled
+          readOnly
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
           value={data.dob}
           label="Date of Birth"
           placeholder="Your Parent Name"
           type="text"
         />
         <Input
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
           value={editableData.bio}
           label="Bio"
           placeholder="Your Parent Name"
           type="text"
-          onChange={(value: any) => handleInputChange("bio", value)}
+          onChange={(value) => handleInputChange("bio", value.target.value)}
         />
       </div>
 
@@ -100,28 +133,3 @@ export default function ProfileForm({ data }: any) {
     </div>
   );
 }
-
-const Input = ({
-  label,
-  placeholder,
-  type = "text",
-  value,
-  disabled,
-  onChange,
-  description,
-}: any) => {
-  return (
-    <div className="p-1 font-heading">
-      <h3 className=" text-gray-500 font-medium text-sm mb-1.5 ">{label}</h3>
-      <input
-        disabled={disabled}
-        value={value}
-        type={type}
-        placeholder={placeholder}
-        className="px-3 py-2.5 w-full border  rounded-lg"
-        onChange={(e) => onChange && onChange(e.target.value)}
-      />
-      {description && <p className="text-xs text-gray-500">{description}</p>}
-    </div>
-  );
-};

@@ -4,7 +4,7 @@ import Image from "next/image";
 import QuizSlider from "./slider";
 import { Tooltip } from "@mantine/core";
 import Button from "@/blocks/atoms/Button";
-import { type Quiz } from "../../../../quiz";
+import { type Quiz } from "../../../types/quiz";
 import Heading from "@/blocks/atoms/Heading";
 import { useDisclosure } from "@mantine/hooks";
 import { BiHome, BiLock } from "react-icons/bi";

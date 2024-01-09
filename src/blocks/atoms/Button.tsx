@@ -1,10 +1,8 @@
 "use client";
-
+import Link from "next/link";
 import clsx from "clsx";
-import Loading from "./loading";
 import { Loader } from "@mantine/core";
 import { motion } from "framer-motion";
-import { useDisclosure } from "@mantine/hooks";
 interface Props {
   loading?: boolean;
   variant?: "default";
@@ -16,16 +14,44 @@ interface Props {
   animation?: "none" | "scale" | "opacity";
   // others
   type?: any;
+  href?: string;
 }
 
-import {} from "react";
-
-const Button: React.FC<Props> = ({ loading, children, className, ...rest }) => {
+const Button: React.FC<Props> = ({
+  loading,
+  children,
+  className,
+  href,
+  ...rest
+}) => {
   const variantClasses = getVariant(rest.variant ?? "default");
   const animationProps = !rest.disebled
     ? getAnimationProps(rest.animation ?? "none")
     : {};
 
+  if (href) {
+    const MotionLink = motion(Link);
+    return (
+      <MotionLink
+        {...rest}
+        href={href}
+        {...animationProps}
+        className={clsx(
+          variantClasses,
+          className,
+          "disabled:bg-opacity-80 center flex-col"
+        )}
+      >
+        {loading ? (
+          <div className="center h-full">
+            <Loader size={"xs"} color="white" />
+          </div>
+        ) : (
+          children
+        )}
+      </MotionLink>
+    );
+  }
   return (
     <motion.button
       {...rest}

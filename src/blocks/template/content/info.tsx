@@ -2,7 +2,7 @@ import { BsDot } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
 import Heading from "@/blocks/atoms/Heading";
 import SharePopup from "@/blocks/popups/share-popup";
-import UnlockPopup from "@/blocks/popups/unlock-popup";
+import UnlockPopup from "@/blocks/popups/unlock";
 import { convertSecondsToTime } from "@/libs/convertors";
 interface Props {
   comic?: boolean;
@@ -14,6 +14,7 @@ interface Props {
   price: number;
   shareableURL: string;
   isUnlocked: boolean;
+  premium: boolean;
 }
 
 const InfoBlock = ({
@@ -27,16 +28,23 @@ const InfoBlock = ({
   isUnlocked,
   id,
   comic,
+  premium,
 }: Props) => {
   if (comic) {
     return (
-      <div className="flex bg-white p-5 rounded-2xl gap-5 ">
+      <div className="flex bg-white p-5 rounded-2xl gap-5">
         <Heading size="medium" className="text-3xl font-semibold pl-2">
           {price} <span className="text-sm">Credits</span>
         </Heading>
         <div className="flex gap-5">
           <SharePopup shareableURL={shareableURL} title={title} />
-          <UnlockPopup coins={price} title={title} type={type} contentId={id} />
+          <UnlockPopup
+            premium={premium}
+            type={type}
+            coins={price}
+            title={title}
+            contentId={id}
+          />
         </div>
       </div>
     );
@@ -49,7 +57,13 @@ const InfoBlock = ({
       </Heading>
       <section className="flex gap-2 flex-col mt-5">
         <SharePopup shareableURL={shareableURL} title={title} />
-        <UnlockPopup coins={price} title={title} type={type} contentId={id} />
+        <UnlockPopup
+          premium={premium}
+          type={type}
+          coins={price}
+          title={title}
+          contentId={id}
+        />
       </section>
     </div>
   );

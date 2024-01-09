@@ -74,7 +74,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
               background: "whitesmoke",
             }
           }
-          className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative"
+          className="max-w-screen w-full overflow-y-scroll hide-scrollbar relative pb-5"
         >
           <Header />
           <div className="pt-[100px] max-w-[1440px] mx-auto px-5">

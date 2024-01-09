@@ -1,6 +1,5 @@
-import { Slide, Action, Quiz } from "../../quiz";
-import type TypeQlist from "@/app/(outer)/qlist/type";
-import extImage from "./extImage";
+import type TypeQlist from "@/types/qlist";
+import { Slide, Action, Quiz } from "../types/quiz";
 const answerFormentConvertor = (
     answer: string,
     options: { name: string; value: string }[],
@@ -21,9 +20,7 @@ const answerFormentConvertor = (
 
 
 
-const getImage = (path: string) => {
-    return `https://ckc-strapi-production-33d2.up.railway.app${path}`;
-};
+
 
 export const quizParser = (qlist: TypeQlist): Quiz => {
     const slides: Slide[] = qlist.qlides.map((qlide) => {
@@ -59,7 +56,7 @@ export const quizParser = (qlist: TypeQlist): Quiz => {
             question: {
                 text: qlide.question,
                 imageUrl: qlide.image
-                    ? getImage(qlide.image.url)
+                    ? qlide.image.url
                     : undefined,
                 audioUrl: "",
             },

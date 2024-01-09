@@ -3,7 +3,7 @@ import { useState } from "react";
 import QuizHeader from "./header";
 import { RewardConfig } from ".";
 import { Modal } from "@mantine/core";
-import { Quiz } from "../../../../quiz";
+import { Quiz } from "../../../types/quiz";
 import QuizResultPreviewer from "./result";
 import { QuizResultMaker } from "./result";
 import QuizAudioPlayer from "./audio-player";
@@ -21,6 +21,7 @@ interface Props {
 }
 
 const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
+  const [opened2, handlers] = useDisclosure(false);
   const { session, saveResponse } = useQuizSession();
   const [value, setValue] = useState<string | string[] | null>(null);
   const slideIndex = session?.state.index ?? 0;
@@ -29,8 +30,6 @@ const QuizSlider: React.FC<Props> = ({ opened, close, meta, RewardConfig }) => {
   const isLastQuestion = meta.slides.length - 1 == slideIndex;
   const isAllQuestionAttemped =
     Object.keys(session?.responses as any)?.length == meta.slides.length;
-
-  const [opened2, handlers] = useDisclosure(false);
 
   const wrongAnswerAlert = (value: any, isLastQuestion: any) => {
     handlers.open();

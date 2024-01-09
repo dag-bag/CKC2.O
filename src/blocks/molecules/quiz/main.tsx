@@ -4,7 +4,7 @@ import Order from "./actions/order";
 import Input from "./actions/input";
 import Multi from "./actions/multi";
 import Select from "./actions/select";
-import { Slide } from "../../../../quiz";
+import { Slide } from "../../../types/quiz";
 
 interface Props extends Slide {
   isLastQuestion: boolean;

@@ -4,7 +4,7 @@ import Heading from "@/blocks/atoms/Heading";
 import { Carousel } from "@mantine/carousel";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 interface Props {
-  slides: { title: string; desc: string; mediaUrl: string }[];
+  slides: { title: string; desc: string; thumbnail: any }[];
 }
 const InformationCarousel: React.FC<Props> = ({ slides }) => {
   const nextControlRef = useRef<any>(null);
@@ -33,7 +33,7 @@ const InformationCarousel: React.FC<Props> = ({ slides }) => {
           <Carousel.Slide key={index.toString() + slide.title}>
             <div
               style={{
-                backgroundImage: `url(${slide.mediaUrl})`,
+                backgroundImage: `url(${slide.thumbnail.at(0).url})`,
               }}
               className="md:h-[360px] h-[150px] bg-no-repeat bg-contain bg-center mb-2 w-full bg-darkblue rounded-xl overflow-hidden"
             >
