@@ -7,7 +7,7 @@ export const DISCONVER_JAR_CONFIG_P = [
 ];
 
 export const COMIC_P = ["rewards"];
-export const CHALLANGE_P = ["rewards", "thumbnail"];
+export const CHALLANGE_P = ["rewards", "thumbnail", "banner", "help_media"];
 
 export const QUIZ_P = [
   "slides",

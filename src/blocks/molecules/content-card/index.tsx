@@ -211,7 +211,7 @@ export const generateHref = (type: Props["type"], id: number): string => {
   return "";
 };
 
-const whereToWhere = (grades: Props["grades"]) => {
+export const whereToWhere = (grades: Props["grades"]) => {
   const gradeChar: any = {
     "1": "1st",
     "2": "2nd",
