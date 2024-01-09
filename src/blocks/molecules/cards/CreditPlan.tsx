@@ -4,6 +4,7 @@ import useRazorpay from "@/hooks/useRazorpay";
 import { buyCredit } from "@/strapi/services/custom";
 import Image from "next/image";
 import Button from "@/blocks/atoms/Button";
+import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 const CreditPlanCard = ({ d }: any) => {
   const { updateCoins } = useCredits();
   const c = async () => {
@@ -34,9 +35,10 @@ const CreditPlanCard = ({ d }: any) => {
         <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
       <div className="center mt-5">
-        <Button animation="scale" onClick={handlePayment}>
+        {/* <Button animation="scale" onClick={handlePayment}>
           ₹ {d.price.toLocaleString()}
-        </Button>
+        </Button> */}
+        <MoneyPurchasePopup title={"Topup"} price={d.price} type="topup" />
       </div>
     </div>
   );
