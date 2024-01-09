@@ -176,8 +176,9 @@ const Header: React.FC<HeaderProps> = ({
       id="header"
       className={clsx(
         "relative",
-        type !== "comic" && "aspect-w-10 aspect-h-6",
-        type == "comic" && "aspect-w-10 aspect-h-14"
+        true && "aspect-w-10 aspect-h-6"
+        // type !== "comic" && "aspect-w-10 aspect-h-6"
+        // type == "comic" && "aspect-w-10 aspect-h-14"
       )}
     >
       <Image src={thumbnail} alt={title} fill />
