@@ -217,7 +217,7 @@ const ContentTemplate: React.FC<Props> = async ({
                 />
               )}
 
-              {isTypeUpcomingLive && <Counter />}
+              {isTypeUpcomingLive && <Counter to={data.from} />}
 
               {data?.quiz && (
                 <Quiz

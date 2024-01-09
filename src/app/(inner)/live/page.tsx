@@ -13,7 +13,7 @@ const DashboardPage = async () => {
     CarouselApi({
       type: "GET",
       filter: {
-        href: "dashboard",
+        href: "live",
       },
     }),
   ]);
@@ -27,8 +27,8 @@ const DashboardPage = async () => {
 
       <main>
         {liveNow.length !== 0 && (
-          <Categorizer title="Live" right={<Button />} className="my-2">
-            <div className="grid grid-cols-4 gap-5">
+          <Categorizer title="Live" className="my-2">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
               {liveNow.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -53,12 +53,8 @@ const DashboardPage = async () => {
         )}
 
         {upcoming.length !== 0 && (
-          <Categorizer
-            title="Upcoming Live"
-            className="my-2"
-            right={<Button />}
-          >
-            <div className="grid grid-cols-4 gap-2">
+          <Categorizer title="Upcoming Live" className="my-2">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
               {upcoming.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -73,9 +69,11 @@ const DashboardPage = async () => {
                     isPremium: video.premium,
                     thumbnail: extImage(video.thumbnail),
                     grades: video.grade as any,
-                    scheduledDateAndTime: formatTimestamp(
-                      video.start_timestamp as number
-                    ),
+                    scheduledDateAndTime: `${new Date(
+                      video.from
+                    ).toLocaleDateString()} |  ${new Date(
+                      video.from
+                    ).toLocaleTimeString()}`,
                     isUnlocked: listOfPurchagesIds?.includes(`${video.id}`),
                   }}
                 />
@@ -85,12 +83,8 @@ const DashboardPage = async () => {
         )}
 
         {recorded.length !== 0 && (
-          <Categorizer
-            className="my-2"
-            right={<Button />}
-            title="Recorded Live Sessions"
-          >
-            <div className="grid grid-cols-4 gap-2">
+          <Categorizer className="my-2" title="Recorded Live Sessions">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
               {recorded.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -119,12 +113,6 @@ const DashboardPage = async () => {
 };
 export default DashboardPage;
 
-const Button = () => (
-  <button className="!font-heading text-sm mr-3 bg-white px-6 py-2 rounded-full drop-shadow-lg">
-    See more
-  </button>
-);
-
 export const revalidate = 100;
 
 interface Event {
@@ -138,8 +126,8 @@ interface Event {
   content: string;
   duration: number;
   desc: string;
-  end_timestamp: number;
-  start_timestamp: number;
+  from: any;
+  to: any;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;

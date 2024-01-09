@@ -1,53 +1,44 @@
-const Counter = () => {
+interface Props {
+  to: string;
+}
+
+// import Button from "@/blocks/atoms/Button";
+
+const Counter: React.FC<Props> = ({ to }) => {
+  const event_date = new Date(to);
+
+  const rt = calculateTimeRemaining(event_date);
+
   return (
     <div className="w-full p-5 bg-white rounded-xl">
       <h3 className="!font-heading font-semibold text-2xl">Upcoming Live</h3>
-      <div className="grid grid-cols-3 gap-4 mt-3">
-        <div id="days">
-          <div className="grid grid-cols-2 gap-1 h-[50px]">
-            <span className="bg-gray-100 center font-amar text-2xl">1</span>
-            <span className="bg-gray-100 center font-amar text-2xl">2</span>
-          </div>
-          <p className="text-center font-heading text-gray-400 text-xs mt-1">
-            DAYS
-          </p>
-        </div>
-        <div id="days">
-          <div className="grid grid-cols-2 gap-1 h-[50px]">
-            <span className="bg-gray-100 center font-amar text-2xl text-gray-500">
-              0
-            </span>
-            <span className="bg-gray-100 center font-amar text-2xl text-gray-500">
-              5
-            </span>
-          </div>
-          <p className="text-center font-heading text-gray-400 text-xs mt-1">
-            HOURS
-          </p>
-        </div>
 
-        <div id="days">
-          <div className="grid grid-cols-2 gap-1 h-[50px]">
-            <span className="bg-gray-100 center font-amar text-2xl text-gray-500">
-              2
-            </span>
-            <span className="bg-gray-100 center font-amar text-2xl text-gray-500">
-              4
-            </span>
-          </div>
-          <p className="text-center font-heading text-gray-400 text-xs mt-1">
-            MINUTES
-          </p>
+      <div className="grid grid-cols-3 my-3 px-2">
+        <div>
+          <h4 className="text-xl font-heading font-semibold">{rt.days}</h4>{" "}
+          <p className="font-heading text-gray-600">Days</p>
+        </div>
+        <div>
+          <h4 className="text-xl font-heading font-semibold">{rt.hours}</h4>{" "}
+          <p className="font-heading text-gray-600">Hours</p>
+        </div>
+        <div>
+          <h4 className="text-xl font-heading font-semibold">{rt.minutes}</h4>{" "}
+          <p className="font-heading text-gray-600">Minutes</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-[2fr_1fr] gap-3 h-[40px] mt-2">
-        <button className="bg-blue-500 rounded-md font-heading text-white">
+      <div className="grid grid-cols-[2fr_1fr]--  gap-3 h-[40px] mt-2">
+        {/* <Button animation="scale" className="!rounded-md">
           Set Remainder
-        </button>
+        </Button> */}
         <div className="center gap-2 border px-3 rounded-md">
-          <p className="text-2xl font-heading leading-2 text-blue-800">24</p>
-          <p className="text-xs font-heading leading-2 text-gray-400">JULY</p>
+          <p className="text-2xl font-heading leading-2 text-blue-800">
+            {event_date.getDate()}
+          </p>
+          <p className="text-xs font-heading leading-2 text-gray-400">
+            {getMonthNameFromDate(event_date)}
+          </p>
         </div>
       </div>
     </div>
@@ -55,3 +46,44 @@ const Counter = () => {
 };
 
 export default Counter;
+
+function calculateTimeRemaining(targetDate: Date): {
+  days: number;
+  hours: number;
+  minutes: number;
+} {
+  // Aaj ki date ka object banaye
+  const currentDate = new Date();
+
+  // Target date aur current date ke beech ka difference nikale (milliseconds mein)
+  const timeDifference = targetDate.getTime() - currentDate.getTime();
+
+  // Milliseconds ko days, hours aur minutes mein convert kare
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+  // Result object return kare
+  return { days, hours, minutes };
+}
+
+function getMonthNameFromDate(date: Date): string {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const monthIndex = date.getMonth();
+  return monthNames[monthIndex];
+}
