@@ -155,7 +155,16 @@ const ContentTemplate: React.FC<Props> = async ({
               {isTypeComic && (
                 <div className=" md:flex md:items-center grid md:gap-5 gap-3 mt-5">
                   {isUnlocked && (
-                    <ComicReader {...{ id, slug, title, price, duration }} />
+                    <ComicReader
+                      {...{
+                        id,
+                        slug,
+                        title,
+                        price,
+                        duration,
+                        content: data?.content,
+                      }}
+                    />
                   )}
 
                   {!isUnlocked && (
