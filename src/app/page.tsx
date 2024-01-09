@@ -27,14 +27,21 @@ const Header = () => {
   return (
     <div className="fixed top-0 w-full bg-black/30 z-50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between sm:p-3 p-1">
-        <Image src={"/logo-2.png"} alt="logo" width={80} height={80} />
+        <Image
+          src={"/logo-2.png"}
+          alt="logo"
+          className="sm:w-20 sm:h-20 h-12 w-12"
+          width={80}
+          height={80}
+        />
         <div className="flex gap-5">
           <button className="border-2 text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading">
             Login
           </button>
 
           <button className="bg-lightblue text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading flex items-center gap-2">
-            Explore <BiRightArrowAlt />
+            Explore
+            <BiRightArrowAlt />
           </button>
         </div>
       </div>
@@ -85,7 +92,7 @@ const Collections = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto py-20 xl:px-0 px-4">
-        <h2 className="sm:text-4xl text-2xl font-amar font-semibold uppercase">
+        <h2 className="text-4xl font-amar font-semibold uppercase">
           Collections
         </h2>
         <p className="sm:text-xl my-2">
@@ -242,9 +249,11 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="border-t border-white pt-10 flex flex-col sm:justify-between">
+          <div className="border-t border-white pt-10 flex  sm:flex-row flex-col sm:justify-between">
             <div>
-              <p className="text-center">Copyright © 2024 Cosmic Kids | All Rights Reserved.</p>
+              <p className="text-center">
+                Copyright © 2024 Cosmic Kids | All Rights Reserved.
+              </p>
             </div>
             <div>
               <ul className="flex justify-center gap-5 sm:mt-2 mt-4">
