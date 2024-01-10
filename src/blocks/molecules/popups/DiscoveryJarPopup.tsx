@@ -140,7 +140,7 @@ const DiscoveryJarPopup = () => {
               <input
                 type="file"
                 // value={files}
-                onChange={(e) => setFiles(e.target.files?.[0])}
+                // onChange={(e) => setFiles(e.target.files?.[0])}
               />
               <Button
                 animation="scale"

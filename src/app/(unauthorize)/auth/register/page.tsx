@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Heading from "@/blocks/atoms/Heading";
-import EmailAuthButton from "@/blocks/atoms/EmailAuthButton";
+import SignUpWithEmail from "@/blocks/popups/signup";
 import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
 import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 
@@ -29,7 +29,7 @@ const Page = () => {
           <GoogleAuthButton type="signup" />
           <SpaceBreakWithText />
           <div>
-            <EmailAuthButton />
+            <SignUpWithEmail />
           </div>
           <div className="center mt-3">
             <Link href="/auth/login" className="underline font-medium">

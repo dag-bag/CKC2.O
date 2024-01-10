@@ -1,18 +1,19 @@
 "use client";
 import axios from "axios";
-import Button from "./Button";
-import Heading from "./Heading";
+import Send from "./send";
 import { useState } from "react";
+import Validate from "./validate";
 import toast from "react-hot-toast";
+import RootModal from "../popup-root";
 import { TbMail } from "react-icons/tb";
 import { strapi } from "@/libs/strapi";
 import { useRouter } from "next/navigation";
-import RootModal from "../popups/popup-root";
 import useSession from "@/hooks/use-session";
 import { useDisclosure } from "@mantine/hooks";
-import { PasswordInput, PinInput, TextInput } from "@mantine/core";
+import GeneratePassword from "./password";
+import Button from "@/blocks/atoms/Button";
 
-const EmailAuthButton = () => {
+const SignUpWithEmail = () => {
   const router = useRouter();
   const { login } = useSession();
   const [email, setEmail] = useState("");
@@ -141,7 +142,6 @@ const EmailAuthButton = () => {
             handler={handleAccountCreate}
           />
         )}
-        {otp}
       </RootModal>
       <Button
         animation="scale"
@@ -154,93 +154,9 @@ const EmailAuthButton = () => {
   );
 };
 
-export default EmailAuthButton;
-
-const GeneratePassword = ({
-  email,
-  password,
-  setPassword,
-  loading,
-  handler,
-}: any) => {
-  return (
-    <div className="grid gap-2">
-      <Heading size="small" className="text-center mb-5">
-        Create Password
-      </Heading>
-      <TextInput size="md" readOnly value={email} />
-      <PasswordInput
-        size="md"
-        value={password}
-        placeholder="Password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-
-      <Button
-        loading={loading}
-        onClick={handler}
-        animation="scale"
-        className="w-full mt-5"
-      >
-        Submit
-      </Button>
-    </div>
-  );
-};
-
-const Send = ({ email, setEmail, loading, handler }: any) => {
-  return (
-    <div>
-      <Heading size="small" className="text-center mb-5">
-        Verify Email
-      </Heading>
-      <TextInput
-        value={email}
-        onChange={(e) => setEmail(e.currentTarget.value)}
-        size="lg"
-        name="email"
-        type="email"
-        placeholder="your email"
-      />
-      <Button
-        loading={loading}
-        onClick={handler}
-        animation="scale"
-        className="w-full mt-5"
-      >
-        Send Otp
-      </Button>
-    </div>
-  );
-};
-const Validate = ({ pin, setPin, validate }: any) => {
-  return (
-    <div>
-      <Heading size="small" className="text-center mb-5">
-        Verify Otp
-      </Heading>
-      <div className="center">
-        <PinInput
-          value={pin}
-          onChange={(e) => {
-            setPin(e);
-          }}
-          type={/^[0-9]*$/}
-          className="mx-auto"
-          size="md"
-        />
-      </div>
-      <Button onClick={validate} animation="scale" className="w-full mt-5">
-        Varify Otp
-      </Button>
-    </div>
-  );
-};
+export default SignUpWithEmail;
 
 function generateOTP(): number {
-  // Generate a random 4-digit OTP
   const otp = Math.floor(1000 + Math.random() * 9000);
   return otp;
 }
