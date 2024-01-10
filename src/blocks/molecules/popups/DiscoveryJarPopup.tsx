@@ -24,6 +24,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { CreateQuestion } from "@/services/discovery-jar";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import Button from "@/blocks/atoms/Button";
+import { FileInput } from "@mantine/core";
 // Yup schema for form validation
 const schema = yup.object().shape({
   question: yup.string().required("Question is required"),
@@ -33,6 +34,7 @@ interface FormData {
   question: string;
 }
 
+//Optional Import
 const DiscoveryJarPopup = () => {
   const uploadFile = (file: File) => {
     const params = {
@@ -51,9 +53,14 @@ const DiscoveryJarPopup = () => {
         if (err) console.log(err);
       });
   };
+
   const { session } = useSession();
   const [opened, { open, close }] = useDisclosure(false);
-  const [files, setFiles] = useState<File | null>(null);
+
+  // const [files, setFiles] = useState<File | null>(null);
+
+  const [value, setValue] = useState<File[] | null>([]);
+
   const {
     register,
     handleSubmit,
@@ -65,17 +72,15 @@ const DiscoveryJarPopup = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const imageURL = await uploadFile(files as File);
-      ////// upload Image And Get url  files
-      // await CreateQuestion({
-      //   user: session.user.id,
-      //   question: data.question,
-      //   discovery_jar_config: 1,
-      //   mediaUrl: files,
-      // });
-      console.log(imageURL);
+      // const imageURL = await uploadFile(value?.at(0) as File);
+      await CreateQuestion({
+        user: session.user.id,
+        question: data.question,
+        discovery_jar_config: 1,
+        mediaUrl: value,
+      });
       reset();
-      setFiles(null);
+      setValue(null);
       close();
     } catch (error) {
       console.log(error);
@@ -134,13 +139,14 @@ const DiscoveryJarPopup = () => {
                 </div>
               </div>
 
-              <div className="w-full sm:h-[120px] h-[50px] border-2 border-gray-300 border-dashed rounded-xl center flex-col mt-5">
+              {/* <div className="w-full sm:h-[120px] h-[50px] border-2 border-gray-300 border-dashed rounded-xl center flex-col mt-5">
                 <p className="text-lg text-gray-400 ">Upload Media</p>
-              </div>
-              <input
-                type="file"
-                // value={files}
-                // onChange={(e) => setFiles(e.target.files?.[0])}
+              </div> */}
+              <FileInput
+                placeholder="File Input"
+                multiple
+                value={value as any}
+                onChange={setValue}
               />
               <Button
                 animation="scale"
