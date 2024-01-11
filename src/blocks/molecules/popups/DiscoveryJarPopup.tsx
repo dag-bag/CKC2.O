@@ -75,7 +75,8 @@ const DiscoveryJarPopup = () => {
     try {
       // Upload the media file to Strapi
       const formData = new FormData();
-      formData.append("files", value[0]);
+      // @ts-ignore
+      formData.append("files", value[0] as File);
 
       const mediaUploadResponse = await axios.post(
         "https://ckc-strapi-production-33d2.up.railway.app/api/upload",
@@ -95,7 +96,7 @@ const DiscoveryJarPopup = () => {
         user: session.user.id,
         question: data.question,
         discovery_jar_config: 1,
-        media: mediaUrl, // Assuming mediaUrl is an array in your API call
+        mediaUrl: mediaUrl,
       });
 
       reset();
