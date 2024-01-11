@@ -1,5 +1,6 @@
 "use client";
 import plan_configuations from "@config/plans";
+import { showUpgradables } from "@/libs/purchases";
 import { useAccountType } from "@/hooks/use-session";
 import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
 
@@ -25,9 +26,3 @@ const PurchasesPage = () => {
 };
 
 export default PurchasesPage;
-
-const showUpgradables = (current_plan: string, this_plan: string): any => {
-  if (current_plan == "premium") return false;
-  if (current_plan == "free") return ["basic", "premium"].includes(this_plan);
-  if (current_plan == "basic") return ["premium"].includes(this_plan);
-};

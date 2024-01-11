@@ -1,17 +1,7 @@
 "use client";
-import useCredits from "@/hooks/useCredits";
-import useRazorpay from "@/hooks/useRazorpay";
-import { buyCredit } from "@/strapi/services/custom";
 import Image from "next/image";
-import Button from "@/blocks/atoms/Button";
 import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 const CreditPlanCard = ({ d }: any) => {
-  const { updateCoins } = useCredits();
-  const c = async () => {
-    updateCoins({ type: "add", newData: parseInt(d.credits) });
-    await buyCredit(d.credits);
-  };
-  const { handlePayment } = useRazorpay(c, d.price);
   return (
     <div className="bg-white rounded-md overflow-hidden flex flex-col p-5 pb-5 font-heading">
       <div className="center">
@@ -35,10 +25,12 @@ const CreditPlanCard = ({ d }: any) => {
         <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
       </div>
       <div className="center mt-5">
-        {/* <Button animation="scale" onClick={handlePayment}>
-          ₹ {d.price.toLocaleString()}
-        </Button> */}
-        <MoneyPurchasePopup title={"Topup"} price={d.price} type="topup" />
+        <MoneyPurchasePopup
+          credits={parseInt(d.credits as any)}
+          title={"Topup"}
+          price={d.price}
+          type="topup"
+        />
       </div>
     </div>
   );

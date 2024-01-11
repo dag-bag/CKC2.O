@@ -5,6 +5,7 @@ import { fuzzy } from "@/services/fuzzy";
 import React, { useState } from "react";
 import { testMail } from "@/libs/aws-ses";
 import axios from "axios";
+import { FileInput } from "@mantine/core";
 export default function Page() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState({});
@@ -18,6 +19,17 @@ export default function Page() {
   const name = "deepak";
   const otp = "123123";
 
+  const [value, setValue] = useState<any>();
+
+  const handle = async () => {
+    axios
+      .post("https://ckc-strapi-production-33d2.up.railway.app/uploads/", {
+        files: value,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       {/* <h1>Search Here </h1>
@@ -28,19 +40,8 @@ export default function Page() {
       />
       <button onClick={sms}>GET SEARCH RESULTS</button>
       {JSON.stringify(data)} */}
-
-      <button
-        onClick={async () => {
-          // testMail("deepakvish7354@gmail.com");
-          await axios.post(`http://localhost:3000/api/send-otp`, {
-            recipientEmail,
-            name,
-            otp,
-          });
-        }}
-      >
-        mail
-      </button>
+      <FileInput onChange={setValue} />
+      <button onClick={handle}>click</button>
     </div>
   );
 }

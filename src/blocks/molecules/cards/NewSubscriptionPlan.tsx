@@ -1,9 +1,6 @@
 "use client";
 import clsx from "clsx";
-import axios from "axios";
-import toast from "react-hot-toast";
-import useRazorpay from "@/hooks/useRazorpay";
-import useSession from "@/hooks/use-session";
+import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 
 interface Props {
   id: number;
@@ -27,33 +24,6 @@ const NewSubscriptionPlan: React.FC<Props> = ({
   duration,
   upgradable,
 }) => {
-  const session = useSession();
-  const buyPremiumHandler = async () => {
-    await axios.post("/api/user/unlock/premium", {
-      plan: id,
-      type: type,
-      title: title,
-      days: duration,
-      credits: credits,
-    });
-    toast.promise(
-      axios.post("/api/user/unlock/premium", {
-        plan: id,
-        type: type,
-        title: title,
-        days: duration,
-        credits: credits,
-      }),
-      {
-        loading: "Processing Payment",
-        success: `${title} Plan Unlocked`,
-        error: "Error",
-      }
-    );
-  };
-
-  const { handlePayment } = useRazorpay(buyPremiumHandler, price as number);
-
   return (
     <div
       key={id}
@@ -83,12 +53,12 @@ const NewSubscriptionPlan: React.FC<Props> = ({
       </section>
 
       {upgradable && (
-        <button
-          onClick={handlePayment}
-          className="mt-auto block border-2 py-3 capitalize rounded-lg"
-        >
-          Upgrade to {title}
-        </button>
+        <MoneyPurchasePopup
+          type="plan"
+          title={title}
+          price={price}
+          plandetails={{ id, type, duration, credits }}
+        />
       )}
       {selected && (
         <p className="mt-auto block  text-center px-5 text-green-600 bg-green-100 py-3 capitalize rounded-lg text-lg">

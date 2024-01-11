@@ -21,6 +21,7 @@ import {
 import Image from "next/image";
 
 const Profilebar = () => {
+  const account_type = useAccountType();
   const { logout, session } = useSession();
   const handleLogout = () => {
     logout();
@@ -47,7 +48,7 @@ const Profilebar = () => {
               src={"/avatars/asian-man.png"}
             />
 
-            {session.user.premium && (
+            {account_type == "premium" && (
               <Image
                 width={20}
                 height={20}
@@ -60,13 +61,11 @@ const Profilebar = () => {
         </Menu.Target>
 
         <Menu.Dropdown>
+          <Menu.Item>Plan : {account_type}</Menu.Item>
+
           <Menu.Item>
             <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
           </Menu.Item>
-
-          {/* <Menu.Item>
-            <Button title={"Cart"} href={"/settings"} Icon={LuShoppingCart} />
-          </Menu.Item> */}
 
           <Menu.Item>
             <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
@@ -105,7 +104,7 @@ import {
   LuShoppingCart,
   LuBell,
 } from "react-icons/lu";
-import useSession from "@/hooks/use-session";
+import useSession, { useAccountType } from "@/hooks/use-session";
 import { useRouter } from "next/navigation";
 
 interface Props {

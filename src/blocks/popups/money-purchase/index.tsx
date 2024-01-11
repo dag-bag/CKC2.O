@@ -1,42 +1,121 @@
 "use client";
 interface Props {
-  price: number;
-  type: "plan" | "topup";
   title: string;
+  price: number;
+  credits?: number;
+  type: "plan" | "topup";
+  plandetails?: {
+    id: number;
+    type: string;
+    credits: number;
+    duration: number;
+  };
 }
+
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { BiX } from "react-icons/bi";
 import RootModal from "../popup-root";
+import CoupanValidate from "./coupan";
+import PaymentSummary from "./summary";
+import { strapi } from "@/libs/strapi";
 import Button from "../../atoms/Button";
-import { TextInput } from "@mantine/core";
+import useCredits from "@/hooks/useCredits";
+import { getCouponStatus } from "./filters";
 import Heading from "@/blocks/atoms/Heading";
+import { getPromocodeData } from "./filters";
+import useRazorpay from "@/hooks/useRazorpay";
+import CoupanAppliedCard from "./coupan-card";
 import { useDisclosure } from "@mantine/hooks";
+import { buyCredit } from "@/strapi/services/custom";
 import useSession, { useAccountType } from "@/hooks/use-session";
 
-const MoneyPurchase: React.FC<Props> = ({ price, type, title }) => {
-  const account_type = useAccountType();
+const MoneyPurchase: React.FC<Props> = ({
+  price,
+  type,
+  title,
+  credits,
+  plandetails,
+}) => {
   const { session } = useSession();
+  const { updateCoins } = useCredits();
+  const account_type = useAccountType();
+  const [coupan, setCoupan] = useState("");
   const [loading, setLoading] = useState(false);
-  const [coupan, setCoupan] = useState("PROMO4");
   const [data, setData] = useState<any>(undefined);
   const [opened, { open, close }] = useDisclosure(false);
   const [discountPrice, setDiscountPrice] = useState<null | number>(null);
 
+  const TOTALPRICE = discount_calculator(
+    price,
+    discountPrice ?? 0,
+    account_type == "premium" && type == "topup" ? CP(price, 50) : 0,
+    account_type == "basic" && type == "topup" ? CP(price, 20) : 0
+  );
+
+  const createPromocodeUsage = async (promocode: string, userId: number) => {
+    await strapi.create("promocode-usages", {
+      promocode,
+      userId,
+    });
+  };
+
+  const planAfterPaymentHandler = async () => {
+    try {
+      setLoading(true);
+      const promise = axios
+        .post("/api/user/unlock/premium", {
+          title: title,
+          plan: plandetails?.id,
+          type: plandetails?.type,
+          days: plandetails?.duration,
+          credits: plandetails?.credits,
+        })
+        .then(async () => {
+          await createPromocodeUsage(coupan, session.user.id).then(() => {
+            setLoading(true);
+            close();
+          });
+        });
+
+      toast.promise(promise, {
+        loading: "Processing Payment",
+        success: `${title} Plan Unlocked`,
+        error: "Error",
+      });
+    } catch (err) {
+      toast.error("error occured");
+    }
+  };
+
+  const topupAfterPaymentHandler = async () => {
+    try {
+      updateCoins({ type: "add", newData: credits as number });
+      await buyCredit(credits).then(async () => {
+        await createPromocodeUsage(coupan, session.user.id).then(() => {
+          toast.success("purchase sucessfull");
+          close();
+        });
+      });
+    } catch (err) {
+      toast.error("error occured!");
+    }
+  };
+
+  const { handlePayment } = useRazorpay(
+    type === "plan" ? planAfterPaymentHandler : topupAfterPaymentHandler,
+    TOTALPRICE
+  );
+
   const handleCouponApplication = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `https://ckc-strapi-production-33d2.up.railway.app/api/promocodes?filters[promocode]=${coupan}&populate[0]=users`
-      );
-      const responseData = response.data.data;
+      const responseData = await getPromocodeData(session.user.id, coupan);
       if (responseData.length === 0) {
         toast.error("Invalid Coupon Code");
       } else {
         const couponData = responseData[0];
         setData(couponData);
-
         const discount = getCouponStatus(
           couponData.from,
           couponData.to,
@@ -49,8 +128,7 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title }) => {
         setDiscountPrice(discount);
       }
     } catch (error) {
-      // Handle error appropriately, e.g., display an error toast
-      console.error("Error applying coupon:", error);
+      console.log(error);
       toast.error("Error applying coupon");
     } finally {
       setLoading(false);
@@ -72,50 +150,38 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title }) => {
           <Heading className="text-center" size="small">
             {title}
           </Heading>
+          {/* Coupan Input */}
           {discountPrice == null && (
-            <div className="grid grid-cols-[3fr_1fr] gap-2 my-5">
-              <TextInput
-                name="coupancode"
-                value={coupan}
-                onChange={(e) => {
-                  setCoupan(e.target.value);
-                }}
-                classNames={{
-                  input: "uppercase",
-                }}
-                placeholder="COUPAN CODE"
-                size="md"
-              />
-              <Button
-                loading={loading}
-                onClick={handleCouponApplication}
-                className="rounded-md bg-darkblue !py-0 !h-auto !text-sm"
-              >
-                Apply
-              </Button>
-            </div>
+            <CoupanValidate
+              {...{ coupan, setCoupan, loading, handleCouponApplication }}
+            />
           )}
-
+          {/* Applied Coupan Card  */}
           {discountPrice !== null && (
-            <Discount
+            <CoupanAppliedCard
               type={data.type}
               value={data.value}
               onClear={clearPromo}
               promocode={data.promocode}
             />
           )}
-
-          <Summary
-            obj={{
-              "Topup Package Price": price,
-              "Discount Price": discountPrice
-                ? "(-)" + (price - discountPrice)
-                : undefined,
-              "Total Price": discountPrice ? discountPrice : price,
-            }}
+          <PaymentSummary
+            sale_price={price}
+            coupan_discount={discountPrice ?? 0}
+            basic_holder_discount={
+              account_type == "basic" && type == "topup" ? CP(price, 20) : 0
+            }
+            premium_holder_discount={
+              account_type == "premium" && type == "topup" ? CP(price, 50) : 0
+            }
+            total_price={TOTALPRICE}
           />
-
-          <Button animation="scale" className="rounded-xl w-full py-4 h-auto">
+          <Button
+            loading={loading}
+            animation="scale"
+            onClick={handlePayment}
+            className="rounded-xl w-full py-4 h-auto"
+          >
             Confirm Payment
           </Button>
         </div>
@@ -124,108 +190,18 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title }) => {
   );
 };
 
-const Discount = ({ promocode, value, type, onClear }: any) => {
-  return (
-    <div className=" border grid grid-cols-2 rounded-xl gap-2 overflow-hidden my-5">
-      <div className="p-3 bg-darkblue text-white center">#{promocode}</div>
-      <div className="p-3 center gap-5">
-        <h5>
-          <span className="text-lg font-semibold">{value} </span> <br />
-          <span className=" !capitalize text-sm">{type}</span>
-        </h5>
-        <button
-          onClick={onClear}
-          className="p-2 bg-red-50 text-red-600 rounded-full"
-        >
-          <BiX />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const Summary = ({ obj }: any) => {
-  return (
-    <div>
-      <p className="font-heading">Summary</p>
-      <section className="p-5 bg-gray-50 rounded-xl mb-5 gap-2 grid mt-1">
-        {Object.entries(obj).map(([key, val]: any, index) => {
-          if (!val) {
-            return null;
-          }
-          return (
-            <div key={index} className="flex justify-between items-center">
-              <p className="capitalize font-heading">{key}</p>
-              <p>₹{val}</p>
-            </div>
-          );
-        })}
-      </section>
-    </div>
-  );
-};
-
 export default MoneyPurchase;
 
-const getCouponStatus = (
-  from: string,
-  to: string,
-  type: "percentage" | "flat",
-  value: number,
-  price: number,
-  users: any[],
-  id: number
-): any => {
-  const endDate = new Date(to).getTime();
-  const currentDate = new Date().getTime();
-  const startDate = new Date(from).getTime();
-
-  if (currentDate < startDate) {
-    toast.error("Invalid");
-    console.log("invalid:not-started");
-    return null;
-  }
-
-  if (currentDate >= startDate && currentDate <= endDate) {
-    if (users.length == 0) {
-      toast.success("Applied");
-      return type == "percentage"
-        ? applyPercentageDiscount(price, value)
-        : applyFlatDiscount(price, value);
-    } else {
-      if (users.map((user) => user.id).includes(id)) {
-        toast.success("Applied");
-        return type == "percentage"
-          ? applyPercentageDiscount(price, value)
-          : applyFlatDiscount(price, value);
-      } else {
-        toast.error("Invalid");
-        console.log("invalid:unexpected-user");
-        return null;
-      }
-    }
-  }
-
-  if (currentDate > endDate) {
-    toast.error("Invalid");
-    console.log("invalid:expired");
-    return null;
-  }
+export const discount_calculator = (price: number, ...rest: number[]) => {
+  const total_discounted_price = rest.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  return price - total_discounted_price;
 };
 
-const applyPercentageDiscount = (price: number, percentage: number): number => {
-  if (percentage < 0 || percentage > 100) {
-    return price;
-  }
-
-  const discount = (percentage / 100) * price;
-  return price - discount;
-};
-
-const applyFlatDiscount = (price: number, flat: number): number => {
-  if (flat < 0) {
-    throw new Error("Flat discount should be a non-negative value.");
-  }
-
-  return price - flat;
-};
+function CP(number: number, percentage: number): number {
+  // Calculate the percentage
+  const result: number = (percentage / 100) * number;
+  return result;
+}
