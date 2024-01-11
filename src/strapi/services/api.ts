@@ -33,6 +33,8 @@ import {
 import { COMICS_P } from "../populations/comics";
 
 
+
+
 const Comics = async (action: Action) => {
   return fetchData(COMICS_ENTITY, action, COMICS_P);
 };

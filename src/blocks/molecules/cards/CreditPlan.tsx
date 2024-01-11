@@ -38,7 +38,12 @@ const CreditPlanCard = ({ d }: any) => {
         {/* <Button animation="scale" onClick={handlePayment}>
           ₹ {d.price.toLocaleString()}
         </Button> */}
-        <MoneyPurchasePopup title={"Topup"} price={d.price} type="topup" />
+        <MoneyPurchasePopup
+          credits={parseInt(d.credits as any)}
+          title={"Topup"}
+          price={d.price}
+          type="topup"
+        />
       </div>
     </div>
   );

@@ -10,10 +10,12 @@ export default function useRazorpay(
       amount: parseInt(amount as string),
       discount: 10,
     });
+    console.log(data)
     return data;
   };
   const handlePayment = () => {
     getDataFromServer().then((data) => {
+      console.log(data)
       const options = {
         key: "rzp_test_3AGDRLyf7EUWVw",
         currency: data.currency,

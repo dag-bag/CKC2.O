@@ -60,7 +60,7 @@ export default function useSession() {
 
 // what is your account type 
 
-export const useAccountType = () => {
+export const useAccountType = (): "free" | "premium" | "basic" => {
   const session = useSession()
-  return session.session.user.type ?? "free";
+  return session.session.user.type as any ?? "free";
 }

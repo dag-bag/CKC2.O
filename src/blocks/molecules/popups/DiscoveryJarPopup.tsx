@@ -75,7 +75,7 @@ const DiscoveryJarPopup = () => {
     try {
       // Upload the media file to Strapi
       const formData = new FormData();
-      formData.append("files", value[0]);
+      // formData.append("files", value?.at(0));
 
       const mediaUploadResponse = await axios.post(
         "https://ckc-strapi-production-33d2.up.railway.app/api/upload",
