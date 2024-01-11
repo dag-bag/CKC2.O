@@ -4,7 +4,15 @@ interface Props {
   price: number;
   credits?: number;
   type: "plan" | "topup";
+  plandetails?: {
+    id: number;
+    type: string;
+    credits: number;
+    duration: number;
+  };
 }
+
+import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import RootModal from "../popup-root";
@@ -22,7 +30,13 @@ import { useDisclosure } from "@mantine/hooks";
 import { buyCredit } from "@/strapi/services/custom";
 import useSession, { useAccountType } from "@/hooks/use-session";
 
-const MoneyPurchase: React.FC<Props> = ({ price, type, title, credits }) => {
+const MoneyPurchase: React.FC<Props> = ({
+  price,
+  type,
+  title,
+  credits,
+  plandetails,
+}) => {
   const { session } = useSession();
   const { updateCoins } = useCredits();
   const account_type = useAccountType();
@@ -46,7 +60,35 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title, credits }) => {
     });
   };
 
-  const afterPaymentHandler = async () => {
+  const planAfterPaymentHandler = async () => {
+    try {
+      setLoading(true);
+      const promise = axios
+        .post("/api/user/unlock/premium", {
+          title: title,
+          plan: plandetails?.id,
+          type: plandetails?.type,
+          days: plandetails?.duration,
+          credits: plandetails?.credits,
+        })
+        .then(async () => {
+          await createPromocodeUsage(coupan, session.user.id).then(() => {
+            setLoading(true);
+            close();
+          });
+        });
+
+      toast.promise(promise, {
+        loading: "Processing Payment",
+        success: `${title} Plan Unlocked`,
+        error: "Error",
+      });
+    } catch (err) {
+      toast.error("error occured");
+    }
+  };
+
+  const topupAfterPaymentHandler = async () => {
     try {
       updateCoins({ type: "add", newData: credits as number });
       await buyCredit(credits).then(async () => {
@@ -60,7 +102,10 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title, credits }) => {
     }
   };
 
-  const { handlePayment } = useRazorpay(afterPaymentHandler, TOTALPRICE);
+  const { handlePayment } = useRazorpay(
+    type === "plan" ? planAfterPaymentHandler : topupAfterPaymentHandler,
+    TOTALPRICE
+  );
 
   const handleCouponApplication = async () => {
     try {
@@ -123,13 +168,16 @@ const MoneyPurchase: React.FC<Props> = ({ price, type, title, credits }) => {
           <PaymentSummary
             sale_price={price}
             coupan_discount={discountPrice ?? 0}
-            basic_holder_discount={account_type == "basic" ? CP(price, 20) : 0}
+            basic_holder_discount={
+              account_type == "basic" && type == "topup" ? CP(price, 20) : 0
+            }
             premium_holder_discount={
-              account_type == "premium" ? CP(price, 50) : 0
+              account_type == "premium" && type == "topup" ? CP(price, 50) : 0
             }
             total_price={TOTALPRICE}
           />
           <Button
+            loading={loading}
             animation="scale"
             onClick={handlePayment}
             className="rounded-xl w-full py-4 h-auto"
