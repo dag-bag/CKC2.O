@@ -25,6 +25,7 @@ import { CreateQuestion } from "@/services/discovery-jar";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import Button from "@/blocks/atoms/Button";
 import { FileInput } from "@mantine/core";
+import axios from "axios";
 // Yup schema for form validation
 const schema = yup.object().shape({
   question: yup.string().required("Question is required"),
@@ -72,21 +73,38 @@ const DiscoveryJarPopup = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      // const imageURL = await uploadFile(value?.at(0) as File);
+      // Upload the media file to Strapi
+      const formData = new FormData();
+      formData.append("files", value[0]);
+
+      const mediaUploadResponse = await axios.post(
+        "https://ckc-strapi-production-33d2.up.railway.app/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Get the media URL from the Strapi upload response
+      const mediaUrl = mediaUploadResponse.data[0].url;
+
+      // Create the question with the media URL
       await CreateQuestion({
         user: session.user.id,
         question: data.question,
         discovery_jar_config: 1,
-        mediaUrl: value,
+        media: mediaUrl, // Assuming mediaUrl is an array in your API call
       });
+
       reset();
       setValue(null);
       close();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
-
   return (
     <>
       <Button
