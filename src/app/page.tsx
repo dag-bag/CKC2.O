@@ -7,6 +7,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Accordion } from "@mantine/core";
+import plan_configuations from "@config/plans";
+import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
 export default function Home() {
   return (
     <div className="relative">
@@ -106,7 +108,7 @@ const Collections = () => {
           Award-winning docuseries, uplifting dramas and heartfelt stories
           across a wide variety of key programming categories
         </p>
-        <div className="grid grid-cols-3 gap-5 mt-5">
+        <div className="grid md:grid-cols-3 gap-5 mt-5">
           {collections.map((col) => (
             <div key={col.text}>
               <div className="relative aspect-w-9 aspect-h-5 rounded-xl overflow-hidden">
@@ -162,18 +164,25 @@ const Achievement = () => {
 
 const Plans = () => {
   return (
-    <div className="bg-white py-20">
+    <div className="bg-green-50 py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-amar font-semibold uppercase sm:text-4xl text-2xl text-center mb-2">
+        <h2 className="font-amar font-semibold uppercase sm:text-4xl text-2xl text-center mb-5">
           Choose the Plan
         </h2>
         <p className="sm:text-lg text-center mb-10">
           Unlimited access on any device. Cancel anytime.
         </p>
-        <div className="grid grid-cols-3 gap-5">
-          {/* {plan_configuations.map((plan) => {
-            return <NewSubscriptionPlan key={plan.id} {...plan} />;
-          })} */}
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 gap-10 p-2">
+          {plan_configuations.map((plan) => {
+            return (
+              <NewSubscriptionPlan
+                preview
+                upgradable={true}
+                key={plan.id}
+                {...plan}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

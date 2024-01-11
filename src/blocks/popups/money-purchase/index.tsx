@@ -141,10 +141,22 @@ const MoneyPurchase: React.FC<Props> = ({
   };
 
   return (
-    <div className="popup-container">
-      <Button onClick={open} animation="scale" className="w-full">
-        ₹ {price}
-      </Button>
+    <div className="popup-container mt-auto">
+      {type == "plan" && (
+        <Button
+          onClick={open}
+          animation="scale"
+          className="w-full rounded-xl capitalize"
+        >
+          Select {title}
+        </Button>
+      )}
+
+      {type == "topup" && (
+        <Button onClick={open} animation="scale" className="w-full rounded-xl">
+          ₹ {price}
+        </Button>
+      )}
       <RootModal centered onClose={close} opened={opened}>
         <div>
           <Heading className="text-center" size="small">

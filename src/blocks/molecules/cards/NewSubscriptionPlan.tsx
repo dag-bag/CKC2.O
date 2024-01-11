@@ -1,7 +1,8 @@
 "use client";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
-
+import Button from "@/blocks/atoms/Button";
 interface Props {
   id: number;
   price: number;
@@ -12,6 +13,7 @@ interface Props {
   credits: number;
   duration: number;
   upgradable: boolean;
+  preview?: boolean;
 }
 const NewSubscriptionPlan: React.FC<Props> = ({
   id,
@@ -23,12 +25,14 @@ const NewSubscriptionPlan: React.FC<Props> = ({
   features,
   duration,
   upgradable,
+  preview,
 }) => {
+  const router = useRouter();
   return (
     <div
       key={id}
       className={clsx(
-        "shadow-md p-5 rounded-2xl bg-white font-heading flex flex-col",
+        "shadow-md p-5 rounded-2xl bg-white font-heading flex flex-col border",
         selected && "border-2 border-green-500"
       )}
     >
@@ -52,7 +56,7 @@ const NewSubscriptionPlan: React.FC<Props> = ({
         </ul>
       </section>
 
-      {upgradable && (
+      {upgradable && !preview && (
         <MoneyPurchasePopup
           type="plan"
           title={title}
@@ -60,6 +64,19 @@ const NewSubscriptionPlan: React.FC<Props> = ({
           plandetails={{ id, type, duration, credits }}
         />
       )}
+
+      {preview && (
+        <Button
+          animation="scale"
+          onClick={() => {
+            router.push("/auth/login");
+          }}
+          className="mt-auto rounded-xl capitalize"
+        >
+          Select {type}
+        </Button>
+      )}
+
       {selected && (
         <p className="mt-auto block  text-center px-5 text-green-600 bg-green-100 py-3 capitalize rounded-lg text-lg">
           Selected Plan
