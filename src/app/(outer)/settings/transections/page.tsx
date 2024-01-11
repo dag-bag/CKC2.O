@@ -47,7 +47,7 @@ const TransectionsPage = async () => {
             description="Select push and email notifications that you'd like to receive"
           />
           <div className="grid ">
-            <div className="grid grid-cols-[2fr_1fr_1fr_1fr]  mb-4 px-5 font-semibold text-gray-600">
+            <div className="grid sm:grid-cols-[2fr_1fr_1fr_1fr] sm:justify-start justify-center  mb-4 sm:px-5 px-2 font-semibold text-gray-600">
               <div>Payment label</div>
               <div>Payment Status</div>
               <div>Payment Amount</div>

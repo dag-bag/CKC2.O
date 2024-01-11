@@ -118,7 +118,7 @@ const Question = ({ question, solution }: any) => {
       </div>
       {isCollapsed && (
         <div>
-          <div className="w-[600px] h-[300px] bg-blue-50 rounded-md mb-2 center border">
+          <div className="sm:w-[600px] sm:h-[300px] h-[200px] bg-blue-50 rounded-md mb-2 center border">
             <HiPlay size={50} color="gray" />
           </div>
           <p className="text-gray-600  ">{solution}</p>

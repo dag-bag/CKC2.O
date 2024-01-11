@@ -12,7 +12,7 @@ const SettingsPage = async () => {
         <div>
           <SettingIntroduction
             imageSrc="/astro.png"
-            title="Choose how you appear and what you see on CKC"
+            title="Choose how you appear and what you see on CKC "
             description="Signed in as deepakvish7354@gmail.com"
           />
           <ProfileForm data={data} />

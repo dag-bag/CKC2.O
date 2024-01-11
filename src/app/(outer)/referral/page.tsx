@@ -57,7 +57,7 @@ const HeroSection = () => {
   return (
     <div className="grid items-center">
       <div>
-        <h1 className="text-4xl font-medium font-heading ">Refer and Earn</h1>
+        <h1 className="sm:text-4xl text-2xl font-medium font-heading ">Refer and Earn</h1>
         {/* <p className="text text-gray-500">
           Earn badges and exciting rewards through our referral program
           achievements.
