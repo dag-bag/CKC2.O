@@ -1,14 +1,12 @@
 "use client";
-import Link from "next/link";
-import NewSubscriptionPlan from "@/blocks/molecules/cards/NewSubscriptionPlan";
-import plan_configuations from "@config/plans";
-import { Accordion, Divider } from "@mantine/core";
-import Image from "next/image";
 import {
   BiRightArrowAlt,
   BiLogoFacebook,
   BiLogoInstagram,
 } from "react-icons/bi";
+import Link from "next/link";
+import Image from "next/image";
+import { Accordion } from "@mantine/core";
 export default function Home() {
   return (
     <div className="relative">
@@ -35,14 +33,20 @@ const Header = () => {
           height={80}
         />
         <div className="flex gap-5">
-          <button className="border-2 text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading">
+          <Link
+            href={"/auth/login"}
+            className="border-2 text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading"
+          >
             Login
-          </button>
+          </Link>
 
-          <button className="bg-lightblue text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading flex items-center gap-2">
+          <Link
+            href={"/explore"}
+            className="bg-lightblue text-white md:text-xl md:px-20 md:py-4 px-4 py-1 rounded-xl font-heading flex items-center gap-2"
+          >
             Explore
             <BiRightArrowAlt />
-          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -64,9 +68,12 @@ const HeroSection = () => {
               Family Entertainment <br />
               for a smarter, <br /> kinder world
             </h1>
-            <button className="bg-lightgreen text-white md:text-xl md:px-20 md:py-4 px-6 py-2 rounded-xl font-heading">
+            <Link
+              href={"/dashboard"}
+              className="bg-lightgreen text-white md:text-xl md:px-20 md:py-4 px-6 py-2 rounded-xl font-heading inline-block"
+            >
               Explore Plateform
-            </button>
+            </Link>
           </div>
         </div>
       </div>
