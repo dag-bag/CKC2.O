@@ -1,19 +1,32 @@
-"use client";
 /* eslint-disable @next/next/no-img-element */
-import Button from "@/blocks/atoms/Button";
+"use client";
+import AWS from "aws-sdk";
+
+const S3_BUCKET = "myckc";
+const REGION = "us-east-1";
+
+AWS.config.update({
+  accessKeyId: "AKIAXYKJUEY7HVUC5COD",
+  secretAccessKey: "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",
+});
+
+const myBucket = new AWS.S3({
+  params: { Bucket: S3_BUCKET },
+  region: REGION,
+});
+
 import { useState } from "react";
-import { useDisclosure } from "@mantine/hooks";
-import { BiUpload } from "react-icons/bi";
-import { Textarea, Modal, FileButton } from "@mantine/core";
-import { CreateQuestion } from "@/services/discovery-jar";
+import Button from "@/blocks/atoms/Button";
 import useSession from "@/hooks/use-session";
+import { useDisclosure } from "@mantine/hooks";
+import { Textarea, Modal } from "@mantine/core";
 import { useForm, SubmitHandler, Resolver } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import { RequestChallange } from "@/services/challange";
 import { useParams, useRouter } from "next/navigation";
-
+import { FileInput } from "@mantine/core";
 // Yup schema for form validation
 const schema = yup.object().shape({
   question: yup.string().required("Question is required"),
@@ -24,6 +37,31 @@ interface FormData {
 }
 
 const ChallangesPopup = () => {
+  const uploadFile = (file: File, callback: (url: string) => void) => {
+    const params = {
+      ACL: "public-read",
+      Body: file,
+      Bucket: S3_BUCKET,
+      Key: file.name,
+    };
+
+    myBucket
+      .putObject(params)
+      .on("httpUploadProgress", (evt) => {
+        console.log(Math.round((evt.loaded / evt.total) * 100));
+      })
+      .send((err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          // Get the URL of the uploaded file
+          const uploadedUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${file.name}`;
+          console.log("File uploaded successfully. URL:", uploadedUrl);
+          callback(uploadedUrl);
+        }
+      });
+  };
+
   const P = useParams();
   const router = useRouter();
   const { session } = useSession();
@@ -38,17 +76,19 @@ const ChallangesPopup = () => {
     resolver: yupResolver(schema) as Resolver<FormData>,
   });
 
+  const [value, setValue] = useState<File | null>(null);
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      await RequestChallange({
-        file: "www.google.com",
-        id: session.user.id,
-        challenge_id: P.slug,
+      await uploadFile(value as File, async (url) => {
+        await RequestChallange({
+          file: url,
+          id: session.user.id,
+          challenge_id: P.slug,
+        });
       });
       reset();
       setFiles(null);
-      router.refresh();
-      close();
     } catch (error) {
       console.log(error);
     }
@@ -106,8 +146,12 @@ const ChallangesPopup = () => {
                   </div>
                 </div>
 
-                <div className="w-full h-[120px] border-2 border-gray-300 border-dashed rounded-xl center flex-col mt-5">
-                  <p className="text-lg text-gray-400 ">Upload Media</p>
+                <div className="mt-5">
+                  <FileInput
+                    placeholder="File Input"
+                    value={value as any}
+                    onChange={setValue}
+                  />
                 </div>
 
                 <button
