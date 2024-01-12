@@ -1,8 +1,8 @@
 "use client";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 import Button from "@/blocks/atoms/Button";
+import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 interface Props {
   id: number;
   price: number;
@@ -59,7 +59,7 @@ const NewSubscriptionPlan: React.FC<Props> = ({
       {upgradable && !preview && (
         <MoneyPurchasePopup
           type="plan"
-          title={title}
+          title={`${title}`}
           price={price}
           plandetails={{ id, type, duration, credits }}
         />

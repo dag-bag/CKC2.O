@@ -159,7 +159,7 @@ const MoneyPurchase: React.FC<Props> = ({
       )}
       <RootModal centered onClose={close} opened={opened}>
         <div>
-          <Heading className="text-center" size="small">
+          <Heading className="text-center capitalize" size="small">
             {title}
           </Heading>
           {/* Coupan Input */}
