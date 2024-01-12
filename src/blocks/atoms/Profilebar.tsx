@@ -1,28 +1,10 @@
 "use client";
-
-import { Menu } from "@mantine/core";
-import { FiChevronDown } from "react-icons/fi";
-import MyAvatar from "./Avatar";
-import {
-  RiSettings4Fill,
-  RiHomeSmile2Fill,
-  RiStoreFill,
-  RiBarChart2Fill,
-  RiVipCrown2Fill,
-  RiBrainFill,
-  RiBook2Fill,
-  RiLiveFill,
-  RiQuestionFill,
-  RiLogoutBoxLine,
-  RiProfileLine,
-  RiUser2Line,
-  RiShareForwardBoxFill,
-} from "react-icons/ri";
 import Image from "next/image";
+import { Menu } from "@mantine/core";
 
 const Profilebar = () => {
   const account_type = useAccountType();
-  const { logout, session } = useSession();
+  const { logout } = useSession();
   const handleLogout = () => {
     logout();
     window.location.href = "/auth/login";
@@ -61,8 +43,6 @@ const Profilebar = () => {
         </Menu.Target>
 
         <Menu.Dropdown>
-          <Menu.Item>Plan : {account_type}</Menu.Item>
-
           <Menu.Item>
             <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
           </Menu.Item>
@@ -105,7 +85,7 @@ import {
   LuBell,
 } from "react-icons/lu";
 import useSession, { useAccountType } from "@/hooks/use-session";
-import { useRouter } from "next/navigation";
+import { RiShareForwardBoxFill } from "react-icons/ri";
 
 interface Props {
   Icon: any;
@@ -147,7 +127,6 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
 };
 
 const LogoutButton: React.FC<any> = () => {
-  const pathname = usePathname();
   return (
     <button
       className={clsx(
