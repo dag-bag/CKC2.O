@@ -14,7 +14,7 @@ import { numbersStringToOrdinals } from "@/libs/convertors";
 import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
 import { generateHref } from "@/blocks/molecules/content-card";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
-
+import { whereToWhere } from "@/blocks/molecules/content-card";
 type ContentType =
   | "nac"
   | "comic"
@@ -124,7 +124,7 @@ const ContentTemplate: React.FC<Props> = async ({
             <section className="grid md:grid-cols-3 grid-cols-2 gap-3 md:my-5 my-3">
               <Infor title="Author" value={mentor} />
               <Infor title="Credits Required" value={`${price} CRD`} />
-              <Infor title="Grade" value={numbersStringToOrdinals(grade)} />
+              <Infor title="Grade" value={whereToWhere(grade)} />
               {/* page count : specially for comic  */}
               {isTypeComic && (
                 <Infor title="Page Count" value={data?.page_count} />

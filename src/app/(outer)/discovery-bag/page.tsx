@@ -5,14 +5,14 @@ import DiscoveryJarPopup from "@/blocks/molecules/popups/DiscoveryJarPopup";
 import extImage from "@/libs/extImage";
 
 const DiscoveryJarPage = async () => {
-  const currentTimestamp = Math.floor(Date.now() / 1000);
-  const data = await DiscoveryJarsConfig({
-    type: "GET",
-    filter: {
-      start_timestamp: { $lte: currentTimestamp },
-    },
-  });
-  const theme = data.at(0);
+  // const currentTimestamp = Math.floor(Date.now() / 1000);
+  // const data = await DiscoveryJarsConfig({
+  //   type: "GET",
+  //   filter: {
+  //     start_timestamp: { $lte: currentTimestamp },
+  //   },
+  // });
+  // const theme = data.at(0);
   return (
     <div className="px-5">
       <section>
@@ -41,7 +41,7 @@ const DiscoveryJarPage = async () => {
         <div>
           <Categorizer title="Discover the Answers">
             <div className="grid grid-cols-4 gap-5 px-2">
-              {theme.discovery_jar_answers.map((video: any) => (
+              {/* {theme.discovery_jar_answers.map((video: any) => (
                 <ContentCard
                   key={video.id}
                   {...{
@@ -57,7 +57,7 @@ const DiscoveryJarPage = async () => {
                     isUnlocked: false,
                   }}
                 />
-              ))}
+              ))} */}
             </div>
           </Categorizer>
         </div>
