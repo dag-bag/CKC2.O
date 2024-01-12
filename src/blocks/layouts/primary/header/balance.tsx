@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import useCoins from "@/hooks/useCoins";
 import Loading from "@/blocks/atoms/loading";
-import useSession from "@/hooks/use-session";
 import useCredits from "@/hooks/useCredits";
 const MyBalance = () => {
   const {
@@ -14,7 +13,7 @@ const MyBalance = () => {
   return (
     <Link
       href="/purchases"
-      className="h-[45px] flex items-center rounded-full px-5 bg-blue-500 text-white "
+      className="h-[45px] flex items-center rounded-full px-5 bg-blue-100 text-slate-500 "
     >
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-heading">

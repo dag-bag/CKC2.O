@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <MobileHeader />
       <header className="hidden md:flex fixed top-0 w-[calc(100vw-120px)] h-[80px] z-50 bg-white bg-opacity-90 backdrop-blur-sm items-center gap-3">
-        <div className="flex items-center max-w-[1440px] 2xl:min-w-[1440px] w-full mx-auto px-2">
+        <div className="flex items-center max-w-[1440px] 2xl:min-w-[1440px] w-full mx-auto px-2 gap-5">
           <div className="flex items-center justify-between">
             <SearchBar />
           </div>

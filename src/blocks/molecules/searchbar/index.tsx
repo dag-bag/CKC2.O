@@ -6,20 +6,22 @@ import { MultiSelect } from "@mantine/core";
 const SearchBar = () => {
   return (
     <>
-      <div className="flex items-center border rounded-full h-[45px] bg-white pl-3 font-heading pr-5">
+      <div className="flex items-center border rounded-xl h-[45px] bg-white pl-3 font-heading pr-5">
         <LuSearch size={22} color={"gray"} />
         <input
           placeholder="search"
           className="border-none pt-0.5 ml-2 outline-none placeholder:capitalize bg-transparent w-[150px]"
         />
-        <MultiSelect
-          size="sm"
-          width={50}
-          searchable
-          data={grades}
-          defaultValue={["All"]}
-          placeholder="Filter via Grades"
-        />
+        <div className="hidden lg:block">
+          <MultiSelect
+            size="sm"
+            width={50}
+            searchable
+            data={grades}
+            defaultValue={["All"]}
+            placeholder="Filter via Grades"
+          />
+        </div>
       </div>
     </>
   );
