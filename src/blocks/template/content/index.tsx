@@ -167,7 +167,7 @@ const ContentTemplate: React.FC<Props> = async ({
                     />
                   )}
 
-                  {!isUnlocked && (
+                  {!isUnlocked && !isTypeUpcomingLive && (
                     <InfoBlock
                       comic={isTypeComic}
                       {...{
@@ -201,7 +201,7 @@ const ContentTemplate: React.FC<Props> = async ({
         {!isTypeComic && (
           <section>
             <div className="grid gap-2">
-              {!isUnlocked && (
+              {!isUnlocked && !isTypeUpcomingLive && (
                 <InfoBlock
                   {...{
                     id,
