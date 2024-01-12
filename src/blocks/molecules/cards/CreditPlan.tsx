@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
+import Heading from "@/blocks/atoms/Heading";
 const CreditPlanCard = ({ d }: any) => {
   return (
     <div className="bg-white rounded-md overflow-hidden flex flex-col p-5 pb-5 font-heading">
@@ -21,8 +22,8 @@ const CreditPlanCard = ({ d }: any) => {
         </div>
       </div>
       <div className="center flex-col mt-5">
-        <h1 className="text-xl font-amar">{d.title}</h1>
-        <p className="text-center font-fun text-sm text-slate-800">{d.desc}</p>
+        <Heading size="small">{d.title}</Heading>
+        <p className="text-center font-fun text-md text-slate-800">{d.desc}</p>
       </div>
       <div className="center mt-5">
         <MoneyPurchasePopup
