@@ -19,7 +19,6 @@ const SignUpWithEmail = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [otp, setotp] = useState<any>(undefined);
   const [varified, setVarified] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [opened, { toggle, close }] = useDisclosure();
@@ -67,19 +66,15 @@ const SignUpWithEmail = () => {
     setLoading(false);
     setEmailSent(false);
     setPin(undefined);
-    setotp(undefined);
   };
 
   const handleEmailVerification = async () => {
     try {
       if (email) {
-        const OTP = generateOTP();
         setLoading(true);
-        setotp(OTP);
         await axios
           .post(`/api/email/send-otp`, {
             email,
-            otp: OTP,
             name: "New Explorar",
           })
           .then(() => {
