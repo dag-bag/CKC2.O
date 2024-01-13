@@ -12,9 +12,9 @@ export async function POST(request: Request) {
 
   const [amount, currency] = [parseInt(body.amount), "INR"];
   const discountedAmount = amount - (amount * discountPercentage) / 100;
-
+  console.log(amount);
   const options = {
-    amount: discountedAmount * 100,
+    amount: amount * 100,
     currency,
     receipt: shortid.generate(),
     payment_capture: paymentCapture,

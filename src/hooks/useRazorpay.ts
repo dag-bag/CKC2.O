@@ -5,16 +5,15 @@ export default function useRazorpay(
   amount: number | string
 ) {
   const getDataFromServer = async () => {
+    console.log(amount);
     const { data } = await axios.post("/api/payment", {
       mobile: 8766203976,
       amount: parseInt(amount as string),
-      discount: 10,
     });
     return data;
   };
   const handlePayment = () => {
     getDataFromServer().then((data) => {
-      console.log(data)
       const options = {
         key: "rzp_test_3AGDRLyf7EUWVw",
         currency: data.currency,
