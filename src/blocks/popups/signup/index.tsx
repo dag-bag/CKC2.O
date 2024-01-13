@@ -77,7 +77,7 @@ const SignUpWithEmail = () => {
         setLoading(true);
         setotp(OTP);
         await axios
-          .post(`http://localhost:3000/api/send-otp`, {
+          .post(`/api/send-otp`, {
             email,
             otp: OTP,
             name: "New Explorar",
