@@ -47,19 +47,19 @@ const Profilebar = () => {
             <Button title={"Profile"} href={"/profile"} Icon={LuUser2} />
           </Menu.Item>
 
-          <Menu.Item>
+          {/* <Menu.Item>
             <Button title={"Notifications"} href={"/settings"} Icon={LuBell} />
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item>
             <Button title={"Settings"} href={"/settings"} Icon={LuSettings} />
           </Menu.Item>
-          <Menu.Item>
+          {/* <Menu.Item>
             <Button
               title={"Referrals"}
               href={"/referral"}
               Icon={RiShareForwardBoxFill}
             />
-          </Menu.Item>
+          </Menu.Item> */}
 
           <Menu.Divider />
 

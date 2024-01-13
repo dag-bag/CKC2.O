@@ -17,7 +17,7 @@ const Header = () => {
             <NACButton />
             {/* <LeaderboardButton /> */}
             <MarketplaceButton />
-            <NotificationButton />
+            {/* <NotificationButton /> */}
             <MyBalance />
             <Profile />
           </div>

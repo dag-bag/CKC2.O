@@ -1,7 +1,7 @@
+import extImage from "@/libs/extImage";
 import { Comics } from "@/strapi/services/api";
 import { getTransactions } from "@/strapi/services/me";
 import ContentCard from "@/blocks/molecules/content-card";
-import extImage from "@/libs/extImage";
 
 export default async function page() {
   const [data, purchases] = await Promise.all([

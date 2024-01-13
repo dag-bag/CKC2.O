@@ -13,18 +13,18 @@ const MyBalance = () => {
   return (
     <Link
       href="/purchases"
-      className="h-[45px] flex items-center rounded-full px-5 bg-blue-100 text-slate-500 "
+      className="h-[45px] flex items-center rounded-full px-5  shadow-sm"
     >
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-heading">
-          <Image width={23} height={23} alt="coin" src={"/assets/credit.png"} />
-          <span className=" font-semibold">
+          <Image width={25} height={25} alt="coin" src={"/assets/credit.png"} />
+          <span className=" font-semibold text-xl text-slate-600">
             {parseInt(data?.credits).toLocaleString()}
           </span>
         </button>
         <button className="flex items-center gap-2 font-heading">
-          <Image width={23} height={23} alt="coin" src={"/assets/coins.png"} />
-          <span className="font-semibold">
+          <Image width={25} height={25} alt="coin" src={"/assets/coins.png"} />
+          <span className="font-semibold text-xl text-slate-600">
             {parseInt(coins?.data?.coins).toLocaleString()}
           </span>
         </button>
