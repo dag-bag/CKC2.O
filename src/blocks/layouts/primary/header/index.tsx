@@ -15,7 +15,7 @@ const Header = () => {
           </div>
           <div className="flex items-center justify-end ml-auto gap-5">
             <NACButton />
-            <LeaderboardButton />
+            {/* <LeaderboardButton /> */}
             <MarketplaceButton />
             <NotificationButton />
             <MyBalance />
@@ -49,7 +49,12 @@ const NACButton = () => {
       href="/nac"
       className="center gap-2 font-heading bg-white h-[45px] px-3 rounded-lg text-md font-semibold"
     >
-      NAC
+      <Image
+        src={"/assets/nac-logo.png"}
+        alt="leaderboard"
+        width={50}
+        height={50}
+      />
     </Link>
   );
 };
@@ -58,7 +63,7 @@ const NotificationButton = () => {
   return (
     <Link
       href="/shop"
-      className="center gap-2 font-heading bg-white h-[45px]  rounded-xl p-3 text-md"
+      className="center gap-2 font-heading bg-white h-[45px]--  rounded-xl p-3 text-md"
     >
       <Image
         src={"/assets/notification.png"}
