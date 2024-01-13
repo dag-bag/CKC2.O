@@ -46,12 +46,14 @@ const MoneyPurchase: React.FC<Props> = ({
   const [opened, { open, close }] = useDisclosure(false);
   const [discountPrice, setDiscountPrice] = useState<null | number>(null);
 
-  const TOTALPRICE = discount_calculator(
+  const price_without_gst = discount_calculator(
     price,
     discountPrice ?? 0,
     account_type == "premium" && type == "topup" ? CP(price, 50) : 0,
     account_type == "basic" && type == "topup" ? CP(price, 20) : 0
   );
+
+  const TOTALPRICE = price_without_gst + CP(price_without_gst, 18);
 
   const createPromocodeUsage = async (promocode: string, userId: number) => {
     await strapi.create("promocode-usages", {
@@ -154,7 +156,7 @@ const MoneyPurchase: React.FC<Props> = ({
 
       {type == "topup" && (
         <Button onClick={open} animation="scale" className="w-full rounded-xl">
-          ₹ {price}
+          Unlock
         </Button>
       )}
       <RootModal centered onClose={close} opened={opened}>
@@ -186,6 +188,7 @@ const MoneyPurchase: React.FC<Props> = ({
             premium_holder_discount={
               account_type == "premium" && type == "topup" ? CP(price, 50) : 0
             }
+            GST={CP(price_without_gst, 18)}
             total_price={TOTALPRICE}
           />
           <Button

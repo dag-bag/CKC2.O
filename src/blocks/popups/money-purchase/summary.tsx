@@ -1,4 +1,5 @@
 interface Props {
+  GST?: number;
   sale_price: number;
   total_price?: number;
   coupan_discount?: number;
@@ -21,7 +22,8 @@ const PaymentSummary: React.FC<Props> = (props) => {
                 {removeUnderscoresAndAddSpaces(key)}
               </p>
               <p>
-                {key.includes("discount") ? "(-)" : null} ₹{val}
+                {key.includes("discount") ? "(-)" : null}
+                {key.includes("GST") ? "(+)" : null}₹{val}
               </p>
             </div>
           );

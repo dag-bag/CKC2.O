@@ -10,7 +10,6 @@ export default function useRazorpay(
       amount: parseInt(amount as string),
       discount: 10,
     });
-    console.log(data)
     return data;
   };
   const handlePayment = () => {
