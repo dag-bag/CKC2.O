@@ -7,11 +7,11 @@ import toast from "react-hot-toast";
 import RootModal from "../popup-root";
 import { TbMail } from "react-icons/tb";
 import { strapi } from "@/libs/strapi";
+import GeneratePassword from "./password";
+import Button from "@/blocks/atoms/Button";
 import { useRouter } from "next/navigation";
 import useSession from "@/hooks/use-session";
 import { useDisclosure } from "@mantine/hooks";
-import GeneratePassword from "./password";
-import Button from "@/blocks/atoms/Button";
 
 const SignUpWithEmail = () => {
   const router = useRouter();

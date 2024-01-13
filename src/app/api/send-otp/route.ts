@@ -1,10 +1,9 @@
+import AWS from 'aws-sdk';
 import { render } from "@react-email/render";
 import { OtpEmail } from "@/blocks/atoms/otpemail";
-import AWS from 'aws-sdk';
-import { NextResponse } from "next/server";
 
 type bodyProp = {
-    recipientEmail: string
+    email: string
     name: string
     otp: string
 }
@@ -16,16 +15,16 @@ export async function POST(request: Request) {
         const SES_CONFIG = {
             accessKeyId: `${process.env.AWS_ACCESS_KEY_ID}`,
             secretAccessKey: `${process.env.AWS_ACCESS_SECRET}`,
-            region: "ap-south-1",
+            region: "us-east-1",
         };
 
         const AWS_SES = AWS.config.update(SES_CONFIG);
 
         let params = {
-            Source: `deepakvish7354@gmail.com`,
+            Source: `gautam@stemandspace.com`,
             Destination: {
                 ToAddresses: [
-                    "deepakvish7354@gmail.com"
+                    body.email
                 ],
             },
             ReplyToAddresses: [],
