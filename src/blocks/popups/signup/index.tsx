@@ -77,7 +77,7 @@ const SignUpWithEmail = () => {
         setLoading(true);
         setotp(OTP);
         await axios
-          .post(`/api/send-otp`, {
+          .post(`/api/email/send-otp`, {
             email,
             otp: OTP,
             name: "New Explorar",
@@ -94,13 +94,14 @@ const SignUpWithEmail = () => {
     }
   };
 
-  const handleValidation = () => {
-    if (parseInt(pin as string) == otp) {
+  const handleValidation = async () => {
+    try {
+      await axios.post("/api/email/verify-otp", {
+        enteredOTP: pin,
+      });
       setVarified(true);
-    } else {
+    } catch (error) {
       toast.error("invalid pin");
-      close();
-      ClearState();
     }
   };
 

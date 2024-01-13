@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 // @ts-ignore
 import bcrypt from "bcrypt";

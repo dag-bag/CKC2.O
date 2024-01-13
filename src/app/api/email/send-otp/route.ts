@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import AWS from "aws-sdk";
+import { render } from "@react-email/render";
+import { OtpEmail } from "@/blocks/atoms/otpemail";
 import { cookies } from "next/headers";
 // @ts-ignore
 import bcrypt from "bcrypt";
@@ -10,10 +13,10 @@ function generateOTP() {
 }
 
 export async function POST(request: Request) {
-  const { email } = await request.json();
+  const { email, name } = await request.json();
 
   const otp = generateOTP(); // Generate OTP
-
+  const html = render(OtpEmail({ otp: otp.toString() }));
   console.log(otp);
 
   try {
@@ -21,6 +24,37 @@ export async function POST(request: Request) {
     const hashedOTP = await bcrypt.hash(otp.toString(), 10);
     const twoMinutes = 2 * 60 * 1000; // 2 minutes in milliseconds
     const expirationTime = Date.now() + twoMinutes;
+    const SES_CONFIG = {
+      accessKeyId: `${process.env.AWS_ACCESS_KEY_ID}`,
+      secretAccessKey: `${process.env.AWS_ACCESS_SECRET}`,
+      region: "us-east-1",
+    };
+
+    const AWS_SES = AWS.config.update(SES_CONFIG);
+
+    let params = {
+      Source: `gautam@stemandspace.com`,
+      Destination: {
+        ToAddresses: [email],
+      },
+      ReplyToAddresses: [],
+      Message: {
+        Body: {
+          Html: {
+            Charset: "UTF-8",
+            Data: html,
+          },
+        },
+        Subject: {
+          Charset: "UTF-8",
+          Data: `Hello, ${name}!`,
+        },
+      },
+    };
+    const sendPromise = new AWS.SES({ apiVersion: "2010-12-01" })
+      .sendEmail(params)
+      .promise();
+    await sendPromise;
     // @ts-ignored
     cookies().set("hashedOTP", hashedOTP, {
       expires: expirationTime,
