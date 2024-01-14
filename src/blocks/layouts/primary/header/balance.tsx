@@ -13,7 +13,7 @@ const MyBalance = () => {
   return (
     <Link
       href="/purchases"
-      className="h-[45px] flex items-center rounded-full px-5  shadow-sm"
+      className="h-[45px] flex items-center rounded-full px-5  shadow-sm bg-white"
     >
       <div className="flex gap-8 text-lg">
         <button className="flex items-center gap-2 font-heading">

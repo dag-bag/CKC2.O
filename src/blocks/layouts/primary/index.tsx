@@ -8,6 +8,7 @@ import Aside from "./aside";
 import Header from "./header";
 import React, { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import UpgadePlanAlert from "@/blocks/popups/upgrade-plan-alert";
 
 const theme: any = {
   "/dashboard": {
@@ -78,6 +79,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         >
           <Header />
           <div className="pt-[100px] max-w-[1440px] mx-auto px-5">
+            <UpgadePlanAlert />
             {children}
           </div>
         </div>
