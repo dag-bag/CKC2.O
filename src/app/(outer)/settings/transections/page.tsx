@@ -1,39 +1,7 @@
 import Card from "@/blocks/UI/Card";
-import SettingIntroduction from "@/blocks/molecules/settings/introduction";
-import { getSession, getTransactions } from "@/strapi/services/me";
 import { strapi } from "@/libs/strapi";
-const sampleData = [
-  {
-    name: "Invoice #001",
-    paymentStatus: "Paid",
-    paymentAmount: 100.0,
-    paymentDate: "2023-10-05",
-  },
-  {
-    name: "Subscription Renewal",
-    paymentStatus: "Pending",
-    paymentAmount: 49.99,
-    paymentDate: "2023-10-10",
-  },
-  {
-    name: "Service Fee",
-    paymentStatus: "Paid",
-    paymentAmount: 75.5,
-    paymentDate: "2023-09-28",
-  },
-  {
-    name: "Purchase Order #12345",
-    paymentStatus: "Paid",
-    paymentAmount: 500.0,
-    paymentDate: "2023-10-15",
-  },
-  {
-    name: "Monthly Membership Dues",
-    paymentStatus: "Unpaid",
-    paymentAmount: 20.0,
-    paymentDate: "2023-11-01",
-  },
-];
+import { getSession } from "@/strapi/services/me";
+import SettingIntroduction from "@/blocks/molecules/settings/introduction";
 
 const Transection = async (id: number) => {
   const response = await strapi.find("real-purchases", {
