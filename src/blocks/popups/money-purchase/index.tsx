@@ -1,7 +1,10 @@
 "use client";
 interface Props {
   title: string;
-  price: number;
+  price: {
+    INR: number;
+    USD: number;
+  };
   credits?: number;
   type: "plan" | "topup";
   plandetails?: {
@@ -29,6 +32,7 @@ import CoupanAppliedCard from "./coupan-card";
 import { useDisclosure } from "@mantine/hooks";
 import { buyCredit } from "@/strapi/services/custom";
 import useSession, { useAccountType } from "@/hooks/use-session";
+import useInternationalization from "@/hooks/useInternationalization";
 
 const MoneyPurchase: React.FC<Props> = ({
   price,
@@ -43,19 +47,23 @@ const MoneyPurchase: React.FC<Props> = ({
   const [coupan, setCoupan] = useState("");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>(undefined);
+  const { symbol, currency } = useInternationalization();
   const [opened, { open, close }] = useDisclosure(false);
   const [discountPrice, setDiscountPrice] = useState<null | number>(null);
 
-  console.log(session);
+  const PRICE = currency == "INR" ? price.INR : price.USD;
 
   const price_without_gst = discount_calculator(
-    price,
+    PRICE,
     discountPrice ?? 0,
-    account_type == "premium" && type == "topup" ? CP(price, 50) : 0,
-    account_type == "basic" && type == "topup" ? CP(price, 20) : 0
+    account_type == "premium" && type == "topup" ? CP(PRICE, 50) : 0,
+    account_type == "basic" && type == "topup" ? CP(PRICE, 20) : 0
   );
 
-  const TOTALPRICE = price_without_gst + CP(price_without_gst, 18);
+  const TOTALPRICE =
+    currency === "INR"
+      ? price_without_gst + CP(price_without_gst, 18)
+      : price_without_gst;
 
   const createPromocodeUsage = async (promocode: string, userId: number) => {
     await strapi.create("promocode-usages", {
@@ -108,7 +116,8 @@ const MoneyPurchase: React.FC<Props> = ({
 
   const { handlePayment } = useRazorpay(
     type === "plan" ? planAfterPaymentHandler : topupAfterPaymentHandler,
-    TOTALPRICE
+    TOTALPRICE,
+    currency
   );
 
   const handleCouponApplication = async () => {
@@ -125,7 +134,7 @@ const MoneyPurchase: React.FC<Props> = ({
           couponData.to,
           couponData.type,
           couponData.value,
-          price,
+          PRICE,
           couponData.users,
           session.user.id
         );
@@ -182,15 +191,15 @@ const MoneyPurchase: React.FC<Props> = ({
             />
           )}
           <PaymentSummary
-            sale_price={price}
+            sale_price={PRICE}
             coupan_discount={discountPrice ?? 0}
             basic_holder_discount={
-              account_type == "basic" && type == "topup" ? CP(price, 20) : 0
+              account_type == "basic" && type == "topup" ? CP(PRICE, 20) : 0
             }
             premium_holder_discount={
-              account_type == "premium" && type == "topup" ? CP(price, 50) : 0
+              account_type == "premium" && type == "topup" ? CP(PRICE, 50) : 0
             }
-            GST={CP(price_without_gst, 18)}
+            GST={currency === "INR" ? CP(price_without_gst, 18) : undefined}
             total_price={TOTALPRICE}
           />
           <Button

@@ -2,13 +2,16 @@ import axios from "axios";
 import toast from "react-hot-toast";
 export default function useRazorpay(
   callback: () => void,
-  amount: number | string
+  amount: number | string,
+  currency: "INR" | "USD"
+
 ) {
   const getDataFromServer = async () => {
     console.log(amount);
     const { data } = await axios.post("/api/payment", {
       mobile: 8766203976,
       amount: parseInt(amount as string),
+      currency,
     });
     return data;
   };
