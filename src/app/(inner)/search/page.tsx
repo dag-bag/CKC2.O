@@ -22,9 +22,13 @@ export default function SearchPage() {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData", debounced],
-    queryFn: () => fetch(`${url_end_point}${query}`).then((res) => res.json()),
+    queryFn: () =>
+      fetch(
+        `${url_end_point}${query}&populate[courses][thumbnail][populate][0]=city &populate[videos][thumbnail][populate][0]=city &populate[comics][thumbnail][populate][0]=city &populate[nacs][thumbnail][populate][0]=city &populate[lives][thumbnail][populate][0]=city`
+      ).then((res) => res.json()),
   });
 
+  console.log(data);
   const grade_filter = (data: any[]): any => {
     return data?.filter((entry) =>
       haveSimilarities(
