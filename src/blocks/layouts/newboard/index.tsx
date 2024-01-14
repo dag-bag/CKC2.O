@@ -264,8 +264,9 @@ import { PatternFormat } from "react-number-format";
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
 import Script from "next/script";
-import useAuth from "@/hooks/useAuth";
 import useSession from "@/hooks/use-session";
+import { Select } from "@mantine/core";
+import { countries } from "@config/index";
 
 export const MobileAction = () => {
   const { setter, storage } = useOnboard();
@@ -311,13 +312,19 @@ export const LocationAction = () => {
         name="state"
         placeholder="State"
       />
-      <Input
-        onChange={(event: any) => {
-          setter("country", event?.target.value);
+
+      <Select
+        size="lg"
+        classNames={{
+          input:
+            "!text-2xl !outline-none !border-b-2 !border-blue-500 !bg-blue-50   !border-t-0 !border-l-0 !border-r-0",
         }}
         value={storage?.country}
-        name="country"
-        placeholder="Country"
+        placeholder="Pick value"
+        data={countries}
+        onChange={(event: any) => {
+          setter("country", event);
+        }}
       />
     </div>
   );

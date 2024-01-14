@@ -1,8 +1,7 @@
 import useSWR from "swr";
-import { SessionData, defaultSession } from "@/libs/iron";
-import useSWRMutation from "swr/mutation";
-
 const sessionApiRoute = "/auth/session";
+import useSWRMutation from "swr/mutation";
+import { SessionData, defaultSession } from "@/libs/iron";
 
 export async function fetchJson<JSON = unknown>(
   input: RequestInfo,

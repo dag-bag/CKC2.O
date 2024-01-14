@@ -46,6 +46,8 @@ const MoneyPurchase: React.FC<Props> = ({
   const [opened, { open, close }] = useDisclosure(false);
   const [discountPrice, setDiscountPrice] = useState<null | number>(null);
 
+  console.log(session);
+
   const price_without_gst = discount_calculator(
     price,
     discountPrice ?? 0,
