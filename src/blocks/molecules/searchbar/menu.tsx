@@ -14,7 +14,6 @@ const grades = [
   "8th",
   "9th",
   "10th",
-  "All",
 ];
 
 const SearchMenu = () => {
@@ -49,9 +48,6 @@ const SearchMenu = () => {
           defaultValue={["All"]}
           placeholder="Filter via Grades"
         />
-        {/* <Button onClick={handleClose} mt={2} fullWidth>
-          Close
-        </Button> */}
       </Menu.Dropdown>
     </Menu>
   );

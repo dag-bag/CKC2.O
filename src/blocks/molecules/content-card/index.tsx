@@ -53,7 +53,7 @@ const ContentCard: React.FC<Props> = ({
   return (
     <Link
       href={hrefUrl}
-      className="overflow-hidden relative grid group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md "
+      className="overflow-hidden relative grid group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md"
     >
       <div id="wrapper" className="bg-white font-heading">
         <Header

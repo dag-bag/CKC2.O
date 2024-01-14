@@ -49,7 +49,11 @@ const GraderCarousel: React.FC<Props> = ({ children, title }) => {
   return (
     <section className="my-8">
       <div className="flex items-center justify-between md:mb-6 mb-2 pl-2">
-        <Heading size="medium" varient="white_with_shadow">
+        <Heading
+          size="medium"
+          varient="white_with_shadow"
+          className="capitalize"
+        >
           {title}
         </Heading>
         <Controller {...{ handleControllerRight, handleControllerLeft }} />
