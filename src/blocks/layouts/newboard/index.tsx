@@ -11,6 +11,11 @@ import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import OnboardPopup from "@/blocks/popups/onboard-popup";
 
+function removeSpaces(inputString: string): string {
+  // Using the replace method with a regular expression to replace all spaces globally
+  return inputString.replace(/\s/g, "");
+}
+
 export default function Newboard() {
   const router = useRouter();
   const { login } = useSession();
@@ -67,7 +72,18 @@ export default function Newboard() {
   const onboardCompletion = async () => {
     popupHanders.open();
     // api calling goes here - after an successfull response call [69 - line code]
-    const data = await updateUser({ ...storage, setup: true });
+    const data = await updateUser({
+      firstname: storage?.firstname,
+      lastname: storage?.lastname,
+      country: storage?.country,
+      state: storage?.state,
+      grade: storage?.grade,
+      city: storage?.city,
+      dob: storage?.dob,
+      avatar: storage?.avatar,
+      mobile: parseInt(removeSpaces(storage?.phone as any)),
+      setup: true,
+    });
     login(
       {
         id: data?.id,
@@ -239,7 +255,6 @@ export const BirthdateAction = () => {
   const [inputValue, setInputValue] = useState("");
   const onChangeHandler = (event: any) => {
     if (isDateNotGreaterThanToday(new Date(event.target.value))) {
-      console.log(event.target.value);
       setter("dob", event.target.value);
       setInputValue(event.target.value);
     } else {
