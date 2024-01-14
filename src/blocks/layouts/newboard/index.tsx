@@ -93,6 +93,7 @@ export default function Newboard() {
         premium: data?.premium,
         jwt: data?.jwt,
         setup: true,
+        country: data?.country,
       } as any,
       {
         optimisticData: {
@@ -105,6 +106,7 @@ export default function Newboard() {
             premium: data?.premium,
             jwt: data?.jwt,
             setup: true,
+            country: data?.country,
           },
         },
       }

@@ -30,7 +30,7 @@ export default function useAuth() {
   ): Promise<any> => {
     try {
       const { user, jwt } = await strapi.login(data);
-      const { id, email, username, coins, premium, avatar, setup } = user;
+      const { id, email, username, coins, premium, avatar, setup, country } = user;
       const payload_data = {
         id,
         jwt,
@@ -39,6 +39,7 @@ export default function useAuth() {
         email,
         avatar,
         premium,
+        country,
         username,
         type: user.type,
       };
