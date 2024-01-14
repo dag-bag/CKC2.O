@@ -1,7 +1,7 @@
 import Card from "@/blocks/UI/Card";
 import SettingIntroduction from "@/blocks/molecules/settings/introduction";
-import { getTransactions } from "@/strapi/services/me";
-
+import { getSession, getTransactions } from "@/strapi/services/me";
+import { strapi } from "@/libs/strapi";
 const sampleData = [
   {
     name: "Invoice #001",
@@ -35,8 +35,20 @@ const sampleData = [
   },
 ];
 
+const Transection = async (id: number) => {
+  const response = await strapi.find("real-purchases", {
+    filters: {
+      user_id: id,
+    },
+  });
+
+  return response.data;
+};
+
 const TransectionsPage = async () => {
-  const data = await getTransactions("");
+  const session = await getSession();
+  const response: any = await Transection(session.user.id);
+
   return (
     <div className="pr-5 font-heading">
       <Card title="Transections">
@@ -53,15 +65,16 @@ const TransectionsPage = async () => {
               <div>Payment Amount</div>
               <div>Payment Date</div>
             </div>
-            {data?.map((d, i) => (
+
+            {response?.map((d: any, i: number) => (
               <div
                 className="p-5 grid grid-cols-[2fr_1fr_1fr_1fr] items-center even:bg-gray-50 rounded-xl "
                 key={i}
               >
                 <div className="font-semibold">{d.label}</div>
-                <div>{d.status}</div>
+                <div className="capitalize">{d.status}</div>
                 <div>{d.amount}</div>
-                <div>{d.purchase_date}</div>
+                <div>{new Date(d.createdAt).toDateString()}</div>
               </div>
             ))}
           </div>
