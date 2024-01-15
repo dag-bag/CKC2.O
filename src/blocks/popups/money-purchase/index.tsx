@@ -78,12 +78,13 @@ const MoneyPurchase: React.FC<Props> = ({
       const promise = axios
         .post("/api/user/unlock/premium", {
           title: title,
-          plan: 4,
+          plan: plandetails?.id,
           type: plandetails?.type,
           days: plandetails?.duration,
           credits: plandetails?.credits,
         })
         .then(async () => {
+          updateCoins({ type: "add", newData: plandetails?.credits as number });
           await createPromocodeUsage(coupan, session.user.id).then(() => {
             setLoading(true);
             close();
