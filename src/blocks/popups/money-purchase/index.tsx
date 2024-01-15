@@ -70,7 +70,7 @@ const MoneyPurchase: React.FC<Props> = ({
       const promise = axios
         .post("/api/user/unlock/premium", {
           title: title,
-          plan: plandetails?.id,
+          plan: 4,
           type: plandetails?.type,
           days: plandetails?.duration,
           credits: plandetails?.credits,

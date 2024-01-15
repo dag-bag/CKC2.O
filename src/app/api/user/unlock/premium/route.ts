@@ -7,6 +7,7 @@ import { strapi } from "@/libs/strapi";
 export async function POST(req: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
   const data = await req.json();
+  console.log(data);
   const res = await strapi.axios.post("/buypremium", {
     plan: data.plan,
     userId: session.user.id,
