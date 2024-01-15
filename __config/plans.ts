@@ -3,7 +3,10 @@ const plan_configuations = [
         id: 1,
         title: "free",
         desc: "this is just description",
-        price: 0,
+        price: {
+            INR: 0,
+            USD: 0
+        },
         premium: false,
         topupDiscountPercentage: 0,
         features: [
@@ -19,7 +22,10 @@ const plan_configuations = [
         id: 2,
         title: "basic",
         desc: "this is just description",
-        price: 2000,
+        price: {
+            INR: 2000,
+            USD: 39
+        },
         topupDiscountPercentage: 20,
         premium: false,
         features: [
@@ -35,7 +41,10 @@ const plan_configuations = [
         id: 3,
         title: "premium",
         desc: "this is just description",
-        price: 2500,
+        price: {
+            INR: 2500,
+            USD: 49
+        },
         topupDiscountPercentage: 50,
         premium: true,
         features: [

@@ -4,6 +4,7 @@ import Card from "@/blocks/UI/Card";
 import { updateUser } from "@/services/user";
 import { Switch } from "@mantine/core";
 import Button from "@/blocks/atoms/Button";
+import toast from "react-hot-toast";
 export const NotificationSection = ({
   title,
   description,
@@ -30,9 +31,8 @@ export default function Notifications({ data }: any) {
 
   const handleUpdateUser = async () => {
     try {
-      // Call the updateUser function with the updated preferences
       await updateUser(notificationPreferences);
-      console.log("User preferences updated successfully!");
+      toast.success("User preferences updated successfully!");
     } catch (error) {
       console.error("Error updating user preferences:", error);
     }

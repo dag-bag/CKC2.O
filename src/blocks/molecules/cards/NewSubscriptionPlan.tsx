@@ -3,9 +3,13 @@ import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import Button from "@/blocks/atoms/Button";
 import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
+import useInternationalization from "@/hooks/useInternationalization";
 interface Props {
   id: number;
-  price: number;
+  price: {
+    INR: number;
+    USD: number;
+  };
   title: string;
   selected?: boolean;
   features: string[];
@@ -28,6 +32,7 @@ const NewSubscriptionPlan: React.FC<Props> = ({
   preview,
 }) => {
   const router = useRouter();
+  const { symbol, currency } = useInternationalization();
   return (
     <div
       key={id}
@@ -37,10 +42,11 @@ const NewSubscriptionPlan: React.FC<Props> = ({
       )}
     >
       <section className="border-b pb-3">
+        {currency}
         <h3 className="text-xl font-amar capitalize">{title}</h3>
         <h1 className="text-4xl font-semibold font-heading mt-3">
-          <span className="text-md">₹</span>
-          {price}
+          <span className="text-md">{symbol}</span>
+          {currency === "INR" ? price.INR : price.USD}
           <span className="text-sm text-slate-500">/mo</span>
         </h1>
       </section>

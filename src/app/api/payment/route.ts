@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  if (!body.amount || !body.mobile)
+  if (!body.amount || !body.mobile || !body.currency)
     return NextResponse.json({ message: "Params Missing" });
 
   const paymentCapture = 1;
   const discountPercentage = parseInt(body.discount || 0);
 
-  const [amount, currency] = [parseInt(body.amount), "INR"];
+  const [amount, currency] = [parseInt(body.amount), body.currency];
   const discountedAmount = amount - (amount * discountPercentage) / 100;
   console.log(amount);
   const options = {

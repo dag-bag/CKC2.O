@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 import Heading from "@/blocks/atoms/Heading";
+import MoneyPurchasePopup from "@/blocks/popups/money-purchase";
 const CreditPlanCard = ({ d }: any) => {
   return (
     <div className="bg-white rounded-md overflow-hidden flex flex-col p-5 pb-5 font-heading">
@@ -29,7 +29,10 @@ const CreditPlanCard = ({ d }: any) => {
         <MoneyPurchasePopup
           credits={parseInt(d.credits as any)}
           title={"Topup"}
-          price={d.price}
+          price={{
+            USD: d.USD,
+            INR: d.INR,
+          }}
           type="topup"
         />
       </div>

@@ -5,11 +5,20 @@ import { Select } from "@mantine/core";
 import React, { useState } from "react";
 import { updateUser } from "@/services/user";
 import { TextInput as Input } from "@mantine/core";
+import Link from "next/link";
+import { countries } from "@config/index";
+
 export default function ProfileForm({ data }: any) {
   const [editableData, setEditableData] = useState({
     grade: data.grade,
     parentname: data.parentname,
     bio: data.bio,
+    mobile: data.mobile,
+    city: data.city,
+    country: data.country,
+    state: data.state,
+    firstname: data.firstname,
+    lastname: data.lastname,
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -28,6 +37,12 @@ export default function ProfileForm({ data }: any) {
     }
   };
 
+  const handleKeyPress = (e: any) => {
+    if (e.key == "Enter") {
+      handleSave();
+    }
+  };
+
   return (
     <div className="grid gap-5">
       <div className="grid xl:grid-cols-3 lg:grid-cols-2 gap-5">
@@ -35,24 +50,88 @@ export default function ProfileForm({ data }: any) {
           classNames={{
             label: "!mb-1 !text-sm font-heading",
           }}
-          readOnly
           size="md"
-          value={data.firstname}
+          value={editableData.firstname}
           label="First Name"
           placeholder="Your Name"
           type="text"
+          onChange={(value) =>
+            handleInputChange("firstname", value.target.value)
+          }
+          onKeyDown={handleKeyPress}
         />
         <Input
           classNames={{
             label: "!mb-1 !text-sm font-heading",
           }}
-          readOnly
           size="md"
-          value={data.lastname}
+          value={editableData.lastname}
           label="Last Name"
           placeholder="Your Name"
           type="text"
+          onChange={(value: any) =>
+            handleInputChange("lastname", value.target.value)
+          }
+          onKeyDown={handleKeyPress}
         />
+        <Input
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
+          value={editableData.mobile}
+          label="Mobile"
+          placeholder="Mobile"
+          type="number"
+          onChange={(value: any) =>
+            handleInputChange("mobile", value.target.value)
+          }
+          onKeyDown={handleKeyPress}
+        />
+
+        <Input
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
+          value={editableData.city}
+          label="City"
+          placeholder="City"
+          type="string"
+          onChange={(value: any) =>
+            handleInputChange("city", value.target.value)
+          }
+          onKeyDown={handleKeyPress}
+        />
+
+        <Input
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
+          value={editableData.state}
+          label="State"
+          placeholder="State"
+          type="string"
+          onChange={(value: any) =>
+            handleInputChange("state", value.target.value)
+          }
+          onKeyDown={handleKeyPress}
+        />
+
+        <Select
+          classNames={{
+            label: "!mb-1 !text-sm font-heading",
+          }}
+          size="md"
+          value={editableData.country}
+          label="Country"
+          data={countries}
+          placeholder="Country"
+          onChange={(value: any) => handleInputChange("country", value)}
+          onKeyDown={handleKeyPress}
+        />
+
         <Input
           classNames={{
             label: "!mb-1 !text-sm font-heading",
@@ -63,7 +142,6 @@ export default function ProfileForm({ data }: any) {
           label="Email Address"
           placeholder="Email Address"
           type="email"
-
           // description="If you want to change your email, please contact support."
         />
         <Select
@@ -76,6 +154,7 @@ export default function ProfileForm({ data }: any) {
           placeholder="Your Grade"
           data={["1", "2", "3", "4", "5", "6", "7", "8", "9"]}
           onChange={(value: any) => handleInputChange("grade", value)}
+          onKeyDown={handleKeyPress}
         />
         <Input
           classNames={{
@@ -89,6 +168,7 @@ export default function ProfileForm({ data }: any) {
           onChange={(value: any) =>
             handleInputChange("parentname", value.target.value)
           }
+          onKeyDown={handleKeyPress}
         />
         <Input
           readOnly
@@ -111,9 +191,9 @@ export default function ProfileForm({ data }: any) {
           placeholder="Your Parent Name"
           type="text"
           onChange={(value) => handleInputChange("bio", value.target.value)}
+          onKeyDown={handleKeyPress}
         />
       </div>
-
       <div>
         <Button
           animation="scale"
@@ -124,10 +204,11 @@ export default function ProfileForm({ data }: any) {
           Save Changes
         </Button>
       </div>
-
       <p className="text-sm text-gray-600">
         Customizing your avatars and banners is a breeze in the
-        <b className="underline px-1 font-medium">Profile&apos;s Vault</b>{" "}
+        <Link href={"/profile"} className="underline px-1 font-medium">
+          Profile
+        </Link>
         section.
       </p>
     </div>

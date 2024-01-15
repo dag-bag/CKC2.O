@@ -1,3 +1,5 @@
+import useInternationalization from "@/hooks/useInternationalization";
+
 interface Props {
   GST?: number;
   sale_price: number;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const PaymentSummary: React.FC<Props> = (props) => {
+  const { symbol, currency } = useInternationalization();
   return (
     <div>
       <p className="font-heading">Summary</p>
@@ -23,7 +26,9 @@ const PaymentSummary: React.FC<Props> = (props) => {
               </p>
               <p>
                 {key.includes("discount") ? "(-)" : null}
-                {key.includes("GST") ? "(+)" : null}₹{val}
+                {key.includes("GST") ? "(+)" : null}
+                {symbol}
+                {val}
               </p>
             </div>
           );
