@@ -1,7 +1,5 @@
 import { BsDot } from "react-icons/bs";
 import { MdSlideshow } from "react-icons/md";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
-import SharePopup from "@/blocks/atoms/SharePopup";
 import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
 
 const CourseInfo = () => {

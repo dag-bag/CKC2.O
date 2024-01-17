@@ -1,4 +1,3 @@
-import BuyPopup from "@/blocks/atoms/BuyPopup";
 const Player = () => {
   return (
     <div

@@ -1,6 +1,4 @@
 import { BsDot } from "react-icons/bs";
-import BuyPopup from "@/blocks/atoms/BuyPopup";
-import SharePopup from "@/blocks/atoms/SharePopup";
 import { BiTime, BiGlobe, BiTrophy } from "react-icons/bi";
 
 interface Props {
@@ -50,9 +48,9 @@ const VideoInfo = ({
       </section>
 
       <section className="flex gap-2 flex-col mt-5">
-        <BuyPopup price={price} title={title} type={type} id={id} />
+        {/* <BuyPopup price={price} title={title} type={type} id={id} /> */}
 
-        <SharePopup shareableURL={shareableURL} title={title} />
+        {/* <SharePopup shareableURL={shareableURL} title={title} /> */}
       </section>
     </div>
   );

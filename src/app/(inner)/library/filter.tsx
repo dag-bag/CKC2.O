@@ -2,30 +2,31 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { COLOR } from "../../../tailwind.config";
+import { COLOR } from "../../../../tailwind.config";
 import { RiBook2Fill, RiLiveFill } from "react-icons/ri";
-const PurchasesFilter = () => {
+const Filter = () => {
   const path = usePathname();
-  const isComics = path === "/purchases";
-  const isVideos = path === "/purchases/subscriptions";
+  const isVideos = path === "/library/videos";
+  const isComics = path === "/library/comics";
+
   return (
     <div className="py-5">
-      <div className="inline-flex md:gap-2 lg:gap-5 bg-white p-1 rounded-full">
+      <div className="inline-flex gap-5 bg-white p-1 rounded-full">
         <Button
           color={COLOR.darkgold}
           active={isComics}
-          href={"/purchases"}
+          href={"/library/comics"}
           Icon={RiBook2Fill}
         >
-          Credits
+          Comics
         </Button>
         <Button
           color={COLOR.darkgreen}
           active={isVideos}
-          href={"/purchases/subscriptions"}
+          href={"/library/videos"}
           Icon={RiLiveFill}
         >
-          Subscriptions
+          Videos
         </Button>
       </div>
     </div>
@@ -48,7 +49,7 @@ const Button = ({ active, href, Icon, children, color }: any) => {
           active && "shadow-xl"
         )}
       >
-        <div className="flex gap-1 md:pr-3">
+        <div className="flex gap-1 pr-3">
           <div className="px-3 center rounded-lg">
             <Icon color={active ? "white" : "black"} size={22} />
           </div>
@@ -68,4 +69,4 @@ const Button = ({ active, href, Icon, children, color }: any) => {
   );
 };
 
-export default PurchasesFilter;
+export default Filter;

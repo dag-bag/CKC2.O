@@ -1,4 +1,4 @@
-import Filter from "@/blocks/atoms/VideoFiler";
+import Filter from "../filter";
 import { Carousel } from "@/strapi/services/api";
 import InformationCarousel from "@/blocks/molecules/information-carousel";
 export default async function Layout({ children }: any) {

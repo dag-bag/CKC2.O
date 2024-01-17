@@ -1,5 +1,5 @@
-import PurchasesFilter from "@/blocks/atoms/PurchasesFilter";
 import Script from "next/script";
+import Filter from "./filter";
 export default async function Layout({ children }: any) {
   return (
     <div>
@@ -7,7 +7,7 @@ export default async function Layout({ children }: any) {
         src="https://checkout.razorpay.com/v1/checkout.js"
         strategy="lazyOnload"
       />
-      <PurchasesFilter />
+      <Filter />
       {children}
     </div>
   );

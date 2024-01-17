@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 const MyAvatar: React.FC<any> = (props) => {
   return (
     <button {...props}>

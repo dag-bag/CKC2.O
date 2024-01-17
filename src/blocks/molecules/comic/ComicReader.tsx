@@ -1,8 +1,8 @@
 "use client";
 import { Modal } from "@mantine/core";
+import Button from "@/blocks/atoms/Button";
 import { useDisclosure } from "@mantine/hooks";
 import useRecentlyWatched from "@/hooks/useRecentlyWached";
-import Button from "@/blocks/atoms/Button";
 
 const ComicReader = ({ id, title, thumbnail, grade, content, desc }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
