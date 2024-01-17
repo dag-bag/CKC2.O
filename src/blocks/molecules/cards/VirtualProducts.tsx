@@ -8,7 +8,6 @@ interface Props {
   type: "banner" | "avatar";
 }
 
-import clsx from "clsx";
 import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
@@ -31,9 +30,6 @@ const VirtualProduct: React.FC<Props> = ({
   const { data, updateCoins } = useCoins();
   const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
-
-  const aspectRatio =
-    type === "avatar" ? "aspect-w-4 aspect-h-4" : "aspect-w-10 aspect-h-4";
 
   const onPurchaseHandler = async () => {
     if (parseInt(data?.data?.coins) < coins) {
@@ -63,22 +59,22 @@ const VirtualProduct: React.FC<Props> = ({
 
   return (
     <div className="grid bg-white/50 rounded-xl backdrop-blur-sm p-5 group hover:scale-95 duration-200">
-      <div
-        className={clsx(
-          aspectRatio,
-          "aspect-w-4 aspect-h-4 relative rounded-full overflow-hidden group-hover:scale-105 group-hover:shadow-md duration-200"
-        )}
-      >
-        <Image className="overflow-hidden" src={image} alt="profile" fill />
-      </div>
-
+      {type == "avatar" ? (
+        <div className="aspect-w-4 aspect-h-4 relative rounded-full overflow-hidden group-hover:scale-105 group-hover:shadow-md duration-200">
+          <Image className="overflow-hidden" src={image} alt="profile" fill />
+        </div>
+      ) : (
+        <div className="aspect-w-10 aspect-h-4 relative rounded-lg overflow-hidden group-hover:scale-105 group-hover:shadow-md duration-200">
+          <Image className="overflow-hidden" src={image} alt="profile" fill />
+        </div>
+      )}
       <p className="center mt-2 font-heading text-lg text-center line-clamp-1">
         {title}
       </p>
       {!purchased ? (
         <Button
-          animation="scale"
           loading={loading}
+          animation="scale"
           onClick={onPurchaseHandler}
           className="h-auto py-2 text-md gap-2 !inline-flex center mx-auto !rounded-full font-heading mt-2"
         >
