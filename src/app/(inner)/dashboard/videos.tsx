@@ -1,8 +1,8 @@
 import extImage from "@/libs/extImage";
 import { Videos } from "@/strapi/services/api";
 import Card from "@/blocks/molecules/content-card";
-import Carousel from "@/blocks/molecules/grader-carousel";
 import { getTransactions } from "@/strapi/services/me";
+import Carousel from "@/blocks/molecules/grader-carousel";
 
 const VideosListing = async () => {
   const [videos, videos_related_trasections] = await Promise.all([
