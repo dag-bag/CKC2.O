@@ -37,7 +37,7 @@ const Carousel: React.FC<Props> = ({ slides }) => {
               <div className="bg-gradient-to-b from-transparent  to-gray-500 w-full h-[50%] mt-auto text-white flex items-start justify-end flex-col p-3 md:p-8 font-josefin ">
                 <div className="flex justify-between w-full">
                   <div>
-                    <Heading size="medium" className="font-amar">
+                    <Heading size="medium" className="font-amar sm:text-sm">
                       {slide.title}
                     </Heading>
                     <p className="font-fun text-sm hidden md:block">

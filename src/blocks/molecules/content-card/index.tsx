@@ -49,13 +49,12 @@ const ContentCard: React.FC<Props> = ({
   scheduledDateAndTime,
 }) => {
   const hrefUrl = generateHref(type, id);
-
   return (
     <Link
       href={hrefUrl}
       className="overflow-hidden relative grid group hover:scale-90 scale duration-500 shadow-slate-600 shadow-md"
     >
-      <div id="wrapper" className="bg-white font-heading">
+      <div id="wrapper" className="bg-white font-heading h-full w-full">
         <Header
           type={type}
           title={title}
@@ -63,13 +62,9 @@ const ContentCard: React.FC<Props> = ({
           isPremium={isPremium}
         />
 
-        <section
-          id="main"
-          className="md:p-5 p-4 bg-cover bg-opacity-10 group-hover:bg-bottom bg-top duration-500 "
-        >
+        <section id="main" className="md:p-5 p-2">
           {conclusionDate && <DateTag value={conclusionDate} />}
           {scheduledDateAndTime && <DateTag value={scheduledDateAndTime} />}
-
           <Heading
             size="small"
             className="font-medium !font-amar leading-6 md:mt-1 line-clamp-2"
@@ -84,12 +79,20 @@ const ContentCard: React.FC<Props> = ({
           )}
 
           {type !== "help" && (
-            <section id="footer">
+            <section id="footer" className="hidden md:block mt-auto">
               <div className="flex justify-between md:mt-5 mt-2">
                 <Grades grades={grades} />
                 {price !== undefined && (
                   <PriceTag {...{ isUnlocked, price, theme }} />
                 )}
+              </div>
+            </section>
+          )}
+
+          {type !== "help" && (
+            <section id="footer" className="block md:hidden mt-auto">
+              <div className="flex flex-col justify-between md:mt-5 mt-2">
+                <Grades grades={grades} />
               </div>
             </section>
           )}
@@ -135,7 +138,7 @@ export const PriceTag = ({
     <>
       <p
         className={clsx(
-          "text-sm shadow-lg md:p-1.5 p-1 md:px-5 px-5 rounded-full center md:gap-2 gap-1",
+          "text-sm shadow-lg md:p-1.5  md:px-5 px-5 rounded-full center md:gap-2 gap-1",
           theme == "blue" && "bg-lightblue",
           theme == "gold" && "bg-darkgold",
           theme == "green" && "bg-lightgreen"

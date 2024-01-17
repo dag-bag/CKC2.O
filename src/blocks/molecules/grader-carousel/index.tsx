@@ -48,7 +48,7 @@ const GraderCarousel: React.FC<Props> = ({ children, title }) => {
 
   return (
     <section className="my-8">
-      <div className="flex items-center justify-between md:mb-6 mb-2 pl-2">
+      <div className="flex items-center justify-between md:mb-6 mb-2 md:pl-2">
         <Heading
           size="medium"
           className="capitalize"
