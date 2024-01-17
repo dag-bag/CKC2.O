@@ -28,7 +28,7 @@ const DashboardPage = async () => {
       <main>
         {liveNow.length !== 0 && (
           <Categorizer title="Live" className="my-2">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
               {liveNow.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -54,7 +54,7 @@ const DashboardPage = async () => {
 
         {upcoming.length !== 0 && (
           <Categorizer title="Upcoming Live" className="my-2">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
               {upcoming.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -84,7 +84,7 @@ const DashboardPage = async () => {
 
         {recorded.length !== 0 && (
           <Categorizer className="my-2" title="Recorded Live Sessions">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-5">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
               {recorded.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -139,27 +139,5 @@ function categorizeEvents(events: Event[]): [Event[], Event[], Event[]] {
   const upcomingEvents = events.filter((event) => event.type === "upcoming");
   const liveEvents = events.filter((event) => event.type === "live");
   const recordedEvents = events.filter((event) => event.type === "recorded");
-
   return [upcomingEvents, liveEvents, recordedEvents];
-}
-
-function formatTimestamp(timestamp: number): string {
-  const date = new Date(+new Date());
-  const day = date.getDate();
-  const month = date.getMonth() + 1; // Months are zero-based
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const ampm = hours >= 12 ? "PM" : "AM";
-  // Convert hours to 12-hour format
-  const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-
-  // Ensure single-digit day and month are padded with leading zeros
-  const formattedDay = day < 10 ? `0${day}` : day;
-  const formattedMonth = month < 10 ? `0${month}` : month;
-
-  // Construct the formatted string
-  const formattedDateTime = `${formattedMonth}/${formattedDay}/${year}, ${formattedHours}:${minutes} ${ampm}`;
-
-  return formattedDateTime;
 }

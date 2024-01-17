@@ -18,7 +18,7 @@ const Categorizer: React.FC<Props> = ({
     <div className={clsx("mb-10", className && className)}>
       <div
         className={clsx(
-          "pb-4 p-4",
+          "md:py-4 py-2",
           right && "flex items-center justify-between"
         )}
       >
