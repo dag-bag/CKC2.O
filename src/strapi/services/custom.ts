@@ -5,6 +5,7 @@ import { getSession } from "./me";
 const getCoins = async () => {
   const res = await axios.get("/api/user/coins");
   return res.data;
+  console.log(res.data)
 };
 const getCredits = async () => {
   const res = await axios.get("/api/user/credit");
