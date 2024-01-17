@@ -14,6 +14,7 @@ import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
 import { generateHref } from "@/blocks/molecules/content-card";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
 import { whereToWhere } from "@/blocks/molecules/content-card";
+
 type ContentType =
   | "nac"
   | "comic"

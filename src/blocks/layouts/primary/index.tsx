@@ -28,10 +28,10 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         <Aside />
         <div
           style={mainStyle}
-          className="max-w-screen w-full overflow-y-scroll relative pb-5"
+          className="max-w-screen w-full overflow-y-scroll relative"
         >
           <Header />
-          <div className="pt-[100px] max-w-[1440px] mx-auto md:px-5 px-2">
+          <div className="pt-[85px] max-w-[1440px] mx-auto md:px-5 px-2">
             {children}
           </div>
         </div>
