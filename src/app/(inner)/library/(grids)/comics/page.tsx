@@ -10,7 +10,7 @@ export default async function page() {
   ]);
   const listOfPurchagesIds = purchases?.map((pur) => pur.content_id);
   return (
-    <section className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-x-4 gap-y-6">
+    <section className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
       {data.map((video: any) => {
         return (
           <ContentCard
