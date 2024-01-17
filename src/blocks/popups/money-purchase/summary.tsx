@@ -28,7 +28,7 @@ const PaymentSummary: React.FC<Props> = (props) => {
                 {key.includes("discount") ? "(-)" : null}
                 {key.includes("GST") ? "(+)" : null}
                 {symbol}
-                {val}
+                {Math.round(val)}
               </p>
             </div>
           );

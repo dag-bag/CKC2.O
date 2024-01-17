@@ -9,23 +9,34 @@ import { useSessionStorage } from "@mantine/hooks";
 import { useAccountType } from "@/hooks/use-session";
 
 const UpgadePlanAlert = () => {
+  const router = useRouter();
+  const plan = useAccountType();
   const [storage, setStorage]: any = useSessionStorage({
     key: "alert",
-    defaultValue: true,
+    defaultValue: undefined,
   });
-  const router = useRouter();
-  const close = () => {
-    setStorage(false);
-  };
 
+  console.log(storage < +new Date());
+
+  const close = () => {
+    setStorage(addTenMinutesToTimestamp(+new Date()));
+  };
   const handleUpgrade = () => {
     router.push("/purchases/subscription");
   };
+
+  if (plan === "premium") {
+    return null;
+  }
+
   return (
     <div className="popup-container">
-      <RootModal centered onClose={close} opened={false}>
+      <RootModal
+        centered
+        onClose={close}
+        opened={storage == undefined || storage < +new Date()}
+      >
         <div className="flex-col flex items-center gap-5 px-5 ">
-          {JSON.stringify(storage)}
           <Image
             src={"/logo-2.png"}
             alt="logo"
@@ -37,7 +48,7 @@ const UpgadePlanAlert = () => {
             className="text-center font-semibold font-amar uppercase"
             size="large"
           >
-            Its time for your your Upgrade!
+            Its time for your Upgrade!
           </Heading>
           <p className="font-fun">Enjoy 365 days of premium content access.</p>
           <Button
@@ -57,3 +68,14 @@ const UpgadePlanAlert = () => {
 };
 
 export default UpgadePlanAlert;
+
+function addTenMinutesToTimestamp(timestamp: number): number {
+  // Convert the timestamp to a Date object
+  const date = new Date(timestamp);
+
+  // Add 10 minutes to the date
+  date.setMinutes(date.getMinutes() + 10);
+
+  // Return the updated timestamp
+  return date.getTime();
+}

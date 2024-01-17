@@ -9,6 +9,7 @@ import Header from "./header";
 import React, { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import UpgadePlanAlert from "@/blocks/popups/upgrade-plan-alert";
+import useSession from "@/hooks/use-session";
 
 const theme: any = {
   "/dashboard": {
@@ -63,6 +64,7 @@ const theme: any = {
 
 const PrimaryLayout: React.FC<Props> = ({ children }) => {
   const pathname = usePathname();
+  const session = useSession();
 
   return (
     <div
@@ -84,7 +86,7 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
         >
           <Header />
           <div className="pt-[100px] max-w-[1440px] mx-auto px-5">
-            <UpgadePlanAlert />
+            {!session.isLoading && <UpgadePlanAlert />}
             {children}
           </div>
         </div>
