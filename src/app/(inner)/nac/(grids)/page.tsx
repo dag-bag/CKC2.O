@@ -32,7 +32,7 @@ const VideosPage = async () => {
               {...{
                 id: video.id,
                 type: "nac",
-                theme: "green",
+                theme: "blue",
                 slug: video.slug,
                 desc: video.desc,
                 title: video.title,
