@@ -1,6 +1,6 @@
 import Heading from "@/blocks/atoms/Heading";
-import { PasswordInput, PinInput, TextInput } from "@mantine/core";
 import Button from "@/blocks/atoms/Button";
+import { PasswordInput, TextInput } from "@mantine/core";
 
 const GeneratePassword = ({
   email,
@@ -14,9 +14,9 @@ const GeneratePassword = ({
       <Heading size="small" className="text-center mb-5">
         Create Password
       </Heading>
-      <TextInput size="md" readOnly value={email} />
+      <TextInput size="lg" readOnly value={email} />
       <PasswordInput
-        size="md"
+        size="lg"
         value={password}
         placeholder="Password"
         onChange={(e) => {

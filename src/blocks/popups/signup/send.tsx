@@ -6,15 +6,19 @@ const Send = ({ email, setEmail, loading, handler }: any) => {
   return (
     <div>
       <Heading size="small" className="text-center mb-5">
-        Verify Email
+        Email Verification
       </Heading>
       <TextInput
+        disabled={loading}
+        classNames={{
+          input: "!text-center",
+        }}
         value={email}
-        onChange={(e) => setEmail(e.currentTarget.value)}
         size="lg"
         name="email"
         type="email"
         placeholder="your email"
+        onChange={(e) => setEmail(e.currentTarget.value)}
       />
       <Button
         loading={loading}
@@ -22,7 +26,7 @@ const Send = ({ email, setEmail, loading, handler }: any) => {
         animation="scale"
         className="w-full mt-5"
       >
-        Send Otp
+        Send OTP
       </Button>
     </div>
   );

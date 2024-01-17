@@ -1,20 +1,23 @@
 "use client";
-import clsx from "clsx";
 import Canvas from "./canvas";
 import { data } from "./data";
 import Image from "next/image";
+import Script from "next/script";
+import toast from "react-hot-toast";
 import Button from "@/blocks/atoms/Button";
 import useOnboard from "@/hooks/useOnboard";
 import { useRouter } from "next/navigation";
 import { updateUser } from "@/services/user";
+import useSession from "@/hooks/use-session";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
+import NewboardActionName from "./action.name";
+import NewboardGradeAction from "./action.grade";
+import NewboardAvatarAction from "./action.avatar";
+import NewboardBirthdateAction from "./action.dob";
+import NewboardMobileAction from "./action.mobile";
+import NewboardLocationAction from "./action.location";
 import OnboardPopup from "@/blocks/popups/onboard-popup";
-
-function removeSpaces(inputString: string): string {
-  // Using the replace method with a regular expression to replace all spaces globally
-  return inputString.replace(/\s/g, "");
-}
 
 export default function Newboard() {
   const router = useRouter();
@@ -22,7 +25,6 @@ export default function Newboard() {
   const pathname = usePathname();
   const { storage } = useOnboard();
   const configuration = data[pathname];
-
   const [opened, popupHanders] = useDisclosure(false);
 
   // handlers
@@ -116,12 +118,12 @@ export default function Newboard() {
   // Renders
 
   const componentMap: any = {
-    "/newboard/name": <NameAction />,
-    "/newboard/grade": <GradeAction />,
-    "/newboard/mobile": <MobileAction />,
-    "/newboard/location": <LocationAction />,
-    "/newboard/birthday": <BirthdateAction />,
-    "/newboard/avatar": <AvatarSelectionAction />,
+    "/newboard/name": <NewboardActionName />,
+    "/newboard/grade": <NewboardGradeAction />,
+    "/newboard/avatar": <NewboardAvatarAction />,
+    "/newboard/mobile": <NewboardMobileAction />,
+    "/newboard/location": <NewboardLocationAction />,
+    "/newboard/birthday": <NewboardBirthdateAction />,
   };
 
   const RenderedComponent = componentMap[pathname] || null;
@@ -137,7 +139,7 @@ export default function Newboard() {
       <Canvas progress={configuration?.progress} />
       <div>
         <div className="max-w-6xl mx-auto px-5 pt-8 xl:mt-5 grid md:gap-2">
-          <h1 className=" font-josefin font-bold xl:text-4xl md:text-2xl lg:text-4xl text-2xl leading-14">
+          <h1 className="font-josefin font-bold xl:text-4xl md:text-2xl lg:text-4xl text-2xl leading-14">
             {configuration?.question}
           </h1>
           <div className="py-3">{RenderedComponent}</div>
@@ -183,216 +185,8 @@ const Logo = () => {
   );
 };
 
-const Input = ({ placeholder, type, name, value, ...props }: any) => {
-  return (
-    <div className="md:h-[50px] h-[50px] inline-flex items-center md:px-8 px-5 border-b-2 border-blue-500 bg-blue-50">
-      <input
-        name={name}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        {...props}
-        className="border-none md:text-[28px] outline-none bg-transparent md:placeholder:text-[28px]"
-      />
-    </div>
-  );
-};
-
 // Actions
-export const NameAction = () => {
-  const { setter, storage } = useOnboard();
 
-  const handleFirstNameChange = (event: any) => {
-    setter("firstname", event.target.value);
-  };
-  const handleLastNameChange = (event: any) => {
-    setter("lastname", event.target.value);
-  };
-
-  return (
-    <div className="md:flex gap-5 grid grid-cols-1">
-      <Input
-        name={"first_name"}
-        placeholder="First Name"
-        value={storage?.firstname}
-        onChange={handleFirstNameChange}
-      />
-      <Input
-        name={"last_name"}
-        placeholder="Last Name"
-        value={storage?.lastname}
-        onChange={handleLastNameChange}
-      />
-    </div>
-  );
-};
-
-export const GradeAction = () => {
-  const grades = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const { setter, storage } = useOnboard();
-
-  return (
-    <div className="flex flex-wrap md:gap-5 gap-2">
-      {grades.map((grade) => (
-        <button
-          onClick={() => {
-            setter("grade", grade);
-          }}
-          className={clsx(
-            "md:w-[60px] md:h-[60px] w-[55px] h-[55px] rounded-full border-b-2 border-blue-500 text-xl",
-            storage?.grade === grade
-              ? "bg-blue-400 text-white duration-300 scale-95 shadow-lg"
-              : "bg-blue-50"
-          )}
-          key={grade}
-        >
-          {grade}
-        </button>
-      ))}
-    </div>
-  );
-};
-export const BirthdateAction = () => {
-  const { setter, storage } = useOnboard();
-  const [inputValue, setInputValue] = useState("");
-  const onChangeHandler = (event: any) => {
-    if (isDateNotGreaterThanToday(new Date(event.target.value))) {
-      setter("dob", event.target.value);
-      setInputValue(event.target.value);
-    } else {
-      toast.error("Date of birth cannot be greater than today's date");
-      setInputValue("");
-    }
-  };
-  return (
-    <div className="md:flex gap-5 grid grid-cols-1">
-      <Input
-        type="date"
-        name="date_of_birth"
-        value={storage?.dob ?? inputValue}
-        placeholder="Birthdate"
-        onChange={onChangeHandler}
-      />
-    </div>
-  );
-};
-
-import { PatternFormat } from "react-number-format";
-import toast from "react-hot-toast";
-import { useRef, useState } from "react";
-import Script from "next/script";
-import useSession from "@/hooks/use-session";
-import { Select } from "@mantine/core";
-import { countries } from "@config/index";
-
-export const MobileAction = () => {
-  const { setter, storage } = useOnboard();
-  const onChangeHandler = (event: any) => {
-    setter("phone", event.target.value);
-  };
-  return (
-    <div className="md:flex gap-5 grid grid-cols-1">
-      <div className="md:h-[50px] h-[50px] inline-flex items-center md:px-8 px-5 border-b-2 border-blue-500 bg-blue-50">
-        <PatternFormat
-          name="phone"
-          type="tel"
-          className="border-none md:text-[28px] outline-none bg-transparent md:placeholder:text-[28px]"
-          onChange={onChangeHandler}
-          placeholder="Mobile Input"
-          value={storage?.phone}
-          valueIsNumericString
-          format="## ##########"
-        />
-      </div>
-    </div>
-  );
-};
-
-export const LocationAction = () => {
-  const { setter, storage } = useOnboard();
-
-  return (
-    <div className="md:flex gap-5 grid grid-cols-1">
-      <Input
-        onChange={(event: any) => {
-          setter("city", event?.target.value);
-        }}
-        value={storage?.city}
-        name="city"
-        placeholder="City"
-      />
-      <Input
-        onChange={(event: any) => {
-          setter("state", event?.target.value);
-        }}
-        value={storage?.state}
-        name="state"
-        placeholder="State"
-      />
-
-      <Select
-        size="lg"
-        classNames={{
-          input:
-            "!text-2xl !outline-none !border-b-2 !border-blue-500 !bg-blue-50   !border-t-0 !border-l-0 !border-r-0",
-        }}
-        value={storage?.country}
-        placeholder="Pick value"
-        data={countries}
-        onChange={(event: any) => {
-          setter("country", event);
-        }}
-      />
-    </div>
-  );
-};
-
-export const AvatarSelectionAction = () => {
-  const avatars = [
-    "/onboard/avatar-1.png",
-    "/onboard/avatar-2.png",
-    "/onboard/avatar-3.png",
-  ];
-
-  const { setter, storage } = useOnboard();
-
-  return (
-    <div className="flex md:gap-5 gap-2 ">
-      {avatars.map((avatarURL) => (
-        <button
-          key={avatarURL}
-          onClick={() => {
-            setter("avatar", avatarURL);
-          }}
-          className={clsx(
-            "rounded-full w-[100px] h-[100px] border-b-[3px] border-blue-500 shadow-xl overflow-hidden",
-            storage?.avatar == avatarURL
-              ? "border-blue-400 border-2 text-white duration-300 scale-95 shadow-lg"
-              : "  border-2 border-gray-200"
-          )}
-        >
-          <Image
-            alt={avatarURL}
-            src={avatarURL}
-            width={100}
-            height={100}
-            className="hidden md:block"
-          />
-          <Image
-            alt={avatarURL}
-            src={avatarURL}
-            width={80}
-            height={80}
-            className="block md:hidden"
-          />
-        </button>
-      ))}
-    </div>
-  );
-};
-
-function isDateNotGreaterThanToday(date: Date): boolean {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); // set the time to 00:00:00.000
-  return date <= today;
+function removeSpaces(inputString: string): string {
+  return inputString.replace(/\s/g, "");
 }

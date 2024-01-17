@@ -1,13 +1,36 @@
-const Input = ({ placeholder }: any) => {
+import { TextInput } from "@mantine/core";
+const NewboardInput = ({
+  size = "lg",
+  placeholder,
+  type,
+  name,
+  value,
+  ...props
+}: any) => {
   return (
-    <div className="md:h-[60px] h-[50px] inline-flex items-center px-10 border-b-2 border-blue-500 bg-blue-50">
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="border-none outline-none bg-transparent md:placeholder:text-lg"
-      />
-    </div>
+    <TextInput
+      size={size}
+      placeholder={placeholder}
+      name={name}
+      type={type}
+      value={value}
+      {...props}
+      classNames={{
+        input: `
+          !px-8
+          !py-5
+          !md:text-2xl
+          !outline-none
+          !border-b-2
+          !border-blue-500
+          !bg-blue-50
+          !border-t-0
+          !border-l-0
+          !border-r-0
+        `,
+      }}
+    />
   );
 };
 
-export default Input;
+export default NewboardInput;
