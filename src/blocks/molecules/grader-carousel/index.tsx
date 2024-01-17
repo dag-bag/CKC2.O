@@ -51,8 +51,8 @@ const GraderCarousel: React.FC<Props> = ({ children, title }) => {
       <div className="flex items-center justify-between md:mb-6 mb-2 pl-2">
         <Heading
           size="medium"
-          varient="white_with_shadow"
           className="capitalize"
+          varient="white_with_shadow"
         >
           {title}
         </Heading>
@@ -61,7 +61,7 @@ const GraderCarousel: React.FC<Props> = ({ children, title }) => {
       <div ref={ref} className="w-full relative">
         <Carousel {...properties}>
           {Children.map(children, (child) => (
-            <Carousel.Slide>{child}</Carousel.Slide>
+            <Carousel.Slide className="!grid">{child}</Carousel.Slide>
           ))}
         </Carousel>
       </div>

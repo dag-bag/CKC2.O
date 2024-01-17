@@ -74,7 +74,7 @@ const Carousel = async (action: Action) => {
 };
 
 const HowItWorks = async (action: Action) => {
-  return fetchData(HOW_IT_WORKS_ENTITY, action);
+  return fetchData(HOW_IT_WORKS_ENTITY, action, COURSES_P);
 };
 
 const ChallangeReq = async (action: Action) => {

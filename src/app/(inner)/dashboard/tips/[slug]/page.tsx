@@ -8,10 +8,4 @@ const TipVideo = async () => {
     </div>
   );
 };
-
 export default TipVideo;
-
-// hindi question
-
-// 1. is ko record nhi karna (iska waise bhi koi mtlb nhi banta)
-// 2. right section per kya show karna hai
