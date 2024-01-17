@@ -6,7 +6,7 @@ import { updateUser } from "@/services/user";
 
 interface Props {
   opened: boolean;
-  onClose: () => void;
+  close: () => void;
   type: "avatar" | "banner";
   image: string;
   title: string;
@@ -14,7 +14,7 @@ interface Props {
 
 const VirtualProductUnlockPopup: React.FC<Props> = ({
   opened,
-  onClose,
+  close,
   type,
   image,
   title,
@@ -25,10 +25,10 @@ const VirtualProductUnlockPopup: React.FC<Props> = ({
       success: "Avatar sucessfully updated!",
       error: "Error",
     });
-    onClose();
+    close();
   };
   return (
-    <RootModal centered opened={opened} onClose={onClose}>
+    <RootModal centered opened={opened} onClose={close}>
       <div>
         <h1 className="text-2xl font-amar text-center">
           <b>Congratulation 🎉</b>, <br /> "{title}" is unlocked.
