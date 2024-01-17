@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import useRecentlyWatched from "@/hooks/useRecentlyWached";
 import Button from "@/blocks/atoms/Button";
 
-const ComicReader = ({ id, title, thumbnail, grade, content }: any) => {
+const ComicReader = ({ id, title, thumbnail, grade, content, desc }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const { addToRecentlyWatched } = useRecentlyWatched();
   const handleRead = () => {
@@ -12,7 +12,7 @@ const ComicReader = ({ id, title, thumbnail, grade, content }: any) => {
       id,
       title,
       grade,
-      desc: content,
+      desc,
       type: "comic",
       imgUrl: thumbnail,
     });

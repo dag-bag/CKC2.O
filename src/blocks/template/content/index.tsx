@@ -10,7 +10,6 @@ import config from "../../../../__config/index";
 import { getSession } from "@/strapi/services/me";
 import TrailerPlayer from "./players/trailer-player";
 import ActivityPreparation from "./modules/activity-prep";
-import { numbersStringToOrdinals } from "@/libs/convertors";
 import VideoPlayer from "@/blocks/molecules/video/VideoPlayer";
 import { generateHref } from "@/blocks/molecules/content-card";
 import ComicReader from "@/blocks/molecules/comic/ComicReader";
@@ -161,7 +160,10 @@ const ContentTemplate: React.FC<Props> = async ({
                         slug,
                         title,
                         price,
+                        grade,
                         duration,
+                        desc,
+                        thumbnail: thumbnailUrl,
                         content: data?.content,
                       }}
                     />
