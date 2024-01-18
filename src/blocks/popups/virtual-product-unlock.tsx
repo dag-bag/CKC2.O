@@ -21,8 +21,10 @@ const VirtualProductUnlockPopup: React.FC<Props> = ({
 }) => {
   const onSetupHandler = async () => {
     toast.promise(updateUser({ [type]: image }), {
-      loading: "Changing Avatar",
-      success: "Avatar sucessfully updated!",
+      loading: `Updating ${type === "banner" ? "Banner" : "Avatar"}`,
+      success: `${
+        type === "banner" ? "Banner" : "Avatar"
+      } sucessfully updated!`,
       error: "Error",
     });
     close();
@@ -33,6 +35,7 @@ const VirtualProductUnlockPopup: React.FC<Props> = ({
         <h1 className="text-2xl font-amar text-center">
           <b>Congratulation 🎉</b>, <br /> "{title}" is unlocked.
         </h1>
+
         <div className="center mt-5">
           {type === "avatar" && (
             <Image
@@ -47,12 +50,16 @@ const VirtualProductUnlockPopup: React.FC<Props> = ({
             <Image alt="price" src={image} width={300} height={300} />
           )}
         </div>
+
         <div className="center mt-5">
-          <Button onClick={onSetupHandler} animation="scale" className="!px-20">
-            Setup
+          <Button
+            onClick={onSetupHandler}
+            animation="scale"
+            className="!px-20 capitalize"
+          >
+            Change {type}
           </Button>
         </div>
-        <p className="text-center mt-2">Lorem ipsum dolor sit amet.</p>
       </div>
     </RootModal>
   );
