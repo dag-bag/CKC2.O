@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import MyBalance from "./balance";
-import MobileHeader from "./mobile-header";
+import MobileHeader from "./mobile/mobile-header";
 import Profile from "@/blocks/atoms/Profilebar";
 import SearchBar from "@/blocks/molecules/searchbar";
 const Header = () => {
