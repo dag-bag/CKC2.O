@@ -68,7 +68,7 @@ const VirtualProduct: React.FC<Props> = ({
   };
 
   return (
-    <div className="grid bg-white/50 rounded-xl backdrop-blur-sm p-5 group hover:scale-95 duration-200">
+    <div className="grid bg-white/50 rounded-xl backdrop-blur-sm md:p-5 p-3 group hover:scale-95 duration-200">
       {type == "avatar" ? (
         <div className="aspect-w-4 aspect-h-4 relative rounded-full overflow-hidden group-hover:scale-105 group-hover:shadow-md duration-200">
           <Image className="overflow-hidden" src={image} alt="profile" fill />
