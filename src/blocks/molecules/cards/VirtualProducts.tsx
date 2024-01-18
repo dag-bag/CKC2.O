@@ -6,6 +6,7 @@ interface Props {
   coins: number;
   purchased: boolean;
   type: "banner" | "avatar";
+  premium?: boolean;
 }
 
 import axios from "axios";
@@ -16,8 +17,9 @@ import useCoins from "@/hooks/useCoins";
 import Button from "@/blocks/atoms/Button";
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
+import { useAccountType } from "@/hooks/use-session";
 import Popup from "@/blocks/popups/virtual-product-unlock";
-
+import Upgrade from "@/blocks/popups/virtual-product-upgrade";
 const VirtualProduct: React.FC<Props> = ({
   id,
   type,
@@ -25,35 +27,43 @@ const VirtualProduct: React.FC<Props> = ({
   image,
   coins,
   purchased,
+  premium,
 }) => {
   const router = useRouter();
+  const accountType = useAccountType();
   const { data, updateCoins } = useCoins();
   const [loading, setLoading] = useState(false);
+
   const [opened, { open, close }] = useDisclosure(false);
+  const [opened2, { open: open2, close: close2 }] = useDisclosure(false);
 
   const onPurchaseHandler = async () => {
+    if (premium && accountType !== "premium") {
+      return open2();
+    }
+
     if (parseInt(data?.data?.coins) < coins) {
-      toast.error("You dont have enough coins");
-    } else {
-      setLoading(true);
-      try {
-        await axios
-          .post("/api/user/purchase", {
-            coins,
-            type,
-            label: title,
-            content_id: id,
-          })
-          .then(() => {
-            updateCoins({ type: "remove", newData: coins });
-            setLoading(false);
-            open();
-            router.refresh();
-          });
-      } catch (error) {
-        setLoading(false);
-        toast.error("error occured");
-      }
+      return toast.error("You dont have enough coins");
+    }
+
+    setLoading(true);
+    try {
+      await axios
+        .post("/api/user/purchase", {
+          coins,
+          type,
+          label: title,
+          content_id: id,
+        })
+        .then(() => {
+          updateCoins({ type: "remove", newData: coins });
+          setLoading(false);
+          open();
+          router.refresh();
+        });
+    } catch (error) {
+      setLoading(false);
+      toast.error("error occured");
     }
   };
 
@@ -68,6 +78,15 @@ const VirtualProduct: React.FC<Props> = ({
           <Image className="overflow-hidden" src={image} alt="profile" fill />
         </div>
       )}
+
+      {premium && (
+        <div className="w-full h-full">
+          <div className="absolute top-0 right-2">
+            <Image src="/leader.png" alt="leader" width={80} height={80} />
+          </div>
+        </div>
+      )}
+
       <p className="center mt-2 font-heading text-lg text-center line-clamp-1">
         {title}
       </p>
@@ -95,6 +114,14 @@ const VirtualProduct: React.FC<Props> = ({
           opened,
         }}
       />
+      {premium && (
+        <Upgrade
+          {...{
+            close: close2,
+            opened: opened2,
+          }}
+        />
+      )}
     </div>
   );
 };

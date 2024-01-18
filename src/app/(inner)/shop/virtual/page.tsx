@@ -24,7 +24,8 @@ const VirtualShopPage = async () => {
               type={avt.type}
               coins={avt.coins}
               title={avt.title}
-              image={extImage(avt.images)}
+              image={avt.images.url}
+              premium={avt.premium}
               purchased={virtual_products_ids.includes(avt.id)}
             />
           ))}
@@ -41,7 +42,8 @@ const VirtualShopPage = async () => {
               type={avt.type}
               coins={avt.coins}
               title={avt.title}
-              image={extImage(avt.images)}
+              image={avt.images.url}
+              premium={avt.premium}
               purchased={virtual_products_ids.includes(avt.id)}
             />
           ))}
