@@ -20,14 +20,15 @@ import { useDisclosure } from "@mantine/hooks";
 import { useAccountType } from "@/hooks/use-session";
 import Popup from "@/blocks/popups/virtual-product-unlock";
 import Upgrade from "@/blocks/popups/virtual-product-upgrade";
+
 const VirtualProduct: React.FC<Props> = ({
   id,
   type,
   title,
   image,
   coins,
-  purchased,
   premium,
+  purchased,
 }) => {
   const router = useRouter();
   const accountType = useAccountType();
