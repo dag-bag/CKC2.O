@@ -7,7 +7,7 @@ const NewboardBirthdateAction = () => {
   const [inputValue, setInputValue] = useState("");
   const onChangeHandler = (event: any) => {
     const user_age = getUserAge(event.target.value);
-    if (user_age >= 10) {
+    if (user_age >= 6) {
       setter("dob", event.target.value);
       setInputValue(event.target.value);
     } else {
