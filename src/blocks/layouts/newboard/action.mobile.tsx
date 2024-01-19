@@ -1,25 +1,45 @@
 import useOnboard from "@/hooks/useOnboard";
-import { PatternFormat } from "react-number-format";
-
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 const NewboardMobileAction = () => {
   const { setter, storage } = useOnboard();
   const onChangeHandler = (event: any) => {
-    setter("phone", event.target.value);
+    setter("phone", event);
   };
   return (
     <div className="md:flex gap-5 grid grid-cols-1">
-      <div className="md:h-[50px] h-[50px] inline-flex items-center md:px-8 px-5 border-b-2 border-blue-500 bg-blue-50">
-        <PatternFormat
-          name="phone"
-          type="tel"
-          className="border-none md:text-[28px] outline-none bg-transparent md:placeholder:text-[28px]"
-          onChange={onChangeHandler}
-          placeholder="Mobile Input"
-          value={storage?.phone}
-          valueIsNumericString
-          format="## ##########"
-        />
-      </div>
+      <PhoneInput
+        inputProps={{
+          name: "phone",
+          required: true,
+          autoFocus: true,
+        }}
+        enableSearch
+        placeholder="+91 987654321"
+        inputClass=" 
+        !outline-none
+        !border-b-2
+        !border-blue-500
+        !bg-blue-50
+        !border-t-0
+        !border-l-0
+        !border-r-0
+        !h-full
+        !text-xl"
+        buttonClass="!
+        !outline-none
+        !border-b-2
+        !border-blue-500
+        !bg-blue-100
+        !border-t-0
+        !border-l-0
+        !border-r-0
+        "
+        containerClass="h-[50px]  !font-josefin"
+        country={"in"}
+        value={storage?.phone}
+        onChange={onChangeHandler}
+      />
     </div>
   );
 };

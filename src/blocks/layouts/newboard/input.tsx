@@ -19,7 +19,7 @@ const NewboardInput = ({
         input: `
           !px-8
           !py-5
-          !md:text-2xl
+          !md:text-3xl
           !outline-none
           !border-b-2
           !border-blue-500

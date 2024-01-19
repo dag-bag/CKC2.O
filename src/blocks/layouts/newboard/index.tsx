@@ -49,7 +49,13 @@ export default function Newboard() {
         break;
 
       case "/newboard/mobile":
-        storage?.phone ? router.push(configuration?.nextPath) : Alert();
+        storage?.phone
+          ? storage.phone.length == 12
+            ? router.push(configuration?.nextPath)
+            : toast.error(
+                "Length of mobile number should be 12 with country code."
+              )
+          : Alert();
         break;
 
       case "/newboard/location":

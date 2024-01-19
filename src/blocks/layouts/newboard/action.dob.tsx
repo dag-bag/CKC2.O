@@ -2,16 +2,16 @@ import Input from "./input";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useOnboard from "@/hooks/useOnboard";
-import { DeviceFarm } from "aws-sdk";
 const NewboardBirthdateAction = () => {
   const { setter, storage } = useOnboard();
   const [inputValue, setInputValue] = useState("");
   const onChangeHandler = (event: any) => {
-    if (isDateNotGreaterThanToday(new Date(event.target.value))) {
+    const user_age = getUserAge(event.target.value);
+    if (user_age >= 10) {
       setter("dob", event.target.value);
       setInputValue(event.target.value);
     } else {
-      toast.error("Date of birth cannot be greater than today's date");
+      toast.error("At least the user should have 10 years ahead of him");
       setInputValue("");
     }
   };
@@ -29,6 +29,13 @@ const NewboardBirthdateAction = () => {
 };
 
 export default NewboardBirthdateAction;
+
+const getUserAge = (date: Date) => {
+  const birth_year = new Date(date).getFullYear();
+  const current_year = new Date().getFullYear();
+
+  return current_year - birth_year;
+};
 
 function isDateNotGreaterThanToday(date: Date): boolean {
   const today = new Date();
