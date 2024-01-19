@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Heading from "@/blocks/atoms/Heading";
 import SignUpWithEmail from "@/blocks/popups/signup";
-import GoogleAuthButton from "@/blocks/atoms/GoogleAuthButton";
-import SpaceBreakWithText from "@/blocks/atoms/SpaceBreakWithText";
 
 export const metadata = {
   title: "Register | Cosmic Kids Club",
@@ -26,8 +24,6 @@ const Page = () => {
           <Heading size="large" className="font-semibold font-amar mb-5">
             Join Cosmic Kids Club <br /> Learning & Adventure!
           </Heading>
-          <GoogleAuthButton type="signup" />
-          <SpaceBreakWithText />
           <div>
             <SignUpWithEmail />
           </div>

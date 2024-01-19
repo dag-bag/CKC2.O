@@ -4,26 +4,17 @@ import useSession from "./use-session";
 import { useRouter } from "next/navigation";
 import { StrapiAuthenticationData } from "strapi-sdk-js";
 
-interface GetAction {
-  type: "GOOGLE";
-}
-
 interface GetOneAction {
   type: "CRED";
   identifier: string;
   password: string;
 }
 
-export type Action = GetAction | GetOneAction;
+export type Action = GetOneAction;
 
 export default function useAuth() {
   const router = useRouter();
   const { login: setSession } = useSession();
-  const loginWithGoogle = (): void => {
-    const url = strapi.getProviderAuthenticationUrl("google");
-    router.push(url);
-    console.log("Redirecting to Google authentication...");
-  };
 
   const loginWithCred = async (
     data: StrapiAuthenticationData
@@ -63,8 +54,6 @@ export default function useAuth() {
   const login = (data: Action) => {
     if (data.type === "CRED") {
       loginWithCred({ identifier: data.identifier, password: data.password });
-    } else {
-      loginWithGoogle();
     }
   };
 

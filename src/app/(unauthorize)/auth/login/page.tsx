@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Heading from "@/blocks/atoms/Heading";
 import Form from "@/blocks/atoms/forms/login";
-import SpaceBreaker from "@/blocks/atoms/SpaceBreakWithText";
-import GoogleAuthentication from "@/blocks/atoms/GoogleAuthButton";
 
 export const metadata = {
   title: "Login | Cosmic Kids Club",
@@ -25,8 +23,6 @@ const LoginPage = () => {
           <Heading size="large" className="font-semibold font-amar mb-5">
             Join Cosmic Kids Club <br /> Learning & Adventure!
           </Heading>
-          <GoogleAuthentication type="signin" />
-          <SpaceBreaker />
           <div>
             <Form />
           </div>

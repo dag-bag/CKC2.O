@@ -1,6 +1,5 @@
 import { strapi } from "@/libs/strapi";
-import { SessionData, sessionOptions } from "@/libs/iron";
-import { getIronSession } from "iron-session";
+import { SessionData } from "@/libs/iron";
 import axios from "axios";
 interface UserSession {
   user: SessionData["user"];
