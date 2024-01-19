@@ -27,6 +27,7 @@ const NewboardLocationAction = () => {
       <Select
         size="lg"
         searchable
+        withCheckIcon
         classNames={{
           input:
             "!px-8 !py-5 md:!text-2xll !outline-none !border-b-2 !border-blue-500 !bg-blue-50   !border-t-0 !border-l-0 !border-r-0",
@@ -34,6 +35,7 @@ const NewboardLocationAction = () => {
         value={storage?.country}
         placeholder="Country"
         data={countries}
+        nothingFoundMessage={<p>Nothing found</p>}
         onChange={(event: any) => {
           setter("country", event);
         }}
