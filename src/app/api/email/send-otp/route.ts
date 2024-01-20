@@ -1,11 +1,10 @@
-import { NextResponse } from "next/server";
-import AWS from "aws-sdk";
-import { render } from "@react-email/render";
-import { OtpEmail } from "@/blocks/atoms/otpemail";
-import { cookies } from "next/headers";
 // @ts-ignore
 import bcrypt from "bcrypt";
+import AWS from "aws-sdk";
+import { cookies } from "next/headers";
 import { testMail } from "@/libs/aws-ses";
+import { render } from "@react-email/render";
+import { OtpEmail } from "@/blocks/atoms/otpemail";
 // Generate a random OTP
 function generateOTP() {
   const otp = Math.floor(1000 + Math.random() * 9000);
@@ -17,7 +16,6 @@ export async function POST(request: Request) {
 
   const otp = generateOTP(); // Generate OTP
   const html = render(OtpEmail({ otp: otp.toString() }));
-  console.log(otp);
 
   try {
     await testMail(email as string);
@@ -33,7 +31,7 @@ export async function POST(request: Request) {
     const AWS_SES = AWS.config.update(SES_CONFIG);
 
     let params = {
-      Source: `gautam@stemandspace.com`,
+      Source: `hello@cosmickidsclub.in`,
       Destination: {
         ToAddresses: [email],
       },
@@ -59,8 +57,6 @@ export async function POST(request: Request) {
     cookies().set("hashedOTP", hashedOTP, {
       expires: expirationTime,
     });
-
-    // await storeOTPInSession(request, otp); // Store OTP in session
 
     return new Response("OTP Verified SuccessFully", { status: 200 });
   } catch (error) {
