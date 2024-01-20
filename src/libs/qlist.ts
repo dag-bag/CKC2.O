@@ -22,7 +22,7 @@ const answerFormentConvertor = (
 
 
 
-export const quizParser = (qlist: TypeQlist): Quiz => {
+export const parser = (qlist: TypeQlist): Quiz => {
     const slides: Slide[] = qlist.qlides.map((qlide) => {
         return {
             // action

@@ -13,7 +13,7 @@ import { BiHome, BiLock, BiLeftArrowAlt } from "react-icons/bi";
 const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
   const router = useRouter();
   const { clearSession } = useQuizSession();
-  const [opened, { open }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleStartQuiz = () => {
     clearSession();
