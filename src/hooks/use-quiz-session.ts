@@ -1,5 +1,4 @@
 import { useSessionStorage } from "@mantine/hooks";
-
 interface session {
     responses: {
         [key: string]: string | string[]
@@ -29,7 +28,6 @@ const useQuizSession = () => {
         },
         saveResponse: (response: string | string[], isLastQuestion: boolean) => {
             setSession((prev) => {
-                console.log(prev)
                 return {
                     state: isLastQuestion ? { ...prev.state } : { index: (session as any).state.index + 1 },
                     responses: {

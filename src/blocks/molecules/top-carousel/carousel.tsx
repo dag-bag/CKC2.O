@@ -4,15 +4,19 @@ import Image from "next/image";
 import Heading from "@/blocks/atoms/Heading";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Carousel as MantineCarousel } from "@mantine/carousel";
+
 interface Props {
   slides: { title: string; desc: string; thumbnail: any }[];
 }
+
 const Carousel: React.FC<Props> = ({ slides }) => {
   const nextControlRef = useRef<HTMLButtonElement>(null);
   const prevControlRef = useRef<HTMLButtonElement>(null);
+
   const handleControllerLeft = () => {
     prevControlRef?.current?.click();
   };
+
   const handleControllerRight = () => {
     nextControlRef?.current?.click();
   };
@@ -20,10 +24,10 @@ const Carousel: React.FC<Props> = ({ slides }) => {
   return (
     <div className="relative w-full">
       <MantineCarousel
+        align={"start"}
         classNames={{
           controls: "!hidden",
         }}
-        align={"start"}
         slideSize={"100%"}
         slidesToScroll={1}
         nextControlProps={{ ref: nextControlRef } as any}
