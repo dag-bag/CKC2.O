@@ -12,7 +12,7 @@ const Page = () => {
   return (
     <div className="md:h-screen center font-fun bg-gray-100">
       <div className="rounded-lg grid md:grid-cols-2 bg-white max-w-7xl w-full  mx-auto ">
-        <div className="bg-blue-100 rounded-lg center hidden md:flex">
+        <div className="bg-blue-100 rounded-lg center ">
           <Image
             width={500}
             height={500}
