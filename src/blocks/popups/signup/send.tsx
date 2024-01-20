@@ -17,7 +17,7 @@ const schema = yup.object().shape({
     .required("Email is required")
     .email("Invalid email address")
     .matches(
-      /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/,
+      /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|hotmail\.com)$/,
       "We can only accept Gmail or Yahoo mail."
     ),
 });
