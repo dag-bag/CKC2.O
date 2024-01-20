@@ -70,22 +70,24 @@ const SignUpWithEmail = () => {
 
   const handleEmailVerification = async () => {
     try {
-      if (email) {
-        setLoading(true);
-        await axios
-          .post(`/api/email/send-otp`, {
-            email,
-            name: "New Explorar",
-          })
-          .then(() => {
-            setEmailSent(true);
-            setLoading(false);
-          });
+      if (!email) {
+        return;
       }
-    } catch (err) {
+      setLoading(true);
+      const response1 = await axios.post("/api/signup-senitize", { email });
+      if (response1.data.ok) {
+        await axios.post("/api/email/send-otp", { email });
+        setEmailSent(true);
+      } else {
+        ClearState();
+        toast.error(response1.data.message);
+      }
+    } catch (error) {
       ClearState();
-      console.log(err);
-      toast.error("error");
+      console.error(error);
+      toast.error("An error occurred");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,6 +105,7 @@ const SignUpWithEmail = () => {
   const handleAccountCreate = async () => {
     if (!email) return toast.error("Please enter email");
     if (!password) return toast.error("Please enter password");
+
     setLoading(true);
     await createUser().then((res) => {
       setLoading(false);

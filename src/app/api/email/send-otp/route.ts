@@ -12,7 +12,7 @@ function generateOTP() {
 }
 
 export async function POST(request: Request) {
-  const { email, name } = await request.json();
+  const { email } = await request.json();
 
   const otp = generateOTP(); // Generate OTP
   const html = render(OtpEmail({ otp: otp.toString() }));
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
         },
         Subject: {
           Charset: "UTF-8",
-          Data: `Hello, ${name}!`,
+          Data: `Hello, New Explorar!`,
         },
       },
     };
