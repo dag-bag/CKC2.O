@@ -24,7 +24,7 @@ const VideosListing = async () => {
           key={video.id}
           {...{
             id: video.id,
-            type: "course",
+            type: "video",
             theme: "blue",
             slug: video.slug,
             desc: video.desc,
