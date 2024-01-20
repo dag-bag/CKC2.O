@@ -24,7 +24,9 @@ export default function SearchPage() {
     queryKey: ["repoData", debounced],
     queryFn: () =>
       fetch(
-        `${url_end_point}${query}&populate[courses][thumbnail][populate][0]=city &populate[videos][thumbnail][populate][0]=city &populate[comics][thumbnail][populate][0]=city &populate[nacs][thumbnail][populate][0]=city &populate[lives][thumbnail][populate][0]=city`
+        `${url_end_point}${
+          query == "" ? " " : query
+        }&populate[courses][thumbnail][populate][0]=city &populate[videos][thumbnail][populate][0]=city &populate[comics][thumbnail][populate][0]=city &populate[nacs][thumbnail][populate][0]=city &populate[lives][thumbnail][populate][0]=city`
       ).then((res) => res.json()),
   });
 
