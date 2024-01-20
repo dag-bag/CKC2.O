@@ -57,9 +57,9 @@ const Form = () => {
 
       <div className="flex items-center justify-between">
         <div>
-          <Link href="#" className="capitalize text-slate-800 hover:underline">
+          {/* <Link href="#" className="capitalize text-slate-800 hover:underline">
             Forget password?
-          </Link>
+          </Link> */}
         </div>
       </div>
 
