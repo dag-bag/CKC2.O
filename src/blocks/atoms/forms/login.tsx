@@ -50,7 +50,7 @@ const Form = () => {
         placeholder="password"
         {...register("password")}
         classNames={{
-          input: "py-3 bg-blue-500",
+          input: "py-3",
         }}
         error={(errors as any).identifier?.message}
       />
