@@ -28,6 +28,7 @@ const Form = () => {
   } = useForm({ resolver });
   const [loading, setLoading] = React.useState(false);
   const { login } = useAuth();
+
   const onSubmit: SubmitHandler<any> = (data) => {
     setLoading(true);
     login({ type: "CRED", ...data });

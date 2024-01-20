@@ -68,11 +68,8 @@ const SignUpWithEmail = () => {
     setPin(undefined);
   };
 
-  const handleEmailVerification = async () => {
+  const handleEmailVerification = async (email: string) => {
     try {
-      if (!email) {
-        return;
-      }
       setLoading(true);
       const response1 = await axios.post("/api/signup-senitize", { email });
       if (response1.data.ok) {
@@ -118,7 +115,12 @@ const SignUpWithEmail = () => {
       <RootModal centered opened={opened} onClose={close}>
         {!varified && !emailSent && (
           <Send
-            {...{ email, setEmail, loading, handler: handleEmailVerification }}
+            {...{
+              email,
+              setEmail,
+              loading,
+              onSubmitHandler: handleEmailVerification,
+            }}
           />
         )}
 
