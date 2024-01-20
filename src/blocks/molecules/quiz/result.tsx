@@ -7,10 +7,12 @@ import Button from "@/blocks/atoms/Button";
 import { useDisclosure } from "@mantine/hooks";
 import { compareArrays } from "./actions/order";
 import { validateArrays } from "./actions/multi";
+import { useRouter } from "next/navigation";
 import { createReward } from "@/strapi/services/custom";
 import { type Action, type Quiz } from "../../../types/quiz";
 import React, { useEffect, useState, useRef } from "react";
 import QuizRewardPopup from "@/blocks/popups/quiz-reward-popup";
+import { BiHome, BiLeftArrowAlt } from "react-icons/bi";
 interface Props {
   result: any;
   RewardConfig: RewardConfig;
@@ -20,6 +22,7 @@ const QuizResultPreviewer = ({
   result: { rightAnswers, totalAnswers },
   RewardConfig: { userId, rewardId, quizId, totalCoins, totalRewardedPoints },
 }: Props) => {
+  const router = useRouter();
   const runned = useRef(false);
   const [coins, setCoins] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
@@ -27,6 +30,9 @@ const QuizResultPreviewer = ({
   const reloadPage = () => {
     window.location.reload();
   };
+
+  const handleBack = () => router.back();
+  const handleBackToHome = () => router.push("/dashboard");
 
   const collectReward = async () => {
     runned.current = true;
@@ -108,13 +114,20 @@ const QuizResultPreviewer = ({
         >
           Play Again
         </Button>
-        <Button
-          onClick={reloadPage}
-          animation="scale"
-          className="w-full py-4 bg-gray-100 rounded-xl mt-3 font-semibold text-lg text-slate-800 center gap-3"
-        >
-          Back to Home
-        </Button>
+        <div className="grid grid-cols-2 gap-5 mt-3">
+          <Button
+            onClick={handleBack}
+            className="!bg-gray-100 !text-black !shadow-none center gap-2"
+          >
+            <BiLeftArrowAlt className="-mt-1" size={22} /> Back
+          </Button>
+          <Button
+            onClick={handleBackToHome}
+            className="!bg-gray-100 !text-black !shadow-none center gap-2"
+          >
+            <BiHome className="-mt-1" size={22} /> Home
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -122,13 +135,13 @@ const QuizResultPreviewer = ({
 
 export default QuizResultPreviewer;
 
-type Response = {
-  answer: string | string[];
-  question: string;
-  actionType: Action["type"];
-  userResponse: string;
-  responseType: "S" | "R" | "W";
-};
+// type Response = {
+//   answer: string | string[];
+//   question: string;
+//   actionType: Action["type"];
+//   userResponse: string;
+//   responseType: "S" | "R" | "W";
+// };
 
 type CompareFunctions = {
   select: (a: string, b: string) => boolean;

@@ -1,17 +1,17 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 import QuizSlider from "./slider";
 import { Tooltip } from "@mantine/core";
 import Button from "@/blocks/atoms/Button";
-import { type Quiz } from "../../../types/quiz";
+import { useRouter } from "next/navigation";
 import Heading from "@/blocks/atoms/Heading";
 import { useDisclosure } from "@mantine/hooks";
-import { BiHome, BiLock } from "react-icons/bi";
+import { type Quiz } from "../../../types/quiz";
 import useQuizSession from "@/hooks/use-quiz-session";
-const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
-  console.log(meta);
+import { BiHome, BiLock, BiLeftArrowAlt } from "react-icons/bi";
 
+const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
+  const router = useRouter();
   const { clearSession } = useQuizSession();
   const [opened, { open }] = useDisclosure(false);
 
@@ -19,6 +19,9 @@ const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
     clearSession();
     open();
   };
+
+  const handleBack = () => router.back();
+  const handleBackToHome = () => router.push("/dashboard");
 
   return (
     <div className="flex flex-col gap-2 bg-white md:w-[500px] md:p-10 p-5 w-[330px] rounded-2xl shadow-sm relative">
@@ -44,17 +47,25 @@ const QuizPlayer: React.FC<Props> = ({ meta, isLocked, rewardConfig }) => {
           animation="scale"
           disebled={isLocked}
           onClick={handleStartQuiz}
-          className="disabled:opacity-50 center"
+          className="disabled:opacity-50 center py-3 !h-auto"
         >
           {rewardConfig.totalRewardedPoints !== 0 ? "Replay" : "Play"}
         </Button>
 
-        <Link
-          href="/dashboard"
-          className="bg-gray-100 w-full py-3 rounded-full mx-auto center gap-2 disabled:opacity-50"
-        >
-          <BiHome size={22} /> Back to home
-        </Link>
+        <div className="grid grid-cols-2 gap-5 mt-3">
+          <Button
+            onClick={handleBack}
+            className="!bg-gray-100 !text-black !shadow-none center gap-2"
+          >
+            <BiLeftArrowAlt className="-mt-1" size={22} /> Back
+          </Button>
+          <Button
+            onClick={handleBackToHome}
+            className="!bg-gray-100 !text-black !shadow-none center gap-2"
+          >
+            <BiHome className="-mt-1" size={22} /> Home
+          </Button>
+        </div>
       </div>
       <QuizSlider
         meta={meta}
