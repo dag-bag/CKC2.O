@@ -34,8 +34,8 @@ const GraderCarousel: React.FC<Props> = ({ children, title }) => {
     w: width,
     align: "start",
     slidesToScroll: 1,
-    slideGap: { base: "md", sm: "md" },
-    slideSize: { base: "50%", sm: "50%", md: "33.333333%", xl: "25%" },
+    slideGap: { base: "md", sm: "sm" },
+    slideSize: { base: "50%", sm: "50%", md: "25%", xl: "25%" },
     nextControlProps: {
       ref: nextControlRef,
       style: hideCarouselDefaultControls,

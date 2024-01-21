@@ -34,7 +34,7 @@ const SearchBar: FC<SearchBarProps> = () => {
   };
 
   return (
-    <div className="lg:flex hidden gap-2 items-center border rounded-full h-[50px] bg-white overflow-hidden pl-4 font-heading">
+    <div className="lg:flex hidden gap-2 items-center border rounded-full h-[45px] bg-white overflow-hidden pl-4 font-heading">
       <input
         value={query ?? ""}
         placeholder="search"

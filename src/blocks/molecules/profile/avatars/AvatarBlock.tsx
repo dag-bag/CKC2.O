@@ -17,8 +17,8 @@ const AvatarBlock: React.FC<Props> = ({ title, images }) => {
     });
   };
   return (
-    <div onClick={handleClickEvent} className="border">
-      <div className="relative aspect-w-4 aspect-h-4">
+    <div onClick={handleClickEvent} className="border p-3 rounded-xl">
+      <div className="relative aspect-w-4 aspect-h-4 rounded-full overflow-hidden ">
         <Image fill alt={title} src={images} />
       </div>
       <h5 className="font-heading p-2">{title}</h5>

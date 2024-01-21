@@ -1,5 +1,4 @@
 import Card from "@/blocks/UI/Card";
-import extImage from "@/libs/extImage";
 import { strapi } from "@/libs/strapi";
 import AvatarBlock from "./AvatarBlock";
 import { getSession } from "@/strapi/services/me";
@@ -17,7 +16,7 @@ const AvatarListing = async () => {
             <AvatarBlock
               key={index}
               title={item.title}
-              images={extImage(item.images)}
+              images={item.images.url}
             />
           );
         })}

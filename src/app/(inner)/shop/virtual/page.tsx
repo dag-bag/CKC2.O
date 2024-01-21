@@ -16,7 +16,7 @@ const VirtualShopPage = async () => {
   return (
     <div>
       <Categorizer title="Avatars">
-        <div className="grid 2xl:grid-cols-5 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
           {avatars.map((avt: any) => (
             <VirtualProduct
               id={avt.id}
@@ -34,7 +34,7 @@ const VirtualShopPage = async () => {
 
       <br />
       <Categorizer title="Banners">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-5 gap-3 flex-wrap ">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2">
           {banners.map((avt: any) => (
             <VirtualProduct
               id={avt.id}

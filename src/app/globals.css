@@ -70,4 +70,10 @@
   .content_card .description {
     @apply text-sm text-[#4D4D4D] mt-2 mb-1.5 tracking-[-2%] leading-4 hidden md:block font-light;
   }
+
+  /* ultra responsiveness  */
+
+  .main_container {
+    @apply max-w-[1440px] mx-auto px-[60px]  border-2 border-dashed pt-[100px];
+  }
 }

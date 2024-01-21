@@ -24,14 +24,21 @@ const PrimaryLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="h-screen font-fun" style={wrapperStyle}>
-      <main className="grid md:grid-cols-[120px_auto] h-screen">
+      <main className="grid md:grid-cols-[90px_auto] lg:grid-cols-[83px_auto] xl:grid-cols-[110px_auto] h-screen">
         <Aside />
         <div
           style={mainStyle}
           className="max-w-screen w-full overflow-y-scroll relative"
         >
           <Header />
-          <div className="pt-[100px] max-w-[1440px] mx-auto md:px-5 px-2">
+          <div
+            className="
+            px-5
+            mx-auto 
+            pt-[100px]
+            md:px-[60px]
+            max-w-[1440px] "
+          >
             {children}
           </div>
         </div>

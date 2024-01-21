@@ -16,7 +16,7 @@ const UpgradeBlock = () => {
   return (
     <Link
       href="/purchases/subscriptions"
-      className="h-[45px] text-yellow-700 center bg-yellow-50 border border-yellow-400 rounded-md pl-3 pr-5 font-amar "
+      className="h-[45px] text-yellow-700 center bg-yellow-100 border border-yellow-400 rounded-md pl-3 pr-5 font-amar shadow-md "
     >
       <Image
         src="/leader.png"

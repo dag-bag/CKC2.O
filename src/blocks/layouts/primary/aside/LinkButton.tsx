@@ -15,7 +15,7 @@ const Button: React.FC<Props> = ({ Icon, title, href }) => {
 
   const getButtonClasses = () =>
     clsx(
-      "center px-4 py-1.5 rounded-xl",
+      "center xl:px-4 px-3 py-1.5 rounded-xl",
       isActive ? "bg-blue-100 text-white" : ""
     );
 

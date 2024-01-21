@@ -33,7 +33,6 @@ import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { BiCalendar } from "react-icons/bi";
-import Heading from "@/blocks/atoms/Heading";
 const ContentCard: React.FC<Props> = ({
   id,
   type,
@@ -62,15 +61,13 @@ const ContentCard: React.FC<Props> = ({
           isPremium={isPremium}
         />
 
-        <section id="main" className="md:p-5 p-2">
+        <section id="main" className="md:p-4 xl:p-5 p-2">
           {conclusionDate && <DateTag value={conclusionDate} />}
           {scheduledDateAndTime && <DateTag value={scheduledDateAndTime} />}
-          <Heading
-            size="small"
-            className="font-medium !font-amar leading-6 md:mt-1 line-clamp-2"
-          >
+
+          <h5 className="lg:text-lg xl:text-xl font-heading font-semibold line-clamp-2 ">
             {title}
-          </Heading>
+          </h5>
 
           {type !== "discover" && (
             <h4 className="hidden md:line-clamp-2 font-medium font-amar text-sm leading-5 my-1 text-gray-600">
@@ -80,7 +77,7 @@ const ContentCard: React.FC<Props> = ({
 
           {type !== "help" && (
             <section id="footer" className="hidden md:block mt-auto">
-              <div className="flex justify-between md:mt-5 mt-2">
+              <div className="flex justify-between md:mt-3 mt-2">
                 <Grades grades={grades} />
                 {price !== undefined && (
                   <PriceTag {...{ isUnlocked, price, theme }} />
@@ -91,7 +88,7 @@ const ContentCard: React.FC<Props> = ({
 
           {type !== "help" && (
             <section id="footer" className="block md:hidden mt-auto">
-              <div className="flex flex-col justify-between md:mt-5 mt-2">
+              <div className="flex flex-col justify-between md:mt-3 mt-2">
                 <Grades grades={grades} />
               </div>
             </section>
@@ -138,7 +135,7 @@ export const PriceTag = ({
     <>
       <p
         className={clsx(
-          "text-sm shadow-lg md:p-1.5  md:px-5 px-5 rounded-full center md:gap-2 gap-1",
+          "text-sm shadow-lg md:px-3 py-1  xl:px-5  rounded-full center md:gap-2 gap-1",
           theme == "blue" && "bg-lightblue",
           theme == "gold" && "bg-darkgold",
           theme == "green" && "bg-lightgreen"

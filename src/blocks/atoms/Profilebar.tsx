@@ -21,12 +21,12 @@ const Profilebar = () => {
         position="bottom-end"
       >
         <Menu.Target>
-          <div className="flex items-center rounded-lg px-2 gap-1 relative">
+          <div className="flex items-center rounded-full shadow-md  gap-1 relative">
             <Image
               height={50}
               alt="user-profile"
               width={50}
-              className="border-2 rounded-full"
+              className="border-2 border-white rounded-full"
               src={"/avatars/asian-man.png"}
             />
 

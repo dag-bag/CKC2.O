@@ -19,6 +19,7 @@ const DashboardPage = async () => {
   ]);
   const [upcoming, liveNow, recorded] = categorizeEvents(live);
   const listOfPurchagesIds = unlocked?.map((pur) => pur.content_id);
+
   return (
     <div className="page_force_scroll">
       {carousel_data.length !== 0 && (
@@ -28,7 +29,7 @@ const DashboardPage = async () => {
       <main>
         {liveNow.length !== 0 && (
           <Categorizer title="Live" className="my-2">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
               {liveNow.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -54,7 +55,7 @@ const DashboardPage = async () => {
 
         {upcoming.length !== 0 && (
           <Categorizer title="Upcoming Live" className="my-2">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
               {upcoming.map((video) => (
                 <ContentCard
                   key={video.id}
@@ -84,7 +85,7 @@ const DashboardPage = async () => {
 
         {recorded.length !== 0 && (
           <Categorizer className="my-2" title="Recorded Live Sessions">
-            <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 md:gap-5 gap-3">
+            <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
               {recorded.map((video) => (
                 <ContentCard
                   key={video.id}

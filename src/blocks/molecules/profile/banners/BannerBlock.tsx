@@ -16,8 +16,8 @@ const BannerBlock: React.FC<Props> = ({ title, images }) => {
     });
   };
   return (
-    <div onClick={handleClickEvent} className="border">
-      <div className="relative aspect-w-10 aspect-h-4">
+    <div onClick={handleClickEvent} className="border rounded-xl p-3 !pb-0">
+      <div className="relative aspect-w-10 aspect-h-4 rounded-xl overflow-hidden">
         <Image fill alt={title} src={images} />
       </div>
       <h5 className="font-heading p-2">{title}</h5>

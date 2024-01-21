@@ -1,5 +1,4 @@
 import Card from "@/blocks/UI/Card";
-import extImage from "@/libs/extImage";
 import { strapi } from "@/libs/strapi";
 import BannerBlock from "./BannerBlock";
 import { getSession } from "@/strapi/services/me";
@@ -18,7 +17,7 @@ const BannerListing = async () => {
             <BannerBlock
               key={index}
               title={item.title}
-              images={extImage(item.images)}
+              images={item.images.url}
             />
           );
         })}
