@@ -4,16 +4,17 @@ import {
   BiLockOpenAlt,
   BiCheckCircle,
 } from "react-icons/bi";
-import { strapi } from "@/libs/strapi";
+import clsx from "clsx";
+import { useState } from "react";
+import ActionQuizBlock from "../quiz";
+import { BsDot } from "react-icons/bs";
+import Button from "@/blocks/atoms/Button";
+import { createWatch } from "@/utils/watch";
+import useSession from "@/hooks/use-session";
 import { useDisclosure } from "@mantine/hooks";
 import { Accordion, Modal } from "@mantine/core";
-import { BsDot, BsPlayCircle } from "react-icons/bs";
-import { createReward } from "@/strapi/services/custom";
 import { convertSecondsToTime } from "@/libs/convertors";
 import HeyzinePopup from "@/blocks/molecules/course/HeyzinePopup";
-import ActionQuizBlock from "../quiz";
-import Button from "@/blocks/atoms/Button";
-import clsx from "clsx";
 const Module = ({
   id,
   name,
@@ -28,30 +29,44 @@ const Module = ({
   explorationTime,
   watched_progress,
 }: any) => {
+  const session = useSession();
+  const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
+
   const handlePlay = async () => {
-    open();
     if (!watched_progress) {
-      console.log("module-watched-created");
-      strapi
-        .create("watcheds", {
-          user_id: "4",
-          type: "course",
-          watch_progress: 0,
-          content_id: id.toString(), // module id
-          course_id: courseId.toString(),
-          watched_date: new Date().toISOString(),
-        })
-        .then(() => {
+      setLoading(true);
+      await createWatch(
+        id.toString(),
+        courseId.toString(),
+        session?.session?.user?.id?.toString(),
+        () => {
           mutate();
-        });
+          setLoading(false);
+          open();
+        }
+      );
+    } else {
+      open();
     }
   };
+
+  const onCloseHandler = () => {
+    mutate();
+    close();
+  };
+
   return (
     <>
-      <Modal fullScreen opened={opened} onClose={close}>
+      <Modal fullScreen opened={opened} onClose={onCloseHandler}>
         <HeyzinePopup
-          {...{ id, watch_id, explorationTime, watched_progress, completed }}
+          {...{
+            id,
+            watch_id,
+            completed,
+            explorationTime,
+            watched_progress,
+          }}
         />
       </Modal>
       <Accordion.Item value={name} className="!font-heading">
@@ -75,7 +90,6 @@ const Module = ({
                 </h3>
                 <span className="text-xs text-gray-600 min-w-[200px]">
                   {convertSecondsToTime(parseInt(watched_progress ?? 0))}
-                  {" / "}
                   {convertSecondsToTime(parseInt(explorationTime))}
                 </span>
               </div>
@@ -106,6 +120,7 @@ const Module = ({
 
           <div className="md:flex grid md:gap-5 gap-2 ">
             <Button
+              loading={loading}
               animation="scale"
               disebled={!unlock}
               onClick={handlePlay}

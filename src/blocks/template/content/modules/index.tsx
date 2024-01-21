@@ -85,8 +85,8 @@ const condition = (index: number, unlocked: boolean, obj: any) => {
 
 const generateModuleHistoryMapping = (
   modules: any,
-  historyOfModules: any,
-  achievements: any
+  achievements: any,
+  historyOfModules: any
 ) => {
   const obj: any = {};
   modules.forEach((mod: any, index: number) => {
@@ -96,10 +96,12 @@ const generateModuleHistoryMapping = (
         id: f.length == 0 ? undefined : f.at(0).id,
         completed: f.length == 0 ? undefined : f.at(0).completed,
         watched_progress: f.length == 0 ? 0 : f.at(0).watch_progress,
-        quiz_completed: achievements?.some(
-          (achievement: any) =>
-            parseInt(achievement.quiz_id) === parseInt(mod?.quiz?.id)
-        ),
+        quiz_completed: mod?.quiz
+          ? achievements?.some(
+              (achievement: any) =>
+                parseInt(achievement.quiz_id) === parseInt(mod?.quiz?.id)
+            )
+          : true,
       };
     } else {
       obj[index] = undefined;

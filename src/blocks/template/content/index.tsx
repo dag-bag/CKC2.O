@@ -45,11 +45,11 @@ const ContentTemplate: React.FC<Props> = async ({
     title,
     price,
     slug,
-    mediaUrl,
-    thumbnail,
     mentor,
-    duration,
     premium,
+    mediaUrl,
+    duration,
+    thumbnail,
   } = data;
   const session = await getSession();
   const thumbnailUrl = extImage(thumbnail);

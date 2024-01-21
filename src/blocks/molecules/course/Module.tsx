@@ -1,22 +1,22 @@
+import {
+  BiTime,
+  BiLockAlt,
+  BiCheckCircle,
+  BiLockOpenAlt,
+} from "react-icons/bi";
 import { strapi } from "@/libs/strapi";
 import HeyzinePopup from "./HeyzinePopup";
 import { useDisclosure } from "@mantine/hooks";
 import { Accordion, Modal } from "@mantine/core";
 import { BsDot, BsPlayCircle } from "react-icons/bs";
 import { convertSecondsToTime } from "@/libs/convertors";
-import {
-  BiCheckCircle,
-  BiLockOpenAlt,
-  BiTime,
-  BiLockAlt,
-} from "react-icons/bi";
-import { useState } from "react";
 import { createReward } from "@/strapi/services/custom";
 
 const Module = ({
   id,
   name,
   desc,
+  quiz,
   unlock,
   courseId,
   watch_id,
@@ -24,15 +24,13 @@ const Module = ({
   watched_progress,
   explorationTime,
   mutate,
-  quiz,
   achievements,
 }: any) => {
   const [opened, { open, close }] = useDisclosure(false);
   const handlePlay = async () => {
     open();
     if (!watched_progress) {
-      console.log("ceate");
-      strapi
+      await strapi
         .create("watcheds", {
           user_id: "4",
           content_id: id.toString(), // module id
