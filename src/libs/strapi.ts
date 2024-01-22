@@ -1,7 +1,7 @@
 import Strapi from "strapi-sdk-js";
 
 const strapi = new Strapi({
-  url: "https://ckc-strapi-production-33d2.up.railway.app",
+  url: "https://api.cosmickidsclub.in",
   prefix: "/api",
   store: {
     key: "strapi_jwt",

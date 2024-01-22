@@ -27,5 +27,6 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
   const res = await strapi.axios.get("/credit?id=" + session.user.id);
+  console.log(session.user.id)
   return Response.json(res.data);
 }
